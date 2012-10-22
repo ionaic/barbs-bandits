@@ -9,6 +9,7 @@ int main() {
 	cout << img2;
 	img2.blit(img,0,0,1,0,2,1);
 	cout << img;
+	cout << sizeof(img.get(0,0)) << endl;
 	system("pause");
 	return 0;
 }
