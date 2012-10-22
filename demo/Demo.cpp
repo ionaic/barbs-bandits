@@ -29,10 +29,10 @@ int loadGuiTexture(string textureString) {
 		cout << "Texture failed to load" << endl;
 		return 1;
 	}
-	FIBITMAP *bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
-	int width = FreeImage_GetWidth(bitmap32);
-	int height = FreeImage_GetHeight(bitmap32);
-	BYTE* bits = FreeImage_GetBits(bitmap32);
+	FIBITMAP *bitmap32 = bitmap;
+	int width = FreeImage_GetWidth(bitmap);
+	int height = FreeImage_GetHeight(bitmap);
+	BYTE* bits = FreeImage_GetBits(bitmap);
 	//generate and bind the texture
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -42,13 +42,12 @@ int loadGuiTexture(string textureString) {
 	//set texture clamping
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
-	//
-	glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
 	//set lighting properties (ignore lighting for gui)
 	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
-	//
-	gluBuild2DMipmaps(GL_TEXTURE_2D, 4, width, height,
-			GL_RGB, GL_UNSIGNED_BYTE, bits);
+	//use opengl to produce the texture
+	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
+			0, GL_RGB, GL_UNSIGNED_BYTE, bits);
+	//unload the bitmap since we're done with it
 	FreeImage_Unload(bitmap);
 	return 0;
 }
@@ -129,14 +128,14 @@ void draw(void)
     glLoadIdentity();
     glBegin(GL_QUADS);
     {
-        glTexCoord2f(0.0,  0.0);
-        glVertex2f(  1.0,  1.0);
-        glTexCoord2f(1.0,  0.0);
-        glVertex2f( -1.0,  1.0);
-        glTexCoord2f(1.0,  1.0);
-        glVertex2f( -1.0, -1.0);
-        glTexCoord2f(0.0,  1.0);
-        glVertex2f(  1.0, -1.0);
+        glTexCoord2f( 0.0f, 0.0f);
+        glVertex2i(-1, -1);
+        glTexCoord2f( 1.0f, 0.0f);
+        glVertex2i(-1, 1);
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex2i(1, 1);
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex2i(1, -1);
     }
     glEnd();
     glDisable( GL_TEXTURE_2D );
