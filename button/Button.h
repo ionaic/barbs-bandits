@@ -16,5 +16,5 @@ class Button : public Element {
             Element(x, y, w, h) {
             Element::addChild(image);
         }
-		~Button() { Element::~Element(); }
+		virtual ~Button() { Element::~Element(); }
 };
