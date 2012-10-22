@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "Text.h"
+#include "../image/Image.h"
 
 using namespace std;
 int main() {
@@ -9,7 +10,10 @@ int main() {
 	int e = t.Render();
 
 	cout << e << endl;
-	cout << t.stringify() << endl;
+	cout << t.Stringify() << endl;
+	
+	cout << *t.rendered << endl;
+
 
 	return 0;
 }
