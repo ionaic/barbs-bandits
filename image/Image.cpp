@@ -66,6 +66,7 @@ void Image::set(unsigned int x, unsigned int y, unsigned int width,
 		}
 	}
 }
+Pixel ERRORPIXEL;
 const Pixel &Image::get(unsigned int x, unsigned int y) const {
 	if (x>=_width || y>=_height) {
 		if (!_pixels) {
@@ -75,7 +76,7 @@ const Pixel &Image::get(unsigned int x, unsigned int y) const {
 			std::cout << "ERROR: Pixel coordinate is out of bounds\n" <<
 				"{XY: " << x << ", " << y << "}" << std::endl; 
 		}
-		return Pixel();
+		return ERRORPIXEL;
 	}
 	return _pixels[_getCoord(x,y)];
 }
