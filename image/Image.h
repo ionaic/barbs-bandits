@@ -11,6 +11,8 @@ public:
 	unsigned int width() const;
 	unsigned int height() const;
 	void set(unsigned int x, unsigned int y, const Pixel &color);
+	void set(unsigned int x, unsigned int y, unsigned int width,
+		unsigned int height, const Pixel &color);
 	const Pixel &get(unsigned int x, unsigned int y) const;
 	void blit(Image &dest, unsigned int xSource, unsigned int ySource,
                            unsigned int xDest,   unsigned int yDest,

@@ -45,6 +45,27 @@ void Image::set(unsigned int x, unsigned int y, const Pixel &color) {
 	unsigned int coord = _getCoord(x,y);
 	_pixels[coord] = color;
 }
+void Image::set(unsigned int x, unsigned int y, unsigned int width,
+				unsigned int height, const Pixel &color) {
+	if (x+width>_width || y+width>_height) {
+		if (!_pixels) {
+			std::cout << "ERROR: Tried to set a pixel" <<
+				"in an uninitialized image!" << std::endl;
+		} else {
+			std::cout << "ERROR: Pixel region is out of bounds\n" <<
+				"  Top Left {XY: " << x << ", " << y << "}" << 
+				"Dimensions {WH: " << width << ", " << height << "}" <<
+				std::endl;
+		}
+		return;
+	}
+	for (unsigned int px = x; px<x+width; ++px) {
+		for (unsigned int py=y; py<x+height; ++py) {
+			unsigned int coord = _getCoord(px,py);
+			_pixels[coord] = color;
+		}
+	}
+}
 const Pixel &Image::get(unsigned int x, unsigned int y) const {
 	if (x>=_width || y>=_height) {
 		if (!_pixels) {
