@@ -23,6 +23,7 @@ Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
 Image::~Image() {
 	if (_pixels!=0) {
 		delete[] _pixels;
+		_pixels = 0;
 	}
 }
 unsigned int Image::width() const {
