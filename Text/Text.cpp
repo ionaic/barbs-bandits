@@ -3,24 +3,30 @@
 #include <ft2build.h>
 #include <string>
 #include <iostream>
-
+#include "../image/Pixel.h"
+#include "../image/Image.h"
 #include FT_FREETYPE_H
 
 using namespace std;
 
 Text::Text() {
-	width = 0;
-	height = 0;
-	fontSize = 0;
+	Init(0,0,0);
 	dirty = false;
 }
 
 Text::~Text() {
-	if (!image) return;
-	for(int i = 0; i < height; ++i) {
-		delete[] image[i];
+	if (image) {
+		for(int i = 0; i < height; ++i) {
+			delete[] image[i];
+		}
+		delete[] image;
 	}
-	delete[] image;
+	if (pixels) {
+		for(int i = 0; i < height; ++i) {
+			delete[] pixels[i];
+		}
+		delete[] pixels;
+	}
 }
 
 void Text::Init(int w, int h, int size) {
@@ -36,6 +42,10 @@ void Text::Init(int w, int h, int size, string c) {
 	image = new unsigned char*[height];
 	for(int i = 0; i < height; ++i)
 		image[i] = new unsigned char[width];
+
+	pixels = new Pixel*[height];
+	for(int i = 0; i < height; ++i)
+		pixels[i] = new Pixel[width];
 }
 
 void Text::SetText(string c) {
@@ -77,7 +87,7 @@ int Text::Render() {
 		error = FT_Load_Char( face, content[n], FT_LOAD_RENDER );
 		if (pen_x + slot->bitmap_left > width) return -4;
 
-		renderImage( &slot->bitmap,
+		RenderImage( &slot->bitmap,
 				pen_x + slot->bitmap_left,
 				height - slot->bitmap_top);
 
@@ -86,9 +96,12 @@ int Text::Render() {
 
 	FT_Done_Face    ( face );
 	FT_Done_FreeType( library );
+
+	GenerateImage();
+	return 1;
 }
 
-void Text::renderImage( FT_Bitmap*  bitmap,
+void Text::RenderImage( FT_Bitmap*  bitmap,
 		FT_Int x, FT_Int y) {
 	FT_Int  i, j, p, q;
 	FT_Int  x_max = x + bitmap->width;
@@ -104,7 +117,7 @@ void Text::renderImage( FT_Bitmap*  bitmap,
 	}
 }
 
-string Text::stringify() {
+string Text::Stringify() {
 	string s = "";
 	for (int i = 0; i<height; i++) {
 		for (int j = 0; j<width; j++) {
@@ -116,3 +129,16 @@ string Text::stringify() {
 	}
 	return s;
 }
+
+void Text::GenerateImage() {
+	rendered = new Image(width,height);
+
+	for (int i = 0; i<height; i++) {
+		for (int j = 0; j<width; j++) {
+			int v = image[i][j];
+			pixels[i][j] = Pixel(v,v,v);
+			rendered->set(j,i,pixels[i][j]);
+		}
+	}
+}
+
