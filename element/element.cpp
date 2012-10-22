@@ -1,64 +1,88 @@
 #include "element.h"
 #include <iostream>
+#include <algorithm>
 #include <stdio.h>
+#include "Image.h"
 
 using namespace std;
 
 
 Element::Element() {
-    this->xCoord = 0;
-    this->yCoord = 0;
-    this->xSize = 0;
-    this->ySize = 0;
-    this->id = currentId;
+    this->_xCoord = 0;
+    this->_yCoord = 0;
+    this->_xSize = 0;
+    this->_ySize = 0;
+    this->_id = currentId;
     currentId++;
 }
 
 
 Element::Element(int x, int y, int xs, int ys) {
-	this->xCoord = x;
-	this->yCoord = y;
-	this->xSize = xs;
-	this->ySize = ys;
-    this->id = currentId;
+	this->_xCoord = x;
+	this->_yCoord = y;
+	this->_xSize = xs;
+	this->_ySize = ys;
+    this->_id = currentId;
     currentId++;
 }
 
 
-void Element::mouseInput(int x, int y) {
-	int xMin = this->xCoord;
-	int yMin = this->yCoord;
-	int xMax = this->xCoord + this->xSize;
-	int yMax = this->yCoord + this->ySize;
-	bool inside = (xMin <= x && yMin <= y && xMax >= x && yMax >= y);
-	if (inside) {
-		cout << "hit! id: " << this->id << endl;
-		return;
-	}
-	cout << "miss! id: " << this->id << endl;
+//void Element::mouseInput(int x, int y) {
+//	int xMin = this->xCoord;
+//	int yMin = this->yCoord;
+//	int xMax = this->xCoord + this->xSize;
+//	int yMax = this->yCoord + this->ySize;
+//	bool inside = (xMin <= x && yMin <= y && xMax >= x && yMax >= y);
+//	if (inside) {
+//		cout << "hit! id: " << this->id << endl;
+//		return;
+//	}
+//	cout << "miss! id: " << this->id << endl;
+//}
+
+void Element::registerCallback(void (*func)()) {
+    this->_mouseCallback = func;
 }
 
 
-void Element::render() {
-	vector <Element>::iterator child;
-	child = this->children.begin();
-	while(children.end() != child ) {
-		child->render();
-		if (child->dirty) {
+void Element::addChild(Element *child) {
+    this->_children.push_back(child);
+    sort(this->_children.begin(), this->_children.end());
+}
+
+
+Image* Element::render() {
+	vector<Element*>::iterator child = this->_children.begin();
+	while(this->_children.end() != child ) {
+		Image* childImage = (*child)->render();
+		if ((*child)->_dirty) {
 			//here's where we actually want to do the rendering
+            //return composited image/texture
+            // blit each child to the result image at the proper place
+            childImage->blit(*(this->_result), 0, 0, 
+                (*child)->_xCoord, (*child)->_yCoord, 
+                (*child)->_xSize, (*child)->_ySize);
+            // if any child is dirty, this element is dirty
+            this->_dirty = true;
 		}
 	}
+    return this->_result;
 }
 
 
 int main() {
-	vector <Element> elements;
+	vector<Element> elements;
 	for(unsigned int i = 0; i < 10; i++) {
 		Element e(0,0,100,100);
 		elements.push_back(e);
 	}
-
+    std::cout << "Created everything." << std::endl;
+    
 	for(unsigned int i =0; i < elements.size(); i++) {
-		elements[i].mouseInput(i * 20, i * 20);
+		//elements[i].mouseInput(i * 20, i * 20);
+        elements[i].render();
 	}
+    std::cout << "Rendered everything." << std::endl;
+
+    return 0;
 }
