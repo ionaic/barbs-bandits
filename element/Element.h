@@ -5,7 +5,7 @@
 
 #include <vector>
 #include <algorithm>
-#include "../image/Image.h"
+#include "Image.h"
 #pragma once
 
 using namespace std;
@@ -32,13 +32,11 @@ public:
     // operator definitions
     bool operator<(const Element &other) { return this->_zIndex < other._zIndex; }
 
-protected:
+private:
     unsigned int _xCoord;
     unsigned int _yCoord;
     unsigned int _xSize;
     unsigned int _ySize;
-
-private:
     float _zIndex;
     bool _dirty;
     vector<Element *> _children;
