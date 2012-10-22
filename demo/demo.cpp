@@ -1,19 +1,56 @@
+//http://web.engr.oregonstate.edu/~mjb/cs553/Handouts/Texture/texture.pdf
 #include <GL/glfw.h>
-#include "demo.h"
+#include <FreeImage.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include "demo.h"
 
 using namespace std;
 
 static bool running = GL_TRUE;
 static int vsync = 1;
 static float aspectRatio = 0;
+GLuint texture;
+static string textureFile = "texture.bmp";
 
 int main() {
 	init();
+	loadGuiTexture(textureFile);
 	mainLoop();
 	shutDown(EXIT_SUCCESS);
+}
+
+int loadGuiTexture(string textureString) {
+	FreeImage_Initialise();
+
+	FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
+	if (!bitmap) {
+		cout << "Texture failed to load" << endl;
+		return 1;
+	}
+	FIBITMAP *bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+	int width = FreeImage_GetWidth(bitmap32);
+	int height = FreeImage_GetHeight(bitmap32);
+	BYTE* bits = FreeImage_GetBits(bitmap32);
+	//generate and bind the texture
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	//set texture filtering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	//set texture clamping
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+	//
+	glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
+	//set lighting properties (ignore lighting for gui)
+	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
+	//
+	gluBuild2DMipmaps(GL_TEXTURE_2D, 4, width, height,
+			GL_RGB, GL_UNSIGNED_BYTE, bits);
+	FreeImage_Unload(bitmap);
+	return 0;
 }
 
 void shutDown(int returnCode) {
@@ -21,6 +58,7 @@ void shutDown(int returnCode) {
 	 */
 
 	glfwTerminate();
+	FreeImage_DeInitialise();
 	exit(returnCode);
 }
 
@@ -54,7 +92,6 @@ void init(void) {
 	glfwSwapInterval(vsync);
 
 	//enable alpha blending
-	glEnable(GL_BLEND);
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//set the matrices
@@ -87,16 +124,22 @@ void mainLoop(void) {
 void draw(void)
 {
     // draw GUI box
+	//enable texturing
+	glEnable( GL_TEXTURE_2D );
     glLoadIdentity();
     glBegin(GL_QUADS);
     {
-        glColor4f(0.8, 0.4, 0.4, 0.5);
-        glVertex2f( .98,  .98 );//* aspectRatio);
-        glVertex2f(-.98,  .98 );//* aspectRatio);
-        glVertex2f(-.98, -.98 );//* aspectRatio);
-        glVertex2f( .98, -.98 );//* aspectRatio);
+        glTexCoord2f(0.0,  0.0);
+        glVertex2f(  1.0,  1.0);
+        glTexCoord2f(1.0,  0.0);
+        glVertex2f( -1.0,  1.0);
+        glTexCoord2f(1.0,  1.0);
+        glVertex2f( -1.0, -1.0);
+        glTexCoord2f(0.0,  1.0);
+        glVertex2f(  1.0, -1.0);
     }
     glEnd();
+    glDisable( GL_TEXTURE_2D );
 }
 
 
