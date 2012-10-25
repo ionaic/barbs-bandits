@@ -1,26 +1,39 @@
-all: image text element
-	 g++ Image.o Pixel.o Text.o Element.o Button.o ToggleButton.o main.cpp -o sample
+# flags for the demo to look in (freeimage, opengl...)
+DEMOINCL=-I/usr/include/ -I/usr/lib/ -L/usr/lib -lglfw -lGL -lX11 -lGLEW -lfreeimage -lGLU
+# text include flags
+TXTINCL=`freetype-config --cflags` -lfreetype
+# compiler
+CC=g++
+# object files
+OFILES=Image.o Pixel.o Text.o Element.o Button.o ToggleButton.o 
+# final target
+TARGET=sample
+# generic element includes
+INCL=-I./image/ -I./text/ -I./element/ 
+
+all: image text element button togglebutton
+	 $(CC) $(OFILES) main.cpp -o $(TARGET)
 
 image:
-	g++ -c image/Image.cpp image/Pixel.cpp
+	$(CC) -c image/Image.cpp image/Pixel.cpp
 
 text:
-	g++ -c ../text/Text.cpp `freetype-config --cflags` -lfreetype
+	$(CC) -c ../text/Text.cpp $(TXTINCL)
 
 element:
-	g++ -c -I./image/ element/Element.cpp
+	$(CC) -c -I./image/ element/Element.cpp
 
 demo:
-	g++ Demo.cpp -o Demo -I/usr/include/ -I/usr/lib/ -L/usr/lib -lglfw -lGL -lX11 -lGLEW -lfreeimage -lGLU
+	$(CC) Demo.cpp -o Demo $(DEMOINCL)
 
 button: image text
-	g++ -c Button.h -I../image/ -I../text/ -I../element/ `freetype-config --cflags` -lfreetype
+	$(CC) -c button/Button.h $(INCL) $(TXTINCL)
 
 togglebutton: image text
-	g++ -c Button.h -I../image/ -I../text/ -I../element/ `freetype-config --cflags` -lfreetype
+	$(CC) -c togglebutton/ToggleButton.h $(INCL) $(TXTINCL)
 
 debug: image text element
-	 g++ Image.o Pixel.o Text.o Element.o Button.o ToggleButton.o main.cpp -o -g sample
+	$(CC) $(OFILES) main.cpp -o -g $(TARGET)
 
 clean:
-	rm Image.o Pixel.o Element.o
+	rm $(OFILES)
