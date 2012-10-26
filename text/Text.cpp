@@ -3,8 +3,6 @@
 #include <ft2build.h>
 #include <string>
 #include <iostream>
-#include "../image/Pixel.h"
-#include "../image/Image.h"
 #include FT_FREETYPE_H
 
 using namespace std;
@@ -19,31 +17,13 @@ Text::Text(int w, int h, int size, string c) {
 	fontSize = size;
 	content = c;
 	dirty = false;
-
-	image = new unsigned char*[height];
-	for(int i = 0; i < height; ++i)
-		image[i] = new unsigned char[width];
-
-	pixels = new Pixel*[height];
-	for(int i = 0; i < height; ++i)
-		pixels[i] = new Pixel[width];
+	image = new int[height*width];
 }
-
 
 Text::~Text() {
-	if (image) {
-		for(int i = 0; i < height; ++i) {
-			delete[] image[i];
-		}
-		delete[] image;
-	}
-	if (pixels) {
-		for(int i = 0; i < height; ++i) {
-			delete[] pixels[i];
-		}
-		delete[] pixels;
-	}
+	delete[] image;
 }
+
 
 void Text::SetText(string c) {
 	content = c;
@@ -51,8 +31,6 @@ void Text::SetText(string c) {
 
 int Text::Render() {
 	//This is based off libttf tutorial code: bit.ly/ROmj5C
-	if (!image) return -1;
-
 	int num_chars = content.size();
 
 	FT_Library	library;
@@ -109,7 +87,7 @@ void Text::RenderImage( FT_Bitmap*  bitmap,
 			if ( i < 0  || j < 0 || i >= width || j >= height )
 				continue;
 
-			image[j][i] |= bitmap->buffer[q * bitmap->width + p];
+			image[i*width+j] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
 }
@@ -118,8 +96,8 @@ string Text::Stringify() {
 	string s = "";
 	for (int i = 0; i<height; i++) {
 		for (int j = 0; j<width; j++) {
-			if (image[i][j] == 0) s+=" ";
-			else if (image[i][j] < 128) s+="+";
+			if (image[i*width+j] == 0) s+=" ";
+			else if (image[i*width+j] < 128) s+="+";
 			else s+="*";
 		}
 		s+="\n";
@@ -128,13 +106,15 @@ string Text::Stringify() {
 }
 
 void Text::GenerateImage() {
-	rendered = new Image(width,height);
+	rendered = new unsigned char[width*height];
 
 	for (int i = 0; i<height; i++) {
 		for (int j = 0; j<width; j++) {
-			int v = image[i][j];
-			pixels[i][j] = Pixel(v,v,v);
-			rendered->set(j,i,pixels[i][j]);
+			int v = image[i*width+j];
+			for (int k = 0; k < 3; k++) {
+				rendered[j*width+i+k] = v;
+			}
+			rendered[j*width+i+4] = 255;
 		}
 	}
 }

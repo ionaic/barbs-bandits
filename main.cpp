@@ -6,6 +6,7 @@
 #include <iostream>
 #include "main.h"
 #include "Element.h"
+#include "Text.h"
 #include "ImageElement.h"
 
 using namespace std;
@@ -35,8 +36,13 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	Image I(width, height, texturebits);
-	ImageElement ie(0, 0, width, width, &I);
+	//Image I(width, height, texturebits);
+	Text *T = new Text(width,height,1,"a");
+	T->Render();
+	Image I(width,height,T->rendered);
+	
+
+	//ImageElement ie(0, 0, width, width, I);
 	Pixel* bits = I.getPixels();//ie.render()->getPixels();
 
 	if(!bits) {
