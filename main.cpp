@@ -1,6 +1,6 @@
 //http://web.engr.oregonstate.edu/~mjb/cs553/Handouts/Texture/texture.pdf
 #include <GL/glfw.h>
-#include <FreeImage.h>
+//#include <FreeImage.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
@@ -19,8 +19,9 @@ static string textureFile = "texture.bmp";
 int main() {
 	init();
 	loadGuiTexture(textureFile);
+	cout << "3" << endl;
 	mainLoop();
-	shutDown(EXIT_SUCCESS);
+	//shutDown(EXIT_SUCCESS);
 }
 
 int loadGuiTexture(string textureString) {
@@ -31,7 +32,8 @@ int loadGuiTexture(string textureString) {
 	//	return 1;
 	//}
 	//here's the openGUI
-	Image I(256, 256);
+	//Pixel P(255,0,0,255);
+	Image I(256, 256);//, P);
 	ImageElement ie(0, 0, 256, 256, &I);
 	Pixel* bits = I.getPixels();//ie.render()->getPixels();
 	if(!bits) {
@@ -71,7 +73,7 @@ void shutDown(int returnCode) {
 	 */
 
 	glfwTerminate();
-	FreeImage_DeInitialise();
+	//FreeImage_DeInitialise();
 	exit(returnCode);
 }
 

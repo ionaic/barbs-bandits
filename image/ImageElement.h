@@ -18,7 +18,7 @@ class ImageElement : public Element {
             this->_img = img;
         }
         ~ImageElement() { 
-            delete _img;
+            //delete _img;
         }
         virtual void clearResult() {
             this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
