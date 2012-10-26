@@ -14,7 +14,7 @@ INCL=-I./image/ -I./text/ -I./element/
 HFILES=button/Button.h $(INCL) $(TXTINCL)
 
 all: Image.o Pixel.o Text.o Element.o
-	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET)
+	 $(CC) $(OFILES) $(HFILES) $(DEMOINCL) main.cpp -o $(TARGET)
 
 Image.o:
 	$(CC) image/Image.cpp -c
