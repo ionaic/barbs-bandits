@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _BUTTON_H_
+#define _BUTTON_H_
 
 #include <string>
 #include "Image.h"
@@ -22,3 +23,4 @@ class Button : public Element {
         void setBgImg(ImageElement* img) { Element::addChild(img); }
 		virtual ~Button() {}
 };
+#endif

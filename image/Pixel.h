@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _PIXEL_H_
+#define _PIXEL_H_
+
 #include <iostream>
 
 class Pixel {
@@ -16,3 +18,4 @@ public:
 private:
 	unsigned char _r, _g, _b, _a;
 };
+#endif

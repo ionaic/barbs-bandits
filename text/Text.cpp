@@ -7,8 +7,6 @@
 #include "../image/Image.h"
 #include FT_FREETYPE_H
 
-#pragma once
-
 using namespace std;
 
 Text::Text(int w, int h, int size) {

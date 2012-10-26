@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _TEXT_ELEMENT_H_
+#define _TEXT_ELEMENT_H_
 
 #include <string>
 #include "Text.h"
@@ -22,3 +23,4 @@ class TextElement : public Element {
     private: 
         Text* _text;
 };
+#endif
