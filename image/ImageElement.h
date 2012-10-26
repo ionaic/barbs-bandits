@@ -9,17 +9,21 @@
 class ImageElement : public Element {
     public:
         // public constructors
-        ImageElement() : Element() {}
+        ImageElement() : Element() { this->_img = new Image(); }
         ImageElement(Image &img) : Element() { this->_img = new Image(img); }
-        ImageElement(unsigned int x, unsigned int y) : Element(x, y, 0, 0) {}
+        ImageElement(unsigned int x, unsigned int y) : Element(x, y, 0, 0) { this->_img = new Image(); }
         ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : 
-            Element(x,y,width,height) {}
+            Element(x,y,width,height) { this->_img = new Image(width, height); }
         ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height, Image &img) : Element(x, y, width, height) {
             this->_img = new Image(img);
         }
-        virtual void clearResult() {
+        void clearResult() { 
+            std::cout << "clear result: ImageElement" << std::endl;
+            std::cout << "width: " << this->_width << ", " << this->_img->width() << "; height: " << this->_height << ", " << this->_img->height() << std::endl;
             this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
         }
+        void setImage(Image &img) { this->_img = new Image(img); }
+        Pixel* getImage() { return this->_result->getPixels(); }
     private:
         Image* _img;
 };
