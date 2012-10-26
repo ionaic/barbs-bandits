@@ -41,7 +41,7 @@ int Text::render() {
 
 	error = FT_Init_FreeType( &library );
 
-	error = FT_New_Face( library,	"FreeSans.ttf", 0, &face );
+	error = FT_New_Face( library,	"text/FreeSans.ttf", 0, &face );
 	if (error) {
 		cerr<< "Error loading .ttf file"<< endl;
 		return -2;
