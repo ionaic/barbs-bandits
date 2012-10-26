@@ -36,7 +36,7 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	Image I(width, height, texturebits);
+	Image i(width, height, texturebits);
 	/*Text *T = new Text(width, height, 10, "Ab");
 	T->render();
 	cout << T->stringify() << endl;
