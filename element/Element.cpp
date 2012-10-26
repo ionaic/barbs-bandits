@@ -14,7 +14,7 @@ Element::Element() {
     this->_height = 0;
     this->_id = currentId;
     currentId++;
-    this->_clrImg = Image(0, 0, this->_width, this->_height);
+    this->_clrImg = new Image(this->_width, this->_height);
 }
 
 
@@ -25,7 +25,7 @@ Element::Element(int x, int y) {
 	this->_height = 0;
     this->_id = currentId;
     currentId++;
-    this->_clrImg = Image(0, 0, this->_width, this->_height);
+    this->_clrImg = new Image(this->_width, this->_height);
 }
 
 
@@ -36,7 +36,7 @@ Element::Element(int x, int y, int xs, int ys) {
 	this->_height = ys;
     this->_id = currentId;
     currentId++;
-    this->_clrImg = Image(0, 0, this->_width, this->_height);
+    this->_clrImg = new Image(this->_width, this->_height);
 }
 
 Element::~Element() {

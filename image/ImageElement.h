@@ -12,13 +12,14 @@ class ImageElement : public Element {
         ImageElement(unsigned int x, unsigned int y) : Element(x, y, 0, 0) {}
         ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : 
             Element(x,y,width,height) {}
-        ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height, Image *_img) : 
+        ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height, Image *img) : Element(x, y, width, height) {
+            this->_img = img;
+        }
         ~ImageElement() { 
             delete _img;
-            Element::~Element(); 
         }
-        virtual clearResult() {
-            this->_img->blit(this->_result,  0, 0, 0, 0, this->width, this->height);
+        virtual void clearResult() {
+            this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
         }
     private:
         Image* _img;

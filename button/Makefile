@@ -1,14 +1,16 @@
+INCL=-I../image/ -I../text/ -I../element/ `freetype-config --cflags` -lfreetype
+
 all: image font button element
-	g++ -o main main.cpp Pixel.o Image.o Text.o Button.o
+	g++ $(INCL) main.cpp Pixel.o Image.o Text.o Button.h -o main
 
 button: 
-	g++ -c Button.h -I../image/ -I../text/ -I../element/ `freetype-config --cflags` -lfreetype
+	g++ -c Button.h $(INCL)
 
 image:
 	g++ -c ../image/Pixel.cpp ../image/Image.cpp
 
 element:
-	g++ -c ../image/Element.cpp
+	g++ -c ../element/Element.cpp -I../image/
 
 font:
 	g++ -c ../text/Text.cpp `freetype-config --cflags` -lfreetype

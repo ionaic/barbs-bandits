@@ -21,7 +21,7 @@ class Element {
         Element(int x, int y, int xs, int ys);
         virtual ~Element();
         virtual void clearResult() { 
-            this->_result->blit(temp, 0, 0, 0, 0, this->_width, this->_height);
+            this->_result->blit(*(this->_clrImg), 0, 0, 0, 0, this->_width, this->_height);
         }
         Image* render();
         void registerCallback(void (*func)()); //for now just registers mouse callback
