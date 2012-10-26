@@ -3,8 +3,6 @@
 #include <ft2build.h>
 #include <string>
 #include <iostream>
-#include "../image/Pixel.h"
-#include "../image/Image.h"
 #include FT_FREETYPE_H
 
 using namespace std;
@@ -14,46 +12,26 @@ Text::Text(int w, int h, int size) {
 }
 
 Text::Text(int w, int h, int size, string c) {
-	width = w;
-	height = h;
-	fontSize = size;
-	content = c;
-	dirty = false;
-
-	image = new unsigned char*[height];
-	for(int i = 0; i < height; ++i)
-		image[i] = new unsigned char[width];
-
-	pixels = new Pixel*[height];
-	for(int i = 0; i < height; ++i)
-		pixels[i] = new Pixel[width];
+	_width = w;
+	_height = h;
+	_fontSize = size;
+	_content = c;
+	_dirty = false;
+	_image = new char[_height*_width];
 }
-
 
 Text::~Text() {
-	if (image) {
-		for(int i = 0; i < height; ++i) {
-			delete[] image[i];
-		}
-		delete[] image;
-	}
-	if (pixels) {
-		for(int i = 0; i < height; ++i) {
-			delete[] pixels[i];
-		}
-		delete[] pixels;
-	}
+	delete[] _image;
 }
 
-void Text::SetText(string c) {
-	content = c;
+
+void Text::setText(string c) {
+	_content = c;
 }
 
-int Text::Render() {
+int Text::render() {
 	//This is based off libttf tutorial code: bit.ly/ROmj5C
-	if (!image) return -1;
-
-	int num_chars = content.size();
+	int numChars = _content.size();
 
 	FT_Library	library;
 	FT_Face    	face;
@@ -63,13 +41,13 @@ int Text::Render() {
 
 	error = FT_Init_FreeType( &library );
 
-	error = FT_New_Face( library,	"/usr/share/fonts/TTF/FreeSans.ttf", 0, &face );
+	error = FT_New_Face( library,	"text/FreeSans.ttf", 0, &face );
 	if (error) {
 		cerr<< "Error loading .ttf file"<< endl;
 		return -2;
 	}
 
-	error = FT_Set_Char_Size( face, fontSize * 64, 0, 100, 0 );
+	error = FT_Set_Char_Size( face, _fontSize * 64, 0, 100, 0 );
 	if (error) {
 		cerr<< "Error setting font size"<< endl;
 		return -3;
@@ -79,14 +57,14 @@ int Text::Render() {
 
 	slot = face->glyph;
 
-	for ( n = 0; n < num_chars; n++ ) {
+	for ( n = 0; n < numChars; n++ ) {
 		/* load glyph image into this slot and erase the previous one */
-		error = FT_Load_Char( face, content[n], FT_LOAD_RENDER );
-		if (pen_x + slot->bitmap_left > width) return -4;
+		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER );
+		if (pen_x + slot->bitmap_left > _width) return -4;
 
-		RenderImage( &slot->bitmap,
+		_renderImage( &slot->bitmap,
 				pen_x + slot->bitmap_left,
-				height - slot->bitmap_top);
+				_height - slot->bitmap_top);
 
 		pen_x += slot->advance.x >> 6;
 	}
@@ -94,11 +72,11 @@ int Text::Render() {
 	FT_Done_Face    ( face );
 	FT_Done_FreeType( library );
 
-	GenerateImage();
+	_generateImage();
 	return 1;
 }
 
-void Text::RenderImage( FT_Bitmap*  bitmap,
+void Text::_renderImage( FT_Bitmap*  bitmap,
 		FT_Int x, FT_Int y) {
 	FT_Int  i, j, p, q;
 	FT_Int  x_max = x + bitmap->width;
@@ -106,20 +84,20 @@ void Text::RenderImage( FT_Bitmap*  bitmap,
 
 	for ( i = x, p = 0; i < x_max; i++, p++ ) {
 		for ( j = y, q = 0; j < y_max; j++, q++ ) {
-			if ( i < 0  || j < 0 || i >= width || j >= height )
+			if ( i < 0  || j < 0 || i >= _width || j >= _height )
 				continue;
 
-			image[j][i] |= bitmap->buffer[q * bitmap->width + p];
+			_image[j*_width+i] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
 }
 
-string Text::Stringify() {
+string Text::stringify() {
 	string s = "";
-	for (int i = 0; i<height; i++) {
-		for (int j = 0; j<width; j++) {
-			if (image[i][j] == 0) s+=" ";
-			else if (image[i][j] < 128) s+="+";
+	for (int i = 0; i<_height; i++) {
+		for (int j = 0; j<_width; j++) {
+			if (_image[i*_width+j] == 0) s+=" ";
+			else if (_image[i*_width+j] < 128) s+="+";
 			else s+="*";
 		}
 		s+="\n";
@@ -127,14 +105,16 @@ string Text::Stringify() {
 	return s;
 }
 
-void Text::GenerateImage() {
-	rendered = new Image(width,height);
+void Text::_generateImage() {
+	rendered = new unsigned char[_width*_height*4];
 
-	for (int i = 0; i<height; i++) {
-		for (int j = 0; j<width; j++) {
-			int v = image[i][j];
-			pixels[i][j] = Pixel(v,v,v);
-			rendered->set(j,i,pixels[i][j]);
+	for (int i = 0; i<_height; i++) {
+		for (int j = 0; j<_width; j++) {
+			int v = _image[i*_height+j];
+			for(int k=0; k < 3; k++) {
+				rendered[i*_height+j*4+k] = v;
+			}
+			rendered[i*_height+j*4+4] = 255;
 		}
 	}
 }
