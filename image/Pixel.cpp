@@ -7,6 +7,7 @@ Pixel::Pixel(int R, int G, int B) {
 Pixel::Pixel(int R, int G, int B, int A) {
 	_r = R; _g = G; _b = B; _a = A;
 }
+
 void Pixel::setRGB(int R, int G, int B) {
 	_r = R; _g = G; _b = B; _a = 255;
 }

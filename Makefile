@@ -43,3 +43,4 @@ ToggleButton.o: Image.o Text.o
 clean:
 	rm $(OFILES)
 	rm *.gch image/*.gch text/*.gch demo/*.gch button/*.gch togglebutton/*.gch
+	rm *.gch image/*.o text/*.o demo/*.o button/*.o togglebutton/*.o
