@@ -24,18 +24,23 @@ int main() {
 }
 
 int loadGuiTexture(string textureString) {
-	FreeImage_Initialise();
-	FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
-	if (!bitmap) {
-		cout << "Texture failed to load" << endl;
-		return 1;
-	}
+	//FreeImage_Initialise();
+	//FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
+	//if (!bitmap) {
+	//	cout << "Texture failed to load" << endl;
+	//	return 1;
+	//}
 	//here's the openGUI
 	Image I(256, 256);
 	ImageElement ie(0, 0, 256, 256, &I);
-	Pixel* bits = ie.render()->getPixels();
+	Pixel* bits = I.getPixels();//ie.render()->getPixels();
+	if(!bits) {
+		cout << "Element texture failed to load" << endl;
+		return 1;
+	}
 	unsigned int width = 256;
 	unsigned int height = 256;
+
 	//back to real stuff
 	//int width = FreeImage_GetWidth(bitmap);
 	//int height = FreeImage_GetHeight(bitmap);
@@ -52,10 +57,12 @@ int loadGuiTexture(string textureString) {
 	//set lighting properties (ignore lighting for gui)
 	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 	//use opengl to produce the texture
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
-			0, GL_RGB, GL_UNSIGNED_BYTE, bits);
+	cout << "1" << endl;
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, bits);
+	cout << "2" << endl;
 	//unload the bitmap since we're done with it
-	FreeImage_Unload(bitmap);
+	//FreeImage_Unload(bitmap);
 	return 0;
 }
 
