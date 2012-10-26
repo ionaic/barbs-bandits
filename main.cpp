@@ -36,11 +36,11 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	//Image I(width, height, texturebits);
-	Text *T = new Text(width,height,30,"Balls, man");
+	Image I(width, height, texturebits);
+	/*Text *T = new Text(width, height, 10, "Ab");
 	T->render();
 	cout << T->stringify() << endl;
-	Image I(width,height,T->rendered);
+	Image I(width,height,T->rendered);*/
 
 	ImageElement ie(0, 0, width, width, I);
 	Pixel* bits = ie.render()->getPixels();

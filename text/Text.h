@@ -9,6 +9,7 @@ using namespace std;
 
 class Text {
 	public:
+		Text();
 		Text(int w, int h, int size);
 		Text(int w, int h, int size, string c);
 		~Text();
