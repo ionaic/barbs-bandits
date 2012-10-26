@@ -1,6 +1,6 @@
 //http://web.engr.oregonstate.edu/~mjb/cs553/Handouts/Texture/texture.pdf
 #include <GL/glfw.h>
-//#include <FreeImage.h>
+#include <FreeImage.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
@@ -19,34 +19,31 @@ static string textureFile = "texture.bmp";
 int main() {
 	init();
 	loadGuiTexture(textureFile);
-	cout << "3" << endl;
 	mainLoop();
 	//shutDown(EXIT_SUCCESS);
 }
 
 int loadGuiTexture(string textureString) {
-	//FreeImage_Initialise();
-	//FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
-	//if (!bitmap) {
-	//	cout << "Texture failed to load" << endl;
-	//	return 1;
-	//}
-	//here's the openGUI
-	Pixel P(255,0,0,255);
-	Image I(256, 256, P);
-	ImageElement ie(0, 0, 256, 256, &I);
-	Pixel* bits = I.getPixels();// ie.render()->getPixels();
+	FreeImage_Initialise();
+	FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
+	FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+	if (!bitmap || !bitmap32) {
+		cout << "Texture failed to load" << endl;
+		return 1;
+	}
+	int width = FreeImage_GetWidth(bitmap32);
+	int height = FreeImage_GetHeight(bitmap32);
+	BYTE* texturebits = FreeImage_GetBits(bitmap32);
+
+	Image I(width, height, texturebits);
+	ImageElement ie(0, 0, width, width, &I);
+	Pixel* bits = I.getPixels();//ie.render()->getPixels();
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;
 		return 1;
 	}
-	unsigned int width = 256;
-	unsigned int height = 256;
 
 	//back to real stuff
-	//int width = FreeImage_GetWidth(bitmap);
-	//int height = FreeImage_GetHeight(bitmap);
-	//BYTE* bits = FreeImage_GetBits(bitmap);
 	//generate and bind the texture
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
@@ -59,10 +56,8 @@ int loadGuiTexture(string textureString) {
 	//set lighting properties (ignore lighting for gui)
 	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 	//use opengl to produce the texture
-	cout << "1" << endl;
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, bits);
-	cout << "2" << endl;
 	//unload the bitmap since we're done with it
 	//FreeImage_Unload(bitmap);
 	return 0;
