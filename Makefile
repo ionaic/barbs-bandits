@@ -13,7 +13,7 @@ INCL=-I./image/ -I./text/ -I./element/
 # include all the things
 HFILES=button/Button.h image/ImageElement.h text/TextElement.h $(INCL) $(TXTINCL)
 
-all: Image.o Pixel.o Text.o Element.o
+all: clean Image.o Pixel.o Text.o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) 
 
 debug: Image.o Pixel.o Text.o Element.o
@@ -41,6 +41,6 @@ ToggleButton.o: Image.o Text.o
 	$(CC) togglebutton/ToggleButton.h -I button/ $(INCL) $(TXTINCL) -c
 
 clean:
-	rm $(OFILES)
-	rm *.gch image/*.gch text/*.gch demo/*.gch button/*.gch togglebutton/*.gch
-	rm *.gch image/*.o text/*.o demo/*.o button/*.o togglebutton/*.o
+	rm -f $(OFILES)
+	rm -f *.gch image/*.gch text/*.gch demo/*.gch button/*.gch togglebutton/*.gch
+	rm -f *.gch image/*.o text/*.o demo/*.o button/*.o togglebutton/*.o
