@@ -40,7 +40,6 @@ int loadGuiTexture(string textureString) {
 	//Text *T = new Text(width,height,15,"Hello");
 	//T->render();
 	//Image I(width,height,T->rendered);
-	
 
 	ImageElement ie(0, 0, width, width, I);
 	Pixel* bits = ie.render()->getPixels();

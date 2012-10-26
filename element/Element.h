@@ -22,7 +22,8 @@ class Element {
         Element(int x, int y, int xs, int ys);
         virtual ~Element();
         virtual void clearResult() { 
-            this->_result->blit(*(this->_clrImg), 0, 0, 0, 0, this->_width, this->_height);
+            std::cout << "Clear result: Element" << std::endl;
+            this->_clrImg->blit(*(this->_result), 0, 0, 0, 0, this->_width, this->_height);
         }
         Image* render();
         void registerCallback(void (*func)()); //for now just registers mouse callback
@@ -35,6 +36,7 @@ class Element {
         void setWidth(unsigned int width) { this->_width = width; }
         void setHeight(unsigned int height) { this->_height = height; }
         void setDirty(bool dirty) { this->_dirty = dirty; }
+        void setClearColor(unsigned int r, unsigned int g, unsigned int b, unsigned int a) { return; } //set the clear image color
         // operator definitions
         bool operator<(const Element &other) { return this->_zIndex < other._zIndex; }
    
