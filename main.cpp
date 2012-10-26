@@ -37,7 +37,7 @@ int loadGuiTexture(string textureString) {
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
 	//Image I(width, height, texturebits);
-	Text *T = new Text(width,height,1,"a");
+	Text *T = new Text(width,height,15,"Hello");
 	T->render();
 	Image I(width,height,T->rendered);
 	

@@ -21,7 +21,7 @@ class Text {
 
 
 	private:
-		int* _image;
+		char* _image;
 		int _width;
 		int _height;
 		int _fontSize;

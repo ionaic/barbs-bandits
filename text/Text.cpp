@@ -17,7 +17,7 @@ Text::Text(int w, int h, int size, string c) {
 	_fontSize = size;
 	_content = c;
 	_dirty = false;
-	_image = new int[_height*_width];
+	_image = new char[_height*_width];
 }
 
 Text::~Text() {
@@ -87,7 +87,7 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 			if ( i < 0  || j < 0 || i >= _width || j >= _height )
 				continue;
 
-			_image[i*_width+j] |= bitmap->buffer[q * bitmap->width + p];
+			_image[j*_width+i] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
 }
@@ -106,15 +106,15 @@ string Text::stringify() {
 }
 
 void Text::_generateImage() {
-	rendered = new unsigned char[_width*_height];
+	rendered = new unsigned char[_width*_height*4];
 
 	for (int i = 0; i<_height; i++) {
 		for (int j = 0; j<_width; j++) {
-			int v = _image[i*_width+j];
-			for (int k = 0; k < 3; k++) {
-				rendered[j*_width+i+k] = v;
+			int v = _image[i*_height+j];
+			for(int k=0; k < 3; k++) {
+				rendered[i*_height+j*4+k] = v;
 			}
-			rendered[j*_width+i+4] = 255;
+			rendered[i*_height+j*4+4] = 255;
 		}
 	}
 }
