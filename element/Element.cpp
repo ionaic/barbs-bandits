@@ -14,6 +14,7 @@ Element::Element() {
     this->_height = 0;
     this->_id = currentId;
     currentId++;
+    this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
 }
 
@@ -25,6 +26,7 @@ Element::Element(int x, int y) {
 	this->_height = 0;
     this->_id = currentId;
     currentId++;
+    this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
 }
 
@@ -36,6 +38,7 @@ Element::Element(int x, int y, int xs, int ys) {
 	this->_height = ys;
     this->_id = currentId;
     currentId++;
+    this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
 }
 
@@ -44,7 +47,7 @@ Element::~Element() {
     for (vector<Element*>::iterator itr = this->_children.begin(); itr != this->_children.end(); itr++) {
         delete *itr;
     }
-    //delete this->_result;
+    delete this->_result;
     delete this->_clrImg;
 }
 
