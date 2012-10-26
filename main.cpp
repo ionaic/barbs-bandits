@@ -42,8 +42,8 @@ int loadGuiTexture(string textureString) {
 	//Image I(width,height,T->rendered);
 	
 
-	//ImageElement ie(0, 0, width, width, I);
-	Pixel* bits = I.getPixels();//ie.render()->getPixels();
+	ImageElement ie(0, 0, width, width, I);
+	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;
