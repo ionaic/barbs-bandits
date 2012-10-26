@@ -21,7 +21,7 @@ int main() {
 	init();
 	loadGuiTexture(textureFile);
 	mainLoop();
-	//shutDown(EXIT_SUCCESS);
+	shutDown(EXIT_SUCCESS);
 }
 
 int loadGuiTexture(string textureString) {
@@ -36,10 +36,10 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	//Image I(width, height, texturebits);
-	Text *T = new Text(width,height,15,"Hello");
-	T->render();
-	Image I(width,height,T->rendered);
+	Image I(width, height, texturebits);
+	//Text *T = new Text(width,height,15,"Hello");
+	//T->render();
+	//Image I(width,height,T->rendered);
 	
 
 	//ImageElement ie(0, 0, width, width, I);
@@ -63,10 +63,10 @@ int loadGuiTexture(string textureString) {
 	//set lighting properties (ignore lighting for gui)
 	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 	//use opengl to produce the texture
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, bits);
+	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
+			0, GL_BGRA, GL_UNSIGNED_BYTE, bits);
 	//unload the bitmap since we're done with it
-	//FreeImage_Unload(bitmap);
+	FreeImage_Unload(bitmap);
 	return 0;
 }
 
@@ -75,7 +75,7 @@ void shutDown(int returnCode) {
 	 */
 
 	glfwTerminate();
-	//FreeImage_DeInitialise();
+	FreeImage_DeInitialise();
 	exit(returnCode);
 }
 
@@ -146,13 +146,14 @@ void draw(void)
     glLoadIdentity();
     glBegin(GL_QUADS);
     {
-        glTexCoord2f( 0.0f, 0.0f);
+
+    	glTexCoord2f( 0.0f, 0.0f);
         glVertex2i(-1, -1);
-        glTexCoord2f( 1.0f, 0.0f);
+        glTexCoord2f(0.0f, 1.0f);
         glVertex2i(-1, 1);
         glTexCoord2f(1.0f, 1.0f);
         glVertex2i(1, 1);
-        glTexCoord2f(0.0f, 1.0f);
+        glTexCoord2f( 1.0f, 0.0f);
         glVertex2i(1, -1);
     }
     glEnd();
