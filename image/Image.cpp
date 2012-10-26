@@ -1,17 +1,21 @@
 #include "Image.h"
+
 inline unsigned int Image::_getCoord(unsigned int x, unsigned int y) const {
 	return x*_height + y;
 }
+
 Image::Image() {
 	_pixels = 0;
 	_width = 0;
 	_height = 0;
 }
+
 Image::Image(unsigned int width, unsigned int height) {
 	_width = width;
 	_height = height;
 	_pixels = new Pixel[width*height];
 }
+
 Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
 	_width = width;
 	_height =height;
@@ -19,6 +23,16 @@ Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
 	for (unsigned int i=0; i<width*height; ++i) {
 		_pixels[i] = p;
 	}
+}
+
+Image::Image(Image &img) {
+    _width = img._width;
+    _height = img._height;
+    _pixels = new Pixel[_width * _height];
+    Pixel* pix = img.getPixels();
+    for (unsigned int i = 0; i < _width * _height; i++) {
+        _pixels[i] = pix[i];
+    }
 }
 
 Image::Image(unsigned int width, unsigned int height, unsigned char *data) {
