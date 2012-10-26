@@ -1,3 +1,6 @@
+#ifndef _TOGGLE_BUTTON_H_
+#define _TOGGLE_BUTTON_H_
+
 #include <string>
 #include "Image.h"
 #include "Text.h"
@@ -22,3 +25,4 @@ class ToggleButton: public Button {
 	private:
 	    bool _on;
 };
+#endif

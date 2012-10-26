@@ -1,4 +1,5 @@
-#pragma once
+#ifndef _IMAGE_ELEMENT_H_
+#define _IMAGE_ELEMENT_H_
 
 #include <iostream>
 #include "Pixel.h"
@@ -25,3 +26,4 @@ class ImageElement : public Element {
     private:
         Image* _img;
 };
+#endif

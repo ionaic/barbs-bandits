@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _IMAGE_H_
+#define _IMAGE_H_
+
 #include <iostream>
 #include "Pixel.h"
 #include "Image.h"
@@ -26,3 +28,4 @@ private:
 	unsigned int _width, _height;
 	inline unsigned int _getCoord(unsigned int x, unsigned int y) const;
 };
+#endif

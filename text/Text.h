@@ -1,9 +1,11 @@
+#ifndef _TEXT_H_
+#define _TEXT_H_
+
 #include <string>
 #include <ft2build.h>
 #include "../image/Pixel.h"
 #include "../image/Image.h"
 #include FT_FREETYPE_H
-#pragma once
 
 using namespace std;
 
@@ -33,3 +35,4 @@ class Text {
 		void GenerateImage();
 		
 };
+#endif

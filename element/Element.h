@@ -1,3 +1,5 @@
+#ifndef _ELEMENT_H_
+#define _ELEMENT_H_
 /* element.h
  * render : renders the element to the screen
  *
@@ -6,7 +8,6 @@
 #include <vector>
 #include <algorithm>
 #include "Image.h"
-#pragma once
 
 using namespace std;
 
@@ -53,3 +54,4 @@ class Element {
         void (*_mouseCallback)();
         Image *_clrImg;
 };
+#endif
