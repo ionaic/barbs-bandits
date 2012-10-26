@@ -20,6 +20,24 @@ Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
 		_pixels[i] = p;
 	}
 }
+
+Image::Image(unsigned int width, unsigned int height, unsigned char *data) {
+	_width = width;
+	_height =height;
+	_pixels = new Pixel[width*height];
+	Pixel *p;
+	for (unsigned int i=0; i<width*height*4; i+=4) {
+		if (i+4 > _width*_height) {
+			p = new Pixel(data[i], data[i+1], data[i+2], data[i+3]);
+			_pixels[i/4] = p;
+		}else{
+			p = new Pixel();
+			_pixels[i/4] = p;
+		}
+	}
+
+}
+
 Image::~Image() {
 	if (_pixels!=0) {
 		delete[] _pixels;

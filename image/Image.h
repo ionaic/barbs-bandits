@@ -8,6 +8,7 @@ public:
 	Image();
 	Image(unsigned int width, unsigned int height);
 	Image(unsigned int width, unsigned int height, const Pixel &p);
+	Image(unsigned int width, unsigned int height, unsigned char* p );
 	~Image();
 	unsigned int width() const;
 	unsigned int height() const;
