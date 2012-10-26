@@ -13,23 +13,23 @@ class Text {
 		Text(int w, int h, int size, string c);
 		~Text();
 
-		void SetText(string c);
-		int Render();
-		string Stringify();
+		void setText(string c);
+		int render();
+		string stringify();
 
 		unsigned char* rendered;
 
 
 	private:
-		int* image;
-		int width;
-		int height;
-		int fontSize;
-		bool dirty;
-		string content;
+		int* _image;
+		int _width;
+		int _height;
+		int _fontSize;
+		bool _dirty;
+		string _content;
 
-		void RenderImage(FT_Bitmap* b, int x, int y);
-		void GenerateImage();
+		void _renderImage(FT_Bitmap* b, int x, int y);
+		void _generateImage();
 		
 };
 #endif

@@ -38,7 +38,7 @@ int loadGuiTexture(string textureString) {
 
 	//Image I(width, height, texturebits);
 	Text *T = new Text(width,height,1,"a");
-	T->Render();
+	T->render();
 	Image I(width,height,T->rendered);
 	
 

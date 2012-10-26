@@ -12,26 +12,26 @@ Text::Text(int w, int h, int size) {
 }
 
 Text::Text(int w, int h, int size, string c) {
-	width = w;
-	height = h;
-	fontSize = size;
-	content = c;
-	dirty = false;
-	image = new int[height*width];
+	_width = w;
+	_height = h;
+	_fontSize = size;
+	_content = c;
+	_dirty = false;
+	_image = new int[_height*_width];
 }
 
 Text::~Text() {
-	delete[] image;
+	delete[] _image;
 }
 
 
-void Text::SetText(string c) {
-	content = c;
+void Text::setText(string c) {
+	_content = c;
 }
 
-int Text::Render() {
+int Text::render() {
 	//This is based off libttf tutorial code: bit.ly/ROmj5C
-	int num_chars = content.size();
+	int numChars = _content.size();
 
 	FT_Library	library;
 	FT_Face    	face;
@@ -47,7 +47,7 @@ int Text::Render() {
 		return -2;
 	}
 
-	error = FT_Set_Char_Size( face, fontSize * 64, 0, 100, 0 );
+	error = FT_Set_Char_Size( face, _fontSize * 64, 0, 100, 0 );
 	if (error) {
 		cerr<< "Error setting font size"<< endl;
 		return -3;
@@ -57,14 +57,14 @@ int Text::Render() {
 
 	slot = face->glyph;
 
-	for ( n = 0; n < num_chars; n++ ) {
+	for ( n = 0; n < numChars; n++ ) {
 		/* load glyph image into this slot and erase the previous one */
-		error = FT_Load_Char( face, content[n], FT_LOAD_RENDER );
-		if (pen_x + slot->bitmap_left > width) return -4;
+		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER );
+		if (pen_x + slot->bitmap_left > _width) return -4;
 
-		RenderImage( &slot->bitmap,
+		_renderImage( &slot->bitmap,
 				pen_x + slot->bitmap_left,
-				height - slot->bitmap_top);
+				_height - slot->bitmap_top);
 
 		pen_x += slot->advance.x >> 6;
 	}
@@ -72,11 +72,11 @@ int Text::Render() {
 	FT_Done_Face    ( face );
 	FT_Done_FreeType( library );
 
-	GenerateImage();
+	_generateImage();
 	return 1;
 }
 
-void Text::RenderImage( FT_Bitmap*  bitmap,
+void Text::_renderImage( FT_Bitmap*  bitmap,
 		FT_Int x, FT_Int y) {
 	FT_Int  i, j, p, q;
 	FT_Int  x_max = x + bitmap->width;
@@ -84,20 +84,20 @@ void Text::RenderImage( FT_Bitmap*  bitmap,
 
 	for ( i = x, p = 0; i < x_max; i++, p++ ) {
 		for ( j = y, q = 0; j < y_max; j++, q++ ) {
-			if ( i < 0  || j < 0 || i >= width || j >= height )
+			if ( i < 0  || j < 0 || i >= _width || j >= _height )
 				continue;
 
-			image[i*width+j] |= bitmap->buffer[q * bitmap->width + p];
+			_image[i*_width+j] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
 }
 
-string Text::Stringify() {
+string Text::stringify() {
 	string s = "";
-	for (int i = 0; i<height; i++) {
-		for (int j = 0; j<width; j++) {
-			if (image[i*width+j] == 0) s+=" ";
-			else if (image[i*width+j] < 128) s+="+";
+	for (int i = 0; i<_height; i++) {
+		for (int j = 0; j<_width; j++) {
+			if (_image[i*_width+j] == 0) s+=" ";
+			else if (_image[i*_width+j] < 128) s+="+";
 			else s+="*";
 		}
 		s+="\n";
@@ -105,16 +105,16 @@ string Text::Stringify() {
 	return s;
 }
 
-void Text::GenerateImage() {
-	rendered = new unsigned char[width*height];
+void Text::_generateImage() {
+	rendered = new unsigned char[_width*_height];
 
-	for (int i = 0; i<height; i++) {
-		for (int j = 0; j<width; j++) {
-			int v = image[i*width+j];
+	for (int i = 0; i<_height; i++) {
+		for (int j = 0; j<_width; j++) {
+			int v = _image[i*_width+j];
 			for (int k = 0; k < 3; k++) {
-				rendered[j*width+i+k] = v;
+				rendered[j*_width+i+k] = v;
 			}
-			rendered[j*width+i+4] = 255;
+			rendered[j*_width+i+4] = 255;
 		}
 	}
 }
