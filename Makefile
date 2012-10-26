@@ -11,7 +11,7 @@ TARGET=sample
 # generic element includes
 INCL=-I./image/ -I./text/ -I./element/ 
 # include all the things
-HFILES=button/Button.h $(INCL) $(TXTINCL)
+HFILES=button/Button.h image/ImageElement.h text/TextElement.h $(INCL) $(TXTINCL)
 
 all: Image.o Pixel.o Text.o Element.o
 	 $(CC) $(OFILES) $(HFILES) $(DEMOINCL) main.cpp -o $(TARGET)
