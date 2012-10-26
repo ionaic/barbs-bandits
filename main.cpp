@@ -32,8 +32,8 @@ int loadGuiTexture(string textureString) {
 	//	return 1;
 	//}
 	//here's the openGUI
-	Pixel P(255,0,0,255);
-	Image I(256, 256, P);
+	//Pixel P(255,0,0,255);
+	Image I(256, 256);
 	ImageElement ie(0, 0, 256, 256, &I);
 	Pixel* bits = I.getPixels();//ie.render()->getPixels();
 	if(!bits) {

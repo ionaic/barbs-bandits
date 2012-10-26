@@ -16,6 +16,9 @@ HFILES=button/Button.h image/ImageElement.h text/TextElement.h $(INCL) $(TXTINCL
 all: Image.o Pixel.o Text.o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) 
 
+debug: Image.o Pixel.o Text.o Element.o
+	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) -g
+
 Image.o: 
 	$(CC) image/Image.cpp -c
 
@@ -36,9 +39,6 @@ Button.o: Image.o Text.o
 
 ToggleButton.o: Image.o Text.o
 	$(CC) togglebutton/ToggleButton.h -I button/ $(INCL) $(TXTINCL) -c
-
-debug: Image.o Text.o Element.o
-	$(CC) $(OFILES) main.cpp -o -g $(TARGET)
 
 clean:
 	rm $(OFILES)
