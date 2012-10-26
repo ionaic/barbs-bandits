@@ -11,26 +11,27 @@ TARGET=sample
 # generic element includes
 INCL=-I./image/ -I./text/ -I./element/ 
 
-all: image text element button togglebutton
+all: image text element button
 	 $(CC) $(OFILES) main.cpp -o $(TARGET)
 
 image:
-	$(CC) -c image/Image.cpp image/Pixel.cpp
+	$(CC) image/Image.cpp -c Image.o
+	$(CC) image/Pixel.cpp -c Pixel.o
 
 text:
-	$(CC) -c text/Text.cpp $(TXTINCL)
+	$(CC) text/Text.cpp $(TXTINCL) -c
 
 element:
-	$(CC) -c -I image/ element/Element.cpp
+	$(CC) -I image/ element/Element.cpp -c
 
 demo:
 	$(CC) Demo.cpp -o Demo $(DEMOINCL)
 
 button: image text
-	$(CC) -c button/Button.h $(INCL) $(TXTINCL)
+	$(CC) button/Button.h $(INCL) $(TXTINCL) -c
 
 togglebutton: image text
-	$(CC) -c togglebutton/ToggleButton.h -I button/ $(INCL) $(TXTINCL)
+	$(CC) togglebutton/ToggleButton.h -I button/ $(INCL) $(TXTINCL) -c ToggleButton.o
 
 debug: image text element
 	$(CC) $(OFILES) main.cpp -o -g $(TARGET)
