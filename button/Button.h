@@ -1,19 +1,23 @@
+#pragma once
+
 #include <string>
-#include "../image/Image.h"
-#include "../text/Text.h"
+#include "Image.h"
+#include "Text.h"
+#include "Element.h"
+#include "ImageElement.h"
 
 using namespace std;
 
-class Button {
+class Button : public Element {
 	public:
-		Button(string content, int w, int h, int size, Image image);
-		~Button();
-
-	private:
-		Text* text;
-		Image image;
-
-		int width;
-		int height;
-		
+        Button() : Element() {}
+        Button(unsigned int x, unsigned int y) : Element(x, y) {}
+        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : Element(x, y, width, height) {}
+        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img) : Element(x, y, width, height) { Element::addChild(img); }
+		//Button(unsigned int x, unsigned int y, unsigned int w, unsigned int h, TextElement* content, unsigned int size, ImageElement* image) : Element(x, y, w, h) {
+        //    Element::addChild(image);
+        //}
+        //void setText(TextElement* text) { Element::addChild(text); }
+        void setBgImg(ImageElement* img) { Element::addChild(img); }
+		virtual ~Button() {}
 };
