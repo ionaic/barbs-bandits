@@ -7,4 +7,4 @@
 
 class TextElement : public Element {
 
-}
+};
