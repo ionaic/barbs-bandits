@@ -12,4 +12,7 @@
 *.la
 *.a
 
+#Compiled headers
+*.h.ghc
+
 sample
