@@ -26,13 +26,13 @@ Image::Image(unsigned int width, unsigned int height, unsigned char *data) {
 	_height =height;
 	_pixels = new Pixel[width*height];
 	Pixel *p;
-	for (unsigned int i=0; i<width*height*4; i+=4) {
+	for (unsigned int i=0; i<width*height; i+=1) {
 		if (i+4 > _width*_height) {
 			p = new Pixel(data[i], data[i+1], data[i+2], data[i+3]);
-			_pixels[i/4] = p;
+			_pixels[i] = *p;
 		}else{
 			p = new Pixel();
-			_pixels[i/4] = p;
+			_pixels[i] = *p;
 		}
 	}
 

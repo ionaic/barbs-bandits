@@ -16,6 +16,7 @@ public:
 	void set(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, const Pixel &color);
 	const Pixel &get(unsigned int x, unsigned int y) const;
+	Pixel* getPixels() {return _pixels;}
 	void blit(Image &dest, unsigned int xSource, unsigned int ySource,
                            unsigned int xDest,   unsigned int yDest,
                            unsigned int width,   unsigned int height) const;
