@@ -17,13 +17,15 @@ Text::Text(int w, int h, int size, string c) {
 	_fontSize = size;
 	_content = c;
 	_dirty = false;
-	_image = new char[_height*_width];
+	_image = new unsigned char[_height*_width];
+	rendered = new unsigned char[_height*_width*4];
 }
 
 Text::~Text() {
 	delete[] _image;
 }
 
+//TODO: copy constructor
 
 void Text::setText(string c) {
 	_content = c;
@@ -106,16 +108,13 @@ string Text::stringify() {
 }
 
 void Text::_generateImage() {
-	rendered = new unsigned char[_width*_height*4];
-
 	for (int i = 0; i<_height; i++) {
 		for (int j = 0; j<_width; j++) {
-			int v = _image[i*_height+j];
+			int v = _image[i*_width+j];
 			for(int k=0; k < 3; k++) {
-				rendered[i*_height+j*4+k] = v;
+				rendered[i*_width*4+4*j+k] = v;
 			}
-			rendered[i*_height+j*4+4] = 255;
+				rendered[i*_width*4+4*j+4] = v;
 		}
 	}
 }
-
