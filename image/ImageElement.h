@@ -18,8 +18,6 @@ class ImageElement : public Element {
             this->_img = new Image(img);
         }
         void clearResult() { 
-            std::cout << "clear result: ImageElement" << std::endl;
-            std::cout << "width: " << this->_width << ", " << this->_img->width() << "; height: " << this->_height << ", " << this->_img->height() << std::endl;
             this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
         }
         void setImage(Image &img) { this->_img = new Image(img); }

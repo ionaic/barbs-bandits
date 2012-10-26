@@ -79,16 +79,12 @@ void Element::addChild(Element *child) {
 
 
 Image* Element::render() {
-    std::cout << "in render" << std::endl;
     // clear the background of the image
     this->clearResult();
-    std::cout << "num children: " << this->_children.size() << std::endl;
-    
 	vector<Element*>::iterator child = this->_children.begin();
-	while(this->_children.end() != child ) {
+	for(; _children.end() != child; child++) {
 		Image* childImage = (*child)->render();
 		if ((*child)->_dirty) {
-            std::cout << "child is dirty" << std::endl;
 			//here's where we actually want to do the rendering
             //return composited image/texture
             // blit each child to the result image at the proper place
@@ -99,7 +95,7 @@ Image* Element::render() {
             this->_dirty = true;
 		}
         else {
-            this->_dirty = this->_dirty || false;
+            this->_dirty = (*child)->_dirty || false;
             std::cout << "child is clean, is this element dirty?: " << this->_dirty << std::endl;
         }
 	}
