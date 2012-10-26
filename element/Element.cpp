@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stdio.h>
-#include "Image.h"
+#include "../image/Image.h"
 
 using namespace std;
 
@@ -14,7 +14,6 @@ Element::Element() {
     this->_height = 0;
     this->_id = currentId;
     currentId++;
-    this->_dirty = true;
     this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
 }
@@ -27,7 +26,6 @@ Element::Element(int x, int y) {
 	this->_height = 0;
     this->_id = currentId;
     currentId++;
-    this->_dirty = true;
     this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
 }
@@ -40,7 +38,6 @@ Element::Element(int x, int y, int xs, int ys) {
 	this->_height = ys;
     this->_id = currentId;
     currentId++;
-    this->_dirty = true;
     this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
 }
@@ -79,17 +76,13 @@ void Element::addChild(Element *child) {
 
 
 Image* Element::render() {
-    std::cout << "in render" << std::endl;
     // clear the background of the image
     this->clearResult();
-    std::cout << "num children: " << this->_children.size() << std::endl;
-    
+
 	vector<Element*>::iterator child = this->_children.begin();
-	//while(this->_children.end() != child ) {
-    for (child = this->_children.begin(); child != this->_children.end(); child++) {
+	for(; _children.end() != child; child++) {
 		Image* childImage = (*child)->render();
 		if ((*child)->_dirty) {
-            std::cout << "child is dirty" << std::endl;
 			//here's where we actually want to do the rendering
             //return composited image/texture
             // blit each child to the result image at the proper place

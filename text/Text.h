@@ -9,6 +9,7 @@ using namespace std;
 
 class Text {
 	public:
+		Text();
 		Text(int w, int h, int size);
 		Text(int w, int h, int size, string c);
 		~Text();
@@ -21,7 +22,7 @@ class Text {
 
 
 	private:
-		char* _image;
+		unsigned char* _image;
 		int _width;
 		int _height;
 		int _fontSize;
