@@ -34,7 +34,7 @@ int loadGuiTexture(string textureString) {
 	//here's the openGUI
 	Pixel P(255,0,0,255);
 	Image I(256, 256, P);
-	ImageElement ie(0, 0, 256, 256, &I);
+	ImageElement ie(0, 0, 256, 256, I);
 	Pixel* bits = I.getPixels();// ie.render()->getPixels();
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;
