@@ -36,17 +36,19 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	Image i(width, height, texturebits);
-	/*Text *T = new Text(width, height, 10, "Ab");
+	//For Text (Note ImageElement isn't used (it doesn't work))
+	Text *T = new Text(width, height, 20, "Ab");
 	T->render();
 	cout << T->stringify() << endl;
-	Image I(width,height,T->rendered);*/
+	Image I(width,height,T->rendered);
+	unsigned char* bits = T->rendered;
 
-	ImageElement ie(0, 0, width, height, i);
+	//For textures
+	//Image i(width, height, texturebits);
+	//ImageElement ie(0, 0, width, height, I);
 	//ImageElement ie2(0, 0, 50, 50, i2);
 	//ie.addChild(&ie2);
-	Pixel* bits = ie.render()->getPixels();
-	cout << "SURPRISE" << endl;
+	//Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;
