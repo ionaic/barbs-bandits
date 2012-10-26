@@ -9,6 +9,7 @@ class ImageElement : public Element {
     public:
         // public constructors
         ImageElement() : Element() {}
+        ImageElement(Image* img) : Element() { this->_img = img; }
         ImageElement(unsigned int x, unsigned int y) : Element(x, y, 0, 0) {}
         ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : 
             Element(x,y,width,height) {}
