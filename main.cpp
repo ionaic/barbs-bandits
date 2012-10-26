@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <iostream>
 #include "main.h"
-#include "Element.h"
-#include "Text.h"
-#include "ImageElement.h"
+#include "element/Element.h"
+#include "text/Text.h"
+#include "image/ImageElement.h"
 
 using namespace std;
 

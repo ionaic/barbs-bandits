@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stdio.h>
-#include "Image.h"
+#include "../image/Image.h"
 
 using namespace std;
 

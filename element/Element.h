@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <algorithm>
-#include "Image.h"
+#include "../image/Image.h"
 
 using namespace std;
 

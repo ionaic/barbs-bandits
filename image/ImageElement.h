@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Pixel.h"
 #include "Image.h"
-#include "Element.h"
+#include "../element/Element.h"
 
 class ImageElement : public Element {
     public:
