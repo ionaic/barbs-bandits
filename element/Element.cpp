@@ -78,6 +78,7 @@ void Element::addChild(Element *child) {
 Image* Element::render() {
     // clear the background of the image
     this->clearResult();
+
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
 		Image* childImage = (*child)->render();
