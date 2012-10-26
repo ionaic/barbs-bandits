@@ -85,7 +85,8 @@ Image* Element::render() {
     std::cout << "num children: " << this->_children.size() << std::endl;
     
 	vector<Element*>::iterator child = this->_children.begin();
-	while(this->_children.end() != child ) {
+	//while(this->_children.end() != child ) {
+    for (child = this->_children.begin(); child != this->_children.end(); child++) {
 		Image* childImage = (*child)->render();
 		if ((*child)->_dirty) {
             std::cout << "child is dirty" << std::endl;
@@ -99,7 +100,7 @@ Image* Element::render() {
             this->_dirty = true;
 		}
         else {
-            this->_dirty = this->_dirty || false;
+            this->_dirty = (*child)->_dirty || false;
             std::cout << "child is clean, is this element dirty?: " << this->_dirty << std::endl;
         }
 	}
