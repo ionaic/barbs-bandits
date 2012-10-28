@@ -70,8 +70,12 @@ void Element::registerCallback(void (*func)()) {
 
 
 void Element::addChild(Element *child) {
-    this->_children.push_back(child);
-    sort(this->_children.begin(), this->_children.end());
+	if (this->_id != child->_id) {
+		this->_children.push_back(child);
+		sort(this->_children.begin(), this->_children.end());
+		return;
+	}
+	cout << "Element could not be added as child of itself." << endl;
 }
 
 
@@ -94,7 +98,7 @@ Image* Element::render() {
 		}
         else {
             this->_dirty = (*child)->_dirty || false;
-            std::cout << "child is clean, is this element dirty?: " << this->_dirty << std::endl;
+            //std::cout << "child is clean, is this element dirty?: " << this->_dirty << std::endl;
         }
 	}
     return this->_result;
