@@ -14,6 +14,10 @@ Text::Text(int w, int h, int size) {
 	Text(w,h,size,"");
 }
 
+Text::Text(Text &txt) {
+    Text(txt._width, txt._height, txt._fontSize, txt._content);
+}
+
 Text::Text(int w, int h, int size, string c) {
 	_width = w;
 	_height = h;
@@ -28,7 +32,6 @@ Text::~Text() {
 	delete[] _image;
 }
 
-//TODO: copy constructor
 
 void Text::setText(string c) {
 	_content = c;

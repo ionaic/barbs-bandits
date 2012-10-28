@@ -44,9 +44,9 @@ Element::Element(int x, int y, int xs, int ys) {
 
 Element::~Element() {
 
-    for (vector<Element*>::iterator itr = this->_children.begin(); itr != this->_children.end(); itr++) {
-        delete *itr;
-    }
+    //for (vector<Element*>::iterator itr = this->_children.begin(); itr != this->_children.end(); itr++) {
+    //    delete *itr;
+    //}
     delete this->_result;
     delete this->_clrImg;
 }
