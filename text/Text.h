@@ -17,22 +17,21 @@ class Text {
 		~Text();
 
 		void setText(string c);
-		int render();
 		string stringify();
 
-		unsigned char* rendered;
 
 
 	private:
 		unsigned char* _image;
+		unsigned char* _binary;
 		int _width;
 		int _height;
 		int _fontSize;
-		bool _dirty;
 		string _content;
 
 		void _renderImage(FT_Bitmap* b, int x, int y);
 		void _generateImage();
+		int _render();
 		
 };
 #endif

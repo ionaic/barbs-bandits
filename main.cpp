@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <iostream>
 #include "main.h"
-#include "element/Element.h"
-#include "text/TextElement.h"
-#include "image/ImageElement.h"
+#include "Element.h"
+#include "TextElement.h"
+#include "ImageElement.h"
 
 using namespace std;
 
@@ -36,19 +36,15 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	//For text
-	TextElement *T = new TextElement(width, height, 20, "Ab");
-	cout << T->_text->stringify() << endl;
-	unsigned char* bits = T->_text->render();
-
 	//For textures
-	//Image i(width, height, texturebits);
-    //ImageElement ie2(5, 5, 20, 20, I);
-	//ImageElement ie(0, 0, width, height, i);
-	//ImageElement ie2(0, 0, 50, 50, i2);
-	//ie.addChild(&ie2);
-    //ie.addChild(&ie2);
-	//Pixel* bits = ie.render()->getPixels();
+	Image i(width, height, texturebits);
+	//base background element
+	ImageElement ie(0, 0, width, height, i);
+	//text element to be added on top
+	TextElement T(0, 0, width, height, 20, "Hello");
+	ie.addChild(&T);
+	//get the pixel array
+	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;
