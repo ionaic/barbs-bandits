@@ -23,21 +23,23 @@ Text::Text(int w, int h, int size, string c) {
 	_height = h;
 	_fontSize = size;
 	_content = c;
-	_dirty = false;
-	_image = new unsigned char[_height*_width];
-	rendered = new unsigned char[_height*_width*4];
+	_binary = new unsigned char[_height*_width];
+	_image = new unsigned char[_height*_width*4];
+	_render();
 }
 
 Text::~Text() {
+	delete[] _binary;
 	delete[] _image;
 }
 
 
 void Text::setText(string c) {
 	_content = c;
+	_render();
 }
 
-int Text::render() {
+int Text::_render() {
 	//This is based off libttf tutorial code: bit.ly/ROmj5C
 	int numChars = _content.size();
 
@@ -95,7 +97,7 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 			if ( i < 0  || j < 0 || i >= _width || j >= _height )
 				continue;
 
-			_image[j*_width+i] |= bitmap->buffer[q * bitmap->width + p];
+			_binary[j*_width+i] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
 }
@@ -104,8 +106,8 @@ string Text::stringify() {
 	string s = "";
 	for (int i = 0; i<_height; i++) {
 		for (int j = 0; j<_width; j++) {
-			if (_image[i*_width+j] == 0) s+=" ";
-			else if (_image[i*_width+j] < 128) s+="+";
+			if (_binary[i*_width+j] == 0) s+=" ";
+			else if (_binary[i*_width+j] < 128) s+="+";
 			else s+="*";
 		}
 		s+="\n";
@@ -116,11 +118,11 @@ string Text::stringify() {
 void Text::_generateImage() {
 	for (int i = 0; i<_height; i++) {
 		for (int j = 0; j<_width; j++) {
-			int v = _image[i*_width+j];
+			int v = _binary[i*_width+j];
 			for(int k=0; k < 3; k++) {
-				rendered[i*_width*4+4*j+k] = 0;
+				_image[i*_width*4+4*j+k] = 0;
 			}
-				rendered[i*_width*4+4*j+4] = v;
+				_image[i*_width*4+4*j+4] = v;
 		}
 	}
 }
