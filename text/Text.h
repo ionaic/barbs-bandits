@@ -7,10 +7,11 @@
 
 using namespace std;
 
+//The end user shouldn't directly access this class. All interactions should go through TextElement
 class Text {
 	public:
 		Text();
-        Text(Text &txt);
+		Text(Text &txt);
 		Text(int w, int h, int size);
 		Text(int w, int h, int size, string c);
 		~Text();

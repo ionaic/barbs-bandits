@@ -8,17 +8,13 @@
 
 class TextElement : public Element {
     public:
-        TextElement() : Element() { this->_text = new Text(); }
-        TextElement(unsigned int x, unsigned int y) : Element(x, y) { this->_text = new Text(); }
-        TextElement(unsigned int x, unsigned int y, Text &txt) { this->_text = new Text(txt); }
-        TextElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : Element(x, y, width, height) { this->_text = new Text(); }
-        TextElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height, Text &txt) { this->_text = new Text(txt); }
+        //TextElement() : Element() { this->_text = new Text(); }
+        //TextElement(unsigned int x, unsigned int y) : Element(x, y) { this->_text = new Text(); }
+        //TextElement(unsigned int x, unsigned int y, Text &txt) { this->_text = new Text(txt); }
+        TextElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height, int size, string txt) : Element(x, y, width, height) { this->_text = new Text(width,height,size,txt); }
         ~TextElement() { delete _text; }
-        void setText(string text) {
-            this->_text = new Text(this->_width, this->_height, 10, text);
-        }
-        void setText(Text& text) {
-            this->_text = new Text(text);
+        void setText(string txt) {
+            this->_text->setText(txt);
         }
 
     private: 

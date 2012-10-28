@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <iostream>
 #include "main.h"
-#include "element/Element.h"
-#include "text/Text.h"
-#include "image/ImageElement.h"
+#include "Element.h"
+#include "TextElement.h"
+#include "ImageElement.h"
 
 using namespace std;
 
@@ -36,22 +36,14 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	//For Text (Note ImageElement isn't used (it doesn't work))
-    // for text, note DON'T USE IMAGE ELEMENT FOR TEXT.  use TextElement
-	Text *T = new Text(width, height, 20, "Hello");
-	T->render();
-	//cout << T->stringify() << endl;
-	Image I(width,height,T->rendered);
-	unsigned char* textbits = T->rendered;
-
 	//For textures
 	Image i(width, height, texturebits);
-	Image i2(width, height, textbits);
-    //ImageElement ie2(5, 5, 20, 20, I);
+	//base background element
 	ImageElement ie(0, 0, width, height, i);
-	ImageElement ie2(50, 50, 50, 50, i2);
-	ie.addChild(&ie2);
-	//ie.addChild(&ie);
+	//text element to be added on top
+	TextElement T(0, 0, width, height, 20, "Hello");
+	ie.addChild(&T);
+	//get the pixel array
 	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {
