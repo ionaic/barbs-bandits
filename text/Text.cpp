@@ -118,7 +118,7 @@ void Text::_generateImage() {
 		for (int j = 0; j<_width; j++) {
 			int v = _image[i*_width+j];
 			for(int k=0; k < 3; k++) {
-				rendered[i*_width*4+4*j+k] = v;
+				rendered[i*_width*4+4*j+k] = 0;
 			}
 				rendered[i*_width*4+4*j+4] = v;
 		}
