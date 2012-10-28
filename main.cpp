@@ -6,7 +6,7 @@
 #include <iostream>
 #include "main.h"
 #include "element/Element.h"
-#include "text/Text.h"
+#include "text/TextElement.h"
 #include "image/ImageElement.h"
 
 using namespace std;
@@ -36,13 +36,10 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	//For Text (Note ImageElement isn't used (it doesn't work))
-    // for text, note DON'T USE IMAGE ELEMENT FOR TEXT.  use TextElement
-	Text *T = new Text(width, height, 20, "Ab");
-	T->render();
-	cout << T->stringify() << endl;
-	Image I(width,height,T->rendered);
-	unsigned char* bits = T->rendered;
+	//For text
+	TextElement *T = new TextElement(width, height, 20, "Ab");
+	cout << T->_text->stringify() << endl;
+	unsigned char* bits = T->_text->render();
 
 	//For textures
 	//Image i(width, height, texturebits);
