@@ -16,6 +16,9 @@ class TextElement : public Element {
         void setText(string txt) {
             this->_text->setText(txt);
         }
+        void stringify() {
+        	_text->stringify();
+        }
         //void clearResult() {
         //    this->_text->getImage();
         //}

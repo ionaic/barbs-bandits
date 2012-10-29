@@ -105,14 +105,16 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 }
 
 void Text::_colorify(unsigned char _binary[]) {
-	unsigned char _preimg[_height*_width];
+	unsigned char _preimg[_height*_width*4];
 	for (int i = 0; i<_height; i++) {
 		for (int j = 0; j<_width; j++) {
 			int v = _binary[i*_width+j];
-			for(int k=0; k < 3; k++) {
-				_preimg[i*_width*4+4*j+k] = 0;
+			{
+				_preimg[i*_height+4*j] = v;
+				_preimg[i*_height+4*j+1] = v;
+				_preimg[i*_height+4*j+2] = v;
 			}
-				_preimg[i*_width*4+4*j+4] = v;
+			_preimg[i*_height+4*j+3] = 255;
 		}
 	}
 	_image = new Image(_width,_height,_preimg);
