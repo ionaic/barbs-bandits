@@ -17,7 +17,7 @@ class TextElement : public Element {
             this->_text->setText(txt);
         }
         void clearResult() {
-            this->_text->getImage()->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);;
+            this->_text->getImage()->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
         }
 
     private: 

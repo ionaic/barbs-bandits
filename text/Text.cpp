@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Image.h"
+#include "Pixel.h"
 #include FT_FREETYPE_H
 
 using namespace std;
@@ -24,6 +25,8 @@ Text::Text(int w, int h, int size, string c) {
 	_height = h;
 	_fontSize = size;
 	_content = c;
+	Pixel p(255,0,0,255);
+	_image = new Image(w, h, p);
 	_render();
 }
 
@@ -90,7 +93,7 @@ void Text::_render() {
 	FT_Done_Face    ( face );
 	FT_Done_FreeType( library );
 
-	show_image(_binary);
+	//show_image(_binary);
 	_colorify(_binary);
 }
 
@@ -125,12 +128,10 @@ void Text::show_image( unsigned char _binary[] ) {
 }
 
 void Text::_colorify(unsigned char _binary[]) {
-	unsigned char _preimg[_height*_width*4];
-	for (int i = 0; i<_height * _width * 4; i+=4) {
-		_preimg[i] = 0;
-		_preimg[i+1] = 0;
-		_preimg[i+2] = 0;
-		_preimg[i+3] = 255;
+	for (int i = 0; i<_height; i++) {
+		for (int j = 0; j < _width; j++){
+			_image->set(j,i, Pixel(0,0,0,255));
+		}
 	}
-	_image = new Image(_width,_height,_preimg);
+
 }
