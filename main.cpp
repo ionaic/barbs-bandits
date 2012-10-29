@@ -41,10 +41,10 @@ int loadGuiTexture(string textureString) {
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
 	//text element to be added on top
-	TextElement T(156, 0, 100, 60, 20, "Hello");
+	TextElement T(156, 0, 100, 60, 40, "Hello");
 	Pixel p(0, 0, 255, 255);
-	Image i2(255, 50, p);
-	ImageElement ie2(0, 0, 255, 50, i2);
+	Image i2(100, 50, p);
+	ImageElement ie2(0, 0, 100, 50, i2);
 	Pixel p1(0, 255, 0, 255);
 	Image i3(25, 40, p1);
 	ImageElement ie3(0, 10, 25, 40, i3);

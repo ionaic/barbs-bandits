@@ -95,7 +95,7 @@ void Text::_render() {
 	FT_Done_Face    ( face );
 	FT_Done_FreeType( library );
 
-	show_image(_binary);
+	//show_image(_binary);
 	_colorify(_binary);
 }
 
@@ -131,17 +131,12 @@ void Text::show_image( unsigned char _binary[] ) {
 
 void Text::_colorify(unsigned char _binary[]) {
 	unsigned char _preimg[_height*_width*4];
-	for (int i = 0; i<_height; i++) {
-		for (int j = 0; j<_width; j++) {
-			unsigned char v = _binary[j*_height+i];
-			int vb =  _binary[j*_height+i];
-			if (vb != 0)
-			cout << vb << endl;
-			_preimg[i*j] = 0;
-			_preimg[i*j+1] = 0;
-			_preimg[i*j+2] = 0;
-			_preimg[i*j+3] = 255*(vb!=0);
-		}
+	for (int i = 0; i<_height*_width*4; i+=4) {
+		int vb = _binary[i/4];
+		_preimg[i] = 0;
+		_preimg[i+1] = 0;
+		_preimg[i+2] = 0;
+		if (vb > 0) _preimg[i+3] = 255;//*(vb!=0);
 	}
 	_image = new Image(_width,_height,_preimg);
 
