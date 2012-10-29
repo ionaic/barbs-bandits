@@ -54,7 +54,8 @@ void Text::_render() {
 	FT_Face    	face;
 	FT_GlyphSlot	slot;
 	FT_Error		error;
-	int            pen_x,n;
+	FT_Vector pen;
+	int            n;
 
 	error = FT_Init_FreeType( &library );
 
@@ -70,20 +71,20 @@ void Text::_render() {
 		return;
 	}
 
-	pen_x = 0;
+	pen.x = 0;
 
 	slot = face->glyph;
 
 	for ( n = 0; n < numChars; n++ ) {
 		/* load glyph image into this slot and erase the previous one */
 		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER );
-		if (pen_x + slot->bitmap_left > _width) return;
+		if (pen.x + slot->bitmap_left > _width) return;
 
 		_renderImage( &slot->bitmap,
-				pen_x + slot->bitmap_left,
+				pen.x + slot->bitmap_left,
 				_height - slot->bitmap_top, _binary);
 
-		pen_x += slot->advance.x >> 6;
+		pen.x += slot->advance.x >> 6;
 	}
 
 	FT_Done_Face    ( face );
@@ -125,14 +126,11 @@ void Text::show_image( unsigned char _binary[] ) {
 
 void Text::_colorify(unsigned char _binary[]) {
 	unsigned char _preimg[_height*_width*4];
-	for (int i = 0; i<_height; i++) {
-		for (int j = 0; j<_width; j++) {
-			//int v = _binary[i*_height+j];
-			_preimg[i*_height+4*j] = 0;
-			_preimg[i*_height+4*j+1] = 0;
-			_preimg[i*_height+4*j+2] = 0;
-			_preimg[i*_height+4*j+3] = 255;
-		}
+	for (int i = 0; i<_height * _width * 4; i+=4) {
+		_preimg[i] = 0;
+		_preimg[i+1] = 0;
+		_preimg[i+2] = 0;
+		_preimg[i+3] = 255;
 	}
 	_image = new Image(_width,_height,_preimg);
 }
