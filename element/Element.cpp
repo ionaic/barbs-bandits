@@ -27,7 +27,8 @@ Element::Element(int x, int y) {
     this->_id = currentId;
     currentId++;
     this->_result = new Image(this->_width, this->_height);
-    this->_clrImg = new Image(this->_width, this->_height);
+	Pixel p(0, 0, 0, 255);
+    this->_clrImg = new Image(this->_width, this->_height, p);
 }
 
 
@@ -39,7 +40,8 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_id = currentId;
     currentId++;
     this->_result = new Image(this->_width, this->_height);
-    this->_clrImg = new Image(this->_width, this->_height);
+	Pixel p(0, 0, 0, 255);
+    this->_clrImg = new Image(this->_width, this->_height, p);
 }
 
 Element::~Element() {
@@ -81,6 +83,7 @@ void Element::addChild(Element *child) {
 
 Image* Element::render() {
     // clear the background of the image
+	cout << "Rendering ID: "<< this->_id << endl;
     this->clearResult();
 
 	vector<Element*>::iterator child = this->_children.begin();
