@@ -8,6 +8,14 @@ Pixel::Pixel(int R, int G, int B, int A) {
 	_r = R; _g = G; _b = B; _a = A;
 }
 
+Pixel::Pixel(Pixel &p)
+{
+	this->_r = p.getR();
+	this->_g = p.getG();
+	this->_b = p.getB();
+	this->_a = p.getA();
+}
+
 void Pixel::setRGB(int R, int G, int B) {
 	_r = R; _g = G; _b = B; _a = 255;
 }

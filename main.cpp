@@ -37,25 +37,26 @@ int loadGuiTexture(string textureString) {
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
 	//For textures
-	//Image i(width, height, texturebits);
+	Image i(width, height, texturebits);
 	//Pixel p0 (255, 0, 0, 255);
 	//Image i(width, height, p0);
+
+	/*
 	unsigned char c[width*height*4];
 	for (unsigned int i=0; i<width*height*4; i+=4) {
 		c[i] = 255; c[i+1] = 0; c[i+2] = 0; c[i+3] = 255;
 	}
 	Image i(width, height, c);
+	*/
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
 	//text element to be added on top
-	//TextElement T(0, 0, width, height, 20, "Hello");
+	TextElement T(0, 0, width, height, 20, "Hello");
 	//ie.addChild(&T);
-	//adding a black box child
-	Pixel p(0, 255, 0, 255);
-	Image i2(50, 50, p);
-	ImageElement ie2(0, 0, 50, 50, i2);
-	ie.addChild(&ie2);
-	//get the pixel a	ie2.render()->get(49,49);rray
+	//Pixel p(0, 0, 255, 255);
+	//Image i2(50, 50, p);
+	//ImageElement ie2(0, 0, 50, 50, i2);
+	ie.addChild(&T);
 	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {

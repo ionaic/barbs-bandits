@@ -16,6 +16,7 @@ Element::Element() {
     currentId++;
     this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
+    this->_dirty = true;
 }
 
 
@@ -29,6 +30,7 @@ Element::Element(int x, int y) {
     this->_result = new Image(this->_width, this->_height);
 	Pixel p(0, 0, 0, 255);
     this->_clrImg = new Image(this->_width, this->_height, p);
+    this->_dirty = true;
 }
 
 
@@ -42,6 +44,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_result = new Image(this->_width, this->_height);
 	Pixel p(0, 0, 0, 255);
     this->_clrImg = new Image(this->_width, this->_height, p);
+    this->_dirty = true;
 }
 
 Element::~Element() {
@@ -83,11 +86,11 @@ void Element::addChild(Element *child) {
 
 Image* Element::render() {
     // clear the background of the image
-	cout << "Rendering ID: "<< this->_id << endl;
     this->clearResult();
 
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
+		cout << "inside the loop" << endl;
 		Image* childImage = (*child)->render();
 		if ((*child)->_dirty) {
 			//here's where we actually want to do the rendering
@@ -97,12 +100,9 @@ Image* Element::render() {
                 (*child)->_xCoord, (*child)->_yCoord, 
                 (*child)->_width, (*child)->_height);
             // if any child is dirty, this element is dirty
-            this->_dirty = true;
 		}
-        else {
-            this->_dirty = (*child)->_dirty || false;
-            //std::cout << "child is clean, is this element dirty?: " << this->_dirty << std::endl;
-        }
+		this->_dirty = (*child)->_dirty || this ->_dirty;
 	}
+	cout << "Rendering ID: "<< this->_id << endl;
     return this->_result;
 }
