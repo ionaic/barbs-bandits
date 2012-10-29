@@ -15,7 +15,7 @@ static bool running = GL_TRUE;
 static int vsync = 1;
 static float aspectRatio = 0;
 GLuint texture;
-static string textureFile = "texture.bmp";
+static string textureFile = "texture.png";
 
 int main() {
 	init();
@@ -26,7 +26,7 @@ int main() {
 
 int loadGuiTexture(string textureString) {
 	FreeImage_Initialise();
-	FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
+	FIBITMAP *bitmap = FreeImage_Load(FIF_PNG, textureString.c_str(), PNG_DEFAULT);
 	FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
 	if (!bitmap || !bitmap32) {
 		cout << "Texture failed to load" << endl;
@@ -41,7 +41,7 @@ int loadGuiTexture(string textureString) {
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
 	//text element to be added on top
-	TextElement T(0, 0, 100, 60, 20, "Hello");
+	TextElement T(156, 0, 100, 60, 20, "Hello");
 	Pixel p(0, 0, 255, 255);
 	Image i2(100, 50, p);
 	ImageElement ie2(0, 0, 100, 50, i2);
