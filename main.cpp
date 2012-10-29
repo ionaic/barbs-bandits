@@ -42,8 +42,7 @@ int loadGuiTexture(string textureString) {
 	ImageElement ie(0, 0, width, height, i);
 	//text element to be added on top
 	TextElement T(156, 0, 100, 60, 20, "A");
-	ie.addChild(&T);
-	Pixel p(0, 0, 255, 255);
+	/*Pixel p(0, 0, 255, 255);
 	Image i2(50, 50, p);
 	ImageElement ie2(0, 0, 50, 50, i2);
 	Pixel p1(0, 255, 0, 255);
@@ -53,7 +52,7 @@ int loadGuiTexture(string textureString) {
 	ImageElement ie4(206, 206, 50, 50, i2);
 	ie2.addChild(&ie3);
 	ie.addChild(&ie2);
-	ie.addChild(&ie4);
+	ie.addChild(&ie4);*/
 	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {

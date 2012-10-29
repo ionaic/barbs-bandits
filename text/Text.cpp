@@ -11,10 +11,6 @@ Text::Text() {
 	Text(0,0,0,"");
 }
 
-//Text::Text(int w, int h, int size) {
-//	Text(w,h,0,"");
-//}
-
 Text::Text(int w, int h, int size) {
 	Text(w,h,size,"");
 }
@@ -49,6 +45,10 @@ void Text::_render() {
 	//This is based off libttf tutorial code: bit.ly/ROmj5C
 	int numChars = _content.size();
 	unsigned char _binary[_height*_width];
+	//Zero _binary
+	for (int i= 0; i < _height*_width; i++) {
+		_binary[i] = 0;
+	}
 
 	FT_Library	library;
 	FT_Face    	face;
