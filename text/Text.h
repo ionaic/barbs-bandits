@@ -29,6 +29,7 @@ class Text {
 		int _fontSize;
 		string _content;
 		void _render();
+		void show_image(unsigned char _binary[]);
 
 		void _renderImage(FT_Bitmap* b, int x, int y, unsigned char _binary[]);
 		void _colorify(unsigned char _binary[]);

@@ -131,8 +131,8 @@ void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
 		for (unsigned int x = 0; x<width; ++x) {
 			for (unsigned int y = 0; y<height; ++y) {
 				if (_pixels[_getCoord(xSource+x, ySource+y)].getA()>127) {
-					dest._pixels[dest._getCoord(xDest+x,yDest+y)] =
-						_pixels[_getCoord(xSource+x, ySource+y)];
+					dest._pixels[dest._getCoord(yDest+y,xDest+x)] =
+						_pixels[_getCoord(ySource+y,xSource+x)];
 				}
 			}
 		}

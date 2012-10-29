@@ -64,7 +64,7 @@ void Text::_render() {
 		return;
 	}
 
-	error = FT_Set_Char_Size( face, _fontSize * 64, 0, 100, 0 );
+	error = FT_Set_Char_Size( face, 0, _fontSize * 64, 0, 0 );
 	if (error) {
 		cerr<< "Error setting font size"<< endl;
 		return;
@@ -89,6 +89,7 @@ void Text::_render() {
 	FT_Done_Face    ( face );
 	FT_Done_FreeType( library );
 
+	show_image(_binary);
 	_colorify(_binary);
 }
 
@@ -103,21 +104,33 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 			if ( i < 0  || j < 0 || i >= _width || j >= _height )
 				continue;
 
-			_binary[j*_width+i] |= bitmap->buffer[q * bitmap->width + p];
+			_binary[j*_height+i] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
+}
+
+void Text::show_image( unsigned char _binary[] ) {
+  int  i, j;
+
+
+  for ( i = 0; i < _height; i++ )
+  {
+    for ( j = 0; j < _width; j++ )
+      putchar( _binary[i*_height+j] == 0 ? ' '
+                                : _binary[i*_height + j] < 128 ? '+'
+                                                    : '*' );
+    putchar( '\n' );
+  }
 }
 
 void Text::_colorify(unsigned char _binary[]) {
 	unsigned char _preimg[_height*_width*4];
 	for (int i = 0; i<_height; i++) {
 		for (int j = 0; j<_width; j++) {
-			int v = _binary[i*_width+j];
-			{
-				_preimg[i*_height+4*j] = v;
-				_preimg[i*_height+4*j+1] = v;
-				_preimg[i*_height+4*j+2] = v;
-			}
+			//int v = _binary[i*_height+j];
+			_preimg[i*_height+4*j] = 0;
+			_preimg[i*_height+4*j+1] = 0;
+			_preimg[i*_height+4*j+2] = 0;
 			_preimg[i*_height+4*j+3] = 255;
 		}
 	}
