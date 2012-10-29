@@ -10,9 +10,9 @@ Text::Text() {
 	Text(0,0,0,"");
 }
 
-Text::Text(int w, int h, int size) {
-	Text(w,h,0,"");
-}
+//Text::Text(int w, int h, int size) {
+//	Text(w,h,0,"");
+//}
 
 Text::Text(int w, int h, int size) {
 	Text(w,h,size,"");
