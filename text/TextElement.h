@@ -16,12 +16,12 @@ class TextElement : public Element {
         void setText(string txt) {
             this->_text->setText(txt);
         }
-        //void clearResult() {
-        //    this->_text->getImage();
-        //}
+        void clearResult() {
+            this->_text->getImage()->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);;
+        }
 
 		//Image _render() { return *(this->_text->getImage();) }
-		Image* render() { return this->_text->getImage(); }
+		//Image* render() { return this->_text->getImage(); }
 
     private: 
         Text* _text;
