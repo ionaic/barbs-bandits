@@ -38,12 +38,25 @@ int loadGuiTexture(string textureString) {
 
 	//For textures
 	Image i(width, height, texturebits);
+	//Pixel p0 (255, 0, 0, 255);
+	//Image i(width, height, p0);
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
 	//text element to be added on top
-	TextElement T(0, 0, width, height, 20, "Hello");
-	ie.addChild(&T);
-	//get the pixel array
+	//TextElement T(0, 0, width, height, 20, "Hello");
+	//ie.addChild(&T);
+	//adding a black box child
+	Pixel p(0, 0, 0, 255);
+	Image i2(50, 50, p);
+	ImageElement ie2(0, 0, 50, 50, i2);
+	ie.addChild(&ie2);
+	Pixel check = ie2.render()->get(49,49);
+	if (!(0 == check.getR() &&
+			0 == check.getB() &&
+			0 == check.getG())) {
+		cout << "Blitting check error. " << endl;
+	}
+	//get the pixel a	ie2.render()->get(49,49);rray
 	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {

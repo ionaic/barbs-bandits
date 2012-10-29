@@ -18,6 +18,7 @@ class ImageElement : public Element {
             this->_img = new Image(img);
         }
         void clearResult() { 
+        	cout << "ie clr" << endl;
             this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
         }
     private:

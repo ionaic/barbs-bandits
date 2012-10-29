@@ -110,6 +110,7 @@ const Pixel &Image::get(unsigned int x, unsigned int y) const {
 void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
                         unsigned int xDest,   unsigned int yDest,
                         unsigned int width,   unsigned int height) const{
+	std::cout << " doin some blits" << std::endl;
 	if (!_pixels) {
 		std::cout << "ERROR: Tried to blit" <<
 			"in an uninitialized image!" << std::endl;
