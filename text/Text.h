@@ -3,6 +3,7 @@
 
 #include <string>
 #include <ft2build.h>
+#include "Image.h"
 #include FT_FREETYPE_H
 
 using namespace std;
@@ -19,19 +20,18 @@ class Text {
 		void setText(string c);
 		string stringify();
 
-
+		Image* getImage();
 
 	private:
-		unsigned char* _image;
-		unsigned char* _binary;
+		Image* _image;
 		int _width;
 		int _height;
 		int _fontSize;
 		string _content;
+		void _render();
 
-		void _renderImage(FT_Bitmap* b, int x, int y);
-		void _generateImage();
-		int _render();
+		void _renderImage(FT_Bitmap* b, int x, int y, unsigned char _binary[]);
+		void _colorify(unsigned char _binary[]);
 		
 };
 #endif

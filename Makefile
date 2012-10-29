@@ -26,7 +26,7 @@ Pixel.o:
 	$(CC) image/Pixel.cpp -c
 
 Text.o:
-	$(CC) text/Text.cpp $(TXTINCL) -c
+	$(CC) text/Text.cpp $(TXTINCL) -c -Iimage/
 
 Element.o:
 	$(CC) -I image/ element/Element.cpp -c

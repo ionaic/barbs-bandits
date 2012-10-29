@@ -38,25 +38,19 @@ int loadGuiTexture(string textureString) {
 
 	//For textures
 	Image i(width, height, texturebits);
-	//Pixel p0 (255, 0, 0, 255);
-	//Image i(width, height, p0);
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
 	//text element to be added on top
 	//TextElement T(0, 0, width, height, 20, "Hello");
 	//ie.addChild(&T);
-	//adding a black box child
-	Pixel p(0, 0, 0, 255);
+	Pixel p(0, 0, 255, 255);
 	Image i2(50, 50, p);
 	ImageElement ie2(0, 0, 50, 50, i2);
+	Pixel p1(0, 255, 0, 255);
+	Image i3(25, 25, p1);
+	ImageElement ie3(0, 0, 25, 25, i3);
+	ie2.addChild(&ie3);
 	ie.addChild(&ie2);
-	Pixel check = ie2.render()->get(49,49);
-	if (!(0 == check.getR() &&
-			0 == check.getB() &&
-			0 == check.getG())) {
-		cout << "Blitting check error. " << endl;
-	}
-	//get the pixel a	ie2.render()->get(49,49);rray
 	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {
@@ -78,7 +72,7 @@ int loadGuiTexture(string textureString) {
 	glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE );
 	//use opengl to produce the texture
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
-			0, GL_BGRA, GL_UNSIGNED_BYTE, bits);
+			0, GL_RGBA, GL_UNSIGNED_BYTE, bits);
 	//unload the bitmap since we're done with it
 	FreeImage_Unload(bitmap);
 	return 0;

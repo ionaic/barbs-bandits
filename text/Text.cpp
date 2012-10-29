@@ -3,6 +3,7 @@
 #include <ft2build.h>
 #include <string>
 #include <iostream>
+#include "Image.h"
 #include FT_FREETYPE_H
 
 using namespace std;
@@ -27,14 +28,11 @@ Text::Text(int w, int h, int size, string c) {
 	_height = h;
 	_fontSize = size;
 	_content = c;
-	_binary = new unsigned char[_height*_width];
-	_image = new unsigned char[_height*_width*4];
 	_render();
 }
 
 Text::~Text() {
-	delete[] _binary;
-	delete[] _image;
+	//delete[] &_image; Broken
 }
 
 
@@ -43,9 +41,14 @@ void Text::setText(string c) {
 	_render();
 }
 
-int Text::_render() {
+Image* Text::getImage() {
+	return _image;
+}
+
+void Text::_render() {
 	//This is based off libttf tutorial code: bit.ly/ROmj5C
 	int numChars = _content.size();
+	unsigned char _binary[_height*_width];
 
 	FT_Library	library;
 	FT_Face    	face;
@@ -58,13 +61,13 @@ int Text::_render() {
 	error = FT_New_Face( library,	"text/FreeSans.ttf", 0, &face );
 	if (error) {
 		cerr<< "Error loading .ttf file"<< endl;
-		return -2;
+		return;
 	}
 
 	error = FT_Set_Char_Size( face, _fontSize * 64, 0, 100, 0 );
 	if (error) {
 		cerr<< "Error setting font size"<< endl;
-		return -3;
+		return;
 	}
 
 	pen_x = 0;
@@ -74,11 +77,11 @@ int Text::_render() {
 	for ( n = 0; n < numChars; n++ ) {
 		/* load glyph image into this slot and erase the previous one */
 		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER );
-		if (pen_x + slot->bitmap_left > _width) return -4;
+		if (pen_x + slot->bitmap_left > _width) return;
 
 		_renderImage( &slot->bitmap,
 				pen_x + slot->bitmap_left,
-				_height - slot->bitmap_top);
+				_height - slot->bitmap_top, _binary);
 
 		pen_x += slot->advance.x >> 6;
 	}
@@ -86,12 +89,11 @@ int Text::_render() {
 	FT_Done_Face    ( face );
 	FT_Done_FreeType( library );
 
-	_generateImage();
-	return 1;
+	_colorify(_binary);
 }
 
 void Text::_renderImage( FT_Bitmap*  bitmap,
-		FT_Int x, FT_Int y) {
+		FT_Int x, FT_Int y, unsigned char _binary[]) {
 	FT_Int  i, j, p, q;
 	FT_Int  x_max = x + bitmap->width;
 	FT_Int  y_max = y + bitmap->rows;
@@ -106,27 +108,16 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 	}
 }
 
-string Text::stringify() {
-	string s = "";
-	for (int i = 0; i<_height; i++) {
-		for (int j = 0; j<_width; j++) {
-			if (_binary[i*_width+j] == 0) s+=" ";
-			else if (_binary[i*_width+j] < 128) s+="+";
-			else s+="*";
-		}
-		s+="\n";
-	}
-	return s;
-}
-
-void Text::_generateImage() {
+void Text::_colorify(unsigned char _binary[]) {
+	unsigned char _preimg[_height*_width];
 	for (int i = 0; i<_height; i++) {
 		for (int j = 0; j<_width; j++) {
 			int v = _binary[i*_width+j];
 			for(int k=0; k < 3; k++) {
-				_image[i*_width*4+4*j+k] = 0;
+				_preimg[i*_width*4+4*j+k] = 0;
 			}
-				_image[i*_width*4+4*j+4] = v;
+				_preimg[i*_width*4+4*j+4] = v;
 		}
 	}
+	_image = new Image(_width,_height,_preimg);
 }

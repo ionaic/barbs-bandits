@@ -8,6 +8,7 @@ public:
 	Pixel();
 	Pixel(int R, int G, int B);
 	Pixel(int R, int G, int B, int A);
+	Pixel(Pixel &p);
 	void setRGB(int R, int G, int B);
 	void setRGBA(int R, int G, int B, int A);
 	int getR() const;
