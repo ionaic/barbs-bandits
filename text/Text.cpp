@@ -26,12 +26,12 @@ Text::Text(int w, int h, int size, string c) {
 	_fontSize = size;
 	_content = c;
 	Pixel p(255,0,0,255);
-	_image = new Image(w, h, p);
+	_image = NULL;//new Image(w, h, p);
 	_render();
 }
 
 Text::~Text() {
-	//delete[] &_image; Broken
+	//delete[] _image; //Broken?
 }
 
 
@@ -128,10 +128,15 @@ void Text::show_image( unsigned char _binary[] ) {
 }
 
 void Text::_colorify(unsigned char _binary[]) {
-	for (int i = 0; i<_height; i++) {
-		for (int j = 0; j < _width; j++){
-			_image->set(j,i, Pixel(0,0,0,255));
-		}
+	unsigned char _preimg[_height*_width*4];
+	for (int i = 0; i<_height*_width*4; i+=4) {
+		unsigned char v = _binary[i/_height+i%_width];
+		_preimg[i] = 0;
+		_preimg[i+1] = 0;
+		_preimg[i+2] = 0;
+		_preimg[i+3] = v;
+		//_image->set(j,i, Pixel(0,0,0,255));
 	}
+	_image = new Image(_width,_height,_preimg);
 
 }
