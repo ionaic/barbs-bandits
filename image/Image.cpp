@@ -1,7 +1,7 @@
 #include "Image.h"
 
 inline unsigned int Image::_getCoord(unsigned int x, unsigned int y) const {
-	return y*_height + x;
+	return y*_width+ x;
 }
 
 Image::Image() {

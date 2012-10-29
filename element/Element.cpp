@@ -90,7 +90,6 @@ Image* Element::render() {
 
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
-		cout << "inside the loop" << endl;
 		Image* childImage = (*child)->render();
 		if ((*child)->_dirty) {
 			//here's where we actually want to do the rendering
