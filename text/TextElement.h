@@ -17,6 +17,9 @@ class TextElement : public Element {
             this->_text->setText(txt);
         }
 
+		//Image _render() { return *(this->_text->getImage();) }
+		Image* render() { return this->_text->getImage(); }
+
     private: 
         Text* _text;
 };
