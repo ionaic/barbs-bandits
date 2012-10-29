@@ -15,7 +15,7 @@ static bool running = GL_TRUE;
 static int vsync = 1;
 static float aspectRatio = 0;
 GLuint texture;
-static string textureFile = "texture.png";
+static string textureFile = "texture.bmp";
 
 int main() {
 	init();
@@ -26,7 +26,7 @@ int main() {
 
 int loadGuiTexture(string textureString) {
 	FreeImage_Initialise();
-	FIBITMAP *bitmap = FreeImage_Load(FIF_PNG, textureString.c_str(), PNG_DEFAULT);
+	FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
 	FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
 	if (!bitmap || !bitmap32) {
 		cout << "Texture failed to load" << endl;
