@@ -2,7 +2,8 @@
 #define _TOGGLE_BUTTON_H_
 
 #include <string>
-#include "Image.h"
+#include "ImageElement.h"
+#include "TextElement.h"
 #include "Text.h"
 #include "Button.h"
 
@@ -10,19 +11,28 @@ using namespace std;
 
 class ToggleButton: public Button {
 	public:
-        ToggleButton() : Button() { this->_on = false; }
-        ToggleButton(int x, int y) : Button(x, y) { this->on = false; }
-        ToggleButton(int x, int y, int w, int h) : 
-            Button(x, y, w, h) { this->on = false; }
-        ToggleButton(int x, int y, int w, int h, 
-            string content, int size, Image i) : Button(x, y, w, h) {
-            this->_on = false;
-            Element::addChild(i);
-            Element::addChild(new Text(width,height,size,content));
+        ToggleButton() : Button() { this->_down = false; }
+        ToggleButton(int x, int y) : Button(x, y) { this->_down = false; }
+        ToggleButton(int x, int y, int w, int h) : Button(x, y, w, h) {
+        	this->_down = false;
+        	_image = new ImageElement(x, y, w, h);
+        	Element::addChild(_image);
+        	_text = new TextElement(x, y, w, h, 0, "");
         }
-        ~ToggleButton() { Button::~Button(); }
+        ToggleButton(int x, int y, int w, int h, 
+            string content, int size, ImageElement* i) : Button(x, y, w, h) {
+            this->_down = false;
+            _image = i;
+            Element::addChild(_image);
+            _text = new TextElement(x, y, w, h, size, content);
+            Element::addChild(_text);
+        }
+        //~ToggleButton() { Button::~Button(); }
+        void setText(string txt) { _text->setText(txt); }
 
 	private:
-	    bool _on;
+	    bool _down;
+	    TextElement* _text;
+	    ImageElement* _image;
 };
 #endif

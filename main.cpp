@@ -8,6 +8,7 @@
 #include "Element.h"
 #include "TextElement.h"
 #include "ImageElement.h"
+#include "ToggleButton.h"
 #include "Button.h"
 
 using namespace std;
@@ -61,6 +62,10 @@ int loadGuiTexture(string textureString) {
 	Button B(0, 206, 50, 50);
 	ie.addChild(&B);
 	Pixel* bits = ie.render()->getPixels();
+	//toggle button near the middle
+	ToggleButton TB(100, 100, 50, 50);
+	TB.setText("TB");
+	ie.addChild(&TB);
 
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;

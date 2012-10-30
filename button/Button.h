@@ -6,6 +6,7 @@
 #include "Text.h"
 #include "Element.h"
 #include "ImageElement.h"
+#include "TextElement.h"
 //#include "TextElement.h"
 
 using namespace std;
@@ -13,8 +14,8 @@ using namespace std;
 class Button : public Element {
 	public:
         Button() : Element() {}
-        Button(unsigned int x, unsigned int y) : Element(x, y) {}
-        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : Element(x, y, width, height) {}
+        Button(unsigned int x, unsigned int y) : Element(x, y) {_text = new TextElement(x,y);}
+        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : Element(x, y, width, height) {_text = new TextElement(x, y, width, height);}
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img) : Element(x, y, width, height) { Element::addChild(img); }
 		//Button(unsigned int x, unsigned int y, unsigned int w, unsigned int h, TextElement* content, unsigned int size, ImageElement* image) : Element(x, y, w, h) {
         //    Element::addChild(image);
@@ -25,6 +26,6 @@ class Button : public Element {
 		void setText(string txt) { _text->setText(txt); }
 
 	private:
-		Text * _text;
+		TextElement* _text;
 };
 #endif
