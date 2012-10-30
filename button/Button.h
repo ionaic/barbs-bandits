@@ -22,5 +22,9 @@ class Button : public Element {
         //void setText(TextElement* text) { Element::addChild(text); }
         void setBgImg(ImageElement* img) { Element::addChild(img); }
 		virtual ~Button() {}
+		void setText(string txt) { _text->setText(txt); }
+
+	private:
+		Text * _text;
 };
 #endif

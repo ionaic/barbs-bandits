@@ -9,7 +9,7 @@ OFILES=Image.o Pixel.o Text.o Element.o
 # final target
 TARGET=sample
 # generic element includes
-INCL=-I./image/ -I./text/ -I./element/ 
+INCL=-I./image/ -I./text/ -I./element/  -I./button
 # include all the things
 HFILES=button/Button.h image/ImageElement.h text/TextElement.h $(INCL) $(TXTINCL)
 

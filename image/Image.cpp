@@ -1,4 +1,5 @@
 #include "Image.h"
+#include <algorithm>
 
 inline unsigned int Image::_getCoord(unsigned int x, unsigned int y) const {
 	return y*_width+ x;

@@ -82,7 +82,7 @@ void Text::_render() {
 
 	for ( n = 0; n < numChars; n++ ) {
 		/* load glyph image into this slot and erase the previous one */
-		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER );
+		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER);// | FT_LOAD_MONOCHROME);
 		if (pen.x + slot->bitmap_left > _width) return;
 
 		_renderImage( &slot->bitmap,
@@ -136,8 +136,8 @@ void Text::_colorify(unsigned char _binary[]) {
 		_preimg[i] = 0;
 		_preimg[i+1] = 0;
 		_preimg[i+2] = 0;
-		if (vb > 0) _preimg[i+3] = vb;
-		else _preimg[i+3] = 0;
+		if (vb > 32) _preimg[i+3] = 255;
+
 	}
 	_image = new Image(_width,_height,_preimg);
 

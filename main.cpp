@@ -8,6 +8,7 @@
 #include "Element.h"
 #include "TextElement.h"
 #include "ImageElement.h"
+#include "Button.h"
 
 using namespace std;
 
@@ -36,24 +37,29 @@ int loadGuiTexture(string textureString) {
 	int height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-	//For textures
+	//For texture
 	Image i(width, height, texturebits);
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
-	//text element to be added on top
-	TextElement T(156, 0, 100, 60, 40, "H");
+	//bottom left
 	Pixel p(0, 0, 255, 255);
 	Image i2(100, 50, p);
 	ImageElement ie2(0, 0, 100, 50, i2);
 	Pixel p1(0, 255, 0, 255);
 	Image i3(25, 40, p1);
 	ImageElement ie3(0, 10, 25, 40, i3);
-	//upper right corner
-	ImageElement ie4(206, 206, 50, 50, i2);
 	ie2.addChild(&ie3);
 	ie.addChild(&ie2);
+	//upper right corner
+	ImageElement ie4(206, 206, 50, 50, i2);
 	ie.addChild(&ie4);
+	//bottom right
+	//text element to be added on top
+	TextElement T(156, 0, 100, 60, 40, "Hello");
 	ie.addChild(&T);
+	//upper left button
+	Button B(0, 206, 50, 50);
+	ie.addChild(&B);
 	Pixel* bits = ie.render()->getPixels();
 
 	if(!bits) {
