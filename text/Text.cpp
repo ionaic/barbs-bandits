@@ -108,8 +108,18 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 	FT_Int  i, j, p, q;
 	FT_Int  x_max = x + bitmap->width;
 	FT_Int  y_max = y + bitmap->rows;
-	unsigned int size = _width * _height;
+	unsigned int index = 0;
 
+	for ( i = x, p = 0; i < x_max; i++, p++ ) {
+		for ( j = y, q = 0; j < y_max; j++, q++ ) {
+			if ( i < 0  || j < 0 || i >= _width || j >= _height )
+				continue;
+			index = ((_height - j) * _width - (_width - i));
+			_binary[index] |= bitmap->buffer[q * bitmap->width + p];
+		}
+	}
+
+	/* original
 	for ( i = x, p = 0; i < x_max; i++, p++ ) {
 		for ( j = y, q = 0; j < y_max; j++, q++ ) {
 			if ( i < 0  || j < 0 || i >= _width || j >= _height )
@@ -118,6 +128,7 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 			_binary[size -(j*_width+(_height-i))] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
+	*/
 }
 
 void Text::show_image( unsigned char _binary[] ) {

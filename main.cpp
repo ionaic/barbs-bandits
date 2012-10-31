@@ -56,13 +56,13 @@ int loadGuiTexture(string textureString) {
 	ie.addChild(&ie4);
 	//bottom right
 	//text element to be added on top
-	TextElement T(156, 0, 100, 60, 20, "TextEle");
+	TextElement T(156, 0, 100, 60, 18, "TextElement");
 	ie.addChild(&T);
 	//upper left button
 	Button B(0, 206, 50, 50, "Button");
 	ie.addChild(&B);
 	//toggle button near the middle
-	ToggleButton TB(100, 100, 50, 50, "TButt");
+	ToggleButton TB(100, 100, 50, 50, "TButton");
 	ie.addChild(&TB);
 	//render it to a texture by calling render
 	Pixel* bits = ie.render()->getPixels();
