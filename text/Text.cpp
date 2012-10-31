@@ -115,7 +115,7 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 			if ( i < 0  || j < 0 || i >= _width || j >= _height )
 				continue;
 
-			_binary[size -(j*_height+(_width-i))] |= bitmap->buffer[q * bitmap->width + p];
+			_binary[size -(j*_width+(_height-i))] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
 }

@@ -42,7 +42,6 @@ int loadGuiTexture(string textureString) {
 	Image i(width, height, texturebits);
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
-	/*
 	//bottom left
 	Pixel p(0, 0, 255, 255);
 	Image i2(100, 50, p);
@@ -60,7 +59,6 @@ int loadGuiTexture(string textureString) {
 	TextElement T(156, 0, 100, 60, 20, "TextEle");
 	ie.addChild(&T);
 	//upper left button
-	 */
 	Button B(0, 206, 50, 50, "Button");
 	ie.addChild(&B);
 	//toggle button near the middle
