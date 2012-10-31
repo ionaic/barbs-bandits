@@ -23,13 +23,14 @@ class Element {
             this->_clrImg->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
         }
         Image* render();
-        void registerCallback(void (*func)()); //for now just registers mouse callback
-        //void mouseInput(int x, int y);
+        void registerCallback(void (*func)(void *)); //for now just registers mouse callback
+        void mouseInput(int x, int y);
         void addChild(Element *child);
         // getters and setters
         void setX(unsigned int x) { this->_xCoord = x; }
         void setY(unsigned int y) { this->_yCoord = y; }
         void setZ(float z) { this->_zIndex = z; }
+        unsigned int getId() { return this->_id; }
         void setWidth(unsigned int width) { this->_width = width; }
         void setHeight(unsigned int height) { this->_height = height; }
         void setDirty(bool dirty) { this->_dirty = dirty; }
@@ -41,15 +42,15 @@ class Element {
         unsigned int _yCoord;
         unsigned int _width;
         unsigned int _height;
-        unsigned int _id;
         Image *_result;
  
     private:
         float _zIndex;
+        unsigned int _id;
         bool _dirty;
         vector<Element *> _children;
         Element *_parent;
-        void (*_mouseCallback)();
+        void (*_mouseCallback)(void*);
         Image *_clrImg;
 };
 #endif

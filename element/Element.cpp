@@ -17,6 +17,7 @@ Element::Element() {
     this->_result = new Image(this->_width, this->_height);
     this->_clrImg = new Image(this->_width, this->_height);
     this->_dirty = true;
+    this->_mouseCallback = 0;
 }
 
 
@@ -31,6 +32,7 @@ Element::Element(int x, int y) {
 	Pixel p(100, 100, 100, 255);
     this->_clrImg = new Image(this->_width, this->_height, p);
     this->_dirty = true;
+    this->_mouseCallback = 0;
 }
 
 
@@ -45,6 +47,7 @@ Element::Element(int x, int y, int xs, int ys) {
 	Pixel p(100, 100, 100, 255);
     this->_clrImg = new Image(this->_width, this->_height, p);
     this->_dirty = true;
+    this->_mouseCallback = 0;
 }
 
 Element::~Element() {
@@ -56,20 +59,21 @@ Element::~Element() {
     delete this->_clrImg;
 }
 
-//void Element::mouseInput(int x, int y) {
-//	int xMin = this->xCoord;
-//	int yMin = this->yCoord;
-//	int xMax = this->xCoord + this->width;
-//	int yMax = this->yCoord + this->height;
-//	bool inside = (xMin <= x && yMin <= y && xMax >= x && yMax >= y);
-//	if (inside) {
-//		cout << "hit! id: " << this->id << endl;
-//		return;
-//	}
-//	cout << "miss! id: " << this->id << endl;
-//}
+void Element::mouseInput(int x, int y) {
+	if ( x < 0 || y < 0) return;
+	vector<Element*>::iterator child = this->_children.begin();
+	for(; _children.end() != child; child++) {
+		(*child)->mouseInput(x-(*child)->_xCoord, y-(*child)->_yCoord);
+	}
+	bool inside = (this->_width >= x && this->_height >= y);
+	if (inside) { //if inside button
+		if (0 != _mouseCallback ) //if element has a callback
+			this->_mouseCallback(this);
+		return;
+	}
+}
 
-void Element::registerCallback(void (*func)()) {
+void Element::registerCallback(void (*func)(void *)) {
     this->_mouseCallback = func;
 }
 

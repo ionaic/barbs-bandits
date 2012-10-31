@@ -30,11 +30,10 @@ class TextElement : public Element {
         }
         void clearResult() {
         	Image* _temp = this->_text->getImage();
-        	cout << _text->getText() << endl;
         	if (_temp) _temp->blit(*(this->_result), 0U, 0U, 0U, 0U,
         			this->_width, this->_height);
         	else cout << "ERROR in TextElement during clearResult blit." <<
-        			" No image available. (text too long?)  ID:" << this->_id << endl;
+        			" No image available. ID:" << this->getId() << endl;
         }
 
     private: 

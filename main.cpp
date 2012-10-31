@@ -18,6 +18,7 @@ static int vsync = 1;
 static float aspectRatio = 0;
 GLuint texture;
 static string textureFile = "texture.bmp";
+static ImageElement* ie;
 
 int main() {
 	init();
@@ -41,7 +42,8 @@ int loadGuiTexture(string textureString) {
 	//For texture
 	Image i(width, height, texturebits);
 	//base background element
-	ImageElement ie(0, 0, width, height, i);
+	ie = new ImageElement(0, 0, width, height, i);
+	/*
 	//bottom left
 	Pixel p(0, 0, 255, 255);
 	Image i2(100, 50, p);
@@ -50,22 +52,25 @@ int loadGuiTexture(string textureString) {
 	Image i3(25, 40, p1);
 	ImageElement ie3(0, 10, 25, 40, i3);
 	ie2.addChild(&ie3);
-	ie.addChild(&ie2);
+	ie->addChild(&ie2);
 	//upper right corner
 	ImageElement ie4(206, 206, 50, 50, i2);
-	ie.addChild(&ie4);
+	ie->addChild(&ie4);
 	//bottom right
 	//text element to be added on top
 	TextElement T(156, 0, 100, 60, 18, "TextElement");
-	ie.addChild(&T);
+	ie->addChild(&T);
+	*/
 	//upper left button
-	Button B(0, 206, 50, 50, "Button");
-	ie.addChild(&B);
+	Button* B = new Button(0, 206, 50, 50, "Button");
+	B->registerCallback( buttonClicked );
+	ie->addChild(B);
 	//toggle button near the middle
-	ToggleButton TB(100, 100, 50, 50, "TButton");
-	ie.addChild(&TB);
+	ToggleButton* TB = new ToggleButton(100, 100, 50, 50, "TButton");
+	TB->registerCallback( buttonClicked );
+	ie->addChild(TB);
 	//render it to a texture by calling render
-	Pixel* bits = ie.render()->getPixels();
+	Pixel* bits = ie->render()->getPixels();
 
 
 	if(!bits) {
@@ -127,7 +132,7 @@ void init(void) {
 	glfwSetWindowTitle("OpenGUI Demo");
 	glfwSetWindowCloseCallback(closeWindow);
 	glfwSetWindowSizeCallback( windowResize );
-
+	glfwSetMouseButtonCallback( mouseClicked );
 	//vsync
 	glfwSwapInterval(vsync);
 
@@ -188,4 +193,21 @@ void draw(void)
 void GLFWCALL windowResize( int width, int height ) {
 	glViewport(0,0,(GLsizei)width,(GLsizei)height);
 
+}
+
+void GLFWCALL mouseClicked(int mButton, int clicked)
+{
+	int *x, *y;
+	x = new int;
+	y = new int;
+	glfwGetMousePos( x, y );
+	if (mButton == 0 && clicked == 1) {
+		ie->mouseInput((*x) / 2, 256 - ((*y) / 2));
+	}
+}
+
+void buttonClicked(void* e) {
+	Element* element = (Element *) e;
+	cout << "You clicked an element. "
+			<< " Callback function executing on element id:" << element->getId() << endl;
 }
