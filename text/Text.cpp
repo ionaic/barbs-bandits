@@ -136,7 +136,7 @@ void Text::_colorify(unsigned char _binary[]) {
 		_preimg[i] = 0;
 		_preimg[i+1] = 0;
 		_preimg[i+2] = 0;
-		if (vb > 32) _preimg[i+3] = 255;
+		if (vb) _preimg[i+3] = 255;
 
 	}
 	_image = new Image(_width,_height,_preimg);

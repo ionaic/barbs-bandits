@@ -40,8 +40,12 @@ Image::Image(unsigned int width, unsigned int height, unsigned char *data) {
 	_width = width;
 	_height =height;
 	_pixels = new Pixel[width*height];
-	for (unsigned int i=0; i<width*height*4; i+=4) {
-		_pixels[i/4].setRGBA(data[i], data[i+1], data[i+2], data[i+3]);
+	if (!data)
+		std::cout << "Error reading data with Image constructor" << std::endl;
+	else {
+		for (unsigned int i=0; i<width*height*4; i+=4) {
+			_pixels[i/4].setRGBA(data[i], data[i+1], data[i+2], data[i+3]);
+		}
 	}
 }
 
@@ -109,7 +113,7 @@ const Pixel &Image::get(unsigned int x, unsigned int y) const {
 void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
                         unsigned int xDest,   unsigned int yDest,
                         unsigned int width,   unsigned int height) const{
-	if (!_pixels) {
+	if (!_pixels || !width || !height) {
 		std::cout << "ERROR: Tried to blit" <<
 			"in an uninitialized image!" << std::endl;
 	} else if (!dest._pixels) {

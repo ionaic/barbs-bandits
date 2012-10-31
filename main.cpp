@@ -56,16 +56,17 @@ int loadGuiTexture(string textureString) {
 	ie.addChild(&ie4);
 	//bottom right
 	//text element to be added on top
-	TextElement T(156, 0, 100, 60, 40, "Hello");
+	TextElement T(156, 0, 100, 60, 20, "Hello");
 	ie.addChild(&T);
 	//upper left button
-	Button B(0, 206, 50, 50);
+	Button B(0, 206, 50, 50, "Button");
 	ie.addChild(&B);
-	Pixel* bits = ie.render()->getPixels();
 	//toggle button near the middle
-	ToggleButton TB(100, 100, 50, 50);
-	TB.setText("TB");
+	ToggleButton TB(100, 100, 50, 50, "TGLButton");
 	ie.addChild(&TB);
+	//render it to a texture by calling render
+	Pixel* bits = ie.render()->getPixels();
+
 
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;

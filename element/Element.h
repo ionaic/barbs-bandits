@@ -11,9 +11,7 @@
 
 using namespace std;
 
-
 static int currentId = 0;
-
 
 class Element {
     public:

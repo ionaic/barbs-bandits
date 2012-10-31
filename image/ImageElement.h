@@ -11,9 +11,11 @@ class ImageElement : public Element {
         // public constructors
         ImageElement() : Element() {}
         ImageElement(Image &img) : Element() { this->_img = new Image(img); }
-        ImageElement(unsigned int x, unsigned int y) : Element(x, y, 0, 0) {}
+        ImageElement(unsigned int x, unsigned int y) : Element(x, y, 0, 0) {
+        	ImageElement(x, y, 0, 0);
+        }
         ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : 
-            Element(x,y,width,height) {}
+            Element(x, y, width, height) { this->_img = new Image(width, height); }
         ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height, Image &img) : Element(x, y, width, height) {
             this->_img = new Image(img);
         }

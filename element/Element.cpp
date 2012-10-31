@@ -28,7 +28,7 @@ Element::Element(int x, int y) {
     this->_id = currentId;
     currentId++;
     this->_result = new Image(this->_width, this->_height);
-	Pixel p(0, 0, 0, 255);
+	Pixel p(100, 100, 100, 255);
     this->_clrImg = new Image(this->_width, this->_height, p);
     this->_dirty = true;
 }
@@ -42,7 +42,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_id = currentId;
     currentId++;
     this->_result = new Image(this->_width, this->_height);
-	Pixel p(0, 0, 0, 255);
+	Pixel p(100, 100, 100, 255);
     this->_clrImg = new Image(this->_width, this->_height, p);
     this->_dirty = true;
 }
