@@ -42,6 +42,7 @@ int loadGuiTexture(string textureString) {
 	Image i(width, height, texturebits);
 	//base background element
 	ImageElement ie(0, 0, width, height, i);
+	/*
 	//bottom left
 	Pixel p(0, 0, 255, 255);
 	Image i2(100, 50, p);
@@ -56,13 +57,14 @@ int loadGuiTexture(string textureString) {
 	ie.addChild(&ie4);
 	//bottom right
 	//text element to be added on top
-	TextElement T(156, 0, 100, 60, 20, "Hello");
+	TextElement T(156, 0, 100, 60, 20, "TextEle");
 	ie.addChild(&T);
 	//upper left button
+	 */
 	Button B(0, 206, 50, 50, "Button");
 	ie.addChild(&B);
 	//toggle button near the middle
-	ToggleButton TB(100, 100, 50, 50, "TGLButton");
+	ToggleButton TB(100, 100, 50, 50, "TButt");
 	ie.addChild(&TB);
 	//render it to a texture by calling render
 	Pixel* bits = ie.render()->getPixels();

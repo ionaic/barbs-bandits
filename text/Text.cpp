@@ -43,6 +43,7 @@ void Text::setText(string c) {
 }
 
 Image* Text::getImage() {
+	cout << "rendering image from text: " << _content << endl;
 	return _image;
 }
 
@@ -83,7 +84,10 @@ void Text::_render() {
 	for ( n = 0; n < numChars; n++ ) {
 		/* load glyph image into this slot and erase the previous one */
 		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER);// | FT_LOAD_MONOCHROME);
-		if (pen.x + slot->bitmap_left > _width) return;
+		if (pen.x + slot->bitmap_left > _width) {
+			cout << "error rendering text.  slot exceeded bitmap width." << endl;
+			return;
+		}
 
 		_renderImage( &slot->bitmap,
 				pen.x + slot->bitmap_left,
@@ -104,13 +108,14 @@ void Text::_renderImage( FT_Bitmap*  bitmap,
 	FT_Int  i, j, p, q;
 	FT_Int  x_max = x + bitmap->width;
 	FT_Int  y_max = y + bitmap->rows;
+	unsigned int size = _width * _height;
 
 	for ( i = x, p = 0; i < x_max; i++, p++ ) {
 		for ( j = y, q = 0; j < y_max; j++, q++ ) {
 			if ( i < 0  || j < 0 || i >= _width || j >= _height )
 				continue;
 
-			_binary[j*_height+i] |= bitmap->buffer[q * bitmap->width + p];
+			_binary[size -(j*_height+(_width-i))] |= bitmap->buffer[q * bitmap->width + p];
 		}
 	}
 }
@@ -130,15 +135,18 @@ void Text::show_image( unsigned char _binary[] ) {
 }
 
 void Text::_colorify(unsigned char _binary[]) {
+	unsigned int size = _height*_width*4;
 	unsigned char _preimg[_height*_width*4];
 	for (int i = 0; i<_height*_width*4; i+=4) {
 		int vb = _binary[i/4];
 		_preimg[i] = 0;
 		_preimg[i+1] = 0;
 		_preimg[i+2] = 0;
-		if (vb) _preimg[i+3] = 255;
+		if (vb) _preimg[i+3] = vb;
+		else _preimg[i+3] = 0;
 
 	}
 	_image = new Image(_width,_height,_preimg);
+	if (!_image) cout << "Error generating image from text." << endl;
 
 }

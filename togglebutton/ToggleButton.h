@@ -17,6 +17,7 @@ class ToggleButton: public Button {
         	this->_down = false;
         }
         ToggleButton(int x, int y, int w, int h, string txt) : Button(x, y, w, h, txt) {
+        	cout << "creating tbutton" << endl;
         	this->_down = false;
         }
         ToggleButton(int x, int y, int w, int h, 

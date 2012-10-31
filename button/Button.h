@@ -16,12 +16,14 @@ class Button : public Element {
         Button(unsigned int x, unsigned int y) { Button(x, y, 0, 0); }
         //TODO: this one is broken because of the zero fontsize text bug (below)
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height) { Button(x, y, width, height, "null"); }
+
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt) : Element(x, y, width, height) {
-        	unsigned int size = 20; //TODO: do math based on width and height
+        	cout << "creating button" << endl;
+        	unsigned int size = 14; //TODO: do math based on width and height -> be careful, if the font / text is too long, it just wont draw
         	_imageE = new ImageElement(0, 0, width, height); //need to draw image first
         	addChild(_imageE);
         	_textE = new TextElement(0, 0, width, height, size, txt);
-        	addChild(_textE); //causing crash
+        	addChild(_textE);
         }
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img) : Element(x, y, width, height) {
         	_imageE = img;									//need to draw image first

@@ -41,6 +41,7 @@ class Element {
         unsigned int _yCoord;
         unsigned int _width;
         unsigned int _height;
+        unsigned int _id;
         Image *_result;
  
     private:
@@ -48,7 +49,6 @@ class Element {
         bool _dirty;
         vector<Element *> _children;
         Element *_parent;
-        int _id;
         void (*_mouseCallback)();
         Image *_clrImg;
 };

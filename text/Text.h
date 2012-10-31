@@ -18,9 +18,8 @@ class Text {
 		~Text();
 
 		void setText(string c);
-		string stringify();
-
 		Image* getImage();
+		string getText(void) {return _content;}
 
 	private:
 		Image* _image;

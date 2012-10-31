@@ -15,6 +15,8 @@ Image::Image(unsigned int width, unsigned int height) {
 	_width = width;
 	_height = height;
 	_pixels = new Pixel[width*height];
+	for (int i=0; i < height * width; ++i)
+		_pixels[i].setRGBA(0,0,0,0); //initialize to pure alpha
 }
 
 Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
@@ -41,7 +43,7 @@ Image::Image(unsigned int width, unsigned int height, unsigned char *data) {
 	_height =height;
 	_pixels = new Pixel[width*height];
 	if (!data)
-		std::cout << "Error reading data with Image constructor" << std::endl;
+		std::cout << "Error reading data in Image constructor" << std::endl;
 	else {
 		for (unsigned int i=0; i<width*height*4; i+=4) {
 			_pixels[i/4].setRGBA(data[i], data[i+1], data[i+2], data[i+3]);
