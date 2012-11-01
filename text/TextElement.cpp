@@ -13,7 +13,7 @@ TextElement::TextElement(unsigned int x, unsigned int y) {
 
 //Constructor with x,y position, width and height sets font size to 1 and an empty string
 TextElement::TextElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) {
-	TextElement(x, y, width, height , 1 "");
+	TextElement(x, y, width, height , 1, "");
 }
 
 //Constructor sets all variables and dynamically creates a Text object
@@ -21,7 +21,6 @@ TextElement::TextElement(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, int size, string txt) : Element(x, y, width, height) {
 	this->_text = new Text(width, height, size, txt);
 	cout << "creating text element with text: " << _text->getText() << endl;
-
 }
 
 //Destructor deletes _text if it exists
