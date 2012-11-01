@@ -1,0 +1,199 @@
+.TH "Element" 3 "Thu Nov 1 2012" "OpenGui" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Element \- 
+.PP
+The base class that all GUI elements derive from\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Element\&.h>\fP
+.PP
+Inherited by \fBButton\fP, \fBCheckBox\fP, \fBImageElement\fP, and \fBTextElement\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBElement\fP ()"
+.br
+.RI "\fIDefault Constructor\&. \fP"
+.ti -1c
+.RI "\fBElement\fP (int x, int y)"
+.br
+.ti -1c
+.RI "\fBElement\fP (int x, int y, int xs, int ys)"
+.br
+.ti -1c
+.RI "virtual \fB~Element\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBclearResult\fP ()"
+.br
+.ti -1c
+.RI "\fBImage\fP * \fBrender\fP ()"
+.br
+.ti -1c
+.RI "void \fBregisterCallback\fP (void(*func)(void *))"
+.br
+.ti -1c
+.RI "void \fBmouseInput\fP (int x, int y)"
+.br
+.ti -1c
+.RI "void \fBaddChild\fP (\fBElement\fP *child)"
+.br
+.ti -1c
+.RI "void \fBsetX\fP (unsigned int x)"
+.br
+.ti -1c
+.RI "void \fBsetY\fP (unsigned int y)"
+.br
+.ti -1c
+.RI "void \fBsetZ\fP (float z)"
+.br
+.ti -1c
+.RI "unsigned int \fBgetId\fP ()"
+.br
+.ti -1c
+.RI "void \fBsetWidth\fP (unsigned int width)"
+.br
+.ti -1c
+.RI "void \fBsetHeight\fP (unsigned int height)"
+.br
+.ti -1c
+.RI "void \fBsetDirty\fP (bool dirty)"
+.br
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBElement\fP &other)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fB_xCoord\fP"
+.br
+.ti -1c
+.RI "unsigned int \fB_yCoord\fP"
+.br
+.ti -1c
+.RI "unsigned int \fB_width\fP"
+.br
+.ti -1c
+.RI "unsigned int \fB_height\fP"
+.br
+.ti -1c
+.RI "\fBImage\fP * \fB_result\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The base class that all GUI elements derive from\&. 
+
+This class provides a standard interface that is required for element traversal, rendering, and events\&. 
+.PP
+Definition at line 22 of file Element\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Element::Element ()"
+
+.PP
+Default Constructor\&. Creates an element positioned at (0,0) with dimensions (0,0)\&. 
+.PP
+Definition at line 10 of file Element\&.cpp\&.
+.SS "Element::Element (intx, inty)"
+Creates an element positioned at (x,y) with dimensions (0,0)\&. 
+.PP
+Definition at line 24 of file Element\&.cpp\&.
+.SS "Element::Element (intx, inty, intxs, intys)"
+
+.PP
+Definition at line 39 of file Element\&.cpp\&.
+.SS "Element::~Element ()\fC [virtual]\fP"
+
+.PP
+Definition at line 53 of file Element\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void Element::addChild (\fBElement\fP *child)"
+
+.PP
+Definition at line 81 of file Element\&.cpp\&.
+.SS "virtual void Element::clearResult ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.PP
+Reimplemented in \fBImageElement\fP, and \fBTextElement\fP\&.
+.PP
+Definition at line 28 of file Element\&.h\&.
+.SS "unsigned int Element::getId ()\fC [inline]\fP"
+
+.PP
+Definition at line 39 of file Element\&.h\&.
+.SS "void Element::mouseInput (intx, inty)"
+
+.PP
+Definition at line 62 of file Element\&.cpp\&.
+.SS "bool Element::operator< (const \fBElement\fP &other)\fC [inline]\fP"
+
+.PP
+Definition at line 44 of file Element\&.h\&.
+.SS "void Element::registerCallback (void(*)(void *)func)"
+
+.PP
+Definition at line 76 of file Element\&.cpp\&.
+.SS "\fBImage\fP * Element::render ()"
+
+.PP
+Definition at line 91 of file Element\&.cpp\&.
+.SS "void Element::setDirty (booldirty)\fC [inline]\fP"
+
+.PP
+Definition at line 42 of file Element\&.h\&.
+.SS "void Element::setHeight (unsigned intheight)\fC [inline]\fP"
+
+.PP
+Definition at line 41 of file Element\&.h\&.
+.SS "void Element::setWidth (unsigned intwidth)\fC [inline]\fP"
+
+.PP
+Definition at line 40 of file Element\&.h\&.
+.SS "void Element::setX (unsigned intx)\fC [inline]\fP"
+
+.PP
+Definition at line 36 of file Element\&.h\&.
+.SS "void Element::setY (unsigned inty)\fC [inline]\fP"
+
+.PP
+Definition at line 37 of file Element\&.h\&.
+.SS "void Element::setZ (floatz)\fC [inline]\fP"
+
+.PP
+Definition at line 38 of file Element\&.h\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned int Element::_height\fC [protected]\fP"
+
+.PP
+Definition at line 50 of file Element\&.h\&.
+.SS "\fBImage\fP* Element::_result\fC [protected]\fP"
+
+.PP
+Definition at line 51 of file Element\&.h\&.
+.SS "unsigned int Element::_width\fC [protected]\fP"
+
+.PP
+Definition at line 49 of file Element\&.h\&.
+.SS "unsigned int Element::_xCoord\fC [protected]\fP"
+
+.PP
+Definition at line 47 of file Element\&.h\&.
+.SS "unsigned int Element::_yCoord\fC [protected]\fP"
+
+.PP
+Definition at line 48 of file Element\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OpenGui from the source code\&.

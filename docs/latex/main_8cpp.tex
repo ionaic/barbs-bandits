@@ -1,0 +1,167 @@
+\hypertarget{main_8cpp}{\section{main.\-cpp File Reference}
+\label{main_8cpp}\index{main.\-cpp@{main.\-cpp}}
+}
+{\ttfamily \#include $<$G\-L/glfw.\-h$>$}\\*
+{\ttfamily \#include $<$Free\-Image.\-h$>$}\\*
+{\ttfamily \#include $<$stdlib.\-h$>$}\\*
+{\ttfamily \#include $<$stdio.\-h$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include \char`\"{}main.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}element/\-Element.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}text/\-Text\-Element.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}image/\-Image\-Element.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}togglebutton/\-Toggle\-Button.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}button/\-Button.\-h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\item 
+int \hyperlink{main_8cpp_ad081815fa97a33e7833e875910f03c74}{load\-Gui\-Texture} (string texture\-String)
+\item 
+void \hyperlink{main_8cpp_a2a026e829d973a118ea722a2296d564a}{shut\-Down} (int return\-Code)
+\item 
+int \hyperlink{main_8cpp_a078eadbd02baa0e3e49c38e8144eab3e}{close\-Window} (void)
+\item 
+void \hyperlink{main_8cpp_a2858154e2009b0e6e616f313177762bc}{init} (void)
+\item 
+void \hyperlink{main_8cpp_a52387bf053883d1a8feeee2dd2cdd4f3}{main\-Loop} (void)
+\item 
+void \hyperlink{main_8cpp_ad2e97e7b54d0bf35e406b91fbdd2f256}{draw} (void)
+\item 
+void G\-L\-F\-W\-C\-A\-L\-L \hyperlink{main_8cpp_a95681cbe7df715737b55654aa59ad866}{window\-Resize} (int width, int height)
+\item 
+void G\-L\-F\-W\-C\-A\-L\-L \hyperlink{main_8cpp_ae3cb3094e9a69387d1aaeac1c2189812}{mouse\-Clicked} (int m\-Button, int clicked)
+\item 
+void \hyperlink{main_8cpp_aded8f05225ff190aa74403c62a52020e}{button\-Clicked} (void $\ast$e)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+G\-Luint \hyperlink{main_8cpp_a0704dfe56dec926cb35f7bdc0834ecd0}{texture}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{main_8cpp_aded8f05225ff190aa74403c62a52020e}{\index{main.\-cpp@{main.\-cpp}!button\-Clicked@{button\-Clicked}}
+\index{button\-Clicked@{button\-Clicked}!main.cpp@{main.\-cpp}}
+\subsubsection[{button\-Clicked}]{\setlength{\rightskip}{0pt plus 5cm}void button\-Clicked (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{e}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_aded8f05225ff190aa74403c62a52020e}
+
+
+Definition at line 209 of file main.\-cpp.
+
+\hypertarget{main_8cpp_a078eadbd02baa0e3e49c38e8144eab3e}{\index{main.\-cpp@{main.\-cpp}!close\-Window@{close\-Window}}
+\index{close\-Window@{close\-Window}!main.cpp@{main.\-cpp}}
+\subsubsection[{close\-Window}]{\setlength{\rightskip}{0pt plus 5cm}int close\-Window (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a078eadbd02baa0e3e49c38e8144eab3e}
+
+
+Definition at line 110 of file main.\-cpp.
+
+\hypertarget{main_8cpp_ad2e97e7b54d0bf35e406b91fbdd2f256}{\index{main.\-cpp@{main.\-cpp}!draw@{draw}}
+\index{draw@{draw}!main.cpp@{main.\-cpp}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void draw (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_ad2e97e7b54d0bf35e406b91fbdd2f256}
+
+
+Definition at line 169 of file main.\-cpp.
+
+\hypertarget{main_8cpp_a2858154e2009b0e6e616f313177762bc}{\index{main.\-cpp@{main.\-cpp}!init@{init}}
+\index{init@{init}!main.cpp@{main.\-cpp}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a2858154e2009b0e6e616f313177762bc}
+Initializes a glfw window for use in the demo
+
+Definition at line 115 of file main.\-cpp.
+
+\hypertarget{main_8cpp_ad081815fa97a33e7833e875910f03c74}{\index{main.\-cpp@{main.\-cpp}!load\-Gui\-Texture@{load\-Gui\-Texture}}
+\index{load\-Gui\-Texture@{load\-Gui\-Texture}!main.cpp@{main.\-cpp}}
+\subsubsection[{load\-Gui\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}int load\-Gui\-Texture (
+\begin{DoxyParamCaption}
+\item[{string}]{texture\-String}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_ad081815fa97a33e7833e875910f03c74}
+
+
+Definition at line 30 of file main.\-cpp.
+
+\hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{\index{main.\-cpp@{main.\-cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.\-cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}
+
+
+Definition at line 23 of file main.\-cpp.
+
+\hypertarget{main_8cpp_a52387bf053883d1a8feeee2dd2cdd4f3}{\index{main.\-cpp@{main.\-cpp}!main\-Loop@{main\-Loop}}
+\index{main\-Loop@{main\-Loop}!main.cpp@{main.\-cpp}}
+\subsubsection[{main\-Loop}]{\setlength{\rightskip}{0pt plus 5cm}void main\-Loop (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a52387bf053883d1a8feeee2dd2cdd4f3}
+the main event loop for the demo
+
+Definition at line 153 of file main.\-cpp.
+
+\hypertarget{main_8cpp_ae3cb3094e9a69387d1aaeac1c2189812}{\index{main.\-cpp@{main.\-cpp}!mouse\-Clicked@{mouse\-Clicked}}
+\index{mouse\-Clicked@{mouse\-Clicked}!main.cpp@{main.\-cpp}}
+\subsubsection[{mouse\-Clicked}]{\setlength{\rightskip}{0pt plus 5cm}void G\-L\-F\-W\-C\-A\-L\-L mouse\-Clicked (
+\begin{DoxyParamCaption}
+\item[{int}]{m\-Button, }
+\item[{int}]{clicked}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_ae3cb3094e9a69387d1aaeac1c2189812}
+
+
+Definition at line 198 of file main.\-cpp.
+
+\hypertarget{main_8cpp_a2a026e829d973a118ea722a2296d564a}{\index{main.\-cpp@{main.\-cpp}!shut\-Down@{shut\-Down}}
+\index{shut\-Down@{shut\-Down}!main.cpp@{main.\-cpp}}
+\subsubsection[{shut\-Down}]{\setlength{\rightskip}{0pt plus 5cm}void shut\-Down (
+\begin{DoxyParamCaption}
+\item[{int}]{return\-Code}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a2a026e829d973a118ea722a2296d564a}
+shuts down glfw and exits the program with a return code
+
+Definition at line 101 of file main.\-cpp.
+
+\hypertarget{main_8cpp_a95681cbe7df715737b55654aa59ad866}{\index{main.\-cpp@{main.\-cpp}!window\-Resize@{window\-Resize}}
+\index{window\-Resize@{window\-Resize}!main.cpp@{main.\-cpp}}
+\subsubsection[{window\-Resize}]{\setlength{\rightskip}{0pt plus 5cm}void G\-L\-F\-W\-C\-A\-L\-L window\-Resize (
+\begin{DoxyParamCaption}
+\item[{int}]{width, }
+\item[{int}]{height}
+\end{DoxyParamCaption}
+)}}\label{main_8cpp_a95681cbe7df715737b55654aa59ad866}
+
+
+Definition at line 193 of file main.\-cpp.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{main_8cpp_a0704dfe56dec926cb35f7bdc0834ecd0}{\index{main.\-cpp@{main.\-cpp}!texture@{texture}}
+\index{texture@{texture}!main.cpp@{main.\-cpp}}
+\subsubsection[{texture}]{\setlength{\rightskip}{0pt plus 5cm}G\-Luint texture}}\label{main_8cpp_a0704dfe56dec926cb35f7bdc0834ecd0}
+
+
+Definition at line 19 of file main.\-cpp.
+

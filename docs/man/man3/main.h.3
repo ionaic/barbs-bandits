@@ -1,0 +1,76 @@
+.TH "main.h" 3 "Thu Nov 1 2012" "OpenGui" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+main.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'element/Element\&.h'\fP
+.br
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBshutDown\fP (int returnCode)"
+.br
+.ti -1c
+.RI "void \fBinit\fP (void)"
+.br
+.ti -1c
+.RI "void \fBmainLoop\fP (void)"
+.br
+.ti -1c
+.RI "void \fBdraw\fP (void)"
+.br
+.ti -1c
+.RI "void GLFWCALL \fBwindowResize\fP (int width, int height)"
+.br
+.ti -1c
+.RI "int \fBloadGuiTexture\fP (string \fBtexture\fP)"
+.br
+.ti -1c
+.RI "void GLFWCALL \fBmouseClicked\fP (int mButton, int clicked)"
+.br
+.ti -1c
+.RI "void \fBbuttonClicked\fP (void *e)"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "void buttonClicked (void *e)"
+
+.PP
+Definition at line 209 of file main\&.cpp\&.
+.SS "void draw (void)"
+
+.PP
+Definition at line 169 of file main\&.cpp\&.
+.SS "void init (void)"
+Initializes a glfw window for use in the demo
+.PP
+Definition at line 115 of file main\&.cpp\&.
+.SS "int loadGuiTexture (stringtexture)"
+
+.PP
+Definition at line 30 of file main\&.cpp\&.
+.SS "void mainLoop (void)"
+the main event loop for the demo
+.PP
+Definition at line 153 of file main\&.cpp\&.
+.SS "void GLFWCALL mouseClicked (intmButton, intclicked)"
+
+.PP
+Definition at line 198 of file main\&.cpp\&.
+.SS "void shutDown (intreturnCode)"
+shuts down glfw and exits the program with a return code
+.PP
+Definition at line 101 of file main\&.cpp\&.
+.SS "void GLFWCALL windowResize (intwidth, intheight)"
+
+.PP
+Definition at line 193 of file main\&.cpp\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OpenGui from the source code\&.
