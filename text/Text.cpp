@@ -22,6 +22,10 @@ Text::Text(int w, int h, int size) {
 
 //Constructor sets all variables
 Text::Text(int w, int h, int size, string c) {
+	if (size < 1) {
+		cerr << "Size must be greater than zero" << endl;
+		size = 1;
+	}
 	_width = w;
 	_height = h;
 	_fontSize = size;
