@@ -3,6 +3,9 @@
 .nh
 .SH NAME
 ImageElement \- 
+.PP
+An element which simply contains an image and has children\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -16,59 +19,88 @@ Inherits \fBElement\fP\&.
 .ti -1c
 .RI "\fBImageElement\fP ()"
 .br
+.RI "\fIDefault constructor\&. \fP"
 .ti -1c
 .RI "\fBImageElement\fP (\fBImage\fP &img)"
 .br
+.RI "\fIConstructor to create an element out of the given image\&. \fP"
 .ti -1c
 .RI "\fBImageElement\fP (unsigned int x, unsigned int y)"
 .br
+.RI "\fIConstructor to create an image element at a location\&. \fP"
 .ti -1c
 .RI "\fBImageElement\fP (unsigned int x, unsigned int y, unsigned int width, unsigned int height)"
 .br
+.RI "\fIConstructor to create an image element at (x,y) with dimensions (width, height)\&. \fP"
 .ti -1c
 .RI "\fBImageElement\fP (unsigned int x, unsigned int y, unsigned int width, unsigned int height, \fBImage\fP &img)"
 .br
+.RI "\fIConstructor to create an image element at (x, y) in the parent with dimensions (width, height) and the specified content image\&. \fP"
+.ti -1c
+.RI "\fB~ImageElement\fP ()"
+.br
+.RI "\fIDestructor\&. Deletes the content image\&. \fP"
 .ti -1c
 .RI "void \fBclearResult\fP ()"
 .br
-.RI "\fIClears the result image to a color (black is default)\&. \fP"
+.RI "\fIOverrides \fBElement::clearResult()\fP to clear background to the content image instead of a solid color\&. \fP"
 .in -1c
 .SS "Additional Inherited Members"
 .SH "Detailed Description"
 .PP 
-Definition at line 9 of file ImageElement\&.h\&.
+An element which simply contains an image and has children\&. 
+
+Its main purpose is to provide constructors and to override \fBElement::clearResult()\fP to fill the background with the contained image instead of a plain color\&. 
+.PP
+Definition at line 16 of file ImageElement\&.h\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "ImageElement::ImageElement ()\fC [inline]\fP"
 
 .PP
-Definition at line 12 of file ImageElement\&.h\&.
+Default constructor\&. 
+.PP
+Definition at line 20 of file ImageElement\&.h\&.
 .SS "ImageElement::ImageElement (\fBImage\fP &img)\fC [inline]\fP"
 
 .PP
-Definition at line 13 of file ImageElement\&.h\&.
+Constructor to create an element out of the given image\&. 
+.PP
+Definition at line 23 of file ImageElement\&.h\&.
 .SS "ImageElement::ImageElement (unsigned intx, unsigned inty)\fC [inline]\fP"
 
 .PP
-Definition at line 14 of file ImageElement\&.h\&.
+Constructor to create an image element at a location\&. 
+.PP
+Definition at line 26 of file ImageElement\&.h\&.
 .SS "ImageElement::ImageElement (unsigned intx, unsigned inty, unsigned intwidth, unsigned intheight)\fC [inline]\fP"
 
 .PP
-Definition at line 17 of file ImageElement\&.h\&.
+Constructor to create an image element at (x,y) with dimensions (width, height)\&. 
+.PP
+Definition at line 31 of file ImageElement\&.h\&.
 .SS "ImageElement::ImageElement (unsigned intx, unsigned inty, unsigned intwidth, unsigned intheight, \fBImage\fP &img)\fC [inline]\fP"
 
 .PP
-Definition at line 19 of file ImageElement\&.h\&.
+Constructor to create an image element at (x, y) in the parent with dimensions (width, height) and the specified content image\&. 
+.PP
+Definition at line 36 of file ImageElement\&.h\&.
+.SS "ImageElement::~ImageElement ()\fC [inline]\fP"
+
+.PP
+Destructor\&. Deletes the content image\&. 
+.PP
+Definition at line 39 of file ImageElement\&.h\&.
 .SH "Member Function Documentation"
 .PP 
 .SS "void ImageElement::clearResult ()\fC [inline]\fP, \fC [virtual]\fP"
 
 .PP
-Clears the result image to a color (black is default)\&. Renders the background of the element, namely element contents\&. For generic Elements, it blits a solid color (black) image to the element's result image\&. For content elements (\fBTextElement\fP and \fBImageElement\fP) it will blit the stored image (for image elements) or resulting image from rendering the text (for text elements) before rendering the children\&. 
+Overrides \fBElement::clearResult()\fP to clear background to the content image instead of a solid color\&. 
 .PP
 Reimplemented from \fBElement\fP\&.
 .PP
-Definition at line 22 of file ImageElement\&.h\&.
+Definition at line 43 of file ImageElement\&.h\&.
 
 .SH "Author"
 .PP 

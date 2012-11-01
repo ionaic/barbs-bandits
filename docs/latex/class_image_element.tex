@@ -3,6 +3,11 @@
 }
 
 
+An element which simply contains an image and has children.  
+
+
+
+
 {\ttfamily \#include $<$Image\-Element.\-h$>$}
 
 Inheritance diagram for Image\-Element\-:\begin{figure}[H]
@@ -15,24 +20,28 @@ Inheritance diagram for Image\-Element\-:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_image_element_a74aff4a808a295c0557f9c4dbedbc50a}{Image\-Element} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \hyperlink{class_image_element_aba9605d67c75b2802a45e93a4b0cff5d}{Image\-Element} (\hyperlink{class_image}{Image} \&img)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor to create an element out of the given image. \end{DoxyCompactList}\item 
 \hyperlink{class_image_element_a2a1f13235bc96229d3257212b3c62c79}{Image\-Element} (unsigned int x, unsigned int y)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor to create an image element at a location. \end{DoxyCompactList}\item 
 \hyperlink{class_image_element_a9661aca27d32e6b9252dbbe45417f1bf}{Image\-Element} (unsigned int x, unsigned int y, unsigned int width, unsigned int height)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor to create an image element at (x,y) with dimensions (width, height). \end{DoxyCompactList}\item 
 \hyperlink{class_image_element_a63993109c5c8e49f95c25ca13a887f1e}{Image\-Element} (unsigned int x, unsigned int y, unsigned int width, unsigned int height, \hyperlink{class_image}{Image} \&img)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor to create an image element at (x, y) in the parent with dimensions (width, height) and the specified content image. \end{DoxyCompactList}\item 
+\hyperlink{class_image_element_a81b8b2d06cb668413254f7bc399bcb97}{$\sim$\-Image\-Element} ()
+\begin{DoxyCompactList}\small\item\em Destructor. Deletes the content image. \end{DoxyCompactList}\item 
 void \hyperlink{class_image_element_aa785ef26786dc59b0e66a71e465b3e31}{clear\-Result} ()
-\begin{DoxyCompactList}\small\item\em Clears the result image to a color (black is default). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Overrides \hyperlink{class_element_a7a110bce4630cd7b35b1c2d401774598}{Element\-::clear\-Result()} to clear background to the content image instead of a solid color. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
+An element which simply contains an image and has children. 
 
+Its main purpose is to provide constructors and to override \hyperlink{class_element_a7a110bce4630cd7b35b1c2d401774598}{Element\-::clear\-Result()} to fill the background with the contained image instead of a plain color. 
 
-Definition at line 9 of file Image\-Element.\-h.
+Definition at line 16 of file Image\-Element.\-h.
 
 
 
@@ -46,7 +55,11 @@ Definition at line 9 of file Image\-Element.\-h.
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_image_element_a74aff4a808a295c0557f9c4dbedbc50a}
 
 
-Definition at line 12 of file Image\-Element.\-h.
+Default constructor. 
+
+
+
+Definition at line 20 of file Image\-Element.\-h.
 
 \hypertarget{class_image_element_aba9605d67c75b2802a45e93a4b0cff5d}{\index{Image\-Element@{Image\-Element}!Image\-Element@{Image\-Element}}
 \index{Image\-Element@{Image\-Element}!ImageElement@{Image\-Element}}
@@ -57,7 +70,11 @@ Definition at line 12 of file Image\-Element.\-h.
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_image_element_aba9605d67c75b2802a45e93a4b0cff5d}
 
 
-Definition at line 13 of file Image\-Element.\-h.
+Constructor to create an element out of the given image. 
+
+
+
+Definition at line 23 of file Image\-Element.\-h.
 
 \hypertarget{class_image_element_a2a1f13235bc96229d3257212b3c62c79}{\index{Image\-Element@{Image\-Element}!Image\-Element@{Image\-Element}}
 \index{Image\-Element@{Image\-Element}!ImageElement@{Image\-Element}}
@@ -69,7 +86,11 @@ Definition at line 13 of file Image\-Element.\-h.
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_image_element_a2a1f13235bc96229d3257212b3c62c79}
 
 
-Definition at line 14 of file Image\-Element.\-h.
+Constructor to create an image element at a location. 
+
+
+
+Definition at line 26 of file Image\-Element.\-h.
 
 \hypertarget{class_image_element_a9661aca27d32e6b9252dbbe45417f1bf}{\index{Image\-Element@{Image\-Element}!Image\-Element@{Image\-Element}}
 \index{Image\-Element@{Image\-Element}!ImageElement@{Image\-Element}}
@@ -83,7 +104,11 @@ Definition at line 14 of file Image\-Element.\-h.
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_image_element_a9661aca27d32e6b9252dbbe45417f1bf}
 
 
-Definition at line 17 of file Image\-Element.\-h.
+Constructor to create an image element at (x,y) with dimensions (width, height). 
+
+
+
+Definition at line 31 of file Image\-Element.\-h.
 
 \hypertarget{class_image_element_a63993109c5c8e49f95c25ca13a887f1e}{\index{Image\-Element@{Image\-Element}!Image\-Element@{Image\-Element}}
 \index{Image\-Element@{Image\-Element}!ImageElement@{Image\-Element}}
@@ -98,7 +123,26 @@ Definition at line 17 of file Image\-Element.\-h.
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_image_element_a63993109c5c8e49f95c25ca13a887f1e}
 
 
-Definition at line 19 of file Image\-Element.\-h.
+Constructor to create an image element at (x, y) in the parent with dimensions (width, height) and the specified content image. 
+
+
+
+Definition at line 36 of file Image\-Element.\-h.
+
+\hypertarget{class_image_element_a81b8b2d06cb668413254f7bc399bcb97}{\index{Image\-Element@{Image\-Element}!$\sim$\-Image\-Element@{$\sim$\-Image\-Element}}
+\index{$\sim$\-Image\-Element@{$\sim$\-Image\-Element}!ImageElement@{Image\-Element}}
+\subsubsection[{$\sim$\-Image\-Element}]{\setlength{\rightskip}{0pt plus 5cm}Image\-Element\-::$\sim$\-Image\-Element (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_image_element_a81b8b2d06cb668413254f7bc399bcb97}
+
+
+Destructor. Deletes the content image. 
+
+
+
+Definition at line 39 of file Image\-Element.\-h.
 
 
 
@@ -112,15 +156,15 @@ Definition at line 19 of file Image\-Element.\-h.
 )\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{class_image_element_aa785ef26786dc59b0e66a71e465b3e31}
 
 
-Clears the result image to a color (black is default). 
+Overrides \hyperlink{class_element_a7a110bce4630cd7b35b1c2d401774598}{Element\-::clear\-Result()} to clear background to the content image instead of a solid color. 
 
-Renders the background of the element, namely element contents. For generic Elements, it blits a solid color (black) image to the element's result image. For content elements (\hyperlink{class_text_element}{Text\-Element} and \hyperlink{class_image_element}{Image\-Element}) it will blit the stored image (for image elements) or resulting image from rendering the text (for text elements) before rendering the children. 
+
 
 Reimplemented from \hyperlink{class_element_a7a110bce4630cd7b35b1c2d401774598}{Element}.
 
 
 
-Definition at line 22 of file Image\-Element.\-h.
+Definition at line 43 of file Image\-Element.\-h.
 
 
 

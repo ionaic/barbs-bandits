@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html','');});
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">static</span> <span class="keywordtype">float</span> aspectRatio = 0;</div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="main_8cpp.html#a0704dfe56dec926cb35f7bdc0834ecd0">   19</a></span>&#160;GLuint <a class="code" href="main_8cpp.html#a0704dfe56dec926cb35f7bdc0834ecd0">texture</a>;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">static</span> <span class="keywordtype">string</span> textureFile = <span class="stringliteral">&quot;texture.bmp&quot;</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">static</span> <a class="code" href="class_image_element.html">ImageElement</a>* ie;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">static</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>* ie;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   23</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="button_2main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="main_8cpp.html#a2858154e2009b0e6e616f313177762bc">init</a>();</div>
@@ -147,7 +147,7 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html','');});
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">//For texture</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_image.html">Image</a> i(width, height, texturebits);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">//base background element</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    ie = <span class="keyword">new</span> <a class="code" href="class_image_element.html">ImageElement</a>(0, 0, width, height, i);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    ie = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, i);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">/*</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">    //bottom left</span></div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">    Pixel p(0, 0, 255, 255);</span></div>
@@ -167,7 +167,7 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html','');});
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    ie-&gt;addChild(&amp;T);</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="comment">//upper left button</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_button.html">Button</a>* B = <span class="keyword">new</span> <a class="code" href="class_button.html">Button</a>(0, 206, 50, 50, <span class="stringliteral">&quot;Button&quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_button.html" title="The class used to store buttons consisting of a background image and a foreground text...">Button</a>* B = <span class="keyword">new</span> <a class="code" href="class_button.html" title="The class used to store buttons consisting of a background image and a foreground text...">Button</a>(0, 206, 50, 50, <span class="stringliteral">&quot;Button&quot;</span>);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    B-&gt;<a class="code" href="class_element.html#af3291346742556571a5c8578d2fc7026" title="Registers a callback function for the element.">registerCallback</a>( <a class="code" href="main_8cpp.html#aded8f05225ff190aa74403c62a52020e">buttonClicked</a> );</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    ie-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(B);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">//toggle button near the middle</span></div>
@@ -315,7 +315,7 @@ $(document).ready(function(){initNavTree('main_8cpp_source.html','');});
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
-    <li class="footer">Generated on Thu Nov 1 2012 01:55:24 for OpenGui by
+    <li class="footer">Generated on Thu Nov 1 2012 02:22:00 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

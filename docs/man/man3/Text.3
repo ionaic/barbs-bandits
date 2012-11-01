@@ -3,6 +3,9 @@
 .nh
 .SH NAME
 Text \- 
+.PP
+The class used to store text and render text into an \fBImage\fP object\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -14,67 +17,161 @@ Text \-
 .ti -1c
 .RI "\fBText\fP ()"
 .br
+.RI "\fIDefault Constructor\&. \fP"
 .ti -1c
 .RI "\fBText\fP (\fBText\fP &txt)"
 .br
+.RI "\fICopy Constructor\&. \fP"
 .ti -1c
 .RI "\fBText\fP (int w, int h, int size)"
 .br
+.RI "\fIConstructor with width, height and font size\&. \fP"
 .ti -1c
 .RI "\fBText\fP (int w, int h, int size, string c)"
 .br
+.RI "\fIConstructor with width, height, font size and string of text\&. \fP"
 .ti -1c
 .RI "\fB~Text\fP ()"
 .br
+.RI "\fIDestructor\&. \fP"
 .ti -1c
 .RI "void \fBsetText\fP (string c)"
 .br
+.RI "\fIUpdate the text stored and re-render it\&. \fP"
 .ti -1c
 .RI "\fBImage\fP * \fBgetImage\fP ()"
 .br
+.RI "\fIReturns a pointer to the rendered image\&. \fP"
 .ti -1c
-.RI "string \fBgetText\fP (void)"
+.RI "void \fB_render\fP ()"
+.br
+.ti -1c
+.RI "void \fBshow_image\fP (unsigned char \fB_basic\fP[])"
+.br
+.ti -1c
+.RI "void \fB_renderImage\fP (FT_Bitmap *b, int x, int y, unsigned char \fB_basic\fP[])"
+.br
+.ti -1c
+.RI "void \fB_colorify\fP (unsigned char \fB_basic\fP[])"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBgetText\fP(void) private int \fB_width\fP"
+.br
+.ti -1c
+.RI "int \fB_height\fP"
+.br
+.ti -1c
+.RI "int \fB_fontSize\fP"
+.br
+.ti -1c
+.RI "string \fB_content\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fB_basic\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fB_preimg\fP"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
-Definition at line 12 of file Text\&.h\&.
+The class used to store text and render text into an \fBImage\fP object\&. 
+
+This class should not be accessed directly\&. Instead, interactions should go through \fBImageElement\fP\&. 
+.PP
+Definition at line 20 of file Text\&.h\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "Text::Text ()"
 
 .PP
+Default Constructor\&. Default constructor sets width, height and font size to 0 and content to be an empty string\&. 
+.PP
 Definition at line 14 of file Text\&.cpp\&.
 .SS "Text::Text (\fBText\fP &txt)"
 
+.PP
+Copy Constructor\&. Copy constructor replicates a preexisting text 
 .PP
 Definition at line 41 of file Text\&.cpp\&.
 .SS "Text::Text (intw, inth, intsize)"
 
 .PP
+Constructor with width, height and font size\&. Constructor sets width, height and font size as per arguments and then content to be an empty string\&. 
+.PP
 Definition at line 19 of file Text\&.cpp\&.
 .SS "Text::Text (intw, inth, intsize, stringc)"
 
+.PP
+Constructor with width, height, font size and string of text\&. Constructor sets width, height, font size and content as per arguments 
 .PP
 Definition at line 24 of file Text\&.cpp\&.
 .SS "Text::~Text ()"
 
 .PP
+Destructor\&. Destructor deletes dynamically allocated variables 
+.PP
 Definition at line 46 of file Text\&.cpp\&.
 .SH "Member Function Documentation"
 .PP 
+.SS "void Text::_colorify (unsigned char_basic[])"
+
+.PP
+Definition at line 166 of file Text\&.cpp\&.
+.SS "void Text::_render ()"
+
+.PP
+Definition at line 76 of file Text\&.cpp\&.
+.SS "void Text::_renderImage (FT_Bitmap *b, intx, inty, unsigned char_basic[])"
+
+.PP
+Definition at line 138 of file Text\&.cpp\&.
 .SS "\fBImage\fP * Text::getImage ()"
 
 .PP
-Definition at line 62 of file Text\&.cpp\&.
-.SS "string Text::getText (void)\fC [inline]\fP"
-
+Returns a pointer to the rendered image\&. Get the rendered image 
 .PP
-Definition at line 22 of file Text\&.h\&.
+Definition at line 65 of file Text\&.cpp\&.
 .SS "void Text::setText (stringc)"
 
 .PP
-Definition at line 56 of file Text\&.cpp\&.
+Update the text stored and re-render it\&. Modify the text and rerender the image 
+.PP
+Definition at line 59 of file Text\&.cpp\&.
+.SS "void Text::show_image (unsigned char_basic[])"
+
+.PP
+Definition at line 154 of file Text\&.cpp\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned char* Text::_basic"
+
+.PP
+Definition at line 41 of file Text\&.h\&.
+.SS "string Text::_content"
+
+.PP
+Definition at line 37 of file Text\&.h\&.
+.SS "int Text::_fontSize"
+
+.PP
+Definition at line 36 of file Text\&.h\&.
+.SS "int Text::_height"
+
+.PP
+Definition at line 35 of file Text\&.h\&.
+.SS "unsigned char* Text::_preimg"
+
+.PP
+Definition at line 42 of file Text\&.h\&.
+.SS "string \fBgetText\fP (void) private int Text::_width"
+
+.PP
+Definition at line 30 of file Text\&.h\&.
 
 .SH "Author"
 .PP 

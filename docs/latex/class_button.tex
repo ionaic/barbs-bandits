@@ -3,6 +3,11 @@
 }
 
 
+The class used to store buttons consisting of a background image and a foreground text.  
+
+
+
+
 {\ttfamily \#include $<$Button.\-h$>$}
 
 Inheritance diagram for Button\-:\begin{figure}[H]
@@ -15,19 +20,19 @@ Inheritance diagram for Button\-:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_button_a3b36df1ae23c58aedb9e15a713159459}{Button} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
 \hyperlink{class_button_afe6b0b69a06839e5381cab7d9eaf4f10}{Button} (unsigned int x, unsigned int y)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. Sets x and y position of this element. \end{DoxyCompactList}\item 
 \hyperlink{class_button_a3c5ea0097e8e4abf139a558c53f022d2}{Button} (unsigned int x, unsigned int y, unsigned int width, unsigned int height)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. Sets x and y position of element along with height and width. \end{DoxyCompactList}\item 
 \hyperlink{class_button_a0446975c84ebf54a1a1fa88690689e34}{Button} (unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. Sets x and y position of element along with height, width, and text. \end{DoxyCompactList}\item 
 \hyperlink{class_button_a89eeede6ce15964118eee29990872c96}{Button} (unsigned int x, unsigned int y, unsigned int width, unsigned int height, \hyperlink{class_image_element}{Image\-Element} $\ast$img)
-\item 
-void \hyperlink{class_button_ab29c5e6dffda94b0e3ca9209baabb75c}{set\-Bg\-Img} (\hyperlink{class_image_element}{Image\-Element} $\ast$img)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. Sets x and y position of element along width height. Uses an Image\-Elment as the background image. \end{DoxyCompactList}\item 
+void \hyperlink{class_button_a836cb30a97ad2abeb67b0b0a6dc30dbd}{set\-Bg\-Ig} (\hyperlink{class_image_element}{Image\-Element} $\ast$img)
+\begin{DoxyCompactList}\small\item\em Sets background image. \end{DoxyCompactList}\item 
 void \hyperlink{class_button_a1794b3856606e75716fc7e2611b1b711}{set\-Text} (string txt)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Sets text. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -38,9 +43,9 @@ void \hyperlink{class_button_a1794b3856606e75716fc7e2611b1b711}{set\-Text} (stri
 
 
 \subsection{Detailed Description}
+The class used to store buttons consisting of a background image and a foreground text. 
 
-
-Definition at line 13 of file Button.\-h.
+Definition at line 17 of file Button.\-h.
 
 
 
@@ -51,10 +56,10 @@ Definition at line 13 of file Button.\-h.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_button_a3b36df1ae23c58aedb9e15a713159459}
+)}}\label{class_button_a3b36df1ae23c58aedb9e15a713159459}
 
 
-Definition at line 15 of file Button.\-h.
+Default constructor. 
 
 \hypertarget{class_button_afe6b0b69a06839e5381cab7d9eaf4f10}{\index{Button@{Button}!Button@{Button}}
 \index{Button@{Button}!Button@{Button}}
@@ -63,10 +68,10 @@ Definition at line 15 of file Button.\-h.
 \item[{unsigned int}]{x, }
 \item[{unsigned int}]{y}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_button_afe6b0b69a06839e5381cab7d9eaf4f10}
+)}}\label{class_button_afe6b0b69a06839e5381cab7d9eaf4f10}
 
 
-Definition at line 16 of file Button.\-h.
+Constructor. Sets x and y position of this element. 
 
 \hypertarget{class_button_a3c5ea0097e8e4abf139a558c53f022d2}{\index{Button@{Button}!Button@{Button}}
 \index{Button@{Button}!Button@{Button}}
@@ -77,10 +82,10 @@ Definition at line 16 of file Button.\-h.
 \item[{unsigned int}]{width, }
 \item[{unsigned int}]{height}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_button_a3c5ea0097e8e4abf139a558c53f022d2}
+)}}\label{class_button_a3c5ea0097e8e4abf139a558c53f022d2}
 
 
-Definition at line 18 of file Button.\-h.
+Constructor. Sets x and y position of element along with height and width. 
 
 \hypertarget{class_button_a0446975c84ebf54a1a1fa88690689e34}{\index{Button@{Button}!Button@{Button}}
 \index{Button@{Button}!Button@{Button}}
@@ -92,10 +97,10 @@ Definition at line 18 of file Button.\-h.
 \item[{unsigned int}]{height, }
 \item[{string}]{txt}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_button_a0446975c84ebf54a1a1fa88690689e34}
+)}}\label{class_button_a0446975c84ebf54a1a1fa88690689e34}
 
 
-Definition at line 20 of file Button.\-h.
+Constructor. Sets x and y position of element along with height, width, and text. 
 
 \hypertarget{class_button_a89eeede6ce15964118eee29990872c96}{\index{Button@{Button}!Button@{Button}}
 \index{Button@{Button}!Button@{Button}}
@@ -107,24 +112,24 @@ Definition at line 20 of file Button.\-h.
 \item[{unsigned int}]{height, }
 \item[{{\bf Image\-Element} $\ast$}]{img}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_button_a89eeede6ce15964118eee29990872c96}
+)}}\label{class_button_a89eeede6ce15964118eee29990872c96}
 
 
-Definition at line 28 of file Button.\-h.
+Constructor. Sets x and y position of element along width height. Uses an Image\-Elment as the background image. 
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{class_button_ab29c5e6dffda94b0e3ca9209baabb75c}{\index{Button@{Button}!set\-Bg\-Img@{set\-Bg\-Img}}
-\index{set\-Bg\-Img@{set\-Bg\-Img}!Button@{Button}}
-\subsubsection[{set\-Bg\-Img}]{\setlength{\rightskip}{0pt plus 5cm}void Button\-::set\-Bg\-Img (
+\hypertarget{class_button_a836cb30a97ad2abeb67b0b0a6dc30dbd}{\index{Button@{Button}!set\-Bg\-Ig@{set\-Bg\-Ig}}
+\index{set\-Bg\-Ig@{set\-Bg\-Ig}!Button@{Button}}
+\subsubsection[{set\-Bg\-Ig}]{\setlength{\rightskip}{0pt plus 5cm}void Button\-::set\-Bg\-Ig (
 \begin{DoxyParamCaption}
 \item[{{\bf Image\-Element} $\ast$}]{img}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_button_ab29c5e6dffda94b0e3ca9209baabb75c}
+)}}\label{class_button_a836cb30a97ad2abeb67b0b0a6dc30dbd}
 
 
-Definition at line 34 of file Button.\-h.
+Sets background image. 
 
 \hypertarget{class_button_a1794b3856606e75716fc7e2611b1b711}{\index{Button@{Button}!set\-Text@{set\-Text}}
 \index{set\-Text@{set\-Text}!Button@{Button}}
@@ -132,10 +137,10 @@ Definition at line 34 of file Button.\-h.
 \begin{DoxyParamCaption}
 \item[{string}]{txt}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_button_a1794b3856606e75716fc7e2611b1b711}
+)}}\label{class_button_a1794b3856606e75716fc7e2611b1b711}
 
 
-Definition at line 36 of file Button.\-h.
+Sets text. 
 
 
 
@@ -145,14 +150,14 @@ Definition at line 36 of file Button.\-h.
 \subsubsection[{\-\_\-image\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Image\-Element}$\ast$ Button\-::\-\_\-image\-E\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_button_a4745f9f13635485445614764193a8bad}
 
 
-Definition at line 40 of file Button.\-h.
+Definition at line 29 of file Button.\-h.
 
 \hypertarget{class_button_a55dcdefb9e223357f1bb1c66c968465c}{\index{Button@{Button}!\-\_\-text\-E@{\-\_\-text\-E}}
 \index{\-\_\-text\-E@{\-\_\-text\-E}!Button@{Button}}
 \subsubsection[{\-\_\-text\-E}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text\-Element}$\ast$ Button\-::\-\_\-text\-E\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_button_a55dcdefb9e223357f1bb1c66c968465c}
 
 
-Definition at line 39 of file Button.\-h.
+Definition at line 28 of file Button.\-h.
 
 
 

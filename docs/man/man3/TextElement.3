@@ -3,6 +3,9 @@
 .nh
 .SH NAME
 TextElement \- 
+.PP
+The class used to store elements of text\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -16,59 +19,76 @@ Inherits \fBElement\fP\&.
 .ti -1c
 .RI "\fBTextElement\fP (unsigned int x, unsigned int y)"
 .br
+.RI "\fIConstructor\&. Sets x and y position of element\&. \fP"
 .ti -1c
 .RI "\fBTextElement\fP (unsigned int x, unsigned int y, unsigned int width, unsigned int height)"
 .br
+.RI "\fIConstructor\&. Sets x and y position of element along with height and width\&. \fP"
 .ti -1c
 .RI "\fBTextElement\fP (unsigned int x, unsigned int y, unsigned int width, unsigned int height, int size, string txt)"
 .br
+.RI "\fIConstructor\&. Sets x and y position of element along with height, width, font size and content\&. \fP"
 .ti -1c
 .RI "\fB~TextElement\fP ()"
 .br
+.RI "\fIDestructor\&. \fP"
 .ti -1c
 .RI "void \fBsetText\fP (string txt)"
 .br
+.RI "\fIUpdates the text stored and re-renders the result\&. \fP"
 .ti -1c
 .RI "void \fBclearResult\fP ()"
 .br
-.RI "\fIClears the result image to a color (black is default)\&. \fP"
+.RI "\fIClears the rendered image previously stored\&. \fP"
 .in -1c
 .SS "Additional Inherited Members"
 .SH "Detailed Description"
 .PP 
-Definition at line 9 of file TextElement\&.h\&.
+The class used to store elements of text\&. 
+.PP
+Definition at line 13 of file TextElement\&.h\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "TextElement::TextElement (unsigned intx, unsigned inty)"
 
 .PP
+Constructor\&. Sets x and y position of element\&. Constructor with just x,y position sets sizes to zero and font size to 1 and uses an empty string 
+.PP
 Definition at line 10 of file TextElement\&.cpp\&.
 .SS "TextElement::TextElement (unsigned intx, unsigned inty, unsigned intwidth, unsigned intheight)"
 
+.PP
+Constructor\&. Sets x and y position of element along with height and width\&. Constructor with x,y position, width and height sets font size to 1 and an empty string 
 .PP
 Definition at line 15 of file TextElement\&.cpp\&.
 .SS "TextElement::TextElement (unsigned intx, unsigned inty, unsigned intwidth, unsigned intheight, intsize, stringtxt)"
 
 .PP
+Constructor\&. Sets x and y position of element along with height, width, font size and content\&. Constructor sets all variables and dynamically creates a \fBText\fP object 
+.PP
 Definition at line 20 of file TextElement\&.cpp\&.
 .SS "TextElement::~TextElement ()"
 
 .PP
-Definition at line 28 of file TextElement\&.cpp\&.
+Destructor\&. Destructor deletes dynamically allocated variables if needed 
+.PP
+Definition at line 27 of file TextElement\&.cpp\&.
 .SH "Member Function Documentation"
 .PP 
 .SS "void TextElement::clearResult ()\fC [virtual]\fP"
 
 .PP
-Clears the result image to a color (black is default)\&. Renders the background of the element, namely element contents\&. For generic Elements, it blits a solid color (black) image to the element's result image\&. For content elements (\fBTextElement\fP and \fBImageElement\fP) it will blit the stored image (for image elements) or resulting image from rendering the text (for text elements) before rendering the children\&. 
+Clears the rendered image previously stored\&. Clears the rendered image we have stored 
 .PP
 Reimplemented from \fBElement\fP\&.
 .PP
-Definition at line 40 of file TextElement\&.cpp\&.
+Definition at line 39 of file TextElement\&.cpp\&.
 .SS "void TextElement::setText (stringtxt)"
 
 .PP
-Definition at line 35 of file TextElement\&.cpp\&.
+Updates the text stored and re-renders the result\&. Updates the value of the text which renders the text 
+.PP
+Definition at line 34 of file TextElement\&.cpp\&.
 
 .SH "Author"
 .PP 

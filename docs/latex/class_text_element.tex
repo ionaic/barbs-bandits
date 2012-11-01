@@ -3,6 +3,11 @@
 }
 
 
+The class used to store elements of text.  
+
+
+
+
 {\ttfamily \#include $<$Text\-Element.\-h$>$}
 
 Inheritance diagram for Text\-Element\-:\begin{figure}[H]
@@ -15,24 +20,24 @@ Inheritance diagram for Text\-Element\-:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{class_text_element_aec15920e1f8e03bdd865ff3f6e0c396d}{Text\-Element} (unsigned int x, unsigned int y)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. Sets x and y position of element. \end{DoxyCompactList}\item 
 \hyperlink{class_text_element_ace1dec06df5c4a0635a4784b56a52b33}{Text\-Element} (unsigned int x, unsigned int y, unsigned int width, unsigned int height)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. Sets x and y position of element along with height and width. \end{DoxyCompactList}\item 
 \hyperlink{class_text_element_a288497cfc1863148bfc6ed9d8450f96b}{Text\-Element} (unsigned int x, unsigned int y, unsigned int width, unsigned int height, int size, string txt)
-\item 
+\begin{DoxyCompactList}\small\item\em Constructor. Sets x and y position of element along with height, width, font size and content. \end{DoxyCompactList}\item 
 \hyperlink{class_text_element_a8638bd2628b9a0815bae74a8baf73c1f}{$\sim$\-Text\-Element} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
 void \hyperlink{class_text_element_a5f6f8013ecd934bd628ecaf6361bf03a}{set\-Text} (string txt)
-\item 
+\begin{DoxyCompactList}\small\item\em Updates the text stored and re-\/renders the result. \end{DoxyCompactList}\item 
 void \hyperlink{class_text_element_a2d61f3953226d9d4d06d4003d6c33c34}{clear\-Result} ()
-\begin{DoxyCompactList}\small\item\em Clears the result image to a color (black is default). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Clears the rendered image previously stored. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
+The class used to store elements of text. 
 
-
-Definition at line 9 of file Text\-Element.\-h.
+Definition at line 13 of file Text\-Element.\-h.
 
 
 
@@ -47,6 +52,10 @@ Definition at line 9 of file Text\-Element.\-h.
 )}}\label{class_text_element_aec15920e1f8e03bdd865ff3f6e0c396d}
 
 
+Constructor. Sets x and y position of element. 
+
+Constructor with just x,y position sets sizes to zero and font size to 1 and uses an empty string 
+
 Definition at line 10 of file Text\-Element.\-cpp.
 
 \hypertarget{class_text_element_ace1dec06df5c4a0635a4784b56a52b33}{\index{Text\-Element@{Text\-Element}!Text\-Element@{Text\-Element}}
@@ -60,6 +69,10 @@ Definition at line 10 of file Text\-Element.\-cpp.
 \end{DoxyParamCaption}
 )}}\label{class_text_element_ace1dec06df5c4a0635a4784b56a52b33}
 
+
+Constructor. Sets x and y position of element along with height and width. 
+
+Constructor with x,y position, width and height sets font size to 1 and an empty string 
 
 Definition at line 15 of file Text\-Element.\-cpp.
 
@@ -77,6 +90,10 @@ Definition at line 15 of file Text\-Element.\-cpp.
 )}}\label{class_text_element_a288497cfc1863148bfc6ed9d8450f96b}
 
 
+Constructor. Sets x and y position of element along with height, width, font size and content. 
+
+Constructor sets all variables and dynamically creates a \hyperlink{class_text}{Text} object 
+
 Definition at line 20 of file Text\-Element.\-cpp.
 
 \hypertarget{class_text_element_a8638bd2628b9a0815bae74a8baf73c1f}{\index{Text\-Element@{Text\-Element}!$\sim$\-Text\-Element@{$\sim$\-Text\-Element}}
@@ -88,7 +105,11 @@ Definition at line 20 of file Text\-Element.\-cpp.
 )}}\label{class_text_element_a8638bd2628b9a0815bae74a8baf73c1f}
 
 
-Definition at line 28 of file Text\-Element.\-cpp.
+Destructor. 
+
+Destructor deletes dynamically allocated variables if needed 
+
+Definition at line 27 of file Text\-Element.\-cpp.
 
 
 
@@ -102,15 +123,15 @@ Definition at line 28 of file Text\-Element.\-cpp.
 )\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_text_element_a2d61f3953226d9d4d06d4003d6c33c34}
 
 
-Clears the result image to a color (black is default). 
+Clears the rendered image previously stored. 
 
-Renders the background of the element, namely element contents. For generic Elements, it blits a solid color (black) image to the element's result image. For content elements (\hyperlink{class_text_element}{Text\-Element} and \hyperlink{class_image_element}{Image\-Element}) it will blit the stored image (for image elements) or resulting image from rendering the text (for text elements) before rendering the children. 
+Clears the rendered image we have stored 
 
 Reimplemented from \hyperlink{class_element_a7a110bce4630cd7b35b1c2d401774598}{Element}.
 
 
 
-Definition at line 40 of file Text\-Element.\-cpp.
+Definition at line 39 of file Text\-Element.\-cpp.
 
 \hypertarget{class_text_element_a5f6f8013ecd934bd628ecaf6361bf03a}{\index{Text\-Element@{Text\-Element}!set\-Text@{set\-Text}}
 \index{set\-Text@{set\-Text}!TextElement@{Text\-Element}}
@@ -121,7 +142,11 @@ Definition at line 40 of file Text\-Element.\-cpp.
 )}}\label{class_text_element_a5f6f8013ecd934bd628ecaf6361bf03a}
 
 
-Definition at line 35 of file Text\-Element.\-cpp.
+Updates the text stored and re-\/renders the result. 
+
+Updates the value of the text which renders the text 
+
+Definition at line 34 of file Text\-Element.\-cpp.
 
 
 

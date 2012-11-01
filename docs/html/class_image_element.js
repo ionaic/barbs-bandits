@@ -5,5 +5,6 @@ var class_image_element =
     [ "ImageElement", "class_image_element.html#a2a1f13235bc96229d3257212b3c62c79", null ],
     [ "ImageElement", "class_image_element.html#a9661aca27d32e6b9252dbbe45417f1bf", null ],
     [ "ImageElement", "class_image_element.html#a63993109c5c8e49f95c25ca13a887f1e", null ],
+    [ "~ImageElement", "class_image_element.html#a81b8b2d06cb668413254f7bc399bcb97", null ],
     [ "clearResult", "class_image_element.html#aa785ef26786dc59b0e66a71e465b3e31", null ]
 ];

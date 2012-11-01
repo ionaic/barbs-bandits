@@ -1,7 +1,7 @@
 var searchData=
 [
   ['set',['set',['../class_image.html#af3ac152c69b76c7e667b8addb6096837',1,'Image::set(unsigned int x, unsigned int y, const Pixel &amp;color)'],['../class_image.html#ac470574231bf07de64edfbf157611c00',1,'Image::set(unsigned int x, unsigned int y, unsigned int width, unsigned int height, const Pixel &amp;color)']]],
-  ['setbgimg',['setBgImg',['../class_button.html#ab29c5e6dffda94b0e3ca9209baabb75c',1,'Button']]],
+  ['setbgig',['setBgIg',['../class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd',1,'Button']]],
   ['setdirty',['setDirty',['../class_element.html#aee4a1536e9e19eec9970522bb664550d',1,'Element']]],
   ['setheight',['setHeight',['../class_element.html#aa3aaacaf56fb94deaa14f6b0d172ab65',1,'Element']]],
   ['setrgb',['setRGB',['../class_pixel.html#a32492f5ea18dbc883b721948efe07764',1,'Pixel']]],
@@ -11,5 +11,6 @@ var searchData=
   ['setx',['setX',['../class_element.html#ae222484e55d330ddfd7869510b10ec09',1,'Element']]],
   ['sety',['setY',['../class_element.html#a95ea0342571b8521028b8321ba915227',1,'Element']]],
   ['setz',['setZ',['../class_element.html#aab1f2476247f365f6755dc2913d205b3',1,'Element']]],
+  ['show_5fimage',['show_image',['../class_text.html#a5e5826dc2c6d4d80e4d37dbe7a7d54a4',1,'Text']]],
   ['shutdown',['shutDown',['../main_8cpp.html#a2a026e829d973a118ea722a2296d564a',1,'shutDown(int returnCode):&#160;main.cpp'],['../main_8h.html#a2a026e829d973a118ea722a2296d564a',1,'shutDown(int returnCode):&#160;main.cpp']]]
 ];
