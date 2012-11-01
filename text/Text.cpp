@@ -68,8 +68,8 @@ Image* Text::getImage() {
 }
 
 /*! Return string of text stored */
-string getText() {
-	return _context;
+string Text::getText() {
+	return _content;
 }
 
 //Render the text in _content into _image

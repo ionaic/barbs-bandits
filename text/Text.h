@@ -27,7 +27,7 @@ class Text {
 
 		void setText(string c); /*!< \brief Update the text stored and re-render it*/
 		Image* getImage(); /*!< \brief Returns a pointer to the rendered image */
-		string getText(void) /*!< \brief Returns the text stored */
+		string getText(void); /*!< \brief Returns the text stored */
 
 	private:
 		Image* _image;
