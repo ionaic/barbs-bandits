@@ -28,12 +28,13 @@ class Text {
 		int _fontSize;
 		string _content;
 		void _render();
-		void show_image(unsigned char _binary[]);
-		unsigned char *_binary;
+
+		void show_image(unsigned char _basic[]);
+		unsigned char *_basic;
 		unsigned char *_preimg;
 
-		void _renderImage(FT_Bitmap* b, int x, int y, unsigned char _binary[]);
-		void _colorify(unsigned char _binary[]);
+		void _renderImage(FT_Bitmap* b, int x, int y, unsigned char _basic[]);
+		void _colorify(unsigned char _basic[]);
 		
 };
 #endif
