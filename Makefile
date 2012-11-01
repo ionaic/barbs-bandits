@@ -5,7 +5,7 @@ TXTINCL=`freetype-config --cflags` -lfreetype
 # compiler
 CC=g++
 # object files
-OFILES=Image.o Pixel.o Text.o Element.o
+OFILES=Image.o Pixel.o Text.o Element.o TextElement.o
 # final target
 TARGET=sample
 # generic element includes
