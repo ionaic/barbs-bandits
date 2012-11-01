@@ -39,7 +39,7 @@ Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
 /*!
 \brief Copy constructor.
 
-\param img The image to copy into this one.
+\param img The Image to copy into this one.
 
 \return A new Image class.
 */
@@ -168,7 +168,7 @@ const Pixel &Image::get(unsigned int x, unsigned int y) const {
 	return _pixels[_getCoord(x,y)];
 }
 /*!
-\brief Copy a region of this image to another.
+\brief Copy a region of this Image to another.
 
 \param dest The image to copy to.
 \param xSource Defines the left side of the source region.
