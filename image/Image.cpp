@@ -18,7 +18,15 @@ Image::Image(unsigned int width, unsigned int height) {
 	for (int i=0; i < height * width; ++i)
 		_pixels[i].setRGBA(0,0,0,0); //initialize to pure alpha
 }
+/*!
+\brief Creates an image of size (width,height) and initializes it to p.
 
+\param width Defines the width of the image in pixels.
+\param height Defines the height of the image in pixels.
+\param p Defines the default color to set all of the pixels in the image to.
+
+\return A new Image class.
+*/
 Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
 	_width = width;
 	_height =height;
@@ -28,6 +36,13 @@ Image::Image(unsigned int width, unsigned int height, const Pixel &p) {
 	}
 }
 
+/*!
+\brief Copy constructor.
+
+\param img The Image to copy into this one.
+
+\return A new Image class.
+*/
 Image::Image(Image &img) {
     _width = img._width;
     _height = img._height;
@@ -37,7 +52,17 @@ Image::Image(Image &img) {
         _pixels[i] = pix[i];
     }
 }
+/*!
+\brief Creates an image of size (width,height) and initializes it to data.
 
+\param width Defines the width of the image in pixels.
+\param height Defines the height of the image in pixels.
+\param data Raw data to copy into the image.  Each pixel should start at
+relative address \f$(y*width+x)*4\f$ and have 1 byte for the channels RGBA
+(in that order).
+
+\return A new Image class.
+*/
 Image::Image(unsigned int width, unsigned int height, unsigned char *data) {
 	_width = width;
 	_height =height;
@@ -50,19 +75,30 @@ Image::Image(unsigned int width, unsigned int height, unsigned char *data) {
 		}
 	}
 }
-
+/*! \brief destructor */
 Image::~Image() {
 	if (_pixels!=0) {
 		delete[] _pixels;
 		_pixels = 0;
 	}
 }
+/*! \brief Retrieve the width. */
 unsigned int Image::width() const {
 	return _width;
 }
+/*! \brief Retrieve the height. */
 unsigned int Image::height() const {
 	return _height;
 }
+/*!
+\brief Sets the color of a particular pixel.
+
+\param x Defines the x coordinate of the pixel.
+\param y Defines the y coordinate of the pixel.
+\param color Defines the default color to set the pixel to.
+
+\return void
+*/
 void Image::set(unsigned int x, unsigned int y, const Pixel &color) {
 	if (x>=_width || y>=_height) {
 		if (!_pixels) {
@@ -77,6 +113,17 @@ void Image::set(unsigned int x, unsigned int y, const Pixel &color) {
 	unsigned int coord = _getCoord(x,y);
 	_pixels[coord] = color;
 }
+/*!
+\brief Sets the color of a pixel region.
+
+\param x Defines the left of the region.
+\param y Defines the top of the region.
+\param width Defines the width of the region.
+\param height Defines the height of the region.
+\param color Defines the default color to set the pixels to.
+
+\return void
+*/
 void Image::set(unsigned int x, unsigned int y, unsigned int width,
 				unsigned int height, const Pixel &color) {
 	if (x+width>_width || y+width>_height) {
@@ -99,6 +146,14 @@ void Image::set(unsigned int x, unsigned int y, unsigned int width,
 	}
 }
 Pixel ERRORPIXEL;
+/*!
+\brief Gets the value of a pixel.
+
+\param x The x coordinate of the desired pixel.
+\param y The y coordinate of the desired pixel.
+
+\return A constant reference to the value.
+*/
 const Pixel &Image::get(unsigned int x, unsigned int y) const {
 	if (x>=_width || y>=_height) {
 		if (!_pixels) {
@@ -112,6 +167,19 @@ const Pixel &Image::get(unsigned int x, unsigned int y) const {
 	}
 	return _pixels[_getCoord(x,y)];
 }
+/*!
+\brief Copy a region of this Image to another.
+
+\param dest The image to copy to.
+\param xSource Defines the left side of the source region.
+\param ySource Defines the top of the source region.
+\param xDest Defines the left side of the destination region.
+\param yDest Defines the top of the destination region.
+\param width Defines the width of the regions.
+\param height Defines the height of the regions.
+
+\return void
+*/
 void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
                         unsigned int xDest,   unsigned int yDest,
                         unsigned int width,   unsigned int height) const{
@@ -144,6 +212,17 @@ void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
 		}
 	}
 }
+/*!
+\brief Write an Image to an ostream.
+
+\param out The output stream.
+\param img The Image to write to the ostream.
+
+\return ostream Passes out the same ostream
+
+Outputs the dimensions and all of the pixel data for the image.
+
+*/
 std::ostream &operator<<(std::ostream &out, const Image &img) {
 	out << "Image Dimensions {WH: " << img.width() << ", "
 		<< img.height() << "}\n";
