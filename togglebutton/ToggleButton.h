@@ -12,7 +12,7 @@ This file contains the ToggleButton class.
 
 using namespace std;
 
-/*! \brief The class used to store toggleable buttons. */
+/*! \brief The class used to store toggleable Buttons. */
 class ToggleButton: public Button {
 	public:
         ToggleButton(); /*!< \brief Default constructor. */

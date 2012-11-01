@@ -13,7 +13,7 @@ using namespace std;
 
 //The end user shouldn't directly access this class. All interactions should go through TextElement
 
-/*! \brief The class used to store text and render text into an Image object
+/*! \brief The class used to store Text and render text into an Image object
 
 This class should not be accessed directly. Instead, interactions should go through ImageElement.
 */
