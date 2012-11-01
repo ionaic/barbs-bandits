@@ -5,7 +5,7 @@ TXTINCL=`freetype-config --cflags` -lfreetype
 # compiler
 CC=g++
 # object files
-OFILES=Image.o Pixel.o Text.o Element.o
+OFILES=Image.o Pixel.o Text.o Element.o TextElement.o
 # final target
 TARGET=sample
 # generic element includes
@@ -13,10 +13,10 @@ INCL=-I./image/ -I./text/ -I./element/ -I./button -I./togglebutton
 # include all the things
 HFILES=button/Button.h image/ImageElement.h text/TextElement.h $(INCL) $(TXTINCL)
 
-all: clean Image.o Pixel.o Text.o Element.o
+all: clean Image.o Pixel.o Text.o TextElement.o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) 
 
-debug: Image.o Pixel.o Text.o Element.o
+debug: clean Image.o Pixel.o Text.o TextElement.o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) -g
 
 Image.o: 
@@ -27,6 +27,9 @@ Pixel.o:
 
 Text.o:
 	$(CC) text/Text.cpp $(TXTINCL) -c -Iimage/
+
+TextElement.o:
+	$(CC) text/TextElement.cpp $(TXTINCL) -c
 
 Element.o:
 	$(CC) -I image/ element/Element.cpp -c
