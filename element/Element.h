@@ -1,9 +1,8 @@
+/*! \file
+This file contains the Element class.
+*/
 #ifndef _ELEMENT_H_
 #define _ELEMENT_H_
-/* element.h
- * render : renders the element to the screen
- *
- */
 
 #include <vector>
 #include <algorithm>
@@ -11,11 +10,18 @@
 
 using namespace std;
 
+/*! \brief Keeps a rolling count of how many elements have been constructed.
+Not for public use! */
 static int currentId = 0;
 
+/*! \brief The base class that all GUI elements derive from.
+
+This class provides a standard interface that is required for element
+traversal, rendering, and events.
+*/
 class Element {
     public:
-        Element();
+        Element(); /*!< \brief Default Constructor. */
         Element(int x, int y);
         Element(int x, int y, int xs, int ys);
         virtual ~Element();
