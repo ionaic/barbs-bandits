@@ -13,6 +13,7 @@
 
 using namespace std;
 
+/*! \brief The class used to store a group of Checkboxes consisting of multiple ToggleButtons. Not yet implemented */
 class CheckBox : public Element {
     public:
         CheckBox() : Element() { cout << "Checkbox is not yet implemented" << endl; }
