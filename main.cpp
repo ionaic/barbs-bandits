@@ -5,11 +5,11 @@
 #include <stdio.h>
 #include <iostream>
 #include "main.h"
-#include "Element.h"
-#include "TextElement.h"
-#include "ImageElement.h"
-#include "ToggleButton.h"
-#include "Button.h"
+#include "element/Element.h"
+#include "text/TextElement.h"
+#include "image/ImageElement.h"
+#include "togglebutton/ToggleButton.h"
+#include "button/Button.h"
 
 using namespace std;
 

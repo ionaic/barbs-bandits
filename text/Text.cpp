@@ -3,8 +3,8 @@
 #include <ft2build.h>
 #include <string>
 #include <iostream>
-#include "Image.h"
-#include "Pixel.h"
+#include "../image/Image.h"
+#include "../image/Pixel.h"
 #include <stdio.h>
 #include <math.h>
 #include FT_FREETYPE_H
@@ -29,10 +29,15 @@ Text::Text(int w, int h, int size, string c) {
 	_content = c;
 	Pixel p(255,0,0,255);
 	_image = NULL;//new Image(w, h, p);
+	_binary = 0;
+	_preimg = 0;
 	_render();
 }
 
 Text::~Text() {
+	if (_binary) {
+		delete[] _binary;
+	}
 	//delete[] _image; //Broken?
 }
 
@@ -50,7 +55,10 @@ Image* Text::getImage() {
 void Text::_render() {
 	//This is based off libttf tutorial code: bit.ly/ROmj5C
 	int numChars = _content.size();
-	unsigned char _binary[_height*_width];
+	if (_binary) {
+		delete[] _binary;
+	}
+	_binary = new unsigned char[_height*_width];
 	//Zero _binary
 	for (int i= 0; i < _height*_width; i++) {
 		_binary[i] = 0;
@@ -147,7 +155,11 @@ void Text::show_image( unsigned char _binary[] ) {
 
 void Text::_colorify(unsigned char _binary[]) {
 	unsigned int size = _height*_width*4;
-	unsigned char _preimg[_height*_width*4];
+	if (_preimg==0) {
+		delete[] _preimg;
+		_preimg = 0;
+	}
+	_preimg = new unsigned char[_height*_width*4];
 	for (int i = 0; i<_height*_width*4; i+=4) {
 		int vb = _binary[i/4];
 		_preimg[i] = 0;

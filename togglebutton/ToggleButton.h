@@ -2,10 +2,10 @@
 #define _TOGGLE_BUTTON_H_
 
 #include <string>
-#include "ImageElement.h"
-#include "TextElement.h"
-#include "Text.h"
-#include "Button.h"
+#include "../image/ImageElement.h"
+#include "../text/TextElement.h"
+#include "../text/Text.h"
+#include "../button/Button.h"
 
 using namespace std;
 

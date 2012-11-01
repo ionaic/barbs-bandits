@@ -3,8 +3,8 @@
 
 #include <string>
 #include "Text.h"
-#include "Image.h"
-#include "Element.h"
+#include "../image/Image.h"
+#include "../element/Element.h"
 
 class TextElement : public Element {
     public:
