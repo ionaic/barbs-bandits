@@ -1,3 +1,6 @@
+/*! \file
+This file contains the Text class.
+*/
 #ifndef _TEXT_H_
 #define _TEXT_H_
 
@@ -9,17 +12,22 @@
 using namespace std;
 
 //The end user shouldn't directly access this class. All interactions should go through TextElement
+
+/*! \brief The class used to store text and render text into an Image object
+
+This class should not be accessed directly. Instead, interactions should go through ImageElement.
+*/
 class Text {
 	public:
-		Text();
-		Text(Text &txt);
-		Text(int w, int h, int size);
-		Text(int w, int h, int size, string c);
-		~Text();
+		Text(); /*!< \brief Default Constructor. */
+		Text(Text &txt); /*!< \brief Copy Constructor. */
+		Text(int w, int h, int size); /*!< \brief Constructor with width, height and font size. */
+		Text(int w, int h, int size, string c); /*!< \brief Constructor with width, height, font size and string of text. */
+		~Text(); /*!< \brief Destructor */
 
-		void setText(string c);
-		Image* getImage();
-		string getText(void) {return _content;}
+		void setText(string c); /*!< \brief Update the text stored and re-render it*/
+		Image* getImage(); /*!< \brief Returns a pointer to the rendered image */
+		string getText(void) /*!< \brief Returns the text stored */
 
 	private:
 		Image* _image;
