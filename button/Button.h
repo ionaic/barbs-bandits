@@ -1,40 +1,28 @@
+/*! \file
+This file contains the Button class.
+*/
 #ifndef _BUTTON_H_
 #define _BUTTON_H_
 
 #include <string>
-#include "Image.h"
-#include "Text.h"
-#include "Element.h"
-#include "ImageElement.h"
-#include "TextElement.h"
+#include "../image/Image.h"
+#include "../text/Text.h"
+#include "../element/Element.h"
+#include "../image/ImageElement.h"
+#include "../text/TextElement.h"
 
 using namespace std;
 
+/*! \brief The class used to store a Button consisting of a background ImageElement and a foreground TextElement. */
 class Button : public Element {
 	public:
-        Button() : Element() {}
-        Button(unsigned int x, unsigned int y) { Button(x, y, 0, 0); }
-        //TODO: this one is broken because of the zero fontsize text bug (below)
-        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height) { Button(x, y, width, height, "null"); }
-
-        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt) : Element(x, y, width, height) {
-        	cout << "creating button" << endl;
-        	unsigned int size = 14; //TODO: do math based on width and height -> be careful, if the font / text is too long, it just wont draw
-        	_imageE = new ImageElement(0, 0, width, height); //need to draw image first
-        	//down clicked button is darker (original is 100,100,100)
-        	addChild(_imageE);
-        	_textE = new TextElement(0, 0, width, height, size, txt);
-        	addChild(_textE);
-        }
-        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img) : Element(x, y, width, height) {
-        	_imageE = img;									//need to draw image first
-        	addChild(_imageE);
-        	_textE = new TextElement(0, 0, width, height);
-        	addChild(_textE);
-        }
-        void setBgImg(ImageElement* img) { Element::addChild(img); }
-		virtual ~Button() { delete _textE; delete _imageE; }
-		void setText(string txt) { _textE->setText(txt); }
+        Button(); /*!< \brief Default constructor. */
+        Button(unsigned int x, unsigned int y); /*!< \brief Constructor. Sets x and y position of this Element. */
+        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height); /*!< \brief Constructor. Sets x and y position of Element along with height and width. */
+       Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt); /*!< \brief Constructor. Sets x and y position of Element along with height, width, and text. */
+        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img); /*!< \brief Constructor. Sets x and y position of Element along width height. Uses an ImageElment as the background image. */
+        void setBgIg(ImageElement* img); /*!< \brief Sets background image. */
+	   void setText(string txt); /*!< \brief Sets text. */
 
 	protected:
 		TextElement* _textE;

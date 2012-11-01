@@ -1,39 +1,29 @@
+/*! \file
+This file contains the TextElement class.
+*/
 #ifndef _TEXT_ELEMENT_H_
 #define _TEXT_ELEMENT_H_
 
 #include <string>
 #include "Text.h"
-#include "Image.h"
-#include "Element.h"
+#include "../image/Image.h"
+#include "../element/Element.h"
 
+/*! \brief The class used to store elements of Text. */
 class TextElement : public Element {
     public:
-        //TextElement() : Element() { this->_text = new Text(); }
-        TextElement(unsigned int x, unsigned int y) {
-        	TextElement(x, y, 0, 0 ,0, "");
-        }
+        TextElement(unsigned int x, unsigned int y); /*!< \brief Constructor. Sets x and y position of Element. */
 
-        //TODO: CREATING A TEXT ELEMENT WITH 0 font size and no text causes a seg fault in text (below)
         TextElement(unsigned int x, unsigned int y, unsigned int width,
-        		unsigned int height) { TextElement(x, y, width, height , 0, ""); }
+        		unsigned int height); /*!< \brief Constructor. Sets x and y position of Element along with height and width. */
 
-        //TextElement(unsigned int x, unsigned int y, Text &txt) { this->_text = new Text(txt); }
         TextElement(unsigned int x, unsigned int y, unsigned int width,
-        		unsigned int height, int size, string txt) : Element(x, y, width, height) {
-        	this->_text = new Text(width, height, size, txt);
+        		unsigned int height, int size, string txt); /*!< \brief Constructor. Sets x and y position of Element along with height, width, font size and content. */
 
-        }
-        //~TextElement() { delete _text; }
-        void setText(string txt) {
-            this->_text->setText(txt);
-        }
-        void clearResult() {
-        	Image* _temp = this->_text->getImage();
-        	if (_temp) _temp->blit(*(this->_result), 0U, 0U, 0U, 0U,
-        			this->_width, this->_height);
-        	else cout << "ERROR in TextElement during clearResult blit." <<
-        			" No image available. ID:" << this->getId() << endl;
-        }
+        ~TextElement(); /*!< \brief Destructor */
+        void setText(string txt); /*!< \brief Updates the text stored and re-renders the result. */
+
+        void clearResult(); /*!< \brief Clears the rendered image previously stored */
 
     private: 
         Text* _text;
