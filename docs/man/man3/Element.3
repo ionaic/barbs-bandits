@@ -1,0 +1,247 @@
+.TH "Element" 3 "Thu Nov 1 2012" "OpenGui" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Element \- 
+.PP
+The base class that all GUI elements derive from\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <Element\&.h>\fP
+.PP
+Inherited by \fBButton\fP, \fBCheckBox\fP, \fBImageElement\fP, and \fBTextElement\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBElement\fP ()"
+.br
+.RI "\fIDefault Constructor\&. \fP"
+.ti -1c
+.RI "\fBElement\fP (int x, int y)"
+.br
+.RI "\fIConstruct with position\&. \fP"
+.ti -1c
+.RI "\fBElement\fP (int x, int y, int xs, int ys)"
+.br
+.RI "\fIConstruct with position and size\&. \fP"
+.ti -1c
+.RI "virtual \fB~Element\fP ()"
+.br
+.RI "\fIDestructor\&. \fP"
+.ti -1c
+.RI "virtual void \fBclearResult\fP ()"
+.br
+.RI "\fIClears the result image to a color (black is default)\&. \fP"
+.ti -1c
+.RI "\fBImage\fP * \fBrender\fP ()"
+.br
+.RI "\fIRenders the element and its children recursively\&. \fP"
+.ti -1c
+.RI "void \fBregisterCallback\fP (void(*func)(void *))"
+.br
+.RI "\fIRegisters a callback function for the element\&. \fP"
+.ti -1c
+.RI "void \fBmouseInput\fP (int x, int y)"
+.br
+.RI "\fITest if element clicked by mouse\&. \fP"
+.ti -1c
+.RI "void \fBaddChild\fP (\fBElement\fP *child)"
+.br
+.RI "\fIAdd a child element to the current element\&. \fP"
+.ti -1c
+.RI "void \fBsetX\fP (unsigned int x)"
+.br
+.RI "\fISet the x position of the element\&. \fP"
+.ti -1c
+.RI "void \fBsetY\fP (unsigned int y)"
+.br
+.RI "\fISet the y position of the element\&. \fP"
+.ti -1c
+.RI "void \fBsetZ\fP (float z)"
+.br
+.RI "\fISet the z position (z index) of the element\&. \fP"
+.ti -1c
+.RI "unsigned int \fBgetId\fP ()"
+.br
+.RI "\fIRetrieve the current element's unique id\&. \fP"
+.ti -1c
+.RI "void \fBsetWidth\fP (unsigned int width)"
+.br
+.RI "\fISet the element's width\&. \fP"
+.ti -1c
+.RI "void \fBsetHeight\fP (unsigned int height)"
+.br
+.RI "\fISet the element's height\&. \fP"
+.ti -1c
+.RI "void \fBsetDirty\fP (bool dirty)"
+.br
+.RI "\fISet the dirty flag\&. Causes the element re-render\&. \fP"
+.ti -1c
+.RI "bool \fBoperator<\fP (const \fBElement\fP &other)"
+.br
+.RI "\fILess than operator so \fBElement\fP objects may be sorted\&. \fP"
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fB_xCoord\fP"
+.br
+.ti -1c
+.RI "unsigned int \fB_yCoord\fP"
+.br
+.ti -1c
+.RI "unsigned int \fB_width\fP"
+.br
+.ti -1c
+.RI "unsigned int \fB_height\fP"
+.br
+.ti -1c
+.RI "\fBImage\fP * \fB_result\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The base class that all GUI elements derive from\&. 
+
+This class provides a standard interface that is required for element traversal, rendering, and events\&. 
+.PP
+Definition at line 22 of file Element\&.h\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "Element::Element ()"
+
+.PP
+Default Constructor\&. Creates an element positioned at (0,0) with dimensions (0,0)\&. 
+.PP
+Definition at line 10 of file Element\&.cpp\&.
+.SS "Element::Element (intx, inty)"
+
+.PP
+Construct with position\&. Creates an element positioned at (x,y) with dimensions (0,0)\&. 
+.PP
+Definition at line 24 of file Element\&.cpp\&.
+.SS "Element::Element (intx, inty, intxs, intys)"
+
+.PP
+Construct with position and size\&. Creates an element positioned at (x, y) with dimensions (xs, ys)\&. 
+.PP
+Definition at line 39 of file Element\&.cpp\&.
+.SS "Element::~Element ()\fC [virtual]\fP"
+
+.PP
+Destructor\&. Deletes the pointers for the result image and the clear image (background)\&. 
+.PP
+Definition at line 54 of file Element\&.cpp\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "void Element::addChild (\fBElement\fP *child)"
+
+.PP
+Add a child element to the current element\&. Add a child element to the set of children elements\&. The function accepts a pointer to an \fBElement\fP, which must remain in scope as long as the parent\&. Calls STL sort on the children, organizing by z-index (z position)\&. 
+.PP
+Definition at line 95 of file Element\&.cpp\&.
+.SS "void Element::clearResult ()\fC [virtual]\fP"
+
+.PP
+Clears the result image to a color (black is default)\&. Renders the background of the element, namely element contents\&. For generic Elements, it blits a solid color (black) image to the element's result image\&. For content elements (\fBTextElement\fP and \fBImageElement\fP) it will blit the stored image (for image elements) or resulting image from rendering the text (for text elements) before rendering the children\&. 
+.PP
+Reimplemented in \fBImageElement\fP, and \fBTextElement\fP\&.
+.PP
+Definition at line 65 of file Element\&.cpp\&.
+.SS "unsigned int Element::getId ()\fC [inline]\fP"
+
+.PP
+Retrieve the current element's unique id\&. 
+.PP
+Definition at line 46 of file Element\&.h\&.
+.SS "void Element::mouseInput (intx, inty)"
+
+.PP
+Test if element clicked by mouse\&. Tests if the mouse click at (x, y) is within the element\&. 
+.PP
+Definition at line 70 of file Element\&.cpp\&.
+.SS "bool Element::operator< (const \fBElement\fP &other)"
+
+.PP
+Less than operator so \fBElement\fP objects may be sorted\&. Less than operator which compares two elements based solely on their z-index (z position)\&. 
+.PP
+Definition at line 136 of file Element\&.cpp\&.
+.SS "void Element::registerCallback (void(*)(void *)func)"
+
+.PP
+Registers a callback function for the element\&. Register a callback function, accepts a function pointer to a function which takes one argument of void*\&. 
+.PP
+Definition at line 87 of file Element\&.cpp\&.
+.SS "\fBImage\fP * Element::render ()"
+
+.PP
+Renders the element and its children recursively\&. Clears the result image of past renders with \fBclearResult()\fP, filling it with either a color or the element's content, then renders each child in order of z-index (z position)\&. Once all of the children have been rendered, it is blitted to the result image\&. After all children are rendered and blitted, the result image is returned\&. 
+.PP
+Definition at line 110 of file Element\&.cpp\&.
+.SS "void Element::setDirty (booldirty)\fC [inline]\fP"
+
+.PP
+Set the dirty flag\&. Causes the element re-render\&. 
+.PP
+Definition at line 52 of file Element\&.h\&.
+.SS "void Element::setHeight (unsigned intheight)\fC [inline]\fP"
+
+.PP
+Set the element's height\&. 
+.PP
+Definition at line 50 of file Element\&.h\&.
+.SS "void Element::setWidth (unsigned intwidth)\fC [inline]\fP"
+
+.PP
+Set the element's width\&. 
+.PP
+Definition at line 48 of file Element\&.h\&.
+.SS "void Element::setX (unsigned intx)\fC [inline]\fP"
+
+.PP
+Set the x position of the element\&. 
+.PP
+Definition at line 40 of file Element\&.h\&.
+.SS "void Element::setY (unsigned inty)\fC [inline]\fP"
+
+.PP
+Set the y position of the element\&. 
+.PP
+Definition at line 42 of file Element\&.h\&.
+.SS "void Element::setZ (floatz)\fC [inline]\fP"
+
+.PP
+Set the z position (z index) of the element\&. 
+.PP
+Definition at line 44 of file Element\&.h\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "unsigned int Element::_height\fC [protected]\fP"
+The element's height\&. 
+.PP
+Definition at line 65 of file Element\&.h\&.
+.SS "\fBImage\fP* Element::_result\fC [protected]\fP"
+The resulting image for the element to be blitted to a parent element or rendered on a surface 
+.PP
+Definition at line 69 of file Element\&.h\&.
+.SS "unsigned int Element::_width\fC [protected]\fP"
+The element's width\&. 
+.PP
+Definition at line 63 of file Element\&.h\&.
+.SS "unsigned int Element::_xCoord\fC [protected]\fP"
+The x position of the element in the parent\&. 
+.PP
+Definition at line 59 of file Element\&.h\&.
+.SS "unsigned int Element::_yCoord\fC [protected]\fP"
+The y position of the element in the parent\&. 
+.PP
+Definition at line 61 of file Element\&.h\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for OpenGui from the source code\&.

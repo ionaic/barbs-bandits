@@ -35,7 +35,7 @@ Element::Element(int x, int y) {
     this->_mouseCallback = 0;
 }
 
-
+/*! Creates an element positioned at (x, y) with dimensions (xs, ys). */
 Element::Element(int x, int y, int xs, int ys) {
 	this->_xCoord = x;
 	this->_yCoord = y;
@@ -50,15 +50,23 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseCallback = 0;
 }
 
+/*! Deletes the pointers for the result image and the clear image (background). */
 Element::~Element() {
-
-    //for (vector<Element*>::iterator itr = this->_children.begin(); itr != this->_children.end(); itr++) {
-    //    delete *itr;
-    //}
     delete this->_result;
     delete this->_clrImg;
 }
 
+/*! Renders the background of the element, namely element contents.  For generic 
+ * Elements, it blits a solid color (black) image to the element's result image.
+ * For content elements (TextElement and ImageElement) it will blit the
+ * stored image (for image elements) or resulting image from rendering the text
+ * (for text elements) before rendering the children.
+ */
+virtual void Element::clearResult() {
+    this->_clrImg->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
+}
+
+/*! Tests if the mouse click at (x, y) is within the element. */
 void Element::mouseInput(int x, int y) {
 	if ( x < 0 || y < 0) return;
 	vector<Element*>::iterator child = this->_children.begin();
@@ -73,11 +81,17 @@ void Element::mouseInput(int x, int y) {
 	}
 }
 
+/*! Register a callback function, accepts a function pointer to a function which
+ * takes one argument of void*.
+ */
 void Element::registerCallback(void (*func)(void *)) {
     this->_mouseCallback = func;
 }
 
-
+/*! Add a child element to the set of children elements.  The function accepts a
+ * pointer to an Element, which must remain in scope as long as the parent. Calls
+ * STL sort on the children, organizing by z-index (z position).
+ */
 void Element::addChild(Element *child) {
 	if (this->_id != child->_id) {
 		this->_children.push_back(child);
@@ -87,25 +101,38 @@ void Element::addChild(Element *child) {
 	cout << "Element could not be added as child of itself." << endl;
 }
 
-
+/*! Clears the result image of past renders with clearResult(), filling it with
+ * either a color or the element's content, then renders each child in order of
+ * z-index (z position).  Once all of the children have been rendered, it is
+ * blitted to the result image.  After all children are rendered and blitted,
+ * the result image is returned.
+ */
 Image* Element::render() {
-    // clear the background of the image
+    // clear the background of the image, fill with either content or
+    //  a clear color
     this->clearResult();
 
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
 		Image* childImage = (*child)->render();
-		if ((*child)->_dirty) {
-			//here's where we actually want to do the rendering
-            //return composited image/texture
-            // blit each child to the result image at the proper place
-            childImage->blit(*(this->_result), 0, 0, 
-                (*child)->_xCoord, (*child)->_yCoord, 
-                (*child)->_width, (*child)->_height);
-            // if any child is dirty, this element is dirty
-		}
+		//if ((*child)->_dirty) {
+        //render the children onto the element's background
+        //return composited image/texture
+        // blit each child to the result image at the proper place
+        childImage->blit(*(this->_result), 0, 0, 
+            (*child)->_xCoord, (*child)->_yCoord, 
+            (*child)->_width, (*child)->_height);
+        // if any child is dirty, this element is dirty
+		//}
 		this->_dirty = (*child)->_dirty || this ->_dirty;
 	}
 	cout << "Rendering ID: "<< this->_id << endl;
     return this->_result;
+}
+
+/*! Less than operator which compares two elements based solely on their
+ *  z-index (z position).
+ */
+bool Element::operator<(const Element &other) { 
+    return this->_zIndex < other._zIndex;
 }
