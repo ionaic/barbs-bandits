@@ -144,6 +144,25 @@ void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
 		}
 	}
 }
+
+void Image::lighten() {
+	for (unsigned int i = 0; i < _width * _height; ++i) {
+		unsigned int _dR = _pixels[i].getR() + 50;
+		unsigned int _dG = _pixels[i].getG() + 50;
+		unsigned int _dB = _pixels[i].getB() + 50;
+		_pixels[i].setRGB(_dR, _dG, _dB);
+	}
+}
+
+void Image::darken() {
+	for (unsigned int i = 0; i < _width * _height; ++i) {
+		unsigned int _dR = _pixels[i].getR() - 50;
+		unsigned int _dG = _pixels[i].getG() - 50;
+		unsigned int _dB = _pixels[i].getB() - 50;
+		_pixels[i].setRGB(_dR, _dG, _dB);
+	}
+}
+
 std::ostream &operator<<(std::ostream &out, const Image &img) {
 	out << "Image Dimensions {WH: " << img.width() << ", "
 		<< img.height() << "}\n";

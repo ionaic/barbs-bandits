@@ -19,6 +19,8 @@ static float aspectRatio = 0;
 GLuint texture;
 static string textureFile = "texture.bmp";
 static ImageElement* ie;
+static int width;
+static int height;
 
 int main() {
 	init();
@@ -35,8 +37,8 @@ int loadGuiTexture(string textureString) {
 		cout << "Texture failed to load" << endl;
 		return 1;
 	}
-	int width = FreeImage_GetWidth(bitmap32);
-	int height = FreeImage_GetHeight(bitmap32);
+	width = FreeImage_GetWidth(bitmap32);
+	height = FreeImage_GetHeight(bitmap32);
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
 	//For texture
@@ -62,11 +64,11 @@ int loadGuiTexture(string textureString) {
 	ie->addChild(&T);
 	*/
 	//upper left button
-	Button* B = new Button(0, 206, 50, 50, "Button");
+	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerCallback( buttonClicked );
 	ie->addChild(B);
 	//toggle button near the middle
-	ToggleButton* TB = new ToggleButton(100, 100, 50, 50, "TButton");
+	ToggleButton* TB = new ToggleButton(206, 0, 50, 20, "TButton");
 	TB->registerCallback( buttonClicked );
 	ie->addChild(TB);
 	//render it to a texture by calling render
@@ -160,8 +162,14 @@ void mainLoop(void) {
 		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
 			break;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		draw();
-		glfwSwapBuffers();
+		if ( currentTime > oldTime + 0.02 )
+		{
+			draw();
+			glfwSwapBuffers();
+			oldTime = currentTime;
+		}
+		else
+			usleep(10);
 	}
 }
 
@@ -210,4 +218,6 @@ void buttonClicked(void* e) {
 	Element* element = (Element *) e;
 	cout << "You clicked an element. "
 			<< " Callback function executing on element id:" << element->getId() << endl;
+	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 }

@@ -106,6 +106,6 @@ Image* Element::render() {
 		}
 		this->_dirty = (*child)->_dirty || this ->_dirty;
 	}
-	cout << "Rendering ID: "<< this->_id << endl;
+	//cout << "Rendering ID: "<< this->_id << endl;
     return this->_result;
 }

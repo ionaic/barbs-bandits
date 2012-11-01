@@ -22,6 +22,9 @@ class ImageElement : public Element {
         void clearResult() { 
             this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
         }
+        void darken() { _img->darken(); }
+        void lighten() { _img->lighten(); }
+
     private:
         Image* _img;
 };

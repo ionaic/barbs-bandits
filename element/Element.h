@@ -24,7 +24,7 @@ class Element {
         }
         Image* render();
         void registerCallback(void (*func)(void *)); //for now just registers mouse callback
-        void mouseInput(int x, int y);
+        virtual void mouseInput(int x, int y);
         void addChild(Element *child);
         // getters and setters
         void setX(unsigned int x) { this->_xCoord = x; }
@@ -42,6 +42,7 @@ class Element {
         unsigned int _yCoord;
         unsigned int _width;
         unsigned int _height;
+        void (*_mouseCallback)(void*);
         Image *_result;
  
     private:
@@ -50,7 +51,6 @@ class Element {
         bool _dirty;
         vector<Element *> _children;
         Element *_parent;
-        void (*_mouseCallback)(void*);
         Image *_clrImg;
 };
 #endif

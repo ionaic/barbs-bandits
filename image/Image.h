@@ -24,6 +24,8 @@ public:
                            unsigned int xDest,   unsigned int yDest,
                            unsigned int width,   unsigned int height) const;
 	friend std::ostream &operator<<(std::ostream &out, const Image &img);
+	void lighten();
+	void darken();
 private:
 	Pixel *_pixels;
 	unsigned int _width, _height;

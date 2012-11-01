@@ -24,7 +24,19 @@ class ToggleButton: public Button {
             string content, int size, ImageElement* i) : Button(x, y, w, h, i) {
             this->_down = false;
         }
-        //~ToggleButton() { Button::~Button(); }
+        //~ToggleButton() { ~Button(); }
+		void mouseInput(int x, int y) {
+			if ( x < 0 || y < 0) return;
+			bool inside = (this->_width >= x && this->_height >= y);
+			cout << "Inside tbutton" << endl;
+			if (inside) { //if inside button
+				_down = !_down;
+				if (0 != _mouseCallback ) //if element has a callback
+					this->_mouseCallback(this);
+				if (_down) this->_imageE->darken();
+				else this->_imageE->lighten();
+			}
+		}
 
 	private:
 	    bool _down;

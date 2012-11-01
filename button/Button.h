@@ -21,6 +21,7 @@ class Button : public Element {
         	cout << "creating button" << endl;
         	unsigned int size = 14; //TODO: do math based on width and height -> be careful, if the font / text is too long, it just wont draw
         	_imageE = new ImageElement(0, 0, width, height); //need to draw image first
+        	//down clicked button is darker (original is 100,100,100)
         	addChild(_imageE);
         	_textE = new TextElement(0, 0, width, height, size, txt);
         	addChild(_textE);
@@ -32,7 +33,7 @@ class Button : public Element {
         	addChild(_textE);
         }
         void setBgImg(ImageElement* img) { Element::addChild(img); }
-		//virtual ~Button();
+		virtual ~Button() { delete _textE; delete _imageE; }
 		void setText(string txt) { _textE->setText(txt); }
 
 	protected:

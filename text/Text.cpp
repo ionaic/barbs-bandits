@@ -43,7 +43,6 @@ void Text::setText(string c) {
 }
 
 Image* Text::getImage() {
-	cout << "rendering image from text: " << _content << endl;
 	return _image;
 }
 
