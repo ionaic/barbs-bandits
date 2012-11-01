@@ -62,7 +62,7 @@ Element::~Element() {
  * stored image (for image elements) or resulting image from rendering the text
  * (for text elements) before rendering the children.
  */
-virtual void Element::clearResult() {
+void Element::clearResult() {
     this->_clrImg->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
 }
 
