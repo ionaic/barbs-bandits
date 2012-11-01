@@ -10,17 +10,17 @@
 #include FT_FREETYPE_H
 
 using namespace std;
-//Default constructor sets everything as 0 and empty
+/*! Default constructor sets width, height and font size to 0 and content to be an empty string. */
 Text::Text() {
 	Text(0,0,0,"");
 }
 
-//Constructor sets width, height, font size and an empty string
+/*! Constructor sets width, height and font size as per arguments and then content to be an empty string. */
 Text::Text(int w, int h, int size) {
 	Text(w,h,size,"");
 }
 
-//Constructor sets all variables
+/*! Constructor sets width, height, font size and content as per arguments */
 Text::Text(int w, int h, int size, string c) {
 	if (size < 1) {
 		cerr << "Size must be greater than zero" << endl;
@@ -37,13 +37,16 @@ Text::Text(int w, int h, int size, string c) {
 	_render();
 }
 
-//Copy constructor replicates a preexisting text
+/*! Copy constructor replicates a preexisting text */
 Text::Text(Text &txt) {
 	Text(txt._width, txt._height, txt._fontSize, txt._content);
 }
 
-//Delete constructor deletes the dynamically allocated _image
+/*! Destructor deletes dynamically allocated variables */
 Text::~Text() {
+	if (_image) {
+		delete[] _image;
+	}
 	if (_basic) {
 		delete[] _basic;
 	}
@@ -52,16 +55,21 @@ Text::~Text() {
 	}
 }
 
-//Modify the text and rerender the image
+/*! Modify the text and rerender the image */
 void Text::setText(string c) {
 	_content = c;
 	_render();
 }
 
-//Get the rendered image
+/*! Get the rendered image */
 Image* Text::getImage() {
 	//cout << "rendering image from text: " << _content << endl;
 	return _image;
+}
+
+/*! Return string of text stored */
+string getText() {
+	return _context;
 }
 
 //Render the text in _content into _image
