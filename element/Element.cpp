@@ -20,7 +20,7 @@ Element::Element() {
     this->_mouseCallback = 0;
 }
 
-
+/*! Creates an element positioned at (x,y) with dimensions (0,0). */
 Element::Element(int x, int y) {
 	this->_xCoord = x;
 	this->_yCoord = y;
