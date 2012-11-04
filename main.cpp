@@ -13,6 +13,7 @@
 
 using namespace std;
 
+
 static bool running = GL_TRUE;
 static int vsync = 1;
 static float aspectRatio = 0;
@@ -21,6 +22,8 @@ static string textureFile = "texture.bmp";
 static ImageElement* ie;
 static int width;
 static int height;
+static int WINDOW_WIDTH;
+static int WINDOW_HEIGHT;
 
 int main() {
 	init();
@@ -200,17 +203,19 @@ void draw(void)
 // Callback for when the window is resized
 void GLFWCALL windowResize( int width, int height ) {
 	glViewport(0,0,(GLsizei)width,(GLsizei)height);
+	WINDOW_WIDTH = width;
+	WINDOW_HEIGHT = height;
 
 }
 
 void GLFWCALL mouseClicked(int mButton, int clicked)
 {
-	int *x, *y;
-	x = new int;
-	y = new int;
-	glfwGetMousePos( x, y );
+	int x, y;
+	glfwGetMousePos( &x, &y );
+	float i = WINDOW_WIDTH / width;
+	float j = WINDOW_HEIGHT / height;
 	if (mButton == 0 && clicked == 1) {
-		ie->mouseInput((*x) / 2, 256 - ((*y) / 2));
+		ie->mouseInput(x / i,  (WINDOW_HEIGHT - y) / j);
 	}
 }
 

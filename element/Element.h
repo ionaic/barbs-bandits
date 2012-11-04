@@ -63,13 +63,10 @@ class Element {
         unsigned int _width;
         /*! The element's height. */
         unsigned int _height;
-<<<<<<< HEAD
         void (*_mouseCallback)(void*);
-=======
         /*! The resulting image for the element to be blitted to a parent 
          * element or rendered on a surface 
          */
->>>>>>> a668e775cf3a889bd8fb9b0a0969b223ccf65ef0
         Image *_result;
  
     private:

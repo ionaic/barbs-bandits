@@ -21,7 +21,7 @@ class ToggleButton: public Button {
         ToggleButton(int x, int y, int w, int h, string txt); /*!< \brief Constructor. Sets x and y position of this element along with width, height and text. */
         ToggleButton(int x, int y, int w, int h, 
             string content, int size, ImageElement* i); /*!< \brief Constructor. Sets x and y position of this element along with width, height, text, font size, and a background image */
-
+        void mouseInput(int x, int y); /*!< \mouseInput overload.  Performs action if inside this element */
 	private:
 	    bool _down;
 };
