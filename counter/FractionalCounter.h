@@ -9,7 +9,7 @@ This file contains the FractionalCounter class.
 
 class FractionalCounter : public BoundedCounter {
 public:
-	FractionalCounter() : BoundedCounter() {};  /*!< \brief Default Constructor. */
+	FractionalCounter() { FractionalCounter(0); }  /*!< \brief Default Constructor. */
 	FractionalCounter(int value) : BoundedCounter(value) {}; /*!< /brief Constructor with starting values */
 
 private:
