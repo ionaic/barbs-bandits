@@ -34,7 +34,7 @@ ToggleButton::ToggleButton(int x, int y, int w, int h,
 }
 
 /*! mouseInput overload for ToggleButton for animation */
-void ToggleButton::mouseInput(int x, int y) {
+void ToggleButton::mouseDown(int x, int y) {
 	if ( x < 0 || y < 0) return;
 	bool inside = (this->_width >= x && this->_height >= y);
 
@@ -43,7 +43,7 @@ void ToggleButton::mouseInput(int x, int y) {
 		if (_down) this->_imageE->darken();
 		else this->_imageE->lighten();
 		if (0 != _mouseCallback ) //if element has a callback
-			this->_mouseCallback(this);
+			this->_mouseCallback(this, x, y);
 	}
 }
 

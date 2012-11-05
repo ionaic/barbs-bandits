@@ -18,6 +18,8 @@ Element::Element() {
     this->_clrImg = new Image(this->_width, this->_height);
     this->_dirty = true;
     this->_mouseCallback = 0;
+    this->_mouseUpCallback = 0;
+    this->_mouseMoveCallback = 0;
 }
 
 /*! Creates an element positioned at (x,y) with dimensions (0,0). */
@@ -32,6 +34,8 @@ Element::Element(int x, int y) {
     this->_clrImg = new Image(this->_width, this->_height);
     this->_dirty = true;
     this->_mouseCallback = 0;
+    this->_mouseUpCallback = 0;
+    this->_mouseMoveCallback = 0;
 }
 
 /*! Creates an element positioned at (x, y) with dimensions (xs, ys). */
@@ -46,7 +50,10 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_clrImg = new Image(this->_width, this->_height);
     this->_dirty = true;
     this->_mouseCallback = 0;
+    this->_mouseUpCallback = 0;
+    this->_mouseMoveCallback = 0;
 }
+
 
 /*! Deletes the pointers for the result image and the clear image (background). */
 Element::~Element() {
@@ -71,16 +78,46 @@ void Element::clearResult() {
 }
 
 /*! Tests if the mouse click at (x, y) is within the element. */
-void Element::mouseInput(int x, int y) {
+void Element::mouseDown(int x, int y) {
 	if ( x < 0 || y < 0) return;
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
-		(*child)->mouseInput(x-(*child)->_xCoord, y-(*child)->_yCoord);
+		(*child)->mouseDown(x-(*child)->_xCoord, y-(*child)->_yCoord);
 	}
 	bool inside = (this->_width >= x && this->_height >= y);
 	if (inside) { //if inside button
 		if (0 != _mouseCallback ) //if element has a callback
-			this->_mouseCallback(this);
+			this->_mouseCallback(this,x,y);
+		return;
+	}
+}
+
+/*! Tests if the mouse click at (x, y) is within the element. */
+void Element::mouseUp(int x, int y) {
+	if ( x < 0 || y < 0) return;
+	vector<Element*>::iterator child = this->_children.begin();
+	for(; _children.end() != child; child++) {
+		(*child)->mouseUp(x-(*child)->_xCoord, y-(*child)->_yCoord);
+	}
+	bool inside = (this->_width >= x && this->_height >= y);
+	if (inside) { //if inside button
+		if (0 != _mouseUpCallback ) //if element has a callback
+			this->_mouseUpCallback(this,x,y);
+		return;
+	}
+}
+
+/*! Tests if the mouse click at (x, y) is within the element. */
+void Element::mouseMove(int x, int y, int dx, int dy) {
+	if ( x < 0 || y < 0) return;
+	vector<Element*>::iterator child = this->_children.begin();
+	for(; _children.end() != child; child++) {
+		(*child)->mouseMove(dx-(*child)->_xCoord, y-(*child)->_yCoord, dx, dy);
+	}
+	bool inside = (this->_width >= x && this->_height >= y);
+	if (inside) { //if inside button
+		if (0 != _mouseMoveCallback ) //if element has a callback
+			this->_mouseMoveCallback(this,x,y,dx,dy);
 		return;
 	}
 }
@@ -88,8 +125,16 @@ void Element::mouseInput(int x, int y) {
 /*! Register a callback function, accepts a function pointer to a function which
  * takes one argument of void*.
  */
-void Element::registerCallback(void (*func)(void *)) {
+void Element::registerMouseDownCallback(mouseDownCallback_t func) {
     this->_mouseCallback = func;
+}
+
+void Element::registerMouseUpCallback(mouseUpCallback_t func) {
+    this->_mouseUpCallback = func;
+}
+
+void Element::registerMouseMoveCallback(mouseMoveCallback_t func) {
+    this->_mouseMoveCallback = func;
 }
 
 /*! Add a child element to the set of children elements.  The function accepts a

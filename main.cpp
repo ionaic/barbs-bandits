@@ -77,11 +77,11 @@ int loadGuiTexture(string textureString) {
 	ie->addChild(N);
 	//lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
-	B->registerCallback( buttonClicked );
+	B->registerMouseDownCallback( buttonClicked );
 	ie->addChild(B);
 	//toggle button near the middle
 	TB = new ToggleButton(206, 0, 50, 20, "TButton");
-	TB->registerCallback( buttonClicked );
+	TB->registerMouseDownCallback( buttonClicked );
 	ie->addChild(TB);
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();
@@ -229,11 +229,14 @@ void GLFWCALL mouseClicked(int mButton, int clicked)
     float I = ((float)x)/((float)WINDOW_WIDTH);
     float J = ((float)(WINDOW_HEIGHT-y))/((float)WINDOW_HEIGHT);
 	if (mButton == 0 && clicked == 1) {
-		ie->mouseInput(width*I,  height*J);
+		ie->mouseDown(width*I, height*J);
 	}
+    if (mButton == 0 && clicked == 0) {
+        ie->mouseUp(width*I, height*J);
+    }
 }
 
-void buttonClicked(void* e) {
-	Element* element = (Element *) e;
+void buttonClicked(Element* e, int, int) {
+	Element* element = e;
 	(*N)++;
 }
