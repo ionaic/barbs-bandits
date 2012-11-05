@@ -23,3 +23,9 @@ bool BoundedCounter::setValue(int value) {
         return false;
     }
 }
+
+BoundedCounter &BoundedCounter::operator++(int) {
+    if ( ! (_value + 1 > _max ) )
+        _value++;
+    return *this;
+}

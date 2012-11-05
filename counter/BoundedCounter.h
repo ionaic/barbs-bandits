@@ -13,7 +13,8 @@ public:
 	BoundedCounter(int x, int y, int width, int height,
 	        int value, int max);  /*< /brief Constructor with starting value and maximum value*/
 	void setMax(int max); /*< /brief Set maximum value of the counter */
-	bool setValue(int value); /*< /brief Set value of the counter. Must be less than maximum */
+	virtual bool setValue(int value); /*< /brief Set value of the counter. Must be less than maximum */
+	BoundedCounter &operator++(int);
 
 protected:
 	int _max;
