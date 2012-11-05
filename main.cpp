@@ -50,7 +50,8 @@ int loadGuiTexture(string textureString) {
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
 	//For texture
-	Image i(width, height, texturebits);
+	Pixel p(255, 255, 255, 255);
+	Image i(width, height, p);
 	//base background element
 	ie = new ImageElement(0, 0, width, height, i);
 	/*
@@ -149,7 +150,7 @@ void init(void) {
 	//vsync
 	glfwSwapInterval(vsync);
 
-	//enable alpha blending
+	//set clear color to white
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//set the matrices
@@ -190,6 +191,10 @@ void draw(void)
 {
     // draw GUI box
 	//enable texturing
+
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
+                0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
+
 	glEnable( GL_TEXTURE_2D );
     glLoadIdentity();
     glBegin(GL_QUADS);
@@ -221,16 +226,14 @@ void GLFWCALL mouseClicked(int mButton, int clicked)
 {
 	int x, y;
 	glfwGetMousePos( &x, &y );
-	float i = WINDOW_WIDTH / width;
-	float j = WINDOW_HEIGHT / height;
+    float I = ((float)x)/((float)WINDOW_WIDTH);
+    float J = ((float)(WINDOW_HEIGHT-y))/((float)WINDOW_HEIGHT);
 	if (mButton == 0 && clicked == 1) {
-		ie->mouseInput(x / i,  (WINDOW_HEIGHT - y) / j);
+		ie->mouseInput(width*I,  height*J);
 	}
 }
 
 void buttonClicked(void* e) {
 	Element* element = (Element *) e;
 	(*N)++;
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 }
