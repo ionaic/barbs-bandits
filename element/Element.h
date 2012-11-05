@@ -41,7 +41,9 @@ class Element {
         void registerMouseDownCallback(mouseDownCallback_t func); //for now just registers mouse callback
         /*! \brief Test if element clicked by mouse. */
         virtual void mouseDown(int x, int y);
+        void mouseDownRelative(float x, float y);
         virtual void mouseUp(int x, int y);
+        void mouseUpRelative(float x, float y);
         virtual void mouseMove(int x, int y, int dx, int dy);
         /*! \brief Add a child element to the current element. */
         void addChild(Element *child);
