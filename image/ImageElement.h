@@ -44,7 +44,10 @@ class ImageElement : public Element {
         /*! \brief Overrides Element::clearResult() to clear background to the
          * content image instead of a solid color.
          */
-        void clearResult() { this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height); }
+        void clearResult() {
+            Element::clearResult();
+            this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
+        }
     private:
         Image* _img;
 };
