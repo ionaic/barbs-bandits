@@ -9,8 +9,8 @@ This file contains the FractionalCounter class.
 
 class FractionalCounter : public BoundedCounter {
 public:
-	FractionalCounter() BoundedCounter();  /*!< \brief Default Constructor. */
-	FractionalCounter(value) : BoundedCounter(value); /*!< /brief Constructor with starting values */
+	FractionalCounter() { FractionalCounter(0); }  /*!< \brief Default Constructor. */
+	FractionalCounter(int value) : BoundedCounter(value) {} /*!< /brief Constructor with starting values */
 
 private:
 	Element* imageE;

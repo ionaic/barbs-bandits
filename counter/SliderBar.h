@@ -9,8 +9,8 @@ This file contains the SliderBar class.
 
 class SliderBar : public BoundedCounter {
 public:
-	SliderBar() BoundedCounter();  /*!< \brief Default Constructor. */
-	SliderBar(value) : BoundedCounter(value); /*!< /brief Constructor with starting values */
+	SliderBar() { SliderBar(0); }  /*!< \brief Default Constructor. */
+	SliderBar(int value) : BoundedCounter(value) {} /*!< /brief Constructor with starting values */
 
 private:
 	Element* imageE;

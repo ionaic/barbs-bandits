@@ -19,10 +19,10 @@ class Button : public Element {
         Button(); /*!< \brief Default constructor. */
         Button(unsigned int x, unsigned int y); /*!< \brief Constructor. Sets x and y position of this Element. */
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height); /*!< \brief Constructor. Sets x and y position of Element along with height and width. */
-       Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt); /*!< \brief Constructor. Sets x and y position of Element along with height, width, and text. */
+        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt); /*!< \brief Constructor. Sets x and y position of Element along with height, width, and text. */
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img); /*!< \brief Constructor. Sets x and y position of Element along width height. Uses an ImageElment as the background image. */
         void setBgIg(ImageElement* img); /*!< \brief Sets background image. */
-	   void setText(string txt); /*!< \brief Sets text. */
+	    void setText(string txt); /*!< \brief Sets text. */
 
 	protected:
 		TextElement* _textE;
