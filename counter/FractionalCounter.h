@@ -11,6 +11,7 @@ class FractionalCounter : public BoundedCounter {
 public:
 	FractionalCounter(); /*!< \brief Default Constructor. */
 	FractionalCounter(int value); /*!< /brief Constructor with starting values */
+	~FractionalCounter();
 
 private:
 	Element* imageE;
