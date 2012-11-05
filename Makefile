@@ -9,14 +9,14 @@ OFILES=Image.o Pixel.o Text.o Element.o TextElement.o Button.o ToggleButton.o
 # final target
 TARGET=sample
 # generic element includes
-INCL=-I./image/ -I./text/ -I./element/ -I./button -I./togglebutton
+INCL=-I./image/ -I./text/ -I./element/ -I./button -I./togglebutton -I./counter
 # include all the things
-HFILES=button/Button.h image/ImageElement.h text/TextElement.h $(INCL) $(TXTINCL)
+HFILES=button/Button.h image/ImageElement.h text/TextElement.h counter/*.h $(INCL) $(TXTINCL)
 
-all: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Element.o 
+all: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Counter.o Element.o 
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) 
 
-debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Element.o
+debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Counter. o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) -g
 
 Image.o: 
@@ -34,14 +34,19 @@ TextElement.o:
 Element.o:
 	$(CC) -I image/ element/Element.cpp -c
 
-Demo:
-	$(CC) Demo.cpp -o Demo $(DEMOINCL)
-
 Button.o: Image.o Text.o
 	$(CC) button/Button.cpp $(INCL) $(TXTINCL) -c
 
 ToggleButton.o: Image.o Text.o
 	$(CC) togglebutton/ToggleButton.cpp -I button/ $(INCL) $(TXTINCL) -c
+
+Counter.o: Image.o Text.o
+	$(CC) counter/AbstractCounter.h $(INCL) $(TXTINCL) -c
+	$(CC) counter/NumericCounter.h $(INCL) $(TXTINCL) -c
+	$(CC) counter/BoundedCounter.h $(INCL) $(TXTINCL) -c
+	$(CC) counter/FractionalCounter.h $(INCL) $(TXTINCL) -c
+	$(CC) counter/ProgressBar.h $(INCL) $(TXTINCL) -c
+	$(CC) counter/SliderBar.h $(INCL) $(TXTINCL) -c
 
 clean:
 	rm -f $(OFILES)

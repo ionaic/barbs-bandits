@@ -9,8 +9,8 @@ This file contains the ProgressBar class.
 
 class ProgressBar : public BoundedCounter {
 public:
-	ProgressBar() BoundedCounter();  /*!< \brief Default Constructor. */
-	ProgressBar(int value) : BoundedCounter(value); /*!< /brief Constructor with starting value */
+	ProgressBar() : BoundedCounter() {};  /*!< \brief Default Constructor. */
+	ProgressBar(int value) : BoundedCounter(value) {}; /*!< /brief Constructor with starting value */
 
 private:
 	Element* imageE;

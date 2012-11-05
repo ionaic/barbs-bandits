@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <unistd.h>
 #include "main.h"
 #include "element/Element.h"
 #include "text/TextElement.h"

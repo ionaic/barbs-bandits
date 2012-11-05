@@ -13,7 +13,7 @@ This file contains the NumericCounter class.
  */
 class NumericCounter : public AbstractCounter {
 public:
-	NumericCounter() { NumericCounter(0); }  /*!< \brief Default Constructor. */
+	NumericCounter() {}  /*!< \brief Default Constructor. */
 	NumericCounter(int value) : AbstractCounter(value) {
 		_imageE = new Image(_width, _height);
 	};

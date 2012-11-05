@@ -15,15 +15,15 @@ using namespace std;
 This class should not be accessed directly. Instead, all interactions should go through NumericalCounter, BoundedCounter, FractionalCounter, ProgressBar, or SliderBar.
 */
 class AbstractCounter : public Element {
-public:
-	AbstractCounter(); /*!< \brief Default Constructor. */
-	AbstractCounter(int value); /*!< \brief Copy Constructor. */
+	public:
+		AbstractCounter() {}; /*!< \brief Default Constructor. */
+		AbstractCounter(int value) {_value = value; }; /*!< \brief Copy Constructor. */
 
-	virtual bool setValue(int value) {_value = value; return true;} /*!< \brief Update the text stored and re-render it*/
-	int getValue() { return _value;} /*!< \brief Update the text stored and re-render it*/
-	virtual void clearResult(); /*!< \brief override the clearResult method of element for the counters */
+		virtual bool setValue(int value) {_value = value; return true;} /*!< \brief Update the text stored and re-render it*/
+		int getValue() { return _value;} /*!< \brief Update the text stored and re-render it*/
+		virtual void clearResult(); /*!< \brief override the clearResult method of element for the counters */
 
-private:
-	int _value;
+	protected:
+		int _value;
 };
 #endif
