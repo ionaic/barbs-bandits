@@ -17,7 +17,7 @@ public:
 	NumericCounter();  /*!< \brief Default Constructor. */
 	NumericCounter(int value); /*!< \brief constructor that can be passed a value. */
 	~NumericCounter();  /*!< \brief default destructor */
-	void setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
+	bool setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
 
 private:
 	ImageElement * _imageE;

@@ -9,13 +9,8 @@ This file contains the BoundedCounter class.
 
 class BoundedCounter : public AbstractCounter {
 public:
-<<<<<<< HEAD
-	BoundedCounter() : AbstractCounter() {};  /*!< \brief Default Constructor. */
-	BoundedCounter(int value) : AbstractCounter(value) {}; /*< /brief Constructor with starting value */
-=======
 	BoundedCounter() { BoundedCounter(0); }  /*!< \brief Default Constructor. */
 	BoundedCounter(int value) : AbstractCounter(value) {} /*< /brief Constructor with starting value */
->>>>>>> b0815e582c9168945838ff658128ec6f5fb42453
 
 	void setMax(int max) { _max = max; } /*< /brief Set maximum value of the counter */
 
@@ -23,12 +18,8 @@ public:
 		if (value < _max) {
 			_value=value;
 			return true;
-<<<<<<< HEAD
-		}else{
-=======
 		}
-		else{
->>>>>>> b0815e582c9168945838ff658128ec6f5fb42453
+		else {
 			return false;
 		}
 	} /*< /brief Set value of the counter. Must be less than maximum */

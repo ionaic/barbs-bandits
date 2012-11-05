@@ -22,7 +22,7 @@ NumericCounter::~NumericCounter(){
 	delete _textE;
 };
 
-void NumericCounter::setValue(int value){
+bool NumericCounter::setValue(int value){
 	_value = value;
 	render(); //update the result image
 }
