@@ -19,7 +19,7 @@ public:
 	AbstractCounter(); /*!< \brief Default Constructor. */
 	AbstractCounter(int value); /*!< \brief Copy Constructor. */
 
-	void setValue(int value) {_value = value;} /*!< \brief Update the text stored and re-render it*/
+	virtual void setValue(int value) {_value = value;} /*!< \brief Update the text stored and re-render it*/
 	int getValue() { return _value;} /*!< \brief Update the text stored and re-render it*/
 	virtual void clearResult(); /*!< \brief override the clearResult method of element for the counters */
 
