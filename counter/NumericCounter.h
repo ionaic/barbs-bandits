@@ -6,23 +6,22 @@ This file contains the NumericCounter class.
 #define _NUMERICCOUNTER_H_
 
 #include "AbstractCounter.h"
-#include "Image.h"
-#include "Text.h"
+#include "ImageElement.h"
+#include "TextElement.h"
+#include <cstdlib>
 
 /*! \brief An class used to display a simple numeric counter on a gui
  */
 class NumericCounter : public AbstractCounter {
 public:
-	NumericCounter() { NumericCounter(0); }  /*!< \brief Default Constructor. */
-	NumericCounter(int value) : AbstractCounter(value) {
-		_imageE = new Image(_width, _height);
-	};
-
-	void clearResult();
+	NumericCounter();  /*!< \brief Default Constructor. */
+	NumericCounter(int value); /*!< \brief constructor that can be passed a value. */
+	~NumericCounter();  /*!< \brief default destructor */
+	void setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
 
 private:
-	Image * _imageE;
-	Text * _textE;
+	ImageElement * _imageE;
+	TextElement * _textE;
 };
 
 #endif

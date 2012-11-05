@@ -16,7 +16,6 @@ private:
 	Element* imageE;
 	Element* textE;
 
-
 };
 
 #endif
