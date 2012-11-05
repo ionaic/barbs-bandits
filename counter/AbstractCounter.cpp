@@ -15,9 +15,7 @@ int AbstractCounter::getValue() {
     return _value;
 }
 
-AbstractCounter &AbstractCounter::operator++() {
+AbstractCounter &AbstractCounter::operator++(int) {
     _value++;
-    cout << _value << endl;
-    setDirty(true);
     return *this;
 }

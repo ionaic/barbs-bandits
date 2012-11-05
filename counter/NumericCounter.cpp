@@ -19,8 +19,17 @@ NumericCounter::~NumericCounter(){
 
 bool NumericCounter::setValue(int value){
 	_value = value;
-	string s = static_cast<ostringstream*>( &(ostringstream() << value) )->str();
-	_textE->setText(s);
-	setDirty(true); //update the result image
+	_update();
 	return true;
+}
+
+NumericCounter &NumericCounter::operator++(int) {
+    _value++;
+    _update();
+    return *this;
+}
+
+void NumericCounter::_update() {
+    string s = static_cast<ostringstream*>( &(ostringstream() << _value) )->str();
+    _textE->setText(s);
 }

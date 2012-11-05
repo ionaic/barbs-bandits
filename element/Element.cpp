@@ -61,6 +61,9 @@ Element::~Element() {
  * (for text elements) before rendering the children.
  */
 void Element::clearResult() {
+    //clear the image to alpha
+    this->_result->set(0, 0, _width, _height, Pixel(0,0,0,0));
+    //start drawing things
     this->_clrImg->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
 }
 
