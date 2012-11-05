@@ -36,6 +36,7 @@ Element::Element(int x, int y) {
 
 /*! Creates an element positioned at (x, y) with dimensions (xs, ys). */
 Element::Element(int x, int y, int xs, int ys) {
+    cout << "element" << x << y << ", " << xs << " , " << ys << endl;
 	this->_xCoord = x;
 	this->_yCoord = y;
 	this->_width = xs;

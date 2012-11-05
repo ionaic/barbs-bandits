@@ -6,17 +6,17 @@ This file contains the ProgressBar class.
 #define _PROGRESSBAR_H_
 
 #include "BoundedCounter.h"
+#include "../image/ImageElement.h"
 
 class ProgressBar : public BoundedCounter {
 public:
-	ProgressBar(){ ProgressBar(0,0,0,0,0); }  /*!< \brief Default Constructor. */
-	ProgressBar(int x, int y, int width, int height, int value) : BoundedCounter(x,y,width,height,value) {}; /*!< /brief Constructor with starting value */
+	ProgressBar(); /*!< \brief Default Constructor. */
+	ProgressBar(int x, int y, int width, int height, int value); /*!< /brief Constructor with starting value */
+	bool setValue(int value); /*! /brief sets the value and checks to ensure it's < max value */
+	void _update();
 
 private:
-	Element* _imageE;
-	Element* _textE;
-
-
+	ImageElement* _imageE;
 };
 
 #endif
