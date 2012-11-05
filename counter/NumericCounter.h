@@ -6,8 +6,7 @@ This file contains the NumericCounter class.
 #define _NUMERICCOUNTER_H_
 
 #include "AbstractCounter.h"
-#include "ImageElement.h"
-#include "TextElement.h"
+#include "../text/TextElement.h"
 #include <cstdlib>
 
 /*! \brief An class used to display a simple numeric counter on a gui
@@ -15,12 +14,11 @@ This file contains the NumericCounter class.
 class NumericCounter : public AbstractCounter {
 public:
 	NumericCounter();  /*!< \brief Default Constructor. */
-	NumericCounter(int value); /*!< \brief constructor that can be passed a value. */
+	NumericCounter(int x, int y, int width, int height, int value); /*!< \brief constructor that can be passed a value, xy coords, and width / height. */
 	~NumericCounter();  /*!< \brief default destructor */
 	bool setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
 
 private:
-	ImageElement * _imageE;
 	TextElement * _textE;
 };
 

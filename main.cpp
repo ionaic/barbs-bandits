@@ -23,6 +23,7 @@ static float aspectRatio = 0;
 GLuint texture;
 static string textureFile = "texture.bmp";
 static ImageElement* ie;
+static NumericCounter* N;
 static int width;
 static int height;
 static int WINDOW_WIDTH;
@@ -69,8 +70,10 @@ int loadGuiTexture(string textureString) {
 	TextElement T(156, 0, 100, 60, 18, "TextElement");
 	ie->addChild(&T);
 	*/
-	//NumericCounter* N = new NumericCounter(0);
-	//upper left button
+	//numeric counter in the middle
+	N = new NumericCounter(100, 100, 25, 25, 1);
+	ie->addChild(N);
+	//lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerCallback( buttonClicked );
 	ie->addChild(B);
@@ -227,6 +230,7 @@ void buttonClicked(void* e) {
 	Element* element = (Element *) e;
 	cout << "You clicked an element. "
 			<< " Callback function executing on element id:" << element->getId() << endl;
+	N++;
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 }

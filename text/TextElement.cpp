@@ -20,7 +20,6 @@ TextElement::TextElement(unsigned int x, unsigned int y, unsigned int width, uns
 TextElement::TextElement(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, int size, string txt) : Element(x, y, width, height) {
 	this->_text = new Text(width, height, size, txt);
-	cout << "creating text element with text: " << _text->getText() << endl;
 }
 
 /*! Destructor deletes dynamically allocated variables if needed */

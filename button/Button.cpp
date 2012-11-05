@@ -23,7 +23,6 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 /*!Constructor sets x,y, width, heigh and text */
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, string txt) : Element(x, y, width, height) {
-	cout << "creating button" << endl;
 	unsigned int size = 14; //TODO: do math based on width and height to determine size
 	_imageE = new ImageElement(0, 0, width, height); //need to draw image first
 	addChild(_imageE);

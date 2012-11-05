@@ -17,11 +17,12 @@ This class should not be accessed directly. Instead, all interactions should go 
 class AbstractCounter : public Element {
 	public:
 		AbstractCounter() {}; /*!< \brief Default Constructor. */
-		AbstractCounter(int value) {_value = value; }; /*!< \brief Copy Constructor. */
+		AbstractCounter(int x, int y, int width, int height, int value); /*!< \brief simple constructor for x, y, width, height*/
 
-		virtual bool setValue(int value) {_value = value; return true;} /*!< \brief Update the text stored and re-render it*/
-		int getValue() { return _value;} /*!< \brief Update the text stored and re-render it*/
-		virtual void clearResult(); /*!< \brief override the clearResult method of element for the counters */
+		virtual bool setValue(int value); /*!< \brief Update the text stored and re-render it*/
+		int getValue(); /*!< \brief Update the text stored and re-render it*/
+		virtual void clearResult() {}; /*!< \brief override the clearResult method of element for the counters */
+		AbstractCounter &operator++();
 
 	protected:
 		int _value;

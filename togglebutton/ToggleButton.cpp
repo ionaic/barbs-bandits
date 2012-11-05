@@ -24,7 +24,6 @@ ToggleButton::ToggleButton(int x, int y, int w, int h) : Button(x, y, w, h) {
 
 /*! Constructor creates an unclicked togglebutton at position x,y with width, height and text. */
 ToggleButton::ToggleButton(int x, int y, int w, int h, string txt) : Button(x, y, w, h, txt) {
-	cout << "creating tbutton" << endl;
 	this->_down = false;
 }
 
@@ -40,7 +39,6 @@ void ToggleButton::mouseInput(int x, int y) {
 	bool inside = (this->_width >= x && this->_height >= y);
 
 	if (inside) { //if inside button
-		cout << "Inside tbutton" << endl;
 		_down = !_down;
 		if (_down) this->_imageE->darken();
 		else this->_imageE->lighten();

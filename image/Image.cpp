@@ -215,26 +215,22 @@ void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
 
 /*!  \brief lighten the entire image */
 void Image::lighten() {
-	std::cout << "before l: " << _pixels[_width * _height - 1].getR() << std::endl;
 	for (unsigned int i = 0; i < _width * _height; ++i) {
 		int _dR = _pixels[i].getR() + 50;
 		int _dG = _pixels[i].getG() + 50;
 		int _dB = _pixels[i].getB() + 50;
 		_pixels[i].setRGB(_dR,  _dG,  _dB);
 	}
-	std::cout << "after l: " << _pixels[_width * _height - 1].getR() << std::endl;
 }
 
 /*! \brief Darken the entire image */
 void Image::darken() {
-	std::cout << "before D: " << _pixels[_width * _height - 1].getR() << std::endl;
 	for (unsigned int i = 0; i < _width * _height; ++i) {
 		int _dR = _pixels[i].getR() - 50;
 		int _dG = _pixels[i].getG() - 50;
 		int _dB = _pixels[i].getB() - 50;
 		_pixels[i].setRGB(_dR,  _dG,  _dB);
 	}
-	std::cout << "after d: " << _pixels[_width * _height - 1].getR() << std::endl;
 }
 
 /*!

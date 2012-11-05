@@ -5,7 +5,7 @@ TXTINCL=`freetype-config --cflags` -lfreetype
 # compiler
 CC=g++
 # object files
-OFILES=Image.o Pixel.o Text.o Element.o TextElement.o Button.o ToggleButton.o
+OFILES=Image.o Pixel.o Text.o Element.o TextElement.o Button.o ToggleButton.o NumericCounter.o AbstractCounter.o
 # final target
 TARGET=sample
 # generic element includes
@@ -41,8 +41,8 @@ ToggleButton.o: Image.o Text.o
 	$(CC) togglebutton/ToggleButton.cpp -I button/ $(INCL) $(TXTINCL) -c
 
 Counter.o: Image.o Text.o
-	$(CC) counter/AbstractCounter.h $(INCL) $(TXTINCL) -c
-	$(CC) counter/NumericCounter.h $(INCL) $(TXTINCL) -c
+	$(CC) counter/AbstractCounter.cpp $(INCL) $(TXTINCL) -c
+	$(CC) counter/NumericCounter.cpp $(INCL) $(TXTINCL) -c
 	$(CC) counter/BoundedCounter.h $(INCL) $(TXTINCL) -c
 	$(CC) counter/FractionalCounter.h $(INCL) $(TXTINCL) -c
 	$(CC) counter/ProgressBar.h $(INCL) $(TXTINCL) -c
