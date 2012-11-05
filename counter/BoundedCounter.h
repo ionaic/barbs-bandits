@@ -9,8 +9,8 @@ This file contains the BoundedCounter class.
 
 class BoundedCounter : public AbstractCounter {
 public:
-	BoundedCounter() { BoundedCounter(0); }  /*!< \brief Default Constructor. Sets value to 0 and maximum to 100. */
-	BoundedCounter(int value) { BoundedCounter(0, 0, 0, 0, value, 100); } /*< /brief Constructor with starting value. Sets maximum to 100. */
+	BoundedCounter() { BoundedCounter(0,0,0,0,0); }  /*!< \brief Default Constructor. Sets value to 0 and maximum to 100. */
+	BoundedCounter(int x, int y, int width, int height, int value) { BoundedCounter(x,y,width,height, value, 100); } /*< /brief Constructor with starting value. Sets maximum to 100. */
 
 	BoundedCounter(int x, int y, int width, int height,
 	        int value, int max) : AbstractCounter(x, y, width, height, value) { _max = max;} /*< /brief Constructor with starting value and maximum value*/

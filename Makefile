@@ -44,7 +44,7 @@ Counter.o: Image.o Text.o
 	$(CC) counter/AbstractCounter.cpp $(INCL) $(TXTINCL) -c
 	$(CC) counter/NumericCounter.cpp $(INCL) $(TXTINCL) -c
 	$(CC) counter/BoundedCounter.h $(INCL) $(TXTINCL) -c
-	$(CC) counter/FractionalCounter.h $(INCL) $(TXTINCL) -c
+	$(CC) counter/FractionalCounter.cpp $(INCL) $(TXTINCL) -c
 	$(CC) counter/ProgressBar.h $(INCL) $(TXTINCL) -c
 	$(CC) counter/SliderBar.h $(INCL) $(TXTINCL) -c
 
