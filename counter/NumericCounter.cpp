@@ -11,8 +11,6 @@ NumericCounter::NumericCounter(){
 };
 
 NumericCounter::NumericCounter(int value) : AbstractCounter(value) {
-	_imageE = new ImageElement(_width, _height);
-	addChild(_imageE);
 	_textE = new TextElement(_width, _height, (string) value);
 	addchild(_textE);
 };

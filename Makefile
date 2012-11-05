@@ -52,3 +52,4 @@ clean:
 	rm -f $(OFILES)
 	rm -f *.gch image/*.gch text/*.gch demo/*.gch button/*.gch togglebutton/*.gch
 	rm -f *.gch image/*.o text/*.o demo/*.o button/*.o togglebutton/*.o
+	rm -f */*.h.gch
