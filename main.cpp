@@ -23,6 +23,7 @@ static float aspectRatio = 0;
 GLuint texture;
 static string textureFile = "texture.bmp";
 static ImageElement* ie;
+static ToggleButton* TB;
 static NumericCounter* N;
 static int width;
 static int height;
@@ -78,7 +79,7 @@ int loadGuiTexture(string textureString) {
 	B->registerCallback( buttonClicked );
 	ie->addChild(B);
 	//toggle button near the middle
-	ToggleButton* TB = new ToggleButton(206, 0, 50, 20, "TButton");
+	TB = new ToggleButton(206, 0, 50, 20, "TButton");
 	TB->registerCallback( buttonClicked );
 	ie->addChild(TB);
 	//render it to a texture by calling render
@@ -174,6 +175,7 @@ void mainLoop(void) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		if ( currentTime > oldTime + 0.02 )
 		{
+		    if ( TB->isDown() ) (*N)++;
 			draw();
 			glfwSwapBuffers();
 			oldTime = currentTime;
@@ -228,8 +230,6 @@ void GLFWCALL mouseClicked(int mButton, int clicked)
 
 void buttonClicked(void* e) {
 	Element* element = (Element *) e;
-	cout << "You clicked an element. "
-			<< " Callback function executing on element id:" << element->getId() << endl;
 	(*N)++;
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());

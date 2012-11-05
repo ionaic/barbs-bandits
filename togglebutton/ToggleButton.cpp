@@ -46,3 +46,7 @@ void ToggleButton::mouseInput(int x, int y) {
 			this->_mouseCallback(this);
 	}
 }
+
+bool ToggleButton::isDown() {
+    return _down;
+}
