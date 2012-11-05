@@ -230,7 +230,7 @@ void buttonClicked(void* e) {
 	Element* element = (Element *) e;
 	cout << "You clicked an element. "
 			<< " Callback function executing on element id:" << element->getId() << endl;
-	N++;
+	//N++;
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 }
