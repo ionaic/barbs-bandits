@@ -10,12 +10,12 @@ This file contains the FractionalCounter class.
 class FractionalCounter : public BoundedCounter {
 public:
 	FractionalCounter(); /*!< \brief Default Constructor. */
-	FractionalCounter(int value); /*!< /brief Constructor with starting values */
+	FractionalCounter(int x, int y, int width, int height, int value); /*!< /brief Constructor with starting values */
 	~FractionalCounter();
 
 private:
-	Element* imageE;
-	Element* textE;
+	Element* _imageE;
+	Element* _textE;
 
 };
 
