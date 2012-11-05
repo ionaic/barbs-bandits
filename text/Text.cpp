@@ -16,20 +16,30 @@ Text::Text() {
 }
 
 /*! Constructor sets width, height and font size as per arguments and then content to be an empty string. */
-Text::Text(int w, int h, int size) {
-	Text(w,h,size,"");
+Text::Text(int width, int height, int size) {
+	Text(width,height,size,"");
 }
 
 /*! Constructor sets width, height, font size and content as per arguments */
-Text::Text(int w, int h, int size, string c) {
-	if (size < 1) {
-		cerr << "Size must be greater than zero" << endl;
-		size = 1;
+Text::Text(int width, int height, int size, string content) {
+	if (size < 0) {
+		cerr << "Invliad font size";
+		size = 0;
 	}
-	_width = w;
-	_height = h;
+
+	if (size == 0) {
+		int h = height>>1;
+		int w = (width/content.size())>>1;
+		if (h > w) {
+			size = h;
+		}else{
+			size = w;
+		}
+	}
+	_width = width;
+	_height = height;
 	_fontSize = size;
-	_content = c;
+	_content = content;
 	Pixel p(255,0,0,255);
 	_image = NULL;
 	_basic = 0;

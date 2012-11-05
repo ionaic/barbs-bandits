@@ -23,6 +23,7 @@ static float aspectRatio = 0;
 GLuint texture;
 static string textureFile = "texture.bmp";
 static ImageElement* ie;
+static ToggleButton* TB;
 static NumericCounter* N;
 static int width;
 static int height;
@@ -49,7 +50,8 @@ int loadGuiTexture(string textureString) {
 	BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
 	//For texture
-	Image i(width, height, texturebits);
+	Pixel p(255, 255, 255, 255);
+	Image i(width, height, p);
 	//base background element
 	ie = new ImageElement(0, 0, width, height, i);
 	/*
@@ -78,7 +80,7 @@ int loadGuiTexture(string textureString) {
 	B->registerCallback( buttonClicked );
 	ie->addChild(B);
 	//toggle button near the middle
-	ToggleButton* TB = new ToggleButton(206, 0, 50, 20, "TButton");
+	TB = new ToggleButton(206, 0, 50, 20, "TButton");
 	TB->registerCallback( buttonClicked );
 	ie->addChild(TB);
 	//render it to a texture by calling render
@@ -148,7 +150,7 @@ void init(void) {
 	//vsync
 	glfwSwapInterval(vsync);
 
-	//enable alpha blending
+	//set clear color to white
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//set the matrices
@@ -174,6 +176,7 @@ void mainLoop(void) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		if ( currentTime > oldTime + 0.02 )
 		{
+		    if ( TB->isDown() ) (*N)++;
 			draw();
 			glfwSwapBuffers();
 			oldTime = currentTime;
@@ -188,6 +191,10 @@ void draw(void)
 {
     // draw GUI box
 	//enable texturing
+
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
+                0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
+
 	glEnable( GL_TEXTURE_2D );
     glLoadIdentity();
     glBegin(GL_QUADS);
@@ -219,18 +226,14 @@ void GLFWCALL mouseClicked(int mButton, int clicked)
 {
 	int x, y;
 	glfwGetMousePos( &x, &y );
-	float i = WINDOW_WIDTH / width;
-	float j = WINDOW_HEIGHT / height;
+    float I = ((float)x)/((float)WINDOW_WIDTH);
+    float J = ((float)(WINDOW_HEIGHT-y))/((float)WINDOW_HEIGHT);
 	if (mButton == 0 && clicked == 1) {
-		ie->mouseInput(x / i,  (WINDOW_HEIGHT - y) / j);
+		ie->mouseInput(width*I,  height*J);
 	}
 }
 
 void buttonClicked(void* e) {
 	Element* element = (Element *) e;
-	cout << "You clicked an element. "
-			<< " Callback function executing on element id:" << element->getId() << endl;
 	(*N)++;
-	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 }
