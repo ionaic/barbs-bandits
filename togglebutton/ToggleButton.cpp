@@ -7,16 +7,6 @@
 
 using namespace std;
 
-/*! Default constructor creates an empty unclicked togglebutton.*/
-ToggleButton::ToggleButton() : Button() {
-	this->_down = false;
-}
-
-/*! Constructor creates an unclicked togglebutton at position x,y. */
-ToggleButton::ToggleButton(int x, int y) : Button(x, y) {
-	this->_down = false;
-}
-
 /*! Constructor creates an unclicked togglebutton at position x,y with width and height. */
 ToggleButton::ToggleButton(int x, int y, int w, int h) : Button(x, y, w, h) {
 	this->_down = false;

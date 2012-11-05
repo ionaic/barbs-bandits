@@ -6,14 +6,11 @@
 
 using namespace std;
 
-/*! Constructor with just x,y position sets sizes to zero and font size to 1 and uses an empty string */
-TextElement::TextElement(unsigned int x, unsigned int y) {
-	TextElement(x, y, 0, 0 , 1, "");
-}
 
 /*! Constructor with x,y position, width and height sets font size to 1 and an empty string */
-TextElement::TextElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) {
-	TextElement(x, y, width, height , 1, "");
+TextElement::TextElement(unsigned int x, unsigned int y,
+        unsigned int width, unsigned int height): Element(x, y, width, height) {
+    this->_text = new Text(width, height, 1, "");
 }
 
 /*! Constructor sets all variables and dynamically creates a Text object */
@@ -41,6 +38,6 @@ void TextElement::clearResult() {
 	Element::clearResult();
 	if (_temp) _temp->blit(*(this->_result), 0U, 0U, 0U, 0U,
 			this->_width, this->_height);
-	/*else cout << "ERROR in TextElement during clearResult blit." <<
-		" No image available. ID:" << this->getId() << endl;*/
+	else cout << "ERROR in TextElement during clearResult blit." <<
+		" No image available. ID:" << this->getId() << endl;
 }

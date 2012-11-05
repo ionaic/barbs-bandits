@@ -13,7 +13,6 @@ This file contains the NumericCounter class.
  */
 class NumericCounter : public AbstractCounter {
 public:
-	NumericCounter();  /*!< \brief Default Constructor. */
 	NumericCounter(int x, int y, int width, int height, int value); /*!< \brief constructor that can be passed a value, xy coords, and width / height. */
 	~NumericCounter();  /*!< \brief default destructor */
 	bool setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
