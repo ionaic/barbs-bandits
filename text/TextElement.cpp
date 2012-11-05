@@ -32,11 +32,13 @@ TextElement::~TextElement() {
 /*! Updates the value of the text which renders the text */
 void TextElement::setText(string txt) {
 	this->_text->setText(txt);
+	this->setDirty(true);
 }
 
 /*! Clears the rendered image we have stored */
 void TextElement::clearResult() {
 	Image* _temp = this->_text->getImage();
+	Element::clearResult();
 	if (_temp) _temp->blit(*(this->_result), 0U, 0U, 0U, 0U,
 			this->_width, this->_height);
 	else cout << "ERROR in TextElement during clearResult blit." <<

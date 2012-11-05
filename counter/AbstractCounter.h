@@ -21,8 +21,8 @@ class AbstractCounter : public Element {
 
 		virtual bool setValue(int value); /*!< \brief Update the text stored and re-render it*/
 		int getValue(); /*!< \brief Update the text stored and re-render it*/
-		virtual void clearResult() {}; /*!< \brief override the clearResult method of element for the counters */
-		AbstractCounter &operator++();
+		//virtual void clearResult() {}; /*!< \brief override the clearResult method of element for the counters */
+		virtual AbstractCounter &operator++(int);
 
 	protected:
 		int _value;

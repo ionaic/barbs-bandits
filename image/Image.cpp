@@ -126,7 +126,7 @@ void Image::set(unsigned int x, unsigned int y, const Pixel &color) {
 */
 void Image::set(unsigned int x, unsigned int y, unsigned int width,
 				unsigned int height, const Pixel &color) {
-	if (x+width>_width || y+width>_height) {
+	if (x+width>_width || y+height>_height) {
 		if (!_pixels) {
 			std::cout << "ERROR: Tried to set a pixel" <<
 				"in an uninitialized image!" << std::endl;
@@ -139,7 +139,7 @@ void Image::set(unsigned int x, unsigned int y, unsigned int width,
 		return;
 	}
 	for (unsigned int px = x; px<x+width; ++px) {
-		for (unsigned int py=y; py<x+height; ++py) {
+		for (unsigned int py=y; py<y+height; ++py) {
 			unsigned int coord = _getCoord(px,py);
 			_pixels[coord] = color;
 		}
@@ -204,10 +204,31 @@ void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
 	} else {
 		for (unsigned int x = 0; x<width; ++x) {
 			for (unsigned int y = 0; y<height; ++y) {
-				if (_pixels[_getCoord(xSource+x, ySource+y)].getA()>127) {
-					dest._pixels[dest._getCoord(xDest+x,yDest+y)] =
-						_pixels[_getCoord(xSource+x,ySource+y)];
-				}
+			    // 0==transparent, 255=opaque
+			    float OR, OG, OB, OA;
+                OR = _pixels[_getCoord(xSource+x, ySource+y)].getR();
+                OG = _pixels[_getCoord(xSource+x, ySource+y)].getG();
+                OB = _pixels[_getCoord(xSource+x, ySource+y)].getB();
+                OA = _pixels[_getCoord(xSource+x, ySource+y)].getA();
+                OR/=255.; OG/=255.; OB/=255.; OA/=255.;
+
+                float NR, NG, NB, NA;
+                NR = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getR();
+                NG = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getG();
+                NB = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getB();
+                NA = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getA();
+                NR/=255.; NG/=255.; NB/=255.; NA/=255.;
+
+                float OUTa = OA + NA * (1.-OA);
+                float OUTr = 0., OUTg=0., OUTb=0.;
+                if (OUTa>0) {
+                    OUTr = (OR * OA + NR*NA*(1.-OA))/OUTa;
+                    OUTg = (OG * OA + NG*NA*(1.-OA))/OUTa;
+                    OUTb = (OB * OA + NB*NA*(1.-OA))/OUTa;
+                }
+                OUTa *= 255.; OUTr *= 255.; OUTg *= 255.; OUTb *= 255.;
+                dest._pixels[dest._getCoord(xDest+x,yDest+y)] =
+                    Pixel(OUTr, OUTg, OUTb, OUTa);
 			}
 		}
 	}

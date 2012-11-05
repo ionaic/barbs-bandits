@@ -17,9 +17,11 @@ public:
 	NumericCounter(int x, int y, int width, int height, int value); /*!< \brief constructor that can be passed a value, xy coords, and width / height. */
 	~NumericCounter();  /*!< \brief default destructor */
 	bool setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
+	NumericCounter &operator++(int);
 
 private:
 	TextElement * _textE;
+	void _update();
 };
 
 #endif

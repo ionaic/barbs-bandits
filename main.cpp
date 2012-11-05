@@ -71,7 +71,7 @@ int loadGuiTexture(string textureString) {
 	ie->addChild(&T);
 	*/
 	//numeric counter in the middle
-	N = new NumericCounter(100, 100, 25, 25, 1);
+	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
 	//lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
@@ -230,7 +230,7 @@ void buttonClicked(void* e) {
 	Element* element = (Element *) e;
 	cout << "You clicked an element. "
 			<< " Callback function executing on element id:" << element->getId() << endl;
-	//N++;
+	(*N)++;
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 }
