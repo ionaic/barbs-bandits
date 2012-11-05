@@ -38,12 +38,13 @@ ToggleButton::ToggleButton(int x, int y, int w, int h,
 void ToggleButton::mouseInput(int x, int y) {
 	if ( x < 0 || y < 0) return;
 	bool inside = (this->_width >= x && this->_height >= y);
-	cout << "Inside tbutton" << endl;
+
 	if (inside) { //if inside button
+		cout << "Inside tbutton" << endl;
 		_down = !_down;
-		if (0 != _mouseCallback ) //if element has a callback
-			this->_mouseCallback(this);
 		if (_down) this->_imageE->darken();
 		else this->_imageE->lighten();
+		if (0 != _mouseCallback ) //if element has a callback
+			this->_mouseCallback(this);
 	}
 }

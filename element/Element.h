@@ -32,7 +32,7 @@ class Element {
         /*! \brief Registers a callback function for the element. */
         void registerCallback(void (*func)(void *)); //for now just registers mouse callback
         /*! \brief Test if element clicked by mouse. */
-        void mouseInput(int x, int y);
+        virtual void mouseInput(int x, int y);
         /*! \brief Add a child element to the current element. */
         void addChild(Element *child);
         // getters and setters

@@ -1,4 +1,5 @@
 #include "Pixel.h"
+#include <cstdlib>
 
 Pixel::Pixel() {}
 Pixel::Pixel(int R, int G, int B) {
@@ -17,10 +18,13 @@ Pixel::Pixel(Pixel &p)
 }
 
 void Pixel::setRGB(int R, int G, int B) {
-	_r = R; _g = G; _b = B; _a = 255;
+	setRGBA(R, G, B, 255);
 }
 void Pixel::setRGBA(int R, int G, int B, int A) {
-	_r = R; _g = G; _b = B; _a = A;
+	_r = std::min(255, R);
+	_g = std::min(255, G);
+	_b = std::min(255, B);
+	_a = std::min(255, A);
 }
 int Pixel::getR() const {
 	return _r;

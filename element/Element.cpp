@@ -29,8 +29,7 @@ Element::Element(int x, int y) {
     this->_id = currentId;
     currentId++;
     this->_result = new Image(this->_width, this->_height);
-	Pixel p(100, 100, 100, 255);
-    this->_clrImg = new Image(this->_width, this->_height, p);
+    this->_clrImg = new Image(this->_width, this->_height);
     this->_dirty = true;
     this->_mouseCallback = 0;
 }
@@ -44,8 +43,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_id = currentId;
     currentId++;
     this->_result = new Image(this->_width, this->_height);
-	Pixel p(100, 100, 100, 255);
-    this->_clrImg = new Image(this->_width, this->_height, p);
+    this->_clrImg = new Image(this->_width, this->_height);
     this->_dirty = true;
     this->_mouseCallback = 0;
 }
