@@ -81,7 +81,12 @@ void Element::clearResult() {
     //start drawing things
     this->_clrImg->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
 }
-
+void Element::mouseDownRelative(float x, float y) {
+    mouseDown((int)(_width*x),(int)(_height*y));
+}
+void Element::mouseUpRelative(float x, float y) {
+    mouseUp((int)(_width*x),(int)(_height*y));
+}
 /*! Tests if the mouse click at (x, y) is within the element. */
 void Element::mouseDown(int x, int y) {
 	if ( x < 0 || y < 0) return;
