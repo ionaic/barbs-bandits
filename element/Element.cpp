@@ -7,7 +7,6 @@
 using namespace std;
 
 /*! Creates an element positioned at (0,0) with dimensions (0,0). */
-/*
 Element::Element() {
     cout << "invalid element 1" << endl;
     this->_xCoord = 0;
@@ -24,9 +23,7 @@ Element::Element() {
     this->_mouseMoveCallback = 0;
 }
 
-*/
 /*! Creates an element positioned at (x,y) with dimensions (0,0). */
-/*
 Element::Element(int x, int y) {
     cout << "invalid element 2" << endl;
 	this->_xCoord = x;
@@ -42,7 +39,6 @@ Element::Element(int x, int y) {
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
 }
-*/
 
 
 

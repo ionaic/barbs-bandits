@@ -11,6 +11,7 @@ void draw(void);
 void GLFWCALL windowResize( int width, int height );
 int loadGuiTexture( string texture );
 void GLFWCALL mouseClicked(int mButton, int clicked);
+void GLFWCALL mouseMoved(int x, int y);
 void buttonClicked(Element* e, int, int);
 
 #endif
