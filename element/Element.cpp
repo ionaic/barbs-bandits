@@ -52,6 +52,9 @@ Element::Element(int x, int y, int xs, int ys) {
 Element::~Element() {
     delete this->_result;
     delete this->_clrImg;
+    for (vector<Element *>::iterator itr = _children.begin(); _children.end() != itr; itr++) { 
+        delete *itr; 
+    }
 }
 
 /*! Renders the background of the element, namely element contents.  For generic 
