@@ -14,7 +14,7 @@ using namespace std;
 
 This class should not be accessed directly. Instead, all interactions should go through NumericalCounter, BoundedCounter, FractionalCounter, ProgressBar, or SliderBar.
 */
-class AbstractCounter : Element {
+class AbstractCounter : public Element {
 public:
 	AbstractCounter(); /*!< \brief Default Constructor. */
 	AbstractCounter(int value); /*!< \brief Copy Constructor. */
