@@ -21,6 +21,11 @@ traversal, rendering, and events.
 */
 class Element {
     public:
+        typedef void(*mouseMoveCallback_t)(Element*,int,int,int,int);
+        typedef void(*mouseClickCallback_t)(Element*,int,int);
+        typedef mouseClickCallback_t mouseDownCallback_t;
+        typedef mouseClickCallback_t mouseUpCallback_t;
+        
         Element(); /*!< \brief Default Constructor. */
         Element(int x, int y); /*!< \brief Construct with position. */
         Element(int x, int y, int xs, int ys); /*!< \brief Construct with position and size. */
@@ -29,10 +34,15 @@ class Element {
         virtual void clearResult();
         /*! \brief Renders the element and its children recursively. */
         Image* render();
+
+        void registerMouseMoveCallback(mouseMoveCallback_t func); //for now just registers mouse callback
+        void registerMouseUpCallback(mouseUpCallback_t func); //for now just registers mouse callback
         /*! \brief Registers a callback function for the element. */
-        void registerCallback(void (*func)(void *)); //for now just registers mouse callback
+        void registerMouseDownCallback(mouseDownCallback_t func); //for now just registers mouse callback
         /*! \brief Test if element clicked by mouse. */
-        virtual void mouseInput(int x, int y);
+        virtual void mouseDown(int x, int y);
+        virtual void mouseUp(int x, int y);
+        virtual void mouseMove(int x, int y, int dx, int dy);
         /*! \brief Add a child element to the current element. */
         void addChild(Element *child);
         // getters and setters
@@ -63,7 +73,9 @@ class Element {
         unsigned int _width;
         /*! The element's height. */
         unsigned int _height;
-        void (*_mouseCallback)(void*);
+        mouseDownCallback_t _mouseCallback;
+        mouseUpCallback_t _mouseUpCallback;
+        mouseMoveCallback_t _mouseMoveCallback;
         /*! The resulting image for the element to be blitted to a parent 
          * element or rendered on a surface 
          */
