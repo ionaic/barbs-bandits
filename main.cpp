@@ -60,8 +60,8 @@ int loadGuiTexture(string textureString) {
 	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
 	//progressbar in the upper left
-	PB = new ProgressBar(0, 230, 50, 25, 0);
-	ie->addChild(PB);
+	//PB = new ProgressBar(0, 230, 50, 25, 0);
+	//ie->addChild(PB);
     //lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerMouseDownCallback( buttonClicked );
