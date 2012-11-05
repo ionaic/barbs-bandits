@@ -5,6 +5,7 @@
 #include "../image/ImageElement.h"
 #include "../text/TextElement.h"
 #include "Button.h"
+#include <iostream>
 
 /*!Default constructor creates an empty instance of the class. */
 Button::Button() : Element() {}
@@ -23,7 +24,15 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 /*!Constructor sets x,y, width, heigh and text */
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, string txt) : Element(x, y, width, height) {
-	unsigned int size = 14; //TODO: do math based on width and height to determine size
+	int h = height>>1;
+	int w = (width/txt.size()<<1);
+	unsigned int size;
+	if (h > w) {
+		size = h;
+	}else{
+		size = w;
+	}
+
 	_imageE = new ImageElement(0, 0, width, height); //need to draw image first
 	addChild(_imageE);
 	_textE = new TextElement(0, 0, width, height, size, txt);
