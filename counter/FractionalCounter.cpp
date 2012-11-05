@@ -17,11 +17,11 @@ FractionalCounter::FractionalCounter(int x, int y, int width, int height, int va
 	string s1 = static_cast<ostringstream*>( &(ostringstream() << value) )->str();
 	string s2 = static_cast<ostringstream*>( &(ostringstream() << _max) )->str();
 	string result = s1 + "/" + s2;
-	_textE = new TextElement(x,y,width, height, 14, result);
+	_textE = new TextElement(0, 0, width, height, 0, result);
 	addChild(_textE);
 	render();
 }
 
 FractionalCounter::~FractionalCounter() {
-	delete textE;
+	delete _textE;
 }

@@ -14,6 +14,7 @@
  * image instead of a plain color.
  */
 class ImageElement : public Element {
+    friend class ProgressBar;
     public:
         // public constructors
         /*! \brief Default constructor. */
@@ -48,6 +49,7 @@ class ImageElement : public Element {
             Element::clearResult();
             this->_img->blit(*(this->_result),  0U, 0U, 0U, 0U, this->_width, this->_height);
         }
+
     private:
         Image* _img;
 };

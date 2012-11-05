@@ -14,7 +14,6 @@ public:
 	~FractionalCounter();
 
 private:
-	Element* _imageE;
 	Element* _textE;
 
 };

@@ -20,7 +20,7 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 	Button(x, y, width, height, "");
 }
 
-/*!Constructor sets x,y, width, heigh and text */
+/*!Constructor sets x,y, width, height and text */
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, string txt) : Element(x, y, width, height) {
 

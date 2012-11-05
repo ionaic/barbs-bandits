@@ -12,6 +12,7 @@
 #include "togglebutton/ToggleButton.h"
 #include "counter/AbstractCounter.h"
 #include "counter/NumericCounter.h"
+#include "counter/ProgressBar.h"
 #include "button/Button.h"
 
 using namespace std;
@@ -25,6 +26,7 @@ static string textureFile = "texture.bmp";
 static ImageElement* ie;
 static ToggleButton* TB;
 static NumericCounter* N;
+static ProgressBar* PB;
 static int width;
 static int height;
 static int WINDOW_WIDTH;
@@ -54,6 +56,7 @@ int loadGuiTexture(string textureString) {
 	Image i(width, height, p);
 	//base background element
 	ie = new ImageElement(0, 0, width, height, i);
+<<<<<<< HEAD
 	/*
 	//bottom left
 	Pixel p(0, 0, 255, 255);
@@ -72,21 +75,22 @@ int loadGuiTexture(string textureString) {
 	TextElement T(156, 0, 100, 60, 18, "TextElement");
 	ie->addChild(&T);
 	*/
-	//numeric counter in the middle
-	N = new NumericCounter(50, 0, 20, 25, 1);
+	//numeric counter next to button (bottom left)
+	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
-	//lower left button
+	//progressbar in the upper left
+	//PB = new ProgressBar(0, 230, 50, 25, 0);
+	//ie->addChild(PB);
+    //lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
-	//Button* B = new Button(0, 0, 10, 20, "a");
-	B->registerCallback( buttonClicked );
+	B->registerMouseDownCallback( buttonClicked );
 	ie->addChild(B);
 	//toggle button near the middle
-	TB = new ToggleButton(0, 100, 100, 40, "TButton");
-	TB->registerCallback( buttonClicked );
+	TB = new ToggleButton(206, 0, 50, 20, "TButton");
+	TB->registerMouseDownCallback( buttonClicked );
 	ie->addChild(TB);
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();
-
 
 	if(!bits) {
 		cout << "Element texture failed to load" << endl;
@@ -230,11 +234,14 @@ void GLFWCALL mouseClicked(int mButton, int clicked)
     float I = ((float)x)/((float)WINDOW_WIDTH);
     float J = ((float)(WINDOW_HEIGHT-y))/((float)WINDOW_HEIGHT);
 	if (mButton == 0 && clicked == 1) {
-		ie->mouseInput(width*I,  height*J);
+		ie->mouseDown(width*I, height*J);
 	}
+    if (mButton == 0 && clicked == 0) {
+        ie->mouseUp(width*I, height*J);
+    }
 }
 
-void buttonClicked(void* e) {
-	Element* element = (Element *) e;
+void buttonClicked(Element* e, int, int) {
+	Element* element = e;
 	(*N)++;
 }
