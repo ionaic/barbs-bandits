@@ -14,6 +14,7 @@ public:
 	bool setValue(int value); /*! /brief sets the value and checks to ensure it's < max value */
 	void _update();
 	ProgressBar &operator++(int);
+	ProgressBar &operator--(int);
 
 private:
 	ImageElement* _imageE;

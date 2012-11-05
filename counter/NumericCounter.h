@@ -17,6 +17,7 @@ public:
 	~NumericCounter();  /*!< \brief default destructor */
 	bool setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
 	NumericCounter &operator++(int);
+	NumericCounter &operator--(int);
 
 private:
 	TextElement * _textE;

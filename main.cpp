@@ -25,6 +25,7 @@ GLuint texture;
 static string textureFile = "texture.bmp";
 static ImageElement* ie;
 static ToggleButton* TB;
+static ToggleButton* TB2;
 static NumericCounter* N;
 static ProgressBar* PB;
 static int width;
@@ -67,9 +68,13 @@ int loadGuiTexture(string textureString) {
 	B->registerMouseDownCallback( buttonClicked2 );
 	ie->addChild(B);
 	//toggle button near the middle
-	TB = new ToggleButton(206, 0, 50, 20, "TButton");
+	TB = new ToggleButton(206, 0, 50, 20, "Increase");
 	TB->registerMouseDownCallback( buttonClicked );
 	ie->addChild(TB);
+	//another toggle button near the middle
+	TB2 = new ToggleButton(206, 50, 50, 20, "Decrease");
+	TB2->registerMouseDownCallback( buttonClicked );
+	ie->addChild(TB2);
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();
 
@@ -164,6 +169,7 @@ void mainLoop(void) {
 		if ( currentTime > oldTime + 0.02 )
 		{
 		    if ( TB->isDown() ) { (*N)++; (*PB)++; }
+		    if ( TB2->isDown() ) { (*N)--; (*PB)--; }
 			draw();
 			glfwSwapBuffers();
 			oldTime = currentTime;

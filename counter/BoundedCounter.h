@@ -15,6 +15,7 @@ public:
 	void setMax(int max); /*< /brief Set maximum value of the counter */
 	virtual bool setValue(int value); /*< /brief Set value of the counter. Must be less than maximum */
 	BoundedCounter &operator++(int);
+	BoundedCounter &operator--(int);
 
 protected:
 	int _max;

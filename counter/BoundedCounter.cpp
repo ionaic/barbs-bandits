@@ -29,3 +29,9 @@ BoundedCounter &BoundedCounter::operator++(int) {
         _value++;
     return *this;
 }
+
+BoundedCounter &BoundedCounter::operator--(int) {
+    if (_value > 1 )
+        _value--;
+    return *this;
+}

@@ -25,6 +25,12 @@ NumericCounter &NumericCounter::operator++(int) {
     return *this;
 }
 
+NumericCounter &NumericCounter::operator--(int) {
+    _value--;
+    _update();
+    return *this;
+}
+
 void NumericCounter::_update() {
     string s = static_cast<ostringstream*>( &(ostringstream() << _value) )->str();
     _textE->setText(s);

@@ -19,3 +19,8 @@ AbstractCounter &AbstractCounter::operator++(int) {
     _value++;
     return *this;
 }
+
+AbstractCounter &AbstractCounter::operator--(int) {
+    _value--;
+    return *this;
+}

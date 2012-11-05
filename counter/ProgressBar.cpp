@@ -33,3 +33,11 @@ ProgressBar &ProgressBar::operator++(int) {
     return *this;
 }
 
+ProgressBar &ProgressBar::operator--(int) {
+    if (_value > 0) {
+        _value--;
+        _update();
+    }
+    return *this;
+}
+
