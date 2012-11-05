@@ -22,20 +22,12 @@ Text::Text(int width, int height, int size) {
 
 /*! Constructor sets width, height, font size and content as per arguments */
 Text::Text(int width, int height, int size, string content) {
-	if (size < 0) {
-		cerr << "Invliad font size";
-		size = 0;
+	if (size < 1) {
+		_dynamicSize = 1;
+	}else{
+		_dynamicSize = 0;
 	}
 
-	if (size == 0) {
-		int h = height>>1;
-		int w = (width/content.size())>>1;
-		if (h > w) {
-			size = h;
-		}else{
-			size = w;
-		}
-	}
 	_width = width;
 	_height = height;
 	_fontSize = size;
@@ -102,11 +94,17 @@ void Text::_render() {
 
 	error = FT_Init_FreeType( &library );
 
+
 	//Load text (ttf) file and return with an error if there's an issue
 	error = FT_New_Face( library,	"text/FreeSans.ttf", 0, &face );
 	if (error) {
 		cerr<< "Error loading .ttf file"<< endl;
 		return;
+	}
+
+
+	if (_dynamicSize) {
+		_fontSize = 1;
 	}
 
 	//Set the text size and return with an error if there's an issue
@@ -120,70 +118,100 @@ void Text::_render() {
 
 	slot = face->glyph; //This is a useful shortcut for the rest of the code
 
-	//For each character in _content, render it into _basic
-	for (int n = 0; n < numChars; n++ ) {
-		error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER);
-		if (pen.x + slot->bitmap_left > _width) {
-			cerr << "Error rendering text: slot exceeded bitmap width." << endl;
-			return;
+	if(_dynamicSize) {
+		//This could use some preformance fixes (like being destroyed)
+
+		//If we're dynamically sizing, try each possible font size from 0 to 50
+		int size;
+		bool doBreak = false;
+		int lastGoodSize = 0;
+
+		for (size = 0; size < 50; size++) { //For each possible font size
+			error = FT_Set_Char_Size( face, 0, size * 64, 0, 0 ); //Set the character size
+
+			for (int j = 0; j < numChars+1; j++) { //For all characters
+				FT_Load_Char( face, _content[j], FT_LOAD_RENDER); //Load the character at j
+
+				pen.x += slot->advance.x >> 6;
+
+				if (pen.x + slot->bitmap_left > _width || slot->bitmap_top > _height) {
+					lastGoodSize = size-1;
+					break;
+				}
+
+				lastGoodSize = size;
+			}
+			pen.x = 0;
+			if (lastGoodSize != size) break;
+		}
+		_fontSize = lastGoodSize;
+	}
+
+
+		//For each character in _content, render it into _basic
+		for (int n = 0; n < numChars; n++ ) {
+			error = FT_Load_Char( face, _content[n], FT_LOAD_RENDER);
+			if (pen.x + slot->bitmap_left > _width) {
+				cerr << "Error rendering text: slot exceeded bitmap width." << endl;
+				return;
+			}
+
+			_renderImage( &slot->bitmap, pen.x + slot->bitmap_left,
+					_height - slot->bitmap_top, _basic);
+
+			pen.x += slot->advance.x >> 6;
 		}
 
-		_renderImage( &slot->bitmap, pen.x + slot->bitmap_left,
-				_height - slot->bitmap_top, _basic);
+		//Destructors
+		FT_Done_Face    ( face );
+		FT_Done_FreeType( library );
 
-		pen.x += slot->advance.x >> 6;
+		//Turn the basic array into an rgba array
+		_colorify(_basic);
 	}
 
-	//Destructors
-	FT_Done_Face    ( face );
-	FT_Done_FreeType( library );
 
-	//Turn the basic array into an rgba array
-	_colorify(_basic);
-}
+	//Do a binary or to combine each character into _basic based off the character's position
+	void Text::_renderImage( FT_Bitmap*  bitmap, FT_Int x, FT_Int y, unsigned char _basic[]) {
+		FT_Int  i, j, p, q;
+		FT_Int  x_max = x + bitmap->width;
+		FT_Int  y_max = y + bitmap->rows;
+		unsigned int index = 0;
 
-
-//Do a binary or to combine each character into _basic based off the character's position
-void Text::_renderImage( FT_Bitmap*  bitmap, FT_Int x, FT_Int y, unsigned char _basic[]) {
-	FT_Int  i, j, p, q;
-	FT_Int  x_max = x + bitmap->width;
-	FT_Int  y_max = y + bitmap->rows;
-	unsigned int index = 0;
-
-	for ( i = x, p = 0; i < x_max; i++, p++ ) {
-		for ( j = y, q = 0; j < y_max; j++, q++ ) {
-			if ( i < 0  || j < 0 || i >= _width || j >= _height ) { continue; }
-			index = (_height - j) * _width - (_width - i);
-			_basic[index] |= bitmap->buffer[q * bitmap->width + p];
+		for ( i = x, p = 0; i < x_max; i++, p++ ) {
+			for ( j = y, q = 0; j < y_max; j++, q++ ) {
+				if ( i < 0  || j < 0 || i >= _width || j >= _height ) { continue; }
+				index = (_height - j) * _width - (_width - i);
+				_basic[index] |= bitmap->buffer[q * bitmap->width + p];
+			}
 		}
 	}
-}
 
-//Helper function to print an approximation of the text imgae as asci art
-void Text::show_image( unsigned char _basic[] ) {
-	for (int i = 0; i < _height; i++ ) {
-		for (int j = 0; j < _width; j++ ) {
-			if(_basic[i*_height+j] == 0) cout << ' ';
-			else if(_basic[i*_height+j] < 128) cout << '+';
-			else if(_basic[i*_height+j] < 128) cout << '*';
-			cout << endl;
+	//Helper function to print an approximation of the text imgae as asci art
+	void Text::show_image( unsigned char _basic[] ) {
+		for (int i = 0; i < _height; i++ ) {
+			for (int j = 0; j < _width; j++ ) {
+				if(_basic[i*_height+j] == 0) cout << ' ';
+				else if(_basic[i*_height+j] < 128) cout << '+';
+				else if(_basic[i*_height+j] < 128) cout << '*';
+				cout << endl;
+			}
 		}
 	}
-}
 
-//Take _basic and generage _image as an rgba array with r, g and b set to zero and alpha set to the corresponding value of basic
-void Text::_colorify(unsigned char _basic[]) {
-	if (_preimg==0) {
-		delete[] _preimg;
-		_preimg = 0;
-	}
-	_preimg = new unsigned char[_height*_width*4];
+	//Take _basic and generage _image as an rgba array with r, g and b set to zero and alpha set to the corresponding value of basic
+	void Text::_colorify(unsigned char _basic[]) {
+		if (_preimg==0) {
+			delete[] _preimg;
+			_preimg = 0;
+		}
+		_preimg = new unsigned char[_height*_width*4];
 
-	for (int i = 0; i<_height*_width*4; i+=4) {
-		_preimg[i] = 0;
-		_preimg[i+1] = 0;
-		_preimg[i+2] = 0;
-		_preimg[i+3] = _basic[i/4];
+		for (int i = 0; i<_height*_width*4; i+=4) {
+			_preimg[i] = 0;
+			_preimg[i+1] = 0;
+			_preimg[i+2] = 0;
+			_preimg[i+3] = _basic[i/4];
+		}
+		_image = new Image(_width,_height,_preimg);
 	}
-	_image = new Image(_width,_height,_preimg);
-}

@@ -41,6 +41,6 @@ void TextElement::clearResult() {
 	Element::clearResult();
 	if (_temp) _temp->blit(*(this->_result), 0U, 0U, 0U, 0U,
 			this->_width, this->_height);
-	else cout << "ERROR in TextElement during clearResult blit." <<
-		" No image available. ID:" << this->getId() << endl;
+	/*else cout << "ERROR in TextElement during clearResult blit." <<
+		" No image available. ID:" << this->getId() << endl;*/
 }
