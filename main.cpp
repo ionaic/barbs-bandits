@@ -56,25 +56,6 @@ int loadGuiTexture(string textureString) {
 	Image i(width, height, p);
 	//base background element
 	ie = new ImageElement(0, 0, width, height, i);
-<<<<<<< HEAD
-	/*
-	//bottom left
-	Pixel p(0, 0, 255, 255);
-	Image i2(100, 50, p);
-	ImageElement ie2(0, 0, 100, 50, i2);
-	Pixel p1(0, 255, 0, 255);
-	Image i3(25, 40, p1);
-	ImageElement ie3(0, 10, 25, 40, i3);
-	ie2.addChild(&ie3);
-	ie->addChild(&ie2);
-	//upper right corner
-	ImageElement ie4(206, 206, 50, 50, i2);
-	ie->addChild(&ie4);
-	//bottom right
-	//text element to be added on top
-	TextElement T(156, 0, 100, 60, 18, "TextElement");
-	ie->addChild(&T);
-	*/
 	//numeric counter next to button (bottom left)
 	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
