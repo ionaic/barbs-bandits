@@ -69,7 +69,7 @@ int loadGuiTexture(string textureString) {
 	TextElement T(156, 0, 100, 60, 18, "TextElement");
 	ie->addChild(&T);
 	*/
-	NumericCounter* N = new NumericCounter(0);
+	//NumericCounter* N = new NumericCounter(0);
 	//upper left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerCallback( buttonClicked );
