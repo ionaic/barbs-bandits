@@ -16,8 +16,6 @@ using namespace std;
 /*! \brief The class used to store a Button consisting of a background ImageElement and a foreground TextElement. */
 class Button : public Element {
 	public:
-        Button(); /*!< \brief Default constructor. */
-        Button(unsigned int x, unsigned int y); /*!< \brief Constructor. Sets x and y position of this Element. */
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height); /*!< \brief Constructor. Sets x and y position of Element along with height and width. */
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt); /*!< \brief Constructor. Sets x and y position of Element along with height, width, and text. */
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img); /*!< \brief Constructor. Sets x and y position of Element along width height. Uses an ImageElment as the background image. */

@@ -2,10 +2,6 @@
 #include "../text/TextElement.h"
 #include <sstream>
 
-NumericCounter::NumericCounter(){
-	NumericCounter(0, 0, 0, 0, 0);
-}
-
 NumericCounter::NumericCounter(int x, int y, int width,
         int height, int value) : AbstractCounter(x, y, width, height, value) {
     string s = static_cast<ostringstream*>( &(ostringstream() << value) )->str();

@@ -16,7 +16,6 @@ This class should not be accessed directly. Instead, all interactions should go 
 */
 class AbstractCounter : public Element {
 	public:
-		AbstractCounter() {}; /*!< \brief Default Constructor. */
 		AbstractCounter(int x, int y, int width, int height, int value); /*!< \brief simple constructor for x, y, width, height*/
 
 		virtual bool setValue(int value); /*!< \brief Update the text stored and re-render it*/

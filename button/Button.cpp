@@ -6,18 +6,13 @@
 #include "../text/TextElement.h"
 #include "Button.h"
 
-/*!Default constructor creates an empty instance of the class. */
-Button::Button() : Element() {}
-
-/*!Constructor sets x,y position according to arguments and sizes to zero. */
-Button::Button(unsigned int x, unsigned int y) {
-	Button(x, y, 0, 0);
-}
-
 /*!Constructor sets x,y position, width and heigh according to arguments. Leaves text empty */
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
-		unsigned int height) {
-	Button(x, y, width, height, "");
+		unsigned int height): Element(x, y, width, height) {
+    _imageE = new ImageElement(0, 0, width, height); //need to draw image first
+    addChild(_imageE);
+    _textE = new TextElement(0, 0, width, height, 0, "");
+    addChild(_textE);
 }
 
 /*!Constructor sets x,y, width, height and text */

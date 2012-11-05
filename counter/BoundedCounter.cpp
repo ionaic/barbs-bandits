@@ -1,11 +1,8 @@
 #include "BoundedCounter.h"
 
-BoundedCounter::BoundedCounter() {
-    BoundedCounter(0,0,0,0,0);
-}
-
-BoundedCounter::BoundedCounter(int x, int y, int width, int height, int value) {
-    BoundedCounter(x, y, width, height, value, 100);
+BoundedCounter::BoundedCounter(int x, int y, int width,
+        int height, int value) : AbstractCounter(x, y, width, height, value) {
+    _max = 100;
 }
 
 BoundedCounter::BoundedCounter(int x, int y, int width, int height,

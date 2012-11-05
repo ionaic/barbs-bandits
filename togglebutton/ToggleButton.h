@@ -15,8 +15,6 @@ using namespace std;
 /*! \brief The class used to store toggleable Buttons. */
 class ToggleButton: public Button {
 	public:
-        ToggleButton(); /*!< \brief Default constructor. */
-        ToggleButton(int x, int y); /*!< \brief Constructor. Sets x and y position of this element. */
         ToggleButton(int x, int y, int w, int h); /*!< \brief Constructor. Sets x and y position of this element along with width and height. */
         ToggleButton(int x, int y, int w, int h, string txt); /*!< \brief Constructor. Sets x and y position of this element along with width, height and text. */
         ToggleButton(int x, int y, int w, int h, 

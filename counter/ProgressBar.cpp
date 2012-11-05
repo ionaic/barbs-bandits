@@ -1,8 +1,5 @@
 #include "ProgressBar.h"
 
-ProgressBar::ProgressBar() {
-    ProgressBar(0,0,0,0,0);
-}
 
 ProgressBar::ProgressBar(int x, int y, int width,
         int height, int value) : BoundedCounter(x, y, width, height, value) {
