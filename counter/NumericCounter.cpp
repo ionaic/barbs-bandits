@@ -9,7 +9,7 @@ NumericCounter::NumericCounter(){
 NumericCounter::NumericCounter(int x, int y, int width,
         int height, int value) : AbstractCounter(x, y, width, height, value) {
     string s = static_cast<ostringstream*>( &(ostringstream() << value) )->str();
-    _textE = new TextElement(0, 0, _width, _height, 14, s);
+    _textE = new TextElement(0, 0, _width, _height, 0, s);
 	Element::addChild(_textE);
 }
 

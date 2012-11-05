@@ -73,14 +73,15 @@ int loadGuiTexture(string textureString) {
 	ie->addChild(&T);
 	*/
 	//numeric counter in the middle
-	N = new NumericCounter(50, 0, 50, 25, 1);
+	N = new NumericCounter(50, 0, 20, 25, 1);
 	ie->addChild(N);
 	//lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
+	//Button* B = new Button(0, 0, 10, 20, "a");
 	B->registerCallback( buttonClicked );
 	ie->addChild(B);
 	//toggle button near the middle
-	TB = new ToggleButton(206, 0, 50, 20, "TButton");
+	TB = new ToggleButton(0, 100, 100, 40, "TButton");
 	TB->registerCallback( buttonClicked );
 	ie->addChild(TB);
 	//render it to a texture by calling render

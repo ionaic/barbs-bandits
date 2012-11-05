@@ -16,7 +16,7 @@ HFILES=button/Button.h image/ImageElement.h text/TextElement.h counter/*.h $(INC
 all: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Counter.o Element.o 
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) 
 
-debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Counter. o Element.o
+debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Counter.o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) -g
 
 Image.o: 
@@ -26,7 +26,7 @@ Pixel.o:
 	$(CC) image/Pixel.cpp -c
 
 Text.o:
-	$(CC) text/Text.cpp $(TXTINCL) -c -Iimage/
+	$(CC) text/Text.cpp $(TXTINCL) -c -Iimage/ -g
 
 TextElement.o:
 	$(CC) text/TextElement.cpp $(TXTINCL) -c

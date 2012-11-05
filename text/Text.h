@@ -36,6 +36,7 @@ class Text {
 		int _fontSize;
 		string _content;
 		void _render();
+		bool _dynamicSize;
 
 		void show_image(unsigned char _basic[]);
 		unsigned char *_basic;
