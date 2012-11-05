@@ -133,7 +133,8 @@ void init(void) {
 	glfwSetWindowCloseCallback(closeWindow);
 	glfwSetWindowSizeCallback( windowResize );
 	glfwSetMouseButtonCallback( mouseClicked );
-	//vsync
+	glfwSetMousePosCallback( mouseMoved );
+    //vsync
 	glfwSwapInterval(vsync);
 
 	//set clear color to white
@@ -219,6 +220,22 @@ void GLFWCALL mouseClicked(int mButton, int clicked)
 	}
     if (mButton == 0 && clicked == 0) {
         ie->mouseUp(width*I, height*J);
+    }
+}
+
+void GLFWCALL mouseMoved(int x, int y) {
+    static int oldx = 0;
+    static int oldy = 0;
+    static bool first = true;
+    y = (WINDOW_HEIGHT-y);
+    if (first) {
+        first = false;
+        oldx = x;
+        oldy = y;
+    } else {
+        ie->mouseMove(x,y,x-oldx,y-oldy);
+        oldx = x;
+        oldy = y;
     }
 }
 
