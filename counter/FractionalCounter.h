@@ -7,7 +7,7 @@ This file contains the FractionalCounter class.
 
 #include "BoundedCounter.h"
 
-class FractionalCounter : BoundedCounter {
+class FractionalCounter : public BoundedCounter {
 public:
 	FractionalCounter() BoundedCounter();  /*!< \brief Default Constructor. */
 	FractionalCounter(value) : BoundedCounter(value); /*!< /brief Constructor with starting values */

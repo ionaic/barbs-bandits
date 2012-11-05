@@ -7,7 +7,7 @@ This file contains the ProgressBar class.
 
 #include "BoundedCounter.h"
 
-class ProgressBar : BoundedCounter {
+class ProgressBar : public BoundedCounter {
 public:
 	ProgressBar() BoundedCounter();  /*!< \brief Default Constructor. */
 	ProgressBar(int value) : BoundedCounter(value); /*!< /brief Constructor with starting value */

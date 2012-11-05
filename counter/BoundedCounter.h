@@ -7,7 +7,7 @@ This file contains the BoundedCounter class.
 
 #include "AbstractCounter.h"
 
-class BoundedCounter : AbstractCounter {
+class BoundedCounter : public AbstractCounter {
 public:
 	BoundedCounter() : AbstractCounter();  /*!< \brief Default Constructor. */
 	BoundedCounter(int value) : AbstractCounter(value); /*< /brief Constructor with starting value */
