@@ -174,27 +174,18 @@ Image* Element::render() {
     // clear the background of the image, fill with either content or
     //  a clear color
     
-	vector<Element*>::iterator child = this->_children.begin();
     if (_dirty) {
         clearResult();
         _dirty = false;
     } else {
         return this->_result;
     }
-	child = this->_children.begin();
+	vector<Element*>::iterator child = this->_children.begin();
     for(; _children.end() != child; child++) {
-        if ((*child)->_dirty) {
-            Image* childImage = (*child)->render();
-        } 
-           //if ((*child)->_dirty) {
-            //render the children onto the element's background
-            //return composited image/texture
-            // blit each child to the result image at the proper place
+        Image* childImage = (*child)->render();
         (*child)->_result->blit(*(this->_result),0,0,
             (*child)->_xCoord, (*child)->_yCoord,
             (*child)->_width, (*child)->_height);
-        // if any child is dirty, this element is dirty
-		//}
 	}
 	//cout << "Rendering ID: "<< this->_id << endl;
     return this->_result;
