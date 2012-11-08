@@ -4,7 +4,7 @@
 #include <iostream>
 #include "Pixel.h"
 #include "Image.h"
-#include "../element/Element.h"
+#include "/Element.h"
 
 
 /*! \brief An element which simply contains an image and has children.  

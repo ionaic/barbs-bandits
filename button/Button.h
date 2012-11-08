@@ -5,11 +5,11 @@ This file contains the Button class.
 #define _BUTTON_H_
 
 #include <string>
-#include "../image/Image.h"
-#include "../text/Text.h"
-#include "../element/Element.h"
-#include "../image/ImageElement.h"
-#include "../text/TextElement.h"
+#include "Image.h"
+#include "Text.h"
+#include "Element.h"
+#include "ImageElement.h"
+#include "TextElement.h"
 
 using namespace std;
 
