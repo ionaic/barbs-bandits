@@ -181,13 +181,17 @@ Image* Element::render() {
 	for(; _children.end() != child; child++) {
         if ((*child)->_dirty) {
         Image* childImage = (*child)->render();
-		//if ((*child)->_dirty) {
+        //if ((*child)->_dirty) {
         //render the children onto the element's background
         //return composited image/texture
         // blit each child to the result image at the proper place
         childImage->blit(*(this->_result), 0, 0, 
             (*child)->_xCoord, (*child)->_yCoord, 
             (*child)->_width, (*child)->_height);
+        } else {
+            (*child)->_result->blit(*(this->_result),0,0,
+                (*child)->_xCoord, (*child)->_yCoord,
+                (*child)->_width, (*child)->_height);
         }
         // if any child is dirty, this element is dirty
 		//}
