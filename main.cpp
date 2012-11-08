@@ -190,7 +190,7 @@ void mainLoop(void) {
 		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
 			break;
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		if ( currentTime > oldTime + 0.02 )
+		//if ( currentTime > oldTime + 0.02 )
 		{
 		    if ( TB->isDown() ) { (*N)++; (*PB)++; }
 		    if ( TB2->isDown() ) { (*N)--; (*PB)--; }
@@ -198,8 +198,8 @@ void mainLoop(void) {
 			glfwSwapBuffers();
 			oldTime = currentTime;
 		}
-		else
-			usleep(10);
+		//else
+			//usleep(10);
 	}
 }
 
@@ -214,7 +214,7 @@ void draw(void)
         clock_t nclock = clock();
         float diff = nclock-last;
         last = nclock;
-        diff = diff/CLOCKS_PER_SEC;
+        diff = diff/ CLOCKS_PER_SEC;
         diff = diff/60;
         diff = 1./diff;
         cout << diff << endl;
