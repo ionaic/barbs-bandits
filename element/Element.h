@@ -78,6 +78,7 @@ class Element {
         mouseDownCallback_t _mouseCallback;
         mouseUpCallback_t _mouseUpCallback;
         mouseMoveCallback_t _mouseMoveCallback;
+        vector<Element *> _children;
         /*! The resulting image for the element to be blitted to a parent 
          * element or rendered on a surface 
          */

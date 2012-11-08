@@ -16,6 +16,7 @@
 #include "counter/ProgressBar.h"
 #include "button/Button.h"
 #include "checkbox/CheckBox.h"
+#include "checkbox/RadioButton.h"
 
 using namespace std;
 
@@ -63,7 +64,7 @@ int loadGuiTexture(string textureString) {
 	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
 	//progressbar in the upper left
-	PB = new ProgressBar(0, 230, 205, 25, 0);
+	PB = new ProgressBar(0, 230, 155, 25, 0);
 	ie->addChild(PB);
     //lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
@@ -82,9 +83,15 @@ int loadGuiTexture(string textureString) {
 	buttonList.push_back("CB 1");
     buttonList.push_back("CB 2");
     buttonList.push_back("CB 3");
-    //buttonList.push_back("CB 4");
     CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList);
     ie->addChild(CB);
+    //RadioButton array
+    vector <string> buttonList2;
+    buttonList2.push_back("RB 1");
+    buttonList2.push_back("RB 2");
+    buttonList2.push_back("RB 3");
+    RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2);
+    ie->addChild(RB);
 
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();

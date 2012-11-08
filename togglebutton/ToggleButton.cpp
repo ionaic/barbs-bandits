@@ -30,8 +30,7 @@ void ToggleButton::mouseDown(int x, int y) {
 
 	if (inside) { //if inside button
 		_down = !_down;
-		if (_down) this->_imageE->darken();
-		else this->_imageE->lighten();
+		_update();
 		if (0 != _mouseCallback ) //if element has a callback
 			this->_mouseCallback(this, x, y);
 	}
@@ -39,4 +38,14 @@ void ToggleButton::mouseDown(int x, int y) {
 
 bool ToggleButton::isDown() {
     return _down;
+}
+
+void ToggleButton::setDown(bool down) {
+    _down = down;
+    _update();
+}
+
+void ToggleButton::_update() {
+    if (_down) this->_imageE->darken();
+    else this->_imageE->lighten();
 }
