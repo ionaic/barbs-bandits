@@ -8,7 +8,6 @@ using namespace std;
 
 /*! Creates an element positioned at (0,0) with dimensions (0,0). */
 Element::Element() {
-    cout << "invalid element 1" << endl;
     this->_xCoord = 0;
     this->_yCoord = 0;
     this->_width = 0;
@@ -25,7 +24,6 @@ Element::Element() {
 
 /*! Creates an element positioned at (x,y) with dimensions (0,0). */
 Element::Element(int x, int y) {
-    cout << "invalid element 2" << endl;
 	this->_xCoord = x;
 	this->_yCoord = y;
 	this->_width = 0;
@@ -44,7 +42,6 @@ Element::Element(int x, int y) {
 
 /*! Creates an element positioned at (x, y) with dimensions (xs, ys). */
 Element::Element(int x, int y, int xs, int ys) {
-    cout << "element" << x << y << ", " << xs << " , " << ys << endl;
 	this->_xCoord = x;
 	this->_yCoord = y;
 	this->_width = xs;

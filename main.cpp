@@ -15,6 +15,7 @@
 #include "counter/NumericCounter.h"
 #include "counter/ProgressBar.h"
 #include "button/Button.h"
+#include "checkbox/CheckBox.h"
 
 using namespace std;
 
@@ -62,20 +63,29 @@ int loadGuiTexture(string textureString) {
 	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
 	//progressbar in the upper left
-	PB = new ProgressBar(0, 230, 200, 25, 0);
+	PB = new ProgressBar(0, 230, 205, 25, 0);
 	ie->addChild(PB);
     //lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerMouseDownCallback( buttonClicked2 );
 	ie->addChild(B);
-	//toggle button near the middle
+	//toggle button on the right
 	TB = new ToggleButton(206, 0, 50, 20, "Increase");
 	TB->registerMouseDownCallback( buttonClicked );
 	ie->addChild(TB);
-	//another toggle button near the middle
+	//another toggle button on the right
 	TB2 = new ToggleButton(206, 50, 50, 20, "Decrease");
 	TB2->registerMouseDownCallback( buttonClicked );
 	ie->addChild(TB2);
+	//CheckBox array
+	vector <string> buttonList;
+	buttonList.push_back("CB 1");
+    buttonList.push_back("CB 2");
+    buttonList.push_back("CB 3");
+    //buttonList.push_back("CB 4");
+    CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList);
+    ie->addChild(CB);
+
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();
 

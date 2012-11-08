@@ -12,7 +12,6 @@ Image::Image() {
 }
 
 Image::Image(unsigned int width, unsigned int height) {
-    std::cout << "w:h" << width << ", " << height << std::endl;
 	_width = width;
 	_height = height;
 	_pixels = new Pixel[width*height];
