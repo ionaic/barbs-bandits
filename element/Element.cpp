@@ -20,6 +20,7 @@ Element::Element() {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_keyDownCallback = 0;
     this->_parent = 0;
     this->_zIndex = -1;
     _first_render = true;
@@ -39,6 +40,7 @@ Element::Element(int x, int y) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_keyDownCallback = 0;
     this->_parent = 0;
     this->_zIndex = -1;
     _first_render = true;
@@ -60,6 +62,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_keyDownCallback = 0;
     this->_parent = 0;
     this->_zIndex = -1;
     _first_render = true;
@@ -138,6 +141,14 @@ void Element::mouseMove(int x, int y, int dx, int dy) {
 	}
 }
 
+void Element::keyDown(int c) {
+	vector<Element*>::iterator child = this->_children.begin();
+	for(; _children.end() != child; child++) {
+		(*child)->keyDown(c);
+	}
+    //this->_keyDownCallback(this,c);
+}
+
 /*! Register a callback function, accepts a function pointer to a function which
  * takes one argument of void*.
  */
@@ -151,6 +162,10 @@ void Element::registerMouseUpCallback(mouseUpCallback_t func) {
 
 void Element::registerMouseMoveCallback(mouseMoveCallback_t func) {
     this->_mouseMoveCallback = func;
+}
+
+void Element::registerKeyDownCallback(keyDownCallback_t func) {
+    this->_keyDownCallback = func;
 }
 
 /*! Add a child element to the set of children elements.  The function accepts a

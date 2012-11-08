@@ -9,6 +9,7 @@
 #include "main.h"
 #include "element/Element.h"
 #include "text/TextElement.h"
+#include "text/TextEdit.h"
 #include "image/ImageElement.h"
 #include "togglebutton/ToggleButton.h"
 #include "counter/AbstractCounter.h"
@@ -34,10 +35,12 @@ static ToggleButton* TB2;
 static NumericCounter* N;
 static FractionalCounter* F;
 static ProgressBar* PB;
+static TextEdit* TE;
 static int width;
 static int height;
 static int WINDOW_WIDTH;
 static int WINDOW_HEIGHT;
+bool quit = 0;
 
 int main() {
 	init();
@@ -70,6 +73,9 @@ int loadGuiTexture(string textureString) {
     height = ie->height();
     N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
+
+	TE = new TextEdit(2,50,200,80,"Hello");
+	ie->addChild(TE);
 	//Fractional counter in bottom right above increse
 	F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
 	ie->addChild(F);
@@ -156,6 +162,20 @@ int closeWindow(void) {
 	return GL_TRUE;
 }
 
+void GLFWCALL printableKeyPressed(int key, int action) {
+			(TE)->keyDown(key);
+}
+
+void GLFWCALL keyPressed(int key, int action) {
+	if (action == GLFW_PRESS) {
+		if (key == GLFW_KEY_ESC)
+			    quit = 1;
+		else if (key == GLFW_KEY_BACKSPACE)
+			(TE)->keyDown(-1);
+	}
+}
+
+
 void init(void) {
 	/** Initializes a glfw window for use in the demo
 	 */
@@ -178,6 +198,8 @@ void init(void) {
 	glfwSetWindowSizeCallback( windowResize );
 	glfwSetMouseButtonCallback( mouseClicked );
 	glfwSetMousePosCallback( mouseMoved );
+	glfwSetKeyCallback( keyPressed );
+	glfwSetCharCallback( printableKeyPressed );
     //vsync
 	glfwSwapInterval(vsync);
 
@@ -194,14 +216,13 @@ void init(void) {
 
 }
 
-
 void mainLoop(void) {
 	/** the main event loop for the demo
 	 */
 	double oldTime = glfwGetTime();
 	while(running) {
 		double currentTime = glfwGetTime();
-		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
+		if (quit)
 			break;
 		if ( currentTime > oldTime + 0.02 )
 		{
@@ -257,7 +278,6 @@ void draw(void)
     glEnd();
     glDisable( GL_TEXTURE_2D );
 }
-
 
 // Callback for when the window is resized
 void GLFWCALL windowResize( int width, int height ) {

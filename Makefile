@@ -5,7 +5,7 @@ TXTINCL=`freetype-config --cflags` -lfreetype
 # compiler
 CC=g++
 # object files
-OFILES=Image.o Pixel.o Text.o Element.o TextElement.o Button.o ToggleButton.o NumericCounter.o AbstractCounter.o FractionalCounter.o ProgressBar.o BoundedCounter.o CheckBox.o RadioButton.o SliderBar.o
+OFILES=Image.o Pixel.o Text.o Element.o TextElement.o Button.o TextEdit.o ToggleButton.o NumericCounter.o AbstractCounter.o FractionalCounter.o ProgressBar.o BoundedCounter.o CheckBox.o RadioButton.o SliderBar.o
 # final target
 TARGET=sample
 # generic element includes
@@ -16,7 +16,7 @@ HFILES=button/Button.h image/ImageElement.h text/TextElement.h counter/*.h check
 all: $(OFILES) 
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) 
 
-debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o Counter.o CheckBox.o RadioButton.o SliderBar.o Element.o
+debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o TextEdit.o Counter.o CheckBox.o RadioButton.o SliderBar.o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) -g
 
 Image.o: Pixel.o image/Image.h 
@@ -31,7 +31,10 @@ Text.o: Image.o text/Text.h
 TextElement.o: Text.o text/TextElement.h
 	$(CC) text/TextElement.cpp $(TXTINCL) -c
 
-Element.o: Image.o
+TextEdit.o:
+	$(CC) text/TextEdit.cpp $(TXTINCL) -c
+
+Element.o: Image.o element/Element.h
 	$(CC) -I image/ element/Element.cpp -c
 
 Button.o: Element.o Text.o
