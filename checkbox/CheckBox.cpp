@@ -10,7 +10,7 @@ CheckBox::CheckBox(int x, int y, int width, int height, vector <string> buttons 
     int numBoxes = buttons.size();
     for (int i = numBoxes - 1; i >= 0; i--) {
         int bHeight = height / numBoxes;
-        ToggleButton * _tb = new ToggleButton(0, y1, width, bHeight, buttons[i]);
+        ToggleButton * _tb = new ToggleButton(0, y1, width, bHeight - 1, buttons[i]);
         y1 += bHeight;
         Element::addChild( _tb);
     }
