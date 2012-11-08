@@ -73,8 +73,8 @@ int loadGuiTexture(string textureString) {
     height = ie->height();
     N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
-
-	TE = new TextEdit(2,50,200,80,"Hello");
+	//text edit box
+	TE = new TextEdit(2,50,200,25,"Hello");
 	ie->addChild(TE);
 	//Fractional counter in bottom right above increse
 	F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
@@ -163,7 +163,7 @@ int closeWindow(void) {
 }
 
 void GLFWCALL printableKeyPressed(int key, int action) {
-			(TE)->keyDown(key);
+			ie->keyDown(key);
 }
 
 void GLFWCALL keyPressed(int key, int action) {
@@ -171,7 +171,7 @@ void GLFWCALL keyPressed(int key, int action) {
 		if (key == GLFW_KEY_ESC)
 			    quit = 1;
 		else if (key == GLFW_KEY_BACKSPACE)
-			(TE)->keyDown(-1);
+			ie->keyDown(-1);
 	}
 }
 

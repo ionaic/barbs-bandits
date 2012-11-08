@@ -12,8 +12,10 @@ class TextEdit : public TextElement {
 	public:
 		TextEdit(int x, int y, int width, int height, string txt);
 		void keyDown(int c);
+		void mouseDown(int x, int y);
 
 	private:
 		void backspace();
+		bool _inside;
 };
 #endif
