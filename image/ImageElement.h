@@ -32,9 +32,9 @@ class ImageElement : public Element {
         ImageElement(unsigned int x, unsigned int y, unsigned int width, unsigned int height) : 
             Element(x, y, width, height) { this->_img = new Image(width, height); }
         /* \brief calls the darken function of image */
-        void darken() { _img->darken(); }
+        void darken() { _img->darken(); setDirty(true);}
         /* \brief calls the darken function of image */
-        void lighten() { _img->lighten(); }
+        void lighten() { _img->lighten(); setDirty(true);}
         /*! \brief Constructor to create an image element at (x, y) in the parent
          * with dimensions (width, height) and the specified content image.
          */
