@@ -189,7 +189,6 @@ void mainLoop(void) {
 		double currentTime = glfwGetTime();
 		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
 			break;
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//if ( currentTime > oldTime + 0.02 )
 		{
 		    if ( TB->isDown() ) { (*N)++; (*PB)++; }
@@ -223,6 +222,7 @@ void draw(void)
     // draw GUI box
 	//enable texturing
 
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
                 0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 
