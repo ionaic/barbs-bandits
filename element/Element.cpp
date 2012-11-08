@@ -155,10 +155,14 @@ void Element::registerMouseMoveCallback(mouseMoveCallback_t func) {
  * STL sort on the children, organizing by z-index (z position).
  */
 void Element::addChild(Element *child) {
+    if (child == 0) {
+        throw "Child cannot be null!";
+    }
 	if (this->_id != child->_id) {
+        ElementComparison comparator;
 	    child->_parent = this;
 		this->_children.push_back(child);
-		sort(this->_children.begin(), this->_children.end());
+		sort(this->_children.begin(), this->_children.end(), comparator);
 		return;
 	}
 	cout << "Element could not be added as child of itself." << endl;

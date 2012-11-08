@@ -12,7 +12,7 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
     Pixel p(255, 255, 255, 127);
     Image i(width, height, p);
     _imageE = new ImageElement(0, 0, width, height, i); //need to draw image first
-    addChild(_imageE);
+    setBgIg(_imageE);
     _textE = new TextElement(0, 0, width, height, 0, "");
     addChild(_textE);
 }
@@ -23,7 +23,7 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
     Pixel p(255, 255, 255, 127);
     Image i(width, height, p);
 	_imageE = new ImageElement(0, 0, width, height, i); //need to draw image first
-	addChild(_imageE);
+	setBgIg(_imageE);
 	_textE = new TextElement(0, 0, width, height, 0, txt);
 	addChild(_textE);
 }
@@ -31,14 +31,15 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 /*!Constructor sets x,y, width height and a background of an image */
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, ImageElement* img) : Element(x, y, width, height) {
-	_imageE = img;		//need to draw image first
-	addChild(_imageE);
-	_textE = new TextElement(0, 0, width, height);
+	setBgIg(img);
+    _textE = new TextElement(0, 0, width, height);
 	addChild(_textE);
 }
 
 /*!Sets the background image of a button*/
 void Button::setBgIg(ImageElement* img) {
+	_imageE = img;		//need to draw image first
+    img->setZ(-1);
     Element::addChild(img);
     setDirty(true);
     img->setDirty(true);
