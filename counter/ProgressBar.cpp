@@ -16,6 +16,7 @@ bool ProgressBar::setValue(int value) {
         _update();
         return true;
     }
+    return false;
 }
 
 void ProgressBar::_update() {

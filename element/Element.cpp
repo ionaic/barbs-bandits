@@ -21,6 +21,7 @@ Element::Element() {
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
     this->_parent = 0;
+    this->_zIndex = -1;
     _first_render = true;
 }
 
@@ -39,6 +40,7 @@ Element::Element(int x, int y) {
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
     this->_parent = 0;
+    this->_zIndex = -1;
     _first_render = true;
 }
 
@@ -59,6 +61,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
     this->_parent = 0;
+    this->_zIndex = -1;
     _first_render = true;
 }
 
@@ -125,7 +128,7 @@ void Element::mouseMove(int x, int y, int dx, int dy) {
 	if ( x < 0 || y < 0) return;
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
-		(*child)->mouseMove(dx-(*child)->_xCoord, y-(*child)->_yCoord, dx, dy);
+		(*child)->mouseMove(x-(*child)->_xCoord, y-(*child)->_yCoord, dx, dy);
 	}
 	bool inside = (this->_width >= x && this->_height >= y);
 	if (inside) { //if inside button
