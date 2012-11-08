@@ -31,7 +31,7 @@ Text.o: Image.o text/Text.h
 TextElement.o: Text.o text/TextElement.h
 	$(CC) text/TextElement.cpp $(TXTINCL) -c
 
-TextEdit.o:
+TextEdit.o: Element.o Text.o text/TextEdit.h
 	$(CC) text/TextEdit.cpp $(TXTINCL) -c
 
 Element.o: Image.o element/Element.h
