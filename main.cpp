@@ -46,24 +46,28 @@ int main() {
 }
 
 int loadGuiTexture(string textureString) {
-	FreeImage_Initialise();
-	FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
-	FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
-	if (!bitmap || !bitmap32) {
-		cout << "Texture failed to load" << endl;
-		return 1;
-	}
-	width = FreeImage_GetWidth(bitmap32);
-	height = FreeImage_GetHeight(bitmap32);
-	BYTE* texturebits = FreeImage_GetBits(bitmap32);
+	//FreeImage_Initialise();
+	//FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
+	//FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+	//if (!bitmap || !bitmap32) {
+	//	cout << "Texture failed to load" << endl;
+	//	return 1;
+	//}
+	//width = FreeImage_GetWidth(bitmap32);
+	//height = FreeImage_GetHeight(bitmap32);
+	//BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
 	//For texture
-	Pixel p(255, 255, 255, 255);
-	Image i(width, height, p);
+	//Pixel p(255, 255, 255, 255);
+	//Image i(width, height, p);
 	//base background element
-	ie = new ImageElement(0, 0, width, height, i);
+	//Image i(textureString.c_str());
+    //ie = new ImageElement(0, 0, i.width(), i.height(), i);
 	//numeric counter next to button (bottom left)
-	N = new NumericCounter(50, 0, 50, 25, 1);
+	ie = new ImageElement(0,0,textureString.c_str());
+    width = ie->width();
+    height = ie->height();
+    N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
 	//Fractional counter in bottom right above increse
 	F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
@@ -129,7 +133,7 @@ int loadGuiTexture(string textureString) {
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, bits);
 	//unload the bitmap since we're done with it
-	FreeImage_Unload(bitmap);
+	//FreeImage_Unload(bitmap);
 	return 0;
 }
 

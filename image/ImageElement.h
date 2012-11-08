@@ -18,14 +18,20 @@ class ImageElement : public Element {
     public:
         // public constructors
         /*! \brief Default constructor. */
-        ImageElement() : 
-            Element() { this->_img = new Image(); }
         /*! \brief Constructor to create an element out of the given image. */
         ImageElement(Image &img) : 
             Element(0, 0, img.width(), img.height()) { this->_img = new Image(img); }
         /*! \brief Constructor to create an image element at a location. */
-        ImageElement(unsigned int x, unsigned int y) :
-            Element(x, y, 0, 0) { this->_img = new Image(); }
+        ImageElement(unsigned int x, unsigned int y, const char *fname): Element(x,y, 0, 0) {
+            this->_img = new Image(fname);
+            _width = _img->width();
+            _height = _img->height();
+            delete _result;
+            delete _clrImg;
+            _result = new Image(this->_width, this->_height);
+            _clrImg = new Image(this->_width, this->_height);
+            cout << _width << "  " << _height << endl;
+        }
         /*! \brief Constructor to create an image element at (x,y) with dimensions
          * (width, height).
          */
