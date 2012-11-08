@@ -20,6 +20,7 @@ Element::Element() {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_parent = 0;
     _first_render = true;
 }
 
@@ -37,6 +38,7 @@ Element::Element(int x, int y) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_parent = 0;
     _first_render = true;
 }
 
@@ -56,6 +58,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_parent = 0;
     _first_render = true;
 }
 
@@ -153,6 +156,7 @@ void Element::registerMouseMoveCallback(mouseMoveCallback_t func) {
  */
 void Element::addChild(Element *child) {
 	if (this->_id != child->_id) {
+	    child->_parent = this;
 		this->_children.push_back(child);
 		sort(this->_children.begin(), this->_children.end());
 		return;
@@ -196,6 +200,12 @@ Image* Element::render() {
 /*! Less than operator which compares two elements based solely on their
  *  z-index (z position).
  */
+
+void Element::setDirty(bool dirty){
+    this->_dirty = dirty;
+    if (this->_parent)
+        _parent->setDirty(true);
+}
 bool Element::operator<(const Element &other) { 
     return this->_zIndex < other._zIndex;
 }

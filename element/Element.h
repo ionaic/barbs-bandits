@@ -61,7 +61,7 @@ class Element {
         /*! \brief Set the element's height. */
         void setHeight(unsigned int height) { this->_height = height; }
         /*! \brief Set the dirty flag.  Causes the element re-render. */
-        void setDirty(bool dirty) { this->_dirty = dirty; }
+        void setDirty(bool dirty);
         // operator definitions
         /*! \brief Less than operator so Element objects may be sorted. */
         bool operator<(const Element &other);

@@ -83,6 +83,8 @@ int loadGuiTexture(string textureString) {
 	buttonList.push_back("CB 1");
     buttonList.push_back("CB 2");
     buttonList.push_back("CB 3");
+    buttonList.push_back("CB 4");
+    buttonList.push_back("CB 5");
     CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList);
     ie->addChild(CB);
     //RadioButton array
@@ -90,6 +92,11 @@ int loadGuiTexture(string textureString) {
     buttonList2.push_back("RB 1");
     buttonList2.push_back("RB 2");
     buttonList2.push_back("RB 3");
+    buttonList2.push_back("RB 4");
+    buttonList2.push_back("RB 5");
+    buttonList2.push_back("RB 6");
+    buttonList2.push_back("RB 7");
+    buttonList2.push_back("RB 8");
     RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2);
     ie->addChild(RB);
 
