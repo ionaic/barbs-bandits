@@ -36,10 +36,14 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 
 /*!Sets the background image of a button*/
 void Button::setBgIg(ImageElement* img) {
-	Element::addChild(img);
+    Element::addChild(img);
+    setDirty(true);
+    img->setDirty(true);
 }
 
 /*!Sets the text of a button*/
 void Button::setText(string txt) {
 	_textE->setText(txt);
+    _textE->setDirty(true);
+    setDirty(true);
 }

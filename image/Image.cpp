@@ -208,7 +208,9 @@ void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
 			    // 0==transparent, 255=opaque
 			    float OR, OG, OB, OA;
                 Pixel &O = _pixels[_getCoord(xSource+x, ySource+y)]; 
+                //__builtin_prefetch(&_pixels[_getCoord(xSource+x+1, ySource+y)]);
                 Pixel &N = dest._pixels[dest._getCoord(xDest+x,yDest+y)];
+                //__builtin_prefetch(&dest._pixels[dest._getCoord(xDest+x+1, yDest+y)]);
                 OR = O.getR();
                 OG = O.getG();
                 OB = O.getB();

@@ -20,6 +20,7 @@ Element::Element() {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    _first_render = true;
 }
 
 /*! Creates an element positioned at (x,y) with dimensions (0,0). */
@@ -36,6 +37,7 @@ Element::Element(int x, int y) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    _first_render = true;
 }
 
 
@@ -54,6 +56,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    _first_render = true;
 }
 
 
@@ -166,11 +169,14 @@ void Element::addChild(Element *child) {
 Image* Element::render() {
     // clear the background of the image, fill with either content or
     //  a clear color
-    this->clearResult();
-
+    if (_dirty) {
+        clearResult();
+        _dirty = false;
+    }
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
-		Image* childImage = (*child)->render();
+        if ((*child)->_dirty) {
+        Image* childImage = (*child)->render();
 		//if ((*child)->_dirty) {
         //render the children onto the element's background
         //return composited image/texture
@@ -178,6 +184,7 @@ Image* Element::render() {
         childImage->blit(*(this->_result), 0, 0, 
             (*child)->_xCoord, (*child)->_yCoord, 
             (*child)->_width, (*child)->_height);
+        }
         // if any child is dirty, this element is dirty
 		//}
 		this->_dirty = (*child)->_dirty || this ->_dirty;

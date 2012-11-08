@@ -87,6 +87,7 @@ class Element {
         float _zIndex;
         unsigned int _id;
         bool _dirty;
+        bool _first_render;
         vector<Element *> _children;
         Element *_parent;
         Image *_clrImg;
