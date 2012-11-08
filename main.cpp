@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <ctime>
 #include <unistd.h>
 #include "main.h"
 #include "element/Element.h"
@@ -177,7 +178,6 @@ void mainLoop(void) {
 	/** the main event loop for the demo
 	 */
 	double oldTime = glfwGetTime();
-
 	while(running) {
 		double currentTime = glfwGetTime();
 		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
@@ -199,6 +199,20 @@ void mainLoop(void) {
 
 void draw(void)
 {
+    static clock_t last = 0;
+    static int loops = 0;
+    if (last == 0) last = clock();
+    loops++;
+    if (loops>60) {
+        clock_t nclock = clock();
+        float diff = nclock-last;
+        last = nclock;
+        diff = diff/CLOCKS_PER_SEC;
+        diff = diff/60;
+        diff = 1./diff;
+        cout << diff << endl;
+        loops = 0;
+    }
     // draw GUI box
 	//enable texturing
 
