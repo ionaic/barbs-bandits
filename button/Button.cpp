@@ -20,7 +20,7 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 /*!Constructor sets x,y, width, height and text */
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, string txt) : Element(x, y, width, height) {
-    Pixel p(255, 255, 255, 255);
+    Pixel p(255, 255, 255, 127);
     Image i(width, height, p);
 	_imageE = new ImageElement(0, 0, width, height, i); //need to draw image first
 	addChild(_imageE);
