@@ -31,7 +31,10 @@ class Element {
         Element(int x, int y, int xs, int ys); /*!< \brief Construct with position and size. */
         virtual ~Element(); /*!< \brief Destructor */
         /*! \brief Clears the result image to a color (black is default). */
-        virtual void clearResult();
+        #define _W_ this->_width
+        #define _H_ this->_height
+        void clearResult();
+        virtual void clearResult(unsigned int x, unsigned int y, unsigned int width, unsigned int height);
         /*! \brief Renders the element and its children recursively. */
         Image* render();
 

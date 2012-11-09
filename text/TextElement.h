@@ -21,7 +21,7 @@ class TextElement : public Element {
         ~TextElement(); /*!< \brief Destructor */
         void setText(string txt); /*!< \brief Updates the text stored and re-renders the result. */
 
-        void clearResult(); /*!< \brief Clears the rendered image previously stored */
+        void clearResult(unsigned int x, unsigned int y, unsigned int width, unsigned int height); /*!< \brief Clears the rendered image previously stored */
 
     private: 
         Text* _text;

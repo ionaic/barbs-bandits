@@ -33,11 +33,11 @@ void TextElement::setText(string txt) {
 }
 
 /*! Clears the rendered image we have stored */
-void TextElement::clearResult() {
+void TextElement::clearResult(unsigned int x, unsigned int y, unsigned int width, unsigned int height) {
 	Image* _temp = this->_text->getImage();
 	Element::clearResult();
-	if (_temp) _temp->blit(*(this->_result), 0U, 0U, 0U, 0U,
-			this->_width, this->_height);
+	if (_temp) _temp->blit(*(this->_result), x, y, x, y,
+			width, height);
 	else cout << "ERROR in TextElement during clearResult blit." <<
 		" No image available. ID:" << this->getId() << endl;
 }

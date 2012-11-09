@@ -74,25 +74,34 @@ Element::~Element() {
         delete *itr; 
     }
 }
-
 /*! Renders the background of the element, namely element contents.  For generic 
  * Elements, it blits a solid color (black) image to the element's result image.
  * For content elements (TextElement and ImageElement) it will blit the
  * stored image (for image elements) or resulting image from rendering the text
- * (for text elements) before rendering the children.
+ * (for text elements) before rendering the children.  This is called with 4
+ * arguments to only clear the dirty region of the element where the region is
+ * specified with (x, y, width, height).
+ */
+void Element::clearResult(unsigned int x, unsigned int y, unsigned int width, unsigned int height) {
+    //clear the image to alpha
+    this->_result->set(x, y, width, height, Pixel(0,0,0,0));
+    //start drawing things
+    this->_clrImg->blit(*(this->_result), 0U, 0U, x, y, width, height);
+}
+/*! Overloads the clearResult function to clear the entire background of the 
+ * result.
  */
 void Element::clearResult() {
-    //clear the image to alpha
-    this->_result->set(0, 0, _width, _height, Pixel(0,0,0,0));
-    //start drawing things
-    this->_clrImg->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
+    this->clearResult(0, 0, _width, _height);
 }
+
 void Element::mouseDownRelative(float x, float y) {
     mouseDown((int)(_width*x),(int)(_height*y));
 }
 void Element::mouseUpRelative(float x, float y) {
     mouseUp((int)(_width*x),(int)(_height*y));
 }
+
 /*! Tests if the mouse click at (x, y) is within the element. */
 void Element::mouseDown(int x, int y) {
 	if ( x < 0 || y < 0) return;
