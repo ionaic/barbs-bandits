@@ -173,29 +173,28 @@ void Element::addChild(Element *child) {
 Image* Element::render() {
     // clear the background of the image, fill with either content or
     //  a clear color
+    
+	vector<Element*>::iterator child = this->_children.begin();
     if (_dirty) {
         clearResult();
         _dirty = false;
+    } else {
+        return this->_result;
     }
-	vector<Element*>::iterator child = this->_children.begin();
-	for(; _children.end() != child; child++) {
+	child = this->_children.begin();
+    for(; _children.end() != child; child++) {
         if ((*child)->_dirty) {
-        Image* childImage = (*child)->render();
-        //if ((*child)->_dirty) {
-        //render the children onto the element's background
-        //return composited image/texture
-        // blit each child to the result image at the proper place
-        childImage->blit(*(this->_result), 0, 0, 
-            (*child)->_xCoord, (*child)->_yCoord, 
+            Image* childImage = (*child)->render();
+        } 
+           //if ((*child)->_dirty) {
+            //render the children onto the element's background
+            //return composited image/texture
+            // blit each child to the result image at the proper place
+        (*child)->_result->blit(*(this->_result),0,0,
+            (*child)->_xCoord, (*child)->_yCoord,
             (*child)->_width, (*child)->_height);
-        } else {
-            (*child)->_result->blit(*(this->_result),0,0,
-                (*child)->_xCoord, (*child)->_yCoord,
-                (*child)->_width, (*child)->_height);
-        }
         // if any child is dirty, this element is dirty
 		//}
-		this->_dirty = (*child)->_dirty || this ->_dirty;
 	}
 	//cout << "Rendering ID: "<< this->_id << endl;
     return this->_result;

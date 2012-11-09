@@ -48,5 +48,4 @@ void Button::setBgIg(ImageElement* img) {
 void Button::setText(string txt) {
 	_textE->setText(txt);
     _textE->setDirty(true);
-    setDirty(true);
 }

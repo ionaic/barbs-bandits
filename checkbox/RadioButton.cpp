@@ -17,5 +17,6 @@ void RadioButton::mouseDown(int x, int y) {
                ((ToggleButton *)(*child))->setDown(false);
             }
         }
+    setDirty(true);
     Element::mouseDown(x, y);
 }
