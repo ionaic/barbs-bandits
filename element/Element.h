@@ -27,7 +27,6 @@ class Element {
         typedef mouseClickCallback_t mouseDownCallback_t;
         typedef mouseClickCallback_t mouseUpCallback_t;
         
-        Element(); /*!< \brief Default Constructor. */
         Element(int x, int y); /*!< \brief Construct with position. */
         Element(int x, int y, int xs, int ys); /*!< \brief Construct with position and size. */
         virtual ~Element(); /*!< \brief Destructor */
@@ -47,7 +46,13 @@ class Element {
         virtual void mouseUp(int x, int y);
         void mouseUpRelative(float x, float y);
         virtual void mouseMove(int x, int y, int dx, int dy);
+<<<<<<< HEAD
         virtual void keyDown(char c);
+=======
+        unsigned int width() const { return _width; }
+        unsigned int height() const { return _height; }
+        
+>>>>>>> 03b4919588bfedb00f374e8a0359753265bd8e67
         /*! \brief Add a child element to the current element. */
         void addChild(Element *child);
         // getters and setters
@@ -87,13 +92,21 @@ class Element {
          * element or rendered on a surface 
          */
         Image *_result;
- 
+        Image *_clrImg;
+        friend class ElementComparison; 
     private:
+        Element(); /*!< \brief Default Constructor. */
         float _zIndex;
         unsigned int _id;
         bool _dirty;
         bool _first_render;
         Element *_parent;
-        Image *_clrImg;
+};
+
+class ElementComparison {
+public:
+    inline bool operator()(Element *a, Element *b) {
+        return a->_zIndex < b->_zIndex;
+    }
 };
 #endif

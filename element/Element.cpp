@@ -22,6 +22,7 @@ Element::Element() {
     this->_mouseMoveCallback = 0;
     this->_keyDownCallback = 0;
     this->_parent = 0;
+    this->_zIndex = -1;
     _first_render = true;
 }
 
@@ -41,6 +42,7 @@ Element::Element(int x, int y) {
     this->_mouseMoveCallback = 0;
     this->_keyDownCallback = 0;
     this->_parent = 0;
+    this->_zIndex = -1;
     _first_render = true;
 }
 
@@ -62,6 +64,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseMoveCallback = 0;
     this->_keyDownCallback = 0;
     this->_parent = 0;
+    this->_zIndex = -1;
     _first_render = true;
 }
 
@@ -128,7 +131,7 @@ void Element::mouseMove(int x, int y, int dx, int dy) {
 	if ( x < 0 || y < 0) return;
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
-		(*child)->mouseMove(dx-(*child)->_xCoord, y-(*child)->_yCoord, dx, dy);
+		(*child)->mouseMove(x-(*child)->_xCoord, y-(*child)->_yCoord, dx, dy);
 	}
 	bool inside = (this->_width >= x && this->_height >= y);
 	if (inside) { //if inside button
@@ -170,10 +173,14 @@ void Element::registerKeyDownCallback(keyDownCallback_t func) {
  * STL sort on the children, organizing by z-index (z position).
  */
 void Element::addChild(Element *child) {
+    if (child == 0) {
+        throw "Child cannot be null!";
+    }
 	if (this->_id != child->_id) {
+        ElementComparison comparator;
 	    child->_parent = this;
 		this->_children.push_back(child);
-		sort(this->_children.begin(), this->_children.end());
+		sort(this->_children.begin(), this->_children.end(), comparator);
 		return;
 	}
 	cout << "Element could not be added as child of itself." << endl;

@@ -1,5 +1,6 @@
 #include "Image.h"
 #include <algorithm>
+#include "FreeImage.h"
 
 inline unsigned int Image::_getCoord(unsigned int x, unsigned int y) const {
 	return y*_width+ x;
@@ -51,6 +52,29 @@ Image::Image(Image &img) {
     for (unsigned int i = 0; i < _width * _height; i++) {
         _pixels[i] = pix[i];
     }
+}
+
+Image::Image(const char *fname) {
+    static bool freeimage_initialized = false;
+    if (freeimage_initialized == false) {
+        freeimage_initialized = true;
+    }
+    FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, fname, BMP_DEFAULT);
+    FIBITMAP *bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+    if (!bitmap || !bitmap32) {
+        throw "Failed to load image!";
+    }
+    _width = FreeImage_GetWidth(bitmap32);
+    _height = FreeImage_GetHeight(bitmap32);
+    BYTE* texturebits = FreeImage_GetBits(bitmap32);
+
+    Pixel p(255,255,255,255);
+    _pixels = new Pixel[_width*_height];
+    Pixel *texture = (Pixel*)texturebits;
+    for (unsigned int i = 0; i<_width*_height; ++i) {
+        _pixels[i] = texture[i];
+    }
+    FreeImage_Unload(bitmap);
 }
 /*!
 \brief Creates an image of size (width,height) and initializes it to data.

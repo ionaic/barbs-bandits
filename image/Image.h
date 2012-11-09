@@ -19,7 +19,8 @@ public:
 	Image(unsigned int width, unsigned int height, const Pixel &p);
 	Image(unsigned int width, unsigned int height, unsigned char* data);
     Image(Image &img);
-	~Image();
+	Image(const char *);
+    ~Image();
 	unsigned int width() const;
 	unsigned int height() const;
 	void set(unsigned int x, unsigned int y, const Pixel &color);
