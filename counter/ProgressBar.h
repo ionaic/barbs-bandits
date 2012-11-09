@@ -6,7 +6,7 @@ This file contains the ProgressBar class.
 #define _PROGRESSBAR_H_
 
 #include "BoundedCounter.h"
-#include "../image/ImageElement.h"
+#include "ImageElement.h"
 
 class ProgressBar : public BoundedCounter {
 public:

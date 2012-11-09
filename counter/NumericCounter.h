@@ -6,7 +6,7 @@ This file contains the NumericCounter class.
 #define _NUMERICCOUNTER_H_
 
 #include "AbstractCounter.h"
-#include "../text/TextElement.h"
+#include "TextElement.h"
 #include <cstdlib>
 
 /*! \brief An class used to display a simple numeric counter on a gui

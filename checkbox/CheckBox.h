@@ -9,7 +9,7 @@
 #include "Image.h"
 #include "ImageElement.h"
 #include "TextElement.h"
-#include "../togglebutton/ToggleButton.h"
+#include "ToggleButton.h"
 #include <iostream>
 #include <vector>
 

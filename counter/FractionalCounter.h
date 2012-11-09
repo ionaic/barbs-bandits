@@ -6,7 +6,7 @@ This file contains the FractionalCounter class.
 #define _FRACTIONALCOUNTER_H_
 
 #include "BoundedCounter.h"
-#include "../text/TextElement.h"
+#include "TextElement.h"
 
 class FractionalCounter : public BoundedCounter {
 public:

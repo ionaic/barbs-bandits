@@ -6,7 +6,7 @@ This file contains the Element class.
 
 #include <vector>
 #include <algorithm>
-#include "../image/Image.h"
+#include "Image.h"
 
 using namespace std;
 

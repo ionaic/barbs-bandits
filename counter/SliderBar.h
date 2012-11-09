@@ -5,7 +5,7 @@ This file contains the SliderBar class.
 #ifndef _SLIDERBAR_H_
 #define _SLIDERBAR_H_
 
-#include "../image/ImageElement.h"
+#include "ImageElement.h"
 #include "BoundedCounter.h"
 
 class SliderBar : public BoundedCounter {
