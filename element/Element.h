@@ -85,15 +85,16 @@ class Element {
         /*! The resulting image for the element to be blitted to a parent 
          * element or rendered on a surface 
          */
+        Image *_clrImg;
         Image *_result;
         friend class ElementComparison; 
+
     private:
         float _zIndex;
         unsigned int _id;
         bool _dirty;
         bool _first_render;
         Element *_parent;
-        Image *_clrImg;
 };
 
 class ElementComparison {
