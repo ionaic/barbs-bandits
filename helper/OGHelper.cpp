@@ -3,22 +3,37 @@
 #include <GL/glfw.h>
 #include "OGHelper.h"
 
+static bool _running;
+static string _title;
+static int _windowWidth;
+static int _windowHeight;
+static int _textureWidth;
+static int _textureHeight;
+static bool _initialized;
+static Element* e;
+static GLuint texture;
+static bool _quit;
+static int _vsync;
 
-OGHelper::OGHelper(int width, int height, string title) {
+void _init();
+void _draw();
+void GLFWCALL windowResize( int width, int height );
+void GLFWCALL mouseClicked(int mButton, int clicked);
+void GLFWCALL mouseMoved(int x, int y);
+void GLFWCALL keyPressed(int key, int action);
+void GLFWCALL printableKeyPressed(int key, int action);
+int shutDown(int returnCode);
+int closeWindow(void);
+
+
+Element * OG_init(int width, int height, string title, string baseTexture) {
     _windowWidth = width;
     _windowHeight = height;
     _title = title;
     _textureWidth = 0;
     _textureHeight = 0;
     _quit = 0;
-}
-
-OGHelper::~OGHelper() {
-    delete e;
-    if (_initialized)
-        glfwTerminate();
-}
-Element * OGHelper::OG_init(string baseTexture) {
+    _vsync = 1;
     _init();
     e = new ImageElement(0, 0, baseTexture.c_str() );
     _textureWidth = e->width();
@@ -26,7 +41,7 @@ Element * OGHelper::OG_init(string baseTexture) {
     return (Element *) e;
 }
 
-void OGHelper::_init(void) {
+void _init(void) {
     /** Initializes a glfw window for use in the demo
      */
 
@@ -42,14 +57,14 @@ void OGHelper::_init(void) {
 
     //glfw stuff
     glfwSetWindowTitle("OpenGUI Demo");
-    glfwSetWindowCloseCallback(closeWindow);
+    glfwSetWindowCloseCallback( closeWindow );
     glfwSetWindowSizeCallback( windowResize );
     glfwSetMouseButtonCallback( mouseClicked );
     glfwSetMousePosCallback( mouseMoved );
     glfwSetKeyCallback( keyPressed );
     glfwSetCharCallback( printableKeyPressed );
     //vsync
-    glfwSwapInterval(vsync);
+    glfwSwapInterval(_vsync);
 
     //set clear color to white
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
@@ -74,11 +89,11 @@ void OGHelper::_init(void) {
     _initialized = true;
 }
 
-void OGHelper::addChild(Element * child){
+void OG_addChild(Element * child){
     e->addChild(child);
 }
 
-void OGHelper::run(void) {
+void OG_run(void) {
     /** the main event loop for the demo
      */
     double oldTime = glfwGetTime();
@@ -97,7 +112,7 @@ void OGHelper::run(void) {
     }
 }
 
-void OGHelper::_draw(void)
+void _draw(void)
 {
     static clock_t last = 0;
     static int loops = 0;
@@ -139,14 +154,14 @@ void OGHelper::_draw(void)
 }
 
 // Callback for when the window is resized
-void GLFWCALL OGHelper::windowResize( int width, int height ) {
+void GLFWCALL windowResize( int width, int height ) {
     glViewport(0,0,(GLsizei)width,(GLsizei)height);
     _windowWidth = width;
     _windowHeight = height;
 
 }
 
-void GLFWCALL OGHelper::mouseClicked(int mButton, int clicked)
+void GLFWCALL mouseClicked(int mButton, int clicked)
 {
     int x, y;
     glfwGetMousePos( &x, &y );
@@ -160,7 +175,7 @@ void GLFWCALL OGHelper::mouseClicked(int mButton, int clicked)
     }
 }
 
-void GLFWCALL OGHelper::mouseMoved(int x, int y) {
+void GLFWCALL mouseMoved(int x, int y) {
     static int oldx = 0;
     static int oldy = 0;
     static bool first = true;
@@ -178,11 +193,11 @@ void GLFWCALL OGHelper::mouseMoved(int x, int y) {
     }
 }
 
-void GLFWCALL OGHelper::printableKeyPressed(int key, int action) {
+void GLFWCALL printableKeyPressed(int key, int action) {
             e->keyDown(key);
 }
 
-void GLFWCALL OGHelper::keyPressed(int key, int action) {
+void GLFWCALL keyPressed(int key, int action) {
     if (action == GLFW_PRESS) {
         if (key == GLFW_KEY_ESC)
                 _quit = 1;
@@ -191,7 +206,14 @@ void GLFWCALL OGHelper::keyPressed(int key, int action) {
     }
 }
 
-int OGHelper::exit(int returnCode) {
+int shutDown(int returnCode) {
+    if (_initialized)
+        glfwTerminate();
     exit(returnCode);
 }
+
+int closeWindow(void) {
+    shutDown(EXIT_SUCCESS);
+    return GL_TRUE;
 }
+

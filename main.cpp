@@ -40,35 +40,34 @@ void buttonClicked2(Element* e, int, int) {
 }
 
 
-OGHelper * init() {
-    OGHelper* helper = new OGHelper(512, 512, "OpenGUI Demonstration");
-    helper->OG_init(textureFile.c_str());
+Element * init() {
+    Element *e = OG_init(512, 512, "OpenGUI Demo", textureFile.c_str());
     N = new NumericCounter(50, 0, 50, 25, 1);
-    helper->addChild(N);
+    OG_addChild(N);
     //text edit box
     TE = new TextEdit(2,50,200,25,"Hello");
-    helper->addChild(TE);
+    OG_addChild(TE);
     //Fractional counter in bottom right above increse
     F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
-    helper->addChild(F);
+    OG_addChild(F);
     //progressbar in the upper left
     PB = new ProgressBar(0, 231, 155, 25, 0);
-    helper->addChild(PB);
+    OG_addChild(PB);
     //sliderbar below progress bar
     SliderBar* SB = new SliderBar(0, 205, 155, 25, 0 );
-    helper->addChild(SB);
+    OG_addChild(SB);
     //lower left button
     Button* B = new Button(0, 0, 50, 20, "Button");
     B->registerMouseDownCallback( buttonClicked2 );
-    helper->addChild(B);
+    OG_addChild(B);
     //toggle button on the right
     TB = new ToggleButton(206, 0, 50, 20, "Increase");
     TB->registerMouseDownCallback( buttonClicked );
-    helper->addChild(TB);
+    OG_addChild(TB);
     //another toggle button on the right
     TB2 = new ToggleButton(206, 50, 50, 20, "Decrease");
     TB2->registerMouseDownCallback( buttonClicked );
-    helper->addChild(TB2);
+    OG_addChild(TB2);
     //CheckBox array
     vector <string> buttonList;
     buttonList.push_back("CB 1");
@@ -77,7 +76,7 @@ OGHelper * init() {
     buttonList.push_back("CB 4");
     buttonList.push_back("CB 5");
     CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList);
-    helper->addChild(CB);
+    OG_addChild(CB);
     //RadioButton array
     vector <string> buttonList2;
     buttonList2.push_back("RB 1");
@@ -89,17 +88,17 @@ OGHelper * init() {
     buttonList2.push_back("RB 7");
     buttonList2.push_back("RB 8");
     RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2);
-    helper->addChild(RB);
+    OG_addChild(RB);
 
-    return helper;
+    return e;
 }
 
 
 
 int main() {
     //start up the helper class
-    OGHelper* helper = init();
-    helper->run();
+    Element * e = init();
+    OG_run();
 
 }
 
