@@ -55,10 +55,6 @@ Image::Image(Image &img) {
 }
 
 Image::Image(const char *fname) {
-    static bool freeimage_initialized = false;
-    if (freeimage_initialized == false) {
-        freeimage_initialized = true;
-    }
     FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, fname, BMP_DEFAULT);
     FIBITMAP *bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
     if (!bitmap || !bitmap32) {
@@ -68,7 +64,6 @@ Image::Image(const char *fname) {
     _height = FreeImage_GetHeight(bitmap32);
     BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
-    Pixel p(255,255,255,255);
     _pixels = new Pixel[_width*_height];
     Pixel *texture = (Pixel*)texturebits;
     for (unsigned int i = 0; i<_width*_height; ++i) {
