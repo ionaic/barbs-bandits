@@ -12,6 +12,7 @@
 #include "image/ImageElement.h"
 #include "togglebutton/ToggleButton.h"
 #include "counter/AbstractCounter.h"
+#include "counter/FractionalCounter.h"
 #include "counter/NumericCounter.h"
 #include "counter/ProgressBar.h"
 #include "button/Button.h"
@@ -30,6 +31,7 @@ static ImageElement* ie;
 static ToggleButton* TB;
 static ToggleButton* TB2;
 static NumericCounter* N;
+static FractionalCounter* F;
 static ProgressBar* PB;
 static int width;
 static int height;
@@ -63,6 +65,10 @@ int loadGuiTexture(string textureString) {
 	//numeric counter next to button (bottom left)
 	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
+	//Fractional counter in bottom right above increse
+	F = new FractionalCounter(206, 100, 50, 20, 10 ,100);
+	(*F)++;
+	ie->addChild(F);
 	//progressbar in the upper left
 	PB = new ProgressBar(0, 230, 155, 25, 0);
 	ie->addChild(PB);

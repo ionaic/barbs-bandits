@@ -14,8 +14,8 @@ public:
 	        int value, int max);  /*< /brief Constructor with starting value and maximum value*/
 	void setMax(int max); /*< /brief Set maximum value of the counter */
 	virtual bool setValue(int value); /*< /brief Set value of the counter. Must be less than maximum */
-	BoundedCounter &operator++(int);
-	BoundedCounter &operator--(int);
+	BoundedCounter &operator++();
+	BoundedCounter &operator--();
 
 protected:
 	int _max;
