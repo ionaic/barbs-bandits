@@ -163,7 +163,7 @@ int closeWindow(void) {
 }
 
 void GLFWCALL printableKeyPressed(int key, int action) {
-			(TE)->keyDown(key);
+			ie->keyDown(key);
 }
 
 void GLFWCALL keyPressed(int key, int action) {
@@ -171,7 +171,7 @@ void GLFWCALL keyPressed(int key, int action) {
 		if (key == GLFW_KEY_ESC)
 			    quit = 1;
 		else if (key == GLFW_KEY_BACKSPACE)
-			(TE)->keyDown(-1);
+			ie->keyDown(-1);
 	}
 }
 
