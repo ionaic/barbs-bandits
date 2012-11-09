@@ -15,7 +15,7 @@ void BoundedCounter::setMax(int max) {
 }
 
 bool BoundedCounter::setValue(int value) {
-    if (value < _max) {
+    if (value <= _max && value >= 0) {
         _value = value;
         return true;
     }

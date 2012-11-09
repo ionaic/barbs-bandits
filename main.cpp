@@ -66,7 +66,7 @@ int loadGuiTexture(string textureString) {
 	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
 	//Fractional counter in bottom right above increse
-	F = new FractionalCounter(206, 100, 50, 20, 10 ,100);
+	F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
 	ie->addChild(F);
 	//progressbar in the upper left
 	PB = new ProgressBar(0, 230, 155, 25, 0);
@@ -196,8 +196,8 @@ void mainLoop(void) {
 			break;
 		//if ( currentTime > oldTime + 0.02 )
 		{
-		    if ( TB->isDown() ) { (*N)++; (*PB)++; }
-		    if ( TB2->isDown() ) { (*N)--; (*PB)--; }
+		    if ( TB->isDown() ) { (*N)++; (*F)++; (*PB)++; }
+		    if ( TB2->isDown() ) { (*N)--; (*F)--; (*PB)--; }
 			draw();
 			glfwSwapBuffers();
 			oldTime = currentTime;
@@ -290,8 +290,6 @@ void GLFWCALL mouseMoved(int x, int y) {
 
 void buttonClicked(Element* e, int, int) {
 	Element* element = e;
-    cout << "Incrementing F" << endl;
-	(*F)++;
 }
 
 void buttonClicked2(Element* e, int, int) {
