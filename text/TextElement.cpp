@@ -35,7 +35,8 @@ void TextElement::setText(string txt) {
 /*! Clears the rendered image we have stored */
 void TextElement::clearResult(unsigned int x, unsigned int y, unsigned int width, unsigned int height) {
 	Image* _temp = this->_text->getImage();
-	Element::clearResult();
+    Element::clearResult(x, y, width, height);
+	//Element::clearResult();
 	if (_temp) _temp->blit(*(this->_result), x, y, x, y,
 			width, height);
 	else cout << "ERROR in TextElement during clearResult blit." <<

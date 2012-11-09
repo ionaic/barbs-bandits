@@ -21,7 +21,7 @@ Element::Element() {
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
     this->_parent = 0;
-    _first_render = true;
+    this->_first_render = true;
 }
 
 /*! Creates an element positioned at (x,y) with dimensions (0,0). */
@@ -39,7 +39,7 @@ Element::Element(int x, int y) {
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
     this->_parent = 0;
-    _first_render = true;
+    this->_first_render = true;
 }
 
 
@@ -59,7 +59,7 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
     this->_parent = 0;
-    _first_render = true;
+    this->_first_render = true;
 }
 
 
@@ -190,18 +190,35 @@ Image* Element::render() {
     // clear the background of the image, fill with either content or
     //  a clear color
     
-    if (_dirty) {
-        clearResult();
-        _dirty = false;
-    } else {
+    //if (_dirty) {
+    //    clearResult();
+    //    _dirty = false;
+    //} else {
+    //    return this->_result;
+    //}
+    // check if it's the first time we're rendering this
+    if (this->_first_render) {
+        this->clearResult();
+    }
+    // also check if this element is clean
+    else if (!_dirty) {
         return this->_result;
     }
+
 	vector<Element*>::iterator child = this->_children.begin();
     for(; _children.end() != child; child++) {
+        // render the child element
         Image* childImage = (*child)->render();
-        (*child)->_result->blit(*(this->_result),0,0,
-            (*child)->_xCoord, (*child)->_yCoord,
-            (*child)->_width, (*child)->_height);
+
+        // if the child is dirty
+        if ((*child)->_dirty) {
+            // clear the background in the region where the child is
+            this->clearResult((*child)->_xCoord, (*child)->_yCoord, (*child)->_width, (*child)->_height);
+            // re-blit the child
+            (*child)->_result->blit(*(this->_result),0,0,
+                (*child)->_xCoord, (*child)->_yCoord,
+                (*child)->_width, (*child)->_height);
+        }
 	}
 	//cout << "Rendering ID: "<< this->_id << endl;
     return this->_result;
