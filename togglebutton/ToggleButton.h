@@ -20,8 +20,10 @@ class ToggleButton: public Button {
         ToggleButton(int x, int y, int w, int h, 
             string content, int size, ImageElement* i); /*!< \brief Constructor. Sets x and y position of this element along with width, height, text, font size, and a background image */
         void mouseDown(int x, int y); /*!< \mouseInput overload.  Performs action if inside this element */
+        void setDown(bool down); /*! < \ Allows the user to manually set up or down */
         bool isDown();
 	private:
 	    bool _down;
+	    void _update();
 };
 #endif

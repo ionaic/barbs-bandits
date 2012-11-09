@@ -24,13 +24,13 @@ bool BoundedCounter::setValue(int value) {
     }
 }
 
-BoundedCounter &BoundedCounter::operator++(int) {
+BoundedCounter &BoundedCounter::operator++() {
     if ( ! (_value + 1 > _max ) )
         _value++;
     return *this;
 }
 
-BoundedCounter &BoundedCounter::operator--(int) {
+BoundedCounter &BoundedCounter::operator--() {
     if (_value > 1 )
         _value--;
     return *this;

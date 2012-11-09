@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <ctime>
 #include <unistd.h>
 #include "main.h"
 #include "element/Element.h"
@@ -11,9 +12,12 @@
 #include "image/ImageElement.h"
 #include "togglebutton/ToggleButton.h"
 #include "counter/AbstractCounter.h"
+#include "counter/FractionalCounter.h"
 #include "counter/NumericCounter.h"
 #include "counter/ProgressBar.h"
 #include "button/Button.h"
+#include "checkbox/CheckBox.h"
+#include "checkbox/RadioButton.h"
 
 using namespace std;
 
@@ -27,6 +31,7 @@ static ImageElement* ie;
 static ToggleButton* TB;
 static ToggleButton* TB2;
 static NumericCounter* N;
+static FractionalCounter* F;
 static ProgressBar* PB;
 static int width;
 static int height;
@@ -60,21 +65,47 @@ int loadGuiTexture(string textureString) {
 	//numeric counter next to button (bottom left)
 	N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
+	//Fractional counter in bottom right above increse
+	F = new FractionalCounter(206, 100, 50, 20, 10 ,100);
+	(*F)++;
+	ie->addChild(F);
 	//progressbar in the upper left
-	PB = new ProgressBar(0, 230, 200, 25, 0);
+	PB = new ProgressBar(0, 230, 155, 25, 0);
 	ie->addChild(PB);
     //lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerMouseDownCallback( buttonClicked2 );
 	ie->addChild(B);
-	//toggle button near the middle
+	//toggle button on the right
 	TB = new ToggleButton(206, 0, 50, 20, "Increase");
 	TB->registerMouseDownCallback( buttonClicked );
 	ie->addChild(TB);
-	//another toggle button near the middle
+	//another toggle button on the right
 	TB2 = new ToggleButton(206, 50, 50, 20, "Decrease");
 	TB2->registerMouseDownCallback( buttonClicked );
 	ie->addChild(TB2);
+	//CheckBox array
+	vector <string> buttonList;
+	buttonList.push_back("CB 1");
+    buttonList.push_back("CB 2");
+    buttonList.push_back("CB 3");
+    buttonList.push_back("CB 4");
+    buttonList.push_back("CB 5");
+    CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList);
+    ie->addChild(CB);
+    //RadioButton array
+    vector <string> buttonList2;
+    buttonList2.push_back("RB 1");
+    buttonList2.push_back("RB 2");
+    buttonList2.push_back("RB 3");
+    buttonList2.push_back("RB 4");
+    buttonList2.push_back("RB 5");
+    buttonList2.push_back("RB 6");
+    buttonList2.push_back("RB 7");
+    buttonList2.push_back("RB 8");
+    RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2);
+    ie->addChild(RB);
+
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();
 
@@ -160,13 +191,11 @@ void mainLoop(void) {
 	/** the main event loop for the demo
 	 */
 	double oldTime = glfwGetTime();
-
 	while(running) {
 		double currentTime = glfwGetTime();
 		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
 			break;
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		if ( currentTime > oldTime + 0.02 )
+		//if ( currentTime > oldTime + 0.02 )
 		{
 		    if ( TB->isDown() ) { (*N)++; (*PB)++; }
 		    if ( TB2->isDown() ) { (*N)--; (*PB)--; }
@@ -174,17 +203,32 @@ void mainLoop(void) {
 			glfwSwapBuffers();
 			oldTime = currentTime;
 		}
-		else
-			usleep(10);
+		//else
+			//usleep(10);
 	}
 }
 
 
 void draw(void)
 {
+    static clock_t last = 0;
+    static int loops = 0;
+    if (last == 0) last = clock();
+    loops++;
+    if (loops>60) {
+        clock_t nclock = clock();
+        float diff = nclock-last;
+        last = nclock;
+        diff = diff/ CLOCKS_PER_SEC;
+        diff = diff/60;
+        diff = 1./diff;
+        cout << diff << endl;
+        loops = 0;
+    }
     // draw GUI box
 	//enable texturing
 
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
                 0, GL_RGBA, GL_UNSIGNED_BYTE, ie->render()->getPixels());
 

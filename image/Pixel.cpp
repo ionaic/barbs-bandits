@@ -18,13 +18,13 @@ Pixel::Pixel(Pixel &p)
 }
 
 void Pixel::setRGB(int R, int G, int B) {
-	setRGBA(R, G, B, 255);
+	setRGBA(R, G, B, getA());
 }
 void Pixel::setRGBA(int R, int G, int B, int A) {
-	_r = std::min(255, R);
-	_g = std::min(255, G);
-	_b = std::min(255, B);
-	_a = std::min(255, A);
+	_r = std::max(std::min(255, R), 0);
+	_g = std::max(std::min(255, G), 0);
+	_b = std::max(std::min(255, B), 0);
+	_a = std::max(std::min(255, A), 0);
 }
 int Pixel::getR() const {
 	return _r;

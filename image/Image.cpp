@@ -12,7 +12,6 @@ Image::Image() {
 }
 
 Image::Image(unsigned int width, unsigned int height) {
-    std::cout << "w:h" << width << ", " << height << std::endl;
 	_width = width;
 	_height = height;
 	_pixels = new Pixel[width*height];
@@ -203,29 +202,42 @@ void Image::blit(Image &dest, unsigned int xSource, unsigned int ySource,
 			" Dest Size {WH: " << dest._width << ", "<<dest._height<<"}"<<
 			std::endl;
 	} else {
-		for (unsigned int x = 0; x<width; ++x) {
-			for (unsigned int y = 0; y<height; ++y) {
+        const float T = 1./255.;
+		for (unsigned int y = 0; y<height; ++y) {
+		    for (unsigned int x = 0; x<width; ++x) {
 			    // 0==transparent, 255=opaque
 			    float OR, OG, OB, OA;
-                OR = _pixels[_getCoord(xSource+x, ySource+y)].getR();
-                OG = _pixels[_getCoord(xSource+x, ySource+y)].getG();
-                OB = _pixels[_getCoord(xSource+x, ySource+y)].getB();
-                OA = _pixels[_getCoord(xSource+x, ySource+y)].getA();
-                OR/=255.; OG/=255.; OB/=255.; OA/=255.;
+                Pixel &O = _pixels[_getCoord(xSource+x, ySource+y)]; 
+                //__builtin_prefetch(&_pixels[_getCoord(xSource+x+1, ySource+y)]);
+                Pixel &N = dest._pixels[dest._getCoord(xDest+x,yDest+y)];
+                //__builtin_prefetch(&dest._pixels[dest._getCoord(xDest+x+1, yDest+y)]);
+                OR = O.getR();
+                OG = O.getG();
+                OB = O.getB();
+                OA = O.getA();
+                if (OA == 0) continue;
+                OR*=T; OG*=T; OB*=T; OA*=T;
 
                 float NR, NG, NB, NA;
-                NR = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getR();
-                NG = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getG();
-                NB = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getB();
-                NA = dest._pixels[dest._getCoord(xDest+x,yDest+y)].getA();
-                NR/=255.; NG/=255.; NB/=255.; NA/=255.;
-
-                float OUTa = OA + NA * (1.-OA);
-                float OUTr = 0., OUTg=0., OUTb=0.;
-                if (OUTa>0) {
-                    OUTr = (OR * OA + NR*NA*(1.-OA))/OUTa;
-                    OUTg = (OG * OA + NG*NA*(1.-OA))/OUTa;
-                    OUTb = (OB * OA + NB*NA*(1.-OA))/OUTa;
+                NR = N.getR();
+                NG = N.getG();
+                NB = N.getB();
+                NA = N.getA();
+                NR*=T; NG*=T; NB*=T; NA*=T;
+                float OUTa, OUTr, OUTg, OUTb;
+                if (OA >= .99999) {
+                    OUTa = OA;
+                    OUTr = OR;
+                    OUTg = OG;
+                    OUTb = OB;
+                } else {
+                    OUTa = OA + NA * (1.-OA);
+                    OUTr = 0., OUTg=0., OUTb=0.;
+                    if (OUTa>0) {
+                        OUTr = (OR * OA + NR*NA*(1.-OA))/OUTa;
+                        OUTg = (OG * OA + NG*NA*(1.-OA))/OUTa;
+                        OUTb = (OB * OA + NB*NA*(1.-OA))/OUTa;
+                    }
                 }
                 OUTa *= 255.; OUTr *= 255.; OUTg *= 255.; OUTb *= 255.;
                 dest._pixels[dest._getCoord(xDest+x,yDest+y)] =

@@ -8,7 +8,6 @@ using namespace std;
 
 /*! Creates an element positioned at (0,0) with dimensions (0,0). */
 Element::Element() {
-    cout << "invalid element 1" << endl;
     this->_xCoord = 0;
     this->_yCoord = 0;
     this->_width = 0;
@@ -21,11 +20,12 @@ Element::Element() {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_parent = 0;
+    _first_render = true;
 }
 
 /*! Creates an element positioned at (x,y) with dimensions (0,0). */
 Element::Element(int x, int y) {
-    cout << "invalid element 2" << endl;
 	this->_xCoord = x;
 	this->_yCoord = y;
 	this->_width = 0;
@@ -38,13 +38,14 @@ Element::Element(int x, int y) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_parent = 0;
+    _first_render = true;
 }
 
 
 
 /*! Creates an element positioned at (x, y) with dimensions (xs, ys). */
 Element::Element(int x, int y, int xs, int ys) {
-    cout << "element" << x << y << ", " << xs << " , " << ys << endl;
 	this->_xCoord = x;
 	this->_yCoord = y;
 	this->_width = xs;
@@ -57,6 +58,8 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_parent = 0;
+    _first_render = true;
 }
 
 
@@ -156,6 +159,7 @@ void Element::registerMouseMoveCallback(mouseMoveCallback_t func) {
  */
 void Element::addChild(Element *child) {
 	if (this->_id != child->_id) {
+	    child->_parent = this;
 		this->_children.push_back(child);
 		sort(this->_children.begin(), this->_children.end());
 		return;
@@ -172,21 +176,28 @@ void Element::addChild(Element *child) {
 Image* Element::render() {
     // clear the background of the image, fill with either content or
     //  a clear color
-    this->clearResult();
-
+    
 	vector<Element*>::iterator child = this->_children.begin();
-	for(; _children.end() != child; child++) {
-		Image* childImage = (*child)->render();
-		//if ((*child)->_dirty) {
-        //render the children onto the element's background
-        //return composited image/texture
-        // blit each child to the result image at the proper place
-        childImage->blit(*(this->_result), 0, 0, 
-            (*child)->_xCoord, (*child)->_yCoord, 
+    if (_dirty) {
+        clearResult();
+        _dirty = false;
+    } else {
+        return this->_result;
+    }
+	child = this->_children.begin();
+    for(; _children.end() != child; child++) {
+        if ((*child)->_dirty) {
+            Image* childImage = (*child)->render();
+        } 
+           //if ((*child)->_dirty) {
+            //render the children onto the element's background
+            //return composited image/texture
+            // blit each child to the result image at the proper place
+        (*child)->_result->blit(*(this->_result),0,0,
+            (*child)->_xCoord, (*child)->_yCoord,
             (*child)->_width, (*child)->_height);
         // if any child is dirty, this element is dirty
 		//}
-		this->_dirty = (*child)->_dirty || this ->_dirty;
 	}
 	//cout << "Rendering ID: "<< this->_id << endl;
     return this->_result;
@@ -195,6 +206,12 @@ Image* Element::render() {
 /*! Less than operator which compares two elements based solely on their
  *  z-index (z position).
  */
+
+void Element::setDirty(bool dirty){
+    this->_dirty = dirty;
+    if (this->_parent)
+        _parent->setDirty(true);
+}
 bool Element::operator<(const Element &other) { 
     return this->_zIndex < other._zIndex;
 }

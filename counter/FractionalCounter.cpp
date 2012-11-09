@@ -9,7 +9,7 @@
 
 using namespace std;
 
-FractionalCounter::FractionalCounter(int x, int y, int width, int height, int value) : BoundedCounter(x,y,width,height,value) {
+FractionalCounter::FractionalCounter(int x, int y, int width, int height, int value, int max) : BoundedCounter(x,y,width,height,value,max) {
 	string s1 = static_cast<ostringstream*>( &(ostringstream() << value) )->str();
 	string s2 = static_cast<ostringstream*>( &(ostringstream() << _max) )->str();
 	string result = s1 + "/" + s2;
@@ -20,4 +20,13 @@ FractionalCounter::FractionalCounter(int x, int y, int width, int height, int va
 
 FractionalCounter::~FractionalCounter() {
 	delete _textE;
+}
+
+FractionalCounter &FractionalCounter::operator++(int) {
+	operator++();
+}
+
+FractionalCounter &FractionalCounter::operator++() {
+	BoundedCounter::operator++();
+	return *this;
 }

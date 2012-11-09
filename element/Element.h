@@ -61,7 +61,7 @@ class Element {
         /*! \brief Set the element's height. */
         void setHeight(unsigned int height) { this->_height = height; }
         /*! \brief Set the dirty flag.  Causes the element re-render. */
-        void setDirty(bool dirty) { this->_dirty = dirty; }
+        void setDirty(bool dirty);
         // operator definitions
         /*! \brief Less than operator so Element objects may be sorted. */
         bool operator<(const Element &other);
@@ -78,6 +78,7 @@ class Element {
         mouseDownCallback_t _mouseCallback;
         mouseUpCallback_t _mouseUpCallback;
         mouseMoveCallback_t _mouseMoveCallback;
+        vector<Element *> _children;
         /*! The resulting image for the element to be blitted to a parent 
          * element or rendered on a surface 
          */
@@ -87,7 +88,7 @@ class Element {
         float _zIndex;
         unsigned int _id;
         bool _dirty;
-        vector<Element *> _children;
+        bool _first_render;
         Element *_parent;
         Image *_clrImg;
 };
