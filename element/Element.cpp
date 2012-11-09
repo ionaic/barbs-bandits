@@ -60,7 +60,10 @@ Element::Element(int x, int y, int xs, int ys) {
 }
 
 
-/*! Deletes the pointers for the result image and the clear image (background). */
+/*! Deletes the pointers for the result image and the clear image (background).
+ * This destructor assumes that all of the child elements are dynamically allocated
+ * and that it has the responsibility of de-allocating them.
+ */
 Element::~Element() {
     delete this->_result;
     delete this->_clrImg;
