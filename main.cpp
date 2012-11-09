@@ -21,7 +21,6 @@
 #include "helper/OGHelper.h"
 
 using namespace std;
-
 static string textureFile = "texture.bmp";
 static ToggleButton* TB;
 static ToggleButton* TB2;
@@ -29,6 +28,7 @@ static NumericCounter* N;
 static FractionalCounter* F;
 static ProgressBar* PB;
 static TextEdit* TE;
+static Element * e;
 
 void buttonClicked(Element* e, int, int) {
     Element* element = e;
@@ -39,9 +39,8 @@ void buttonClicked2(Element* e, int, int) {
     PB->setValue(0);
 }
 
-
 Element * init() {
-    Element *e = OG_init(512, 512, "OpenGUI Demo", textureFile.c_str());
+    e = OG_init(512, 512, "OpenGUI Demo", textureFile.c_str());
     N = new NumericCounter(50, 0, 50, 25, 1);
     OG_addChild(N);
     //text edit box
@@ -94,13 +93,20 @@ Element * init() {
 }
 
 
+void animate(void) {
+    if ( TB->isDown() ) { (*N)++; (*F)++; (*PB)++; }
+    if ( TB2->isDown() ) { (*N)--; (*F)--; (*PB)--; }
+}
 
 int main() {
-    //start up the helper class
-    Element * e = init();
+    //start up the helper class and run some demo OpenGL setup code
+    init();
+    OG_registerAnimation(animate);
     OG_run();
 
 }
+
+
 
 
 

@@ -7,13 +7,14 @@ static bool _running;
 static string _title;
 static int _windowWidth;
 static int _windowHeight;
-static int _textureWidth;
-static int _textureHeight;
+static int OG_textureWidth;
+static int OG_textureHeight;
 static bool _initialized;
 static Element* e;
-static GLuint texture;
 static bool _quit;
 static int _vsync;
+static void (* _animation)(void);
+static GLuint texture;
 
 void _init();
 void _draw();
@@ -30,14 +31,15 @@ Element * OG_init(int width, int height, string title, string baseTexture) {
     _windowWidth = width;
     _windowHeight = height;
     _title = title;
-    _textureWidth = 0;
-    _textureHeight = 0;
+    OG_textureWidth = 0;
+    OG_textureHeight = 0;
     _quit = 0;
     _vsync = 1;
+    _running = true;
     _init();
-    e = new ImageElement(0, 0, baseTexture.c_str() );
-    _textureWidth = e->width();
-    _textureHeight = e->height();
+    e = new ImageElement(0, 0, baseTexture.c_str());
+    OG_textureWidth = e->width();
+    OG_textureHeight = e->height();
     return (Element *) e;
 }
 
@@ -75,7 +77,7 @@ void _init(void) {
     glFrustum(.5, -.5, -.5, .5, 0.0, 50.0);
     glMatrixMode(GL_MODELVIEW);
 
-    //now bin the texture
+    //now bind the texture
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     //set texture filtering
@@ -96,6 +98,7 @@ void OG_addChild(Element * child){
 void OG_run(void) {
     /** the main event loop for the demo
      */
+    cout << "running" << endl;
     double oldTime = glfwGetTime();
     while(_running) {
         double currentTime = glfwGetTime();
@@ -104,6 +107,9 @@ void OG_run(void) {
         if ( currentTime > oldTime + 0.02 )
         {
             _draw();
+            if (_animation) {
+                _animation();
+            }
             glfwSwapBuffers();
             oldTime = currentTime;
         }
@@ -132,7 +138,7 @@ void _draw(void)
     //enable texturing
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glTexImage2D(GL_TEXTURE_2D, 0, 4, _textureWidth, _textureHeight,
+    glTexImage2D(GL_TEXTURE_2D, 0, 4, OG_textureWidth, OG_textureHeight,
                 0, GL_RGBA, GL_UNSIGNED_BYTE, e->render()->getPixels());
 
     glEnable( GL_TEXTURE_2D );
@@ -168,10 +174,10 @@ void GLFWCALL mouseClicked(int mButton, int clicked)
     float I = ((float)x)/((float)_windowWidth);
     float J = ((float)(_windowHeight-y))/((float)_windowHeight);
     if (mButton == 0 && clicked == 1) {
-        e->mouseDown(_textureWidth*I, _textureHeight*J);
+        e->mouseDown(OG_textureWidth*I, OG_textureHeight*J);
     }
     if (mButton == 0 && clicked == 0) {
-        e->mouseUp(_textureWidth*I, _textureHeight*J);
+        e->mouseUp(OG_textureWidth*I, OG_textureHeight*J);
     }
 }
 
@@ -187,7 +193,7 @@ void GLFWCALL mouseMoved(int x, int y) {
         oldx = x;
         oldy = y;
     } else {
-        e->mouseMove(_textureWidth * I, _textureHeight * J,x-oldx,y-oldy);
+        e->mouseMove(OG_textureWidth * I, OG_textureHeight * J,x-oldx,y-oldy);
         oldx = x;
         oldy = y;
     }
@@ -209,11 +215,16 @@ void GLFWCALL keyPressed(int key, int action) {
 int shutDown(int returnCode) {
     if (_initialized)
         glfwTerminate();
+    cout << "exiting" << endl;
     exit(returnCode);
 }
 
 int closeWindow(void) {
     shutDown(EXIT_SUCCESS);
     return GL_TRUE;
+}
+
+void OG_registerAnimation(AnimCallback_t func) {
+    _animation = func;
 }
 

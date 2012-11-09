@@ -5,11 +5,11 @@ TXTINCL=`freetype-config --cflags` -lfreetype
 # compiler
 CC=g++
 # object files
-OFILES=Image.o Pixel.o Text.o Element.o TextElement.o Button.o TextEdit.o ToggleButton.o NumericCounter.o AbstractCounter.o FractionalCounter.o ProgressBar.o BoundedCounter.o CheckBox.o RadioButton.o Helper.o SliderBar.o
+OFILES=Image.o Pixel.o Text.o Element.o TextElement.o Button.o TextEdit.o ToggleButton.o NumericCounter.o AbstractCounter.o FractionalCounter.o ProgressBar.o BoundedCounter.o CheckBox.o RadioButton.o OGHelper.o SliderBar.o
 # final target
 TARGET=sample
 # generic element includes
-INCL=-I./image/ -I./text/ -I./element/ -I./button -I./togglebutton -I./counter -I./checkbox
+INCL=-I./image/ -I./text/ -I./element/ -I./button -I./togglebutton -I./counter -I./checkbox -I./helper
 # include all the things
 HFILES=button/Button.h image/ImageElement.h text/TextElement.h counter/*.h checkbox/*.h helper/OGHelper.h $(INCL) $(TXTINCL)
 
@@ -38,12 +38,13 @@ lib: cleanlib OpenGUI.o
 	cp checkbox/RadioButton.h libOpenGUI/include/libOpenGUI/RadioButton.h
 	cp button/Button.h libOpenGUI/include/libOpenGUI/Button.h
 	cp openGUI.h libOpenGUI/include/openGUI.h
+	cp helper/OGHelper.h libOpenGui/include/OGHelper.h
 
 cleanlib:
-	rm -f -r -d libOpenGUI	
+	rm -f -r libOpenGUI	
 
-debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o TextEdit.o Counter.o CheckBox.o RadioButton.o SliderBar.o Helper.o Element.o 
-	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) -g
+debug: $(OFILES) 
+	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL)
 
 OpenGUI.o: $(OFILES)
 	ld -r $(OFILES) -o "OpenGUI.o"
@@ -96,7 +97,7 @@ CheckBox.o: Element.o Text.o checkbox/CheckBox.h
 RadioButton.o: Element.o Text.o checkbox/RadioButton.h
 	$(CC) checkbox/RadioButton.cpp $(INCL) $(TXTINCL) -c
 	
-Helper.o:
+OGHelper.o:
 	$(CC) helper/OGHelper.cpp $(INCL) $(TXTINCL) -c
 
 clean: cleanlib
