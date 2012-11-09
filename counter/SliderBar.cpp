@@ -36,8 +36,9 @@ void SliderBar::mouseDown(int x, int y) {
 }
 void SliderBar::mouseUp(int x, int y) {
     bool inside = (this->_width >= x && this->_height >= y);
-    if (inside) { //if inside button
+    if (_down) //if inside button
         _down = false;
+    if (inside) {
         if (0 != _mouseCallback ) //if element has a callback
             this->_mouseCallback(this,x,y);
         return;
