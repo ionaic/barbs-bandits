@@ -16,8 +16,37 @@ HFILES=button/Button.h image/ImageElement.h text/TextElement.h counter/*.h check
 all: $(OFILES) 
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) 
 
+lib: cleanlib OpenGUI.o
+	ar rcs libOpenGUI.a OpenGUI.o
+	mkdir libOpenGUI
+	mkdir libOpenGUI/lib
+	mv libOpenGUI.a libOpenGUI/lib/libOpenGUI.a
+	mkdir libOpenGUI/include
+	mkdir libOpenGUI/include/libOpenGUI
+	cp togglebutton/ToggleButton.h libOpenGUI/include/libOpenGUI/ToggleButton.h
+	cp image/Image.h libOpenGUI/include/libOpenGUI/Image.h
+	cp image/ImageElement.h libOpenGUI/include/libOpenGUI/ImageElement.h
+	cp image/Pixel.h libOpenGUI/include/libOpenGUI/Pixel.h
+	cp element/Element.h libOpenGUI/include/libOpenGUI/Element.h
+	cp counter/AbstractCounter.h libOpenGUI/include/libOpenGUI/AbstractCounter.h
+	cp counter/BoundedCounter.h libOpenGUI/include/libOpenGUI/BoundedCounter.h
+	cp counter/ProgressBar.h libOpenGUI/include/libOpenGUI/ProgressBar.h
+	cp counter/NumericCounter.h libOpenGUI/include/libOpenGUI/NumericCounter.h
+	cp counter/FractionalCounter.h libOpenGUI/include/libOpenGUI/FractionalCounter.h
+	cp counter/SliderBar.h libOpenGUI/include/libOpenGUI/SliderBar.h
+	cp checkbox/CheckBox.h libOpenGUI/include/libOpenGUI/CheckBox.h
+	cp checkbox/RadioButton.h libOpenGUI/include/libOpenGUI/RadioButton.h
+	cp button/Button.h libOpenGUI/include/libOpenGUI/Button.h
+	cp openGUI.h libOpenGUI/include/openGUI.h
+
+cleanlib:
+	rm -f -r -d libOpenGUI	
+
 debug: clean Image.o Pixel.o Text.o TextElement.o Button.o ToggleButton.o TextEdit.o Counter.o CheckBox.o RadioButton.o SliderBar.o Element.o
 	 $(CC) $(OFILES) $(HFILES) main.cpp -o $(TARGET) $(DEMOINCL) -g
+
+OpenGUI.o: $(OFILES)
+	ld -r $(OFILES) -o "OpenGUI.o"
 
 Image.o: Pixel.o image/Image.h 
 	$(CC) image/Image.cpp -c
@@ -68,7 +97,7 @@ RadioButton.o: Element.o Text.o checkbox/RadioButton.h
 	$(CC) checkbox/RadioButton.cpp $(INCL) $(TXTINCL) -c
 	
 
-clean:
+clean: cleanlib
 	rm -f $(OFILES)
 	rm -f *.gch image/*.gch text/*.gch demo/*.gch button/*.gch togglebutton/*.gch
 	rm -f *.gch image/*.o text/*.o demo/*.o button/*.o togglebutton/*.o
