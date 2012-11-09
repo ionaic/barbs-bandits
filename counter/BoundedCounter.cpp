@@ -15,7 +15,7 @@ void BoundedCounter::setMax(int max) {
 }
 
 bool BoundedCounter::setValue(int value) {
-    if (value < _max) {
+    if (value <= _max && value >= 0) {
         _value = value;
         return true;
     }
@@ -25,13 +25,17 @@ bool BoundedCounter::setValue(int value) {
 }
 
 BoundedCounter &BoundedCounter::operator++() {
-    if ( ! (_value + 1 > _max ) )
+    if ( ! (_value + 1 > _max ) ) {
         _value++;
+	   setDirty(1);
+    }
     return *this;
 }
 
 BoundedCounter &BoundedCounter::operator--() {
-    if (_value > 1 )
+    if (_value > 1 ) {
         _value--;
+	   setDirty(1);
+    }
     return *this;
 }

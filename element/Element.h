@@ -83,7 +83,7 @@ class Element {
          * element or rendered on a surface 
          */
         Image *_result;
- 
+        friend class ElementComparison; 
     private:
         float _zIndex;
         unsigned int _id;
@@ -91,5 +91,12 @@ class Element {
         bool _first_render;
         Element *_parent;
         Image *_clrImg;
+};
+
+class ElementComparison {
+public:
+    inline bool operator()(Element *a, Element *b) {
+        return a->_zIndex < b->_zIndex;
+    }
 };
 #endif
