@@ -18,6 +18,7 @@
 #include "button/Button.h"
 #include "checkbox/CheckBox.h"
 #include "checkbox/RadioButton.h"
+#include "counter/SliderBar.h"
 
 using namespace std;
 
@@ -70,8 +71,11 @@ int loadGuiTexture(string textureString) {
 	(*F)++;
 	ie->addChild(F);
 	//progressbar in the upper left
-	PB = new ProgressBar(0, 230, 155, 25, 0);
+	PB = new ProgressBar(0, 231, 155, 25, 0);
 	ie->addChild(PB);
+    //sliderbar below progress bar
+    SliderBar* SB = new SliderBar(0, 205, 155, 25, 0 );
+    ie->addChild(SB);
     //lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerMouseDownCallback( buttonClicked2 );
@@ -105,6 +109,7 @@ int loadGuiTexture(string textureString) {
     buttonList2.push_back("RB 8");
     RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2);
     ie->addChild(RB);
+
 
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();
@@ -195,7 +200,7 @@ void mainLoop(void) {
 		double currentTime = glfwGetTime();
 		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
 			break;
-		//if ( currentTime > oldTime + 0.02 )
+		if ( currentTime > oldTime + 0.02 )
 		{
 		    if ( TB->isDown() ) { (*N)++; (*PB)++; }
 		    if ( TB2->isDown() ) { (*N)--; (*PB)--; }
@@ -203,8 +208,8 @@ void mainLoop(void) {
 			glfwSwapBuffers();
 			oldTime = currentTime;
 		}
-		//else
-			//usleep(10);
+		else
+			usleep(10);
 	}
 }
 
@@ -278,12 +283,14 @@ void GLFWCALL mouseMoved(int x, int y) {
     static int oldy = 0;
     static bool first = true;
     y = (WINDOW_HEIGHT-y);
+    float I = ((float)x)/((float)WINDOW_WIDTH);
+    float J = ((float)(WINDOW_HEIGHT-y))/((float)WINDOW_HEIGHT);
     if (first) {
         first = false;
         oldx = x;
         oldy = y;
     } else {
-        ie->mouseMove(x,y,x-oldx,y-oldy);
+        ie->mouseMove(width * I, height * J,x-oldx,y-oldy);
         oldx = x;
         oldy = y;
     }

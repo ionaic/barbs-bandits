@@ -15,6 +15,7 @@
  */
 class ImageElement : public Element {
     friend class ProgressBar;
+    friend class SliderBar;
     public:
         // public constructors
         /*! \brief Default constructor. */
