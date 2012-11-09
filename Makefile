@@ -49,22 +49,22 @@ OpenGUI.o: $(OFILES)
 	ld -r $(OFILES) -o "OpenGUI.o"
 
 Image.o: Pixel.o image/Image.h 
-	$(CC) image/Image.cpp -c
+	$(CC) $(INCL) image/Image.cpp -c
 
 Pixel.o:
-	$(CC) image/Pixel.cpp -c
+	$(CC) $(INCL) image/Pixel.cpp -c
 
 Text.o: Image.o text/Text.h
-	$(CC) text/Text.cpp $(TXTINCL) -c -Iimage/ -g
+	$(CC) $(INCL) text/Text.cpp $(TXTINCL) -c -Iimage/ -g
 
 TextElement.o: Text.o text/TextElement.h
-	$(CC) text/TextElement.cpp $(TXTINCL) -c
+	$(CC) $(INCL) text/TextElement.cpp $(TXTINCL) -c
 
 TextEdit.o: Element.o Text.o text/TextEdit.h
-	$(CC) text/TextEdit.cpp $(TXTINCL) -c
+	$(CC) $(INCL) text/TextEdit.cpp $(TXTINCL) -c
 
 Element.o: Image.o element/Element.h
-	$(CC) -I image/ element/Element.cpp -c
+	$(CC) $(INCL) -I image/ element/Element.cpp -c
 
 Button.o: Element.o Text.o
 	$(CC) button/Button.cpp $(INCL) $(TXTINCL) -c
