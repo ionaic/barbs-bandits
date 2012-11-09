@@ -75,7 +75,6 @@ string Text::getText() {
 
 //Render the text in _content into _image
 void Text::_render() {
-	//This is based off libttf tutorial code: bit.ly/ROmj5C
 	int numChars = _content.size();
 	if (_basic) {
 		delete[] _basic;

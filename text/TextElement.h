@@ -23,7 +23,7 @@ class TextElement : public Element {
 
         void clearResult(); /*!< \brief Clears the rendered image previously stored */
 
-    private: 
+    protected: 
         Text* _text;
 };
 #endif
