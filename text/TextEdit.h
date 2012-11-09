@@ -11,7 +11,9 @@ This file contains the TextEdit class.
 class TextEdit : public TextElement {
 	public:
 		TextEdit(int x, int y, int width, int height, string txt);
-		void keyDown(char c);
+		void keyDown(int c);
+
+	private:
 		void backspace();
 };
 #endif

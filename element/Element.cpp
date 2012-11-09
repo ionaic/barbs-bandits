@@ -141,7 +141,7 @@ void Element::mouseMove(int x, int y, int dx, int dy) {
 	}
 }
 
-void Element::keyDown(char c) {
+void Element::keyDown(int c) {
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
 		(*child)->keyDown(c);

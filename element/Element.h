@@ -46,7 +46,7 @@ class Element {
         virtual void mouseUp(int x, int y);
         void mouseUpRelative(float x, float y);
         virtual void mouseMove(int x, int y, int dx, int dy);
-        virtual void keyDown(char c);
+        virtual void keyDown(int c);
         unsigned int width() const { return _width; }
         unsigned int height() const { return _height; }
         /*! \brief Add a child element to the current element. */

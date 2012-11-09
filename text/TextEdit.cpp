@@ -5,8 +5,12 @@
 TextEdit::TextEdit(int x, int y, int width, int height, string txt) :
 	TextElement(x,y,width,height,14,txt) { }
 
-void TextEdit::keyDown(char c) {
-	setText(_text->getText()+c);
+void TextEdit::keyDown(int c) {
+	if (c==-1) {
+		backspace(); 
+	} else {
+		setText(_text->getText()+char(c));
+	}
 }
 
 void TextEdit::backspace() {

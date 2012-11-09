@@ -171,7 +171,7 @@ void GLFWCALL keyPressed(int key, int action) {
 		if (key == GLFW_KEY_ESC)
 			    quit = 1;
 		else if (key == GLFW_KEY_BACKSPACE)
-			(TE)->backspace();
+			(TE)->keyDown(-1);
 	}
 }
 
