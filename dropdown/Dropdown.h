@@ -9,8 +9,10 @@ class Dropdown : public ToggleButton {
         Dropdown(unsigned int x, unsigned int y, unsigned int width, unsigned int height, std::vector<std::string> &children);
         void dd_click(std::string label);
         
+        void update();
         
     private:
-        Image *_clickedResult;
+        Button* unclicked;
+        //Image *_unclickedResult;
         bool _clicked;
 };

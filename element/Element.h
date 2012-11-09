@@ -92,7 +92,6 @@ class Element {
          */
         Image *_clrImg;
         Image *_result;
-        Image *_clrImg;
         friend class ElementComparison; 
 
     private:
