@@ -9,6 +9,7 @@
 #include "main.h"
 #include "element/Element.h"
 #include "text/TextElement.h"
+#include "text/TextEdit.h"
 #include "image/ImageElement.h"
 #include "togglebutton/ToggleButton.h"
 #include "counter/AbstractCounter.h"
@@ -18,6 +19,7 @@
 #include "button/Button.h"
 #include "checkbox/CheckBox.h"
 #include "checkbox/RadioButton.h"
+#include "counter/SliderBar.h"
 
 using namespace std;
 
@@ -33,10 +35,12 @@ static ToggleButton* TB2;
 static NumericCounter* N;
 static FractionalCounter* F;
 static ProgressBar* PB;
+static TextEdit* TE;
 static int width;
 static int height;
 static int WINDOW_WIDTH;
 static int WINDOW_HEIGHT;
+bool quit = 0;
 
 int main() {
 	init();
@@ -46,31 +50,41 @@ int main() {
 }
 
 int loadGuiTexture(string textureString) {
-	FreeImage_Initialise();
-	FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
-	FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
-	if (!bitmap || !bitmap32) {
-		cout << "Texture failed to load" << endl;
-		return 1;
-	}
-	width = FreeImage_GetWidth(bitmap32);
-	height = FreeImage_GetHeight(bitmap32);
-	BYTE* texturebits = FreeImage_GetBits(bitmap32);
+	//FreeImage_Initialise();
+	//FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, textureString.c_str(), BMP_DEFAULT);
+	//FIBITMAP* bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+	//if (!bitmap || !bitmap32) {
+	//	cout << "Texture failed to load" << endl;
+	//	return 1;
+	//}
+	//width = FreeImage_GetWidth(bitmap32);
+	//height = FreeImage_GetHeight(bitmap32);
+	//BYTE* texturebits = FreeImage_GetBits(bitmap32);
 
 	//For texture
-	Pixel p(255, 255, 255, 255);
-	Image i(width, height, p);
+	//Pixel p(255, 255, 255, 255);
+	//Image i(width, height, p);
 	//base background element
-	ie = new ImageElement(0, 0, width, height, i);
+	//Image i(textureString.c_str());
+    //ie = new ImageElement(0, 0, i.width(), i.height(), i);
 	//numeric counter next to button (bottom left)
-	N = new NumericCounter(50, 0, 50, 25, 1);
+	ie = new ImageElement(0,0,textureString.c_str());
+    width = ie->width();
+    height = ie->height();
+    N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
+
+	TE = new TextEdit(2,50,200,80,"Hello");
+	ie->addChild(TE);
 	//Fractional counter in bottom right above increse
 	F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
 	ie->addChild(F);
 	//progressbar in the upper left
-	PB = new ProgressBar(0, 230, 155, 25, 0);
+	PB = new ProgressBar(0, 231, 155, 25, 0);
 	ie->addChild(PB);
+    //sliderbar below progress bar
+    SliderBar* SB = new SliderBar(0, 205, 155, 25, 0 );
+    ie->addChild(SB);
     //lower left button
 	Button* B = new Button(0, 0, 50, 20, "Button");
 	B->registerMouseDownCallback( buttonClicked2 );
@@ -105,6 +119,7 @@ int loadGuiTexture(string textureString) {
     RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2);
     ie->addChild(RB);
 
+
 	//render it to a texture by calling render
 	Pixel* bits = ie->render()->getPixels();
 
@@ -129,7 +144,7 @@ int loadGuiTexture(string textureString) {
 	glTexImage2D(GL_TEXTURE_2D, 0, 4, width, height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, bits);
 	//unload the bitmap since we're done with it
-	FreeImage_Unload(bitmap);
+	//FreeImage_Unload(bitmap);
 	return 0;
 }
 
@@ -146,6 +161,20 @@ int closeWindow(void) {
 	shutDown(EXIT_SUCCESS);
 	return GL_TRUE;
 }
+
+void GLFWCALL printableKeyPressed(int key, int action) {
+			ie->keyDown(key);
+}
+
+void GLFWCALL keyPressed(int key, int action) {
+	if (action == GLFW_PRESS) {
+		if (key == GLFW_KEY_ESC)
+			    quit = 1;
+		else if (key == GLFW_KEY_BACKSPACE)
+			ie->keyDown(-1);
+	}
+}
+
 
 void init(void) {
 	/** Initializes a glfw window for use in the demo
@@ -169,6 +198,8 @@ void init(void) {
 	glfwSetWindowSizeCallback( windowResize );
 	glfwSetMouseButtonCallback( mouseClicked );
 	glfwSetMousePosCallback( mouseMoved );
+	glfwSetKeyCallback( keyPressed );
+	glfwSetCharCallback( printableKeyPressed );
     //vsync
 	glfwSwapInterval(vsync);
 
@@ -185,16 +216,15 @@ void init(void) {
 
 }
 
-
 void mainLoop(void) {
 	/** the main event loop for the demo
 	 */
 	double oldTime = glfwGetTime();
 	while(running) {
 		double currentTime = glfwGetTime();
-		if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS)
+		if (quit)
 			break;
-		//if ( currentTime > oldTime + 0.02 )
+		if ( currentTime > oldTime + 0.02 )
 		{
 		    if ( TB->isDown() ) { (*N)++; (*F)++; (*PB)++; }
 		    if ( TB2->isDown() ) { (*N)--; (*F)--; (*PB)--; }
@@ -202,8 +232,8 @@ void mainLoop(void) {
 			glfwSwapBuffers();
 			oldTime = currentTime;
 		}
-		//else
-			//usleep(10);
+		else
+			usleep(10);
 	}
 }
 
@@ -249,7 +279,6 @@ void draw(void)
     glDisable( GL_TEXTURE_2D );
 }
 
-
 // Callback for when the window is resized
 void GLFWCALL windowResize( int width, int height ) {
 	glViewport(0,0,(GLsizei)width,(GLsizei)height);
@@ -277,12 +306,14 @@ void GLFWCALL mouseMoved(int x, int y) {
     static int oldy = 0;
     static bool first = true;
     y = (WINDOW_HEIGHT-y);
+    float I = ((float)x)/((float)WINDOW_WIDTH);
+    float J = ((float)(WINDOW_HEIGHT-y))/((float)WINDOW_HEIGHT);
     if (first) {
         first = false;
         oldx = x;
         oldy = y;
     } else {
-        ie->mouseMove(x,y,x-oldx,y-oldy);
+        ie->mouseMove(width * I, height * J,x-oldx,y-oldy);
         oldx = x;
         oldy = y;
     }

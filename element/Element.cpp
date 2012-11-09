@@ -20,8 +20,10 @@ Element::Element() {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_keyDownCallback = 0;
     this->_parent = 0;
-    this->_first_render = true;
+    this->_zIndex = -1;
+    _first_render = true;
 }
 
 /*! Creates an element positioned at (x,y) with dimensions (0,0). */
@@ -38,8 +40,10 @@ Element::Element(int x, int y) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_keyDownCallback = 0;
     this->_parent = 0;
-    this->_first_render = true;
+    this->_zIndex = -1;
+    _first_render = true;
 }
 
 
@@ -58,8 +62,10 @@ Element::Element(int x, int y, int xs, int ys) {
     this->_mouseCallback = 0;
     this->_mouseUpCallback = 0;
     this->_mouseMoveCallback = 0;
+    this->_keyDownCallback = 0;
     this->_parent = 0;
-    this->_first_render = true;
+    this->_zIndex = -1;
+    _first_render = true;
 }
 
 
@@ -137,7 +143,7 @@ void Element::mouseMove(int x, int y, int dx, int dy) {
 	if ( x < 0 || y < 0) return;
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
-		(*child)->mouseMove(dx-(*child)->_xCoord, y-(*child)->_yCoord, dx, dy);
+		(*child)->mouseMove(x-(*child)->_xCoord, y-(*child)->_yCoord, dx, dy);
 	}
 	bool inside = (this->_width >= x && this->_height >= y);
 	if (inside) { //if inside button
@@ -145,6 +151,14 @@ void Element::mouseMove(int x, int y, int dx, int dy) {
 			this->_mouseMoveCallback(this,x,y,dx,dy);
 		return;
 	}
+}
+
+void Element::keyDown(int c) {
+	vector<Element*>::iterator child = this->_children.begin();
+	for(; _children.end() != child; child++) {
+		(*child)->keyDown(c);
+	}
+    //this->_keyDownCallback(this,c);
 }
 
 /*! Register a callback function, accepts a function pointer to a function which
@@ -160,6 +174,10 @@ void Element::registerMouseUpCallback(mouseUpCallback_t func) {
 
 void Element::registerMouseMoveCallback(mouseMoveCallback_t func) {
     this->_mouseMoveCallback = func;
+}
+
+void Element::registerKeyDownCallback(keyDownCallback_t func) {
+    this->_keyDownCallback = func;
 }
 
 /*! Add a child element to the set of children elements.  The function accepts a

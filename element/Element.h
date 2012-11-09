@@ -21,12 +21,12 @@ traversal, rendering, and events.
 */
 class Element {
     public:
+        typedef void(*keyDownCallback_t)(Element*,char);
         typedef void(*mouseMoveCallback_t)(Element*,int,int,int,int);
         typedef void(*mouseClickCallback_t)(Element*,int,int);
         typedef mouseClickCallback_t mouseDownCallback_t;
         typedef mouseClickCallback_t mouseUpCallback_t;
         
-        Element(); /*!< \brief Default Constructor. */
         Element(int x, int y); /*!< \brief Construct with position. */
         Element(int x, int y, int xs, int ys); /*!< \brief Construct with position and size. */
         virtual ~Element(); /*!< \brief Destructor */
@@ -40,6 +40,7 @@ class Element {
 
         void registerMouseMoveCallback(mouseMoveCallback_t func); //for now just registers mouse callback
         void registerMouseUpCallback(mouseUpCallback_t func); //for now just registers mouse callback
+        void registerKeyDownCallback(keyDownCallback_t func); //for now just registers mouse callback
         /*! \brief Registers a callback function for the element. */
         void registerMouseDownCallback(mouseDownCallback_t func); //for now just registers mouse callback
         /*! \brief Test if element clicked by mouse. */
@@ -48,6 +49,9 @@ class Element {
         virtual void mouseUp(int x, int y);
         void mouseUpRelative(float x, float y);
         virtual void mouseMove(int x, int y, int dx, int dy);
+        virtual void keyDown(int c);
+        unsigned int width() const { return _width; }
+        unsigned int height() const { return _height; }
         /*! \brief Add a child element to the current element. */
         void addChild(Element *child);
         // getters and setters
@@ -81,15 +85,18 @@ class Element {
         mouseDownCallback_t _mouseCallback;
         mouseUpCallback_t _mouseUpCallback;
         mouseMoveCallback_t _mouseMoveCallback;
+        keyDownCallback_t _keyDownCallback;
         vector<Element *> _children;
         /*! The resulting image for the element to be blitted to a parent 
          * element or rendered on a surface 
          */
         Image *_clrImg;
         Image *_result;
+        Image *_clrImg;
         friend class ElementComparison; 
 
     private:
+        Element(); /*!< \brief Default Constructor. */
         float _zIndex;
         unsigned int _id;
         bool _dirty;
