@@ -67,7 +67,6 @@ int loadGuiTexture(string textureString) {
 	ie->addChild(N);
 	//Fractional counter in bottom right above increse
 	F = new FractionalCounter(206, 100, 50, 20, 10 ,100);
-	(*F)++;
 	ie->addChild(F);
 	//progressbar in the upper left
 	PB = new ProgressBar(0, 230, 155, 25, 0);
@@ -291,6 +290,8 @@ void GLFWCALL mouseMoved(int x, int y) {
 
 void buttonClicked(Element* e, int, int) {
 	Element* element = e;
+    cout << "Incrementing F" << endl;
+	(*F)++;
 }
 
 void buttonClicked2(Element* e, int, int) {
