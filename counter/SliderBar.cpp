@@ -1,6 +1,7 @@
 #include "SliderBar.h"
 
 SliderBar::SliderBar(int x, int y, int width, int height, int value) : BoundedCounter(x,y,width,height,value) {
+//SliderBar::SliderBar(int x, int y, int width, int height, int value) {
     _imageE = new ImageElement(0, 0, width, height);
     addChild(_imageE);
     _down = false;

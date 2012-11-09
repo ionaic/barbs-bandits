@@ -12,7 +12,7 @@ class Dropdown : public ToggleButton {
         void update();
         
     private:
-        Button* unclicked;
+        Element* unclicked;
         //Image *_unclickedResult;
         bool _clicked;
 };
