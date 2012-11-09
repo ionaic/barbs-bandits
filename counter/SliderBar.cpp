@@ -4,6 +4,7 @@ SliderBar::SliderBar(int x, int y, int width, int height, int value) : BoundedCo
     _imageE = new ImageElement(0, 0, width, height);
     addChild(_imageE);
     _down = false;
+    setValue(_max / 2);
 }
 
 bool SliderBar::setValue(int value) {
