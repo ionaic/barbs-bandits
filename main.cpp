@@ -73,8 +73,8 @@ int loadGuiTexture(string textureString) {
     height = ie->height();
     N = new NumericCounter(50, 0, 50, 25, 1);
 	ie->addChild(N);
-
-	TE = new TextEdit(2,50,200,80,"Hello");
+	//text edit box
+	TE = new TextEdit(2,50,200,25,"Hello");
 	ie->addChild(TE);
 	//Fractional counter in bottom right above increse
 	F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
