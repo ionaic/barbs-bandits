@@ -1,4 +1,5 @@
 //http://web.engr.oregonstate.edu/~mjb/cs553/Handouts/Texture/texture.pdf
+//TODO: includes from library
 #include <GL/glfw.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -32,10 +33,6 @@ static Element * e;
 
 void buttonClicked(Element* e, int, int) {
     Element* element = e;
-}
-
-void buttonClicked2(Element* e, int, int) {
-    Element* element = e;
     PB->setValue(0);
 }
 
@@ -57,15 +54,13 @@ Element * init() {
     OG_addChild(SB);
     //lower left button
     Button* B = new Button(0, 0, 50, 20, "Button");
-    B->registerMouseDownCallback( buttonClicked2 );
+    B->registerMouseDownCallback( buttonClicked );
     OG_addChild(B);
     //toggle button on the right
     TB = new ToggleButton(206, 0, 50, 20, "Increase");
-    TB->registerMouseDownCallback( buttonClicked );
     OG_addChild(TB);
     //another toggle button on the right
     TB2 = new ToggleButton(206, 50, 50, 20, "Decrease");
-    TB2->registerMouseDownCallback( buttonClicked );
     OG_addChild(TB2);
     //CheckBox array
     vector <string> buttonList;

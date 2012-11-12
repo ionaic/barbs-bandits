@@ -116,6 +116,7 @@ void OG_run(void) {
         else
             usleep(10);
     }
+    shutDown(0);
 }
 
 void _draw(void)
