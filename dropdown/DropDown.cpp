@@ -17,10 +17,12 @@ DropDown::DropDown(unsigned int x, unsigned int y,
     _isMenu = false;
 }
 
+/*! Dropdown destructor */
 DropDown::~DropDown() {
     delete _menu;
 }
 
+/*! overrides element's mouseDown function */
 void DropDown::mouseDown(int x, int y) {
     bool inside = (this->_width >= x && this->_height >= y);
     if (inside) {
@@ -32,7 +34,7 @@ void DropDown::mouseDown(int x, int y) {
     }
 }
 
-
+//switches between the button and menu */
 void DropDown::_switch() {
     //if it's in a button
     _children.clear();

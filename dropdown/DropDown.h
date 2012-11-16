@@ -17,7 +17,7 @@ public:
             unsigned int width, unsigned int height, vector <string> menuList);
     /*! \brief Dropdown destructor deletes the RadioButton */
     ~DropDown();
-    void mouseDown(int x, int y);
+    void mouseDown(int x, int y); /*! \brief overrides elements mouseDown function */
 
 private:
     bool _isMenu;
