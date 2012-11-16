@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['og_5faddchild',['OG_addChild',['../_o_g_helper_8cpp.html#a810d32aa0cc30e6e5259f2a8e15979a8',1,'OG_addChild(Element *child):&#160;OGHelper.cpp'],['../_o_g_helper_8h.html#a4026b7470643ec5d37d3b8e28f323efe',1,'OG_addChild(Element *):&#160;OGHelper.cpp']]],
   ['og_5finit',['OG_init',['../_o_g_helper_8cpp.html#adca903fd3f4a51911ba59871d17874d3',1,'OG_init(int width, int height, string title, string baseTexture):&#160;OGHelper.cpp'],['../_o_g_helper_8h.html#adca903fd3f4a51911ba59871d17874d3',1,'OG_init(int width, int height, string title, string baseTexture):&#160;OGHelper.cpp']]],
   ['og_5fregisteranimation',['OG_registerAnimation',['../_o_g_helper_8cpp.html#a2db604e9e3b42fcb55b9763d302d0008',1,'OG_registerAnimation(AnimCallback_t func):&#160;OGHelper.cpp'],['../_o_g_helper_8h.html#a2db604e9e3b42fcb55b9763d302d0008',1,'OG_registerAnimation(AnimCallback_t func):&#160;OGHelper.cpp']]],
   ['og_5frun',['OG_run',['../_o_g_helper_8cpp.html#a64444bd542dc040c138dd0693e233c9c',1,'OG_run(void):&#160;OGHelper.cpp'],['../_o_g_helper_8h.html#a510a52f3aeb5793d51911e5e6832234c',1,'OG_run():&#160;OGHelper.cpp']]],
