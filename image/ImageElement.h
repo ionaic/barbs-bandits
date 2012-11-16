@@ -31,7 +31,6 @@ class ImageElement : public Element {
             delete _clrImg;
             _result = new Image(this->_width, this->_height);
             _clrImg = new Image(this->_width, this->_height);
-            cout << _width << "  " << _height << endl;
         }
         /*! \brief Constructor to create an image element at (x,y) with dimensions
          * (width, height).

@@ -95,7 +95,7 @@ void _init(void) {
 void OG_run(void) {
     /** the main event loop for the demo
      */
-    cout << "running" << endl;
+    cout << "Running" << endl;
     double oldTime = glfwGetTime();
     while(_running) {
         double currentTime = glfwGetTime();
@@ -129,7 +129,7 @@ void _draw(void)
         diff = diff/ CLOCKS_PER_SEC;
         diff = diff/60;
         diff = 1./diff;
-        cout << diff << endl;
+        cout << "Frame rate: "<< diff << endl;
         loops = 0;
     }
     // draw GUI box
