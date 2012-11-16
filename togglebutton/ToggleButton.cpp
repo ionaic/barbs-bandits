@@ -36,15 +36,18 @@ void ToggleButton::mouseDown(int x, int y) {
 	}
 }
 
+/*! \brief check if the button is down */
 bool ToggleButton::isDown() {
     return _down;
 }
 
+/*! \brief set the button state*/
 void ToggleButton::setDown(bool down) {
     _down = down;
     _update();
 }
 
+//forces element to update
 void ToggleButton::_update() {
     if (_down) this->_imageE->darken();
     else this->_imageE->lighten();

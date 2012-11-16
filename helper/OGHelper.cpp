@@ -92,10 +92,6 @@ void _init(void) {
     _initialized = true;
 }
 
-void OG_addChild(Element * child){
-    e->addChild(child);
-}
-
 void OG_run(void) {
     /** the main event loop for the demo
      */

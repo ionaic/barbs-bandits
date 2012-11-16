@@ -1,7 +1,5 @@
 var class_button =
 [
-    [ "Button", "class_button.html#a3b36df1ae23c58aedb9e15a713159459", null ],
-    [ "Button", "class_button.html#afe6b0b69a06839e5381cab7d9eaf4f10", null ],
     [ "Button", "class_button.html#a3c5ea0097e8e4abf139a558c53f022d2", null ],
     [ "Button", "class_button.html#a0446975c84ebf54a1a1fa88690689e34", null ],
     [ "Button", "class_button.html#a89eeede6ce15964118eee29990872c96", null ],

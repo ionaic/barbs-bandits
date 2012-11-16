@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['draw',['draw',['../main_8cpp.html#ad2e97e7b54d0bf35e406b91fbdd2f256',1,'draw(void):&#160;main.cpp'],['../main_8h.html#ad2e97e7b54d0bf35e406b91fbdd2f256',1,'draw(void):&#160;main.cpp']]]
+  ['darken',['darken',['../class_image.html#ac74b230ae107968c8ec27d1eccd48789',1,'Image::darken()'],['../class_image_element.html#a989df03abf3c322ee1763924514d0bf7',1,'ImageElement::darken()']]]
 ];

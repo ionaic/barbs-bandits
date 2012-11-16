@@ -6,7 +6,7 @@ SliderBar::SliderBar(int x, int y, int width,
     _imageE = new ImageElement(0, 0, width, height);
     addChild(_imageE);
     _down = false;
-    setValue(_max / 2);
+    setValue(value);
 }
 
 /*!Override BoundedCounter's setValue. Takes an integer as an argument that must be less than max*/

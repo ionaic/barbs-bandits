@@ -8,5 +8,6 @@ var searchData=
   ['getimage',['getImage',['../class_text.html#ab70ee3b32a21afc611059d70f2b8d3e1',1,'Text']]],
   ['getpixels',['getPixels',['../class_image.html#a839b44b5c988db5774b7e963bcee5656',1,'Image']]],
   ['getr',['getR',['../class_pixel.html#afdb27eea61316a8f08cf10685e813dd5',1,'Pixel']]],
-  ['gettext',['getText',['../class_text.html#a3a51500bcaf5bd80c7d52975c5ba4e8e',1,'Text']]]
+  ['gettext',['getText',['../class_text.html#a3a51500bcaf5bd80c7d52975c5ba4e8e',1,'Text']]],
+  ['getvalue',['getValue',['../class_abstract_counter.html#af70d18d383d1470be18334e714bbc964',1,'AbstractCounter']]]
 ];

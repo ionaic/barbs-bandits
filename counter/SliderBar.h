@@ -10,10 +10,10 @@ This file contains the SliderBar class.
 
 class SliderBar : public BoundedCounter {
 public:
-	SliderBar(int x, int y, int width, int height, int value); /*!< /brief Constructor with starting values */
-	void mouseDown(int x, int y); /*!< /brief Override elements mouseDown */
-	void mouseUp(int x, int y); /*!< /brief Override elements mouseUp */
-	void mouseMove(int x, int y, int dx, int dy); /*!< /brief Override elements mouseMove */
+	SliderBar(int x, int y, int width, int height, int value); /*!< \brief Constructor with starting values */
+	void mouseDown(int x, int y); /*!< \brief Override elements mouseDown */
+	void mouseUp(int x, int y); /*!< \brief Override elements mouseUp */
+	void mouseMove(int x, int y, int dx, int dy); /*!< \brief Override elements mouseMove */
 	bool setValue(int value); /*!< \brief Override AbstractCounter's setValue. */
 
 private:
