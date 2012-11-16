@@ -21,3 +21,11 @@ void RadioButton::mouseDown(int x, int y) {
     setDirty(true);
     Element::mouseDown(x, y);
 }
+
+ToggleButton* RadioButton::getActive(){
+    vector <Element*>::iterator child = _children.begin();
+    for (; _children.end() != child; child++) {
+       if ( ((ToggleButton *)(*child))->isDown() ) return (ToggleButton *) *child;
+    }
+    return 0;
+}

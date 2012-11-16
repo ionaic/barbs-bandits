@@ -19,6 +19,7 @@
 #include "checkbox/CheckBox.h"
 #include "checkbox/RadioButton.h"
 #include "counter/SliderBar.h"
+#include "dropdown/DropDown.h"
 #include "helper/OGHelper.h"
 
 using namespace std;
@@ -31,6 +32,7 @@ static FractionalCounter* F;
 static ProgressBar* PB;
 static TextEdit* TE;
 static Element * e;
+static DropDown* DD;
 
 /*
  * here is a sample user based callback.
@@ -46,9 +48,17 @@ void init() {
     //create a new Numeric counter and add it to the GUI at 50, 0 with size 50, 25 and value of 1
     N = new NumericCounter(50, 0, 50, 25, 1);
     e->addChild(N);
-    //text edit box at 2, 50, with size 200, 25 and default text of "Hello"
-    TE = new TextEdit(2,50,200,25,"Hello");
+    //text edit box at 0, 50, with size 200, 25 and default text of "Hello"
+    TE = new TextEdit(0,50,200,25,"Hello");
     e->addChild(TE);
+    //drop down menu at 0, 75, with size 50 , 100 and 4 options.
+    vector <string> menuList;
+    menuList.push_back("DD_1");
+    menuList.push_back("DD_2");
+    menuList.push_back("DD_3");
+    menuList.push_back("DD_4");
+    DD = new DropDown(0, 75, 50, 100, menuList);
+    e->addChild(DD);
     //Fractional counter at 206, 100 with size 50,20, default value of 1 and max value of 100
     F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
     e->addChild(F);
@@ -101,7 +111,7 @@ void animate(void) {
 int main() {
     //start up the helper class and run some demo OpenGL setup code
     e = OG_init(512, 512, "OpenGUI Demo", textureFile.c_str());
-    //run out init function to add elements to the GUI
+    //run our init function to add elements to the GUI
     init();
     //register our animation function so that the progress bar and counters will update in the event loop
     OG_registerAnimation(animate);
