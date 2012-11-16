@@ -2,6 +2,7 @@
 #include "../image/ImageElement.h"
 #include <GL/glfw.h>
 #include "OGHelper.h"
+#include <unistd.h>
 
 static bool _running;
 static string _title;
