@@ -18,13 +18,13 @@ class AbstractCounter : public Element {
 	public:
 		AbstractCounter(int x, int y, int width, int height, int value); /*!< \brief simple constructor for x, y, width, height*/
 
-		virtual bool setValue(int value); /*!< \brief Update the text stored and re-render it*/
-		int getValue(); /*!< \brief Update the text stored and re-render it*/
+		virtual bool setValue(int value); /*!< \brief Update the value stored and re-render it*/
+		int getValue(); /*!< \brief returns the value stored */
 		//virtual void clearResult() {}; /*!< \brief override the clearResult method of element for the counters */
-		virtual AbstractCounter &operator++(int);
-		virtual AbstractCounter &operator--(int);
+		virtual AbstractCounter &operator++(int); /*!< \brief ++ operator to increment the counter */
+		virtual AbstractCounter &operator--(int); /*!< \brief -- operator to decrement the counter */
 
 	protected:
-		int _value;
+		int _value; /*! < internal counter value */
 };
 #endif

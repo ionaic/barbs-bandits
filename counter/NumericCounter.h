@@ -15,13 +15,13 @@ class NumericCounter : public AbstractCounter {
 public:
 	NumericCounter(int x, int y, int width, int height, int value); /*!< \brief constructor that can be passed a value, xy coords, and width / height. */
 	~NumericCounter();  /*!< \brief default destructor */
-	bool setValue(int value);	/*!< \brief Override AbstractCounter's setValue. */
-	NumericCounter &operator++(int);
-	NumericCounter &operator--(int);
+	bool setValue(int value);	/*!< \brief Override BoundedCounter's setValue. */
+	NumericCounter &operator++(int); /*!< \brief ++ operator to increment the counter */
+	NumericCounter &operator--(int); /*!< \brief -- operator to decrement the counter */
 
 private:
 	TextElement * _textE;
-	void _update();
+	void _update(); //forces the element to update
 };
 
 #endif

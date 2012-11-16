@@ -54,6 +54,10 @@ Image::Image(Image &img) {
     }
 }
 
+/*!
+\brief Constructor that creates an image from a texture file.
+\param fname is the name of the texture file to be loaded.
+ */
 Image::Image(const char *fname) {
     FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, fname, BMP_DEFAULT);
     FIBITMAP *bitmap32 = FreeImage_ConvertTo32Bits(bitmap);

@@ -9,13 +9,13 @@ This file contains the BoundedCounter class.
 
 class BoundedCounter : public AbstractCounter {
 public:
-	BoundedCounter(int x, int y, int width, int height, int value); /*< /brief Constructor with starting value. Sets maximum to 100. */
+	BoundedCounter(int x, int y, int width, int height, int value); /*!< /brief Constructor with starting value. Sets maximum to 100. */
 	BoundedCounter(int x, int y, int width, int height,
-	        int value, int max);  /*< /brief Constructor with starting value and maximum value*/
-	void setMax(int max); /*< /brief Set maximum value of the counter */
-	virtual bool setValue(int value); /*< /brief Set value of the counter. Must be less than maximum */
-	BoundedCounter &operator++();
-	BoundedCounter &operator--();
+	        int value, int max);  /*!< /brief Constructor with starting value and maximum value*/
+	void setMax(int max); /*!< /brief Set maximum value of the counter */
+	virtual bool setValue(int value); /*!< /brief Set value of the counter. Must be less than maximum */
+	BoundedCounter &operator++(); /*!< \brief ++ operator to increment the counter */
+	BoundedCounter &operator--(); /*!< \brief -- operator to decrement the counter */
 
 protected:
 	int _max;

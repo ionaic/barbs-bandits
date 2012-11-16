@@ -10,14 +10,14 @@ This file contains the FractionalCounter class.
 
 class FractionalCounter : public BoundedCounter {
 public:
-	FractionalCounter(int x, int y, int width, int height, int value, int max); /*!< /brief Constructor with starting values */
-	~FractionalCounter();
-	FractionalCounter &operator++(int);
-	FractionalCounter &operator--(int);
+	FractionalCounter(int x, int y, int width, int height, int value, int max); /*!< \brief Constructor with starting values */
+	~FractionalCounter(); /*!< \brief default destructor */
+	FractionalCounter &operator++(int); /*!< \brief ++ operator to increment the counter */
+	FractionalCounter &operator--(int); /*!< \brief -- operator to decrement the counter */
 
 private:
 	TextElement* _textE;
-	void _update();
+	void _update(); //forces an update on the element
 
 };
 

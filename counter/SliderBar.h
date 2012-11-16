@@ -11,15 +11,15 @@ This file contains the SliderBar class.
 class SliderBar : public BoundedCounter {
 public:
 	SliderBar(int x, int y, int width, int height, int value); /*!< /brief Constructor with starting values */
-	void mouseDown(int x, int y);
-	void mouseUp(int x, int y);
-	void mouseMove(int x, int y, int dx, int dy);
-	bool setValue(int value);
+	void mouseDown(int x, int y); /*!< /brief Override elements mouseDown */
+	void mouseUp(int x, int y); /*!< /brief Override elements mouseUp */
+	void mouseMove(int x, int y, int dx, int dy); /*!< /brief Override elements mouseMove */
+	bool setValue(int value); /*!< \brief Override AbstractCounter's setValue. */
 
 private:
-	ImageElement* _imageE;
-	void _update();
-	bool _down;
+	ImageElement* _imageE; //internal image for sliderBar
+	void _update(); //forces the element to update
+	bool _down; //state of the mouseButton
 
 
 };

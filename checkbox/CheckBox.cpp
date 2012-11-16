@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-
+/*!Constructor.  Sets Elements x and y positions as well as width and height */
 CheckBox::CheckBox(int x, int y, int width, int height, vector <string> buttons ): Element(x, y, width, height) {
     int y1 = 0;
     int numBoxes = buttons.size();

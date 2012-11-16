@@ -1,5 +1,5 @@
 /*! \file
-	This file contains the Checkbox class. This class is not yet implemented as per our iteration schedule.
+	This file contains the Checkbox class.
 */
 #ifndef _CHECKBOX_H_
 #define _CHECKBOX_H_
@@ -15,9 +15,9 @@
 
 using namespace std;
 
-/*! \brief The class used to store a group of Checkboxes consisting of multiple ToggleButtons. Not yet implemented */
+/*! \brief The class used to store a group of Checkboxes consisting of multiple ToggleButtons.*/
 class CheckBox : public Element {
 public:
-    CheckBox(int x, int y, int width, int height, vector <string> buttons );
+    CheckBox(int x, int y, int width, int height, vector <string> buttons );/*!< \brief Constructor.  Sets Elements x and y positions as well as width and height */
 };
 #endif

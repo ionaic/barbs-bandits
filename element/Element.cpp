@@ -90,13 +90,18 @@ void Element::clearResult() {
     //start drawing things
     this->_clrImg->blit(*(this->_result), 0U, 0U, 0U, 0U, this->_width, this->_height);
 }
+
+/*! mouseDown call that gives only relative movement since the last call */
 void Element::mouseDownRelative(float x, float y) {
     mouseDown((int)(_width*x),(int)(_height*y));
 }
+
+/*! mouseUp call that gives only relative movement since the last call */
 void Element::mouseUpRelative(float x, float y) {
     mouseUp((int)(_width*x),(int)(_height*y));
 }
-/*! Tests if the mouse click at (x, y) is within the element. */
+
+/*! Tests if the mouse click down at (x, y) is within the element. */
 void Element::mouseDown(int x, int y) {
 	if ( x < 0 || y < 0) return;
 	vector<Element*>::iterator child = this->_children.begin();
@@ -111,7 +116,7 @@ void Element::mouseDown(int x, int y) {
 	}
 }
 
-/*! Tests if the mouse click at (x, y) is within the element. */
+/*! Tests if the mouse click up at (x, y) is within the element. */
 void Element::mouseUp(int x, int y) {
 	if ( x < 0 || y < 0) return;
 	vector<Element*>::iterator child = this->_children.begin();
@@ -141,29 +146,39 @@ void Element::mouseMove(int x, int y, int dx, int dy) {
 	}
 }
 
+/*! Provides an interface for key press event callbacks */
 void Element::keyDown(int c) {
 	vector<Element*>::iterator child = this->_children.begin();
 	for(; _children.end() != child; child++) {
 		(*child)->keyDown(c);
 	}
-    //this->_keyDownCallback(this,c);
+	if ( this->_keyDownCallback ) this->_keyDownCallback(this,c);
 }
 
-/*! Register a callback function, accepts a function pointer to a function which
+/*! Register a callback function for the mouseDown event, accepts a function pointer to a function which
  * takes one argument of void*.
  */
 void Element::registerMouseDownCallback(mouseDownCallback_t func) {
     this->_mouseCallback = func;
 }
 
+/*! Register a callback function for the mouseUp event, accepts a function pointer to a function which
+ * takes one argument of void*.
+ */
 void Element::registerMouseUpCallback(mouseUpCallback_t func) {
     this->_mouseUpCallback = func;
 }
 
+/*! Register a callback function for the mouseMoved event, accepts a function pointer to a function which
+ * takes one argument of void*.
+ */
 void Element::registerMouseMoveCallback(mouseMoveCallback_t func) {
     this->_mouseMoveCallback = func;
 }
 
+/*! Register a callback function for the keyDown Event, accepts a function pointer to a function which
+ * takes one argument of void*.
+ */
 void Element::registerKeyDownCallback(keyDownCallback_t func) {
     this->_keyDownCallback = func;
 }
@@ -213,15 +228,16 @@ Image* Element::render() {
     return this->_result;
 }
 
-/*! Less than operator which compares two elements based solely on their
- *  z-index (z position).
- */
-
+/*! sets the elements dirty bit.  A dirty element will be re-rendered. */
 void Element::setDirty(bool dirty){
     this->_dirty = dirty;
     if (this->_parent)
         _parent->setDirty(true);
 }
+
+/*! Less than operator which compares two elements based solely on their
+ *  z-index (z position).
+ */
 bool Element::operator<(const Element &other) { 
     return this->_zIndex < other._zIndex;
 }

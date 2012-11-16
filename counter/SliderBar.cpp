@@ -1,15 +1,19 @@
 #include "SliderBar.h"
 
-SliderBar::SliderBar(int x, int y, int width, int height, int value) : BoundedCounter(x,y,width,height,value) {
+/*!Constructor with starting values.  Sets x,y coords, width, height, and internal value */
+SliderBar::SliderBar(int x, int y, int width,
+        int height, int value) : BoundedCounter(x,y,width,height,value) {
     _imageE = new ImageElement(0, 0, width, height);
     addChild(_imageE);
     _down = false;
     setValue(_max / 2);
 }
 
+/*!Override BoundedCounter's setValue. Takes an integer as an argument that must be less than max*/
 bool SliderBar::setValue(int value) {
     if ( _max < value || value < 0) {
-        cout << "invalid set value: (value, max) " << value << ", " << _max << endl;
+        cout << "invalid set value: (value, max) "
+                << value << ", " << _max << endl;
     }
     else {
         _value = value;
@@ -19,6 +23,7 @@ bool SliderBar::setValue(int value) {
     return false;
 }
 
+//force the element to update
 void SliderBar::_update() {
     float i = ((float) _value) / ((float) _max) * _width;
     _imageE->_img->set(0, 0, i, _height, Pixel(0, 255, 0, 255));
@@ -26,6 +31,7 @@ void SliderBar::_update() {
     _imageE->setDirty(true);
 }
 
+/*!Override elements mouseDown */
 void SliderBar::mouseDown(int x, int y) {
     bool inside = (this->_width >= x && this->_height >= y);
     if (inside) { //if inside button
@@ -38,6 +44,8 @@ void SliderBar::mouseDown(int x, int y) {
         return;
     }
 }
+
+/*!Override elements mouseUp */
 void SliderBar::mouseUp(int x, int y) {
     bool inside = (this->_width >= x && this->_height >= y);
     if (_down) //if inside button
@@ -48,6 +56,8 @@ void SliderBar::mouseUp(int x, int y) {
         return;
     }
 }
+
+/*! Override elements mouseMove */
 void SliderBar::mouseMove(int x, int y, int dx, int dy) {
     if (_down) {
         int newValue = (int) ((float) x * ((float)_max / (float) _width));
