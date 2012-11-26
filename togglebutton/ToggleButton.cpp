@@ -19,7 +19,8 @@ ToggleButton::ToggleButton(int x, int y, int w, int h, string txt) : Button(x, y
 
 /*! Constructor creates an unclicked togglebutton at position x,y with width, height, text, font size and a background image. */
 ToggleButton::ToggleButton(int x, int y, int w, int h, 
-		string content, int size, ImageElement* i) : Button(x, y, w, h, i) {
+		string content, int size, const char* up_file,
+		const char* down_file) : Button(x, y, w, h, up_file, down_file) {
 	this->_down = false;
 }
 
@@ -29,8 +30,7 @@ void ToggleButton::mouseDown(int x, int y) {
 	bool inside = (this->_width >= x && this->_height >= y);
 
 	if (inside) { //if inside button
-		_down = !_down;
-		_update();
+		_switch();
 		if (0 != _mouseCallback ) //if element has a callback
 			this->_mouseCallback(this, x, y);
 	}
@@ -43,12 +43,14 @@ bool ToggleButton::isDown() {
 
 /*! \brief set the button state*/
 void ToggleButton::setDown(bool down) {
+    this->_children.clear();
     _down = down;
-    _update();
+    if (_down)
+        addChild(_imageDown);
+    else
+        addChild(_imageUp);
+    addChild(_textE);
+    if (this->_textE)
+        _textE->setDirty(true);
 }
 
-//forces element to update
-void ToggleButton::_update() {
-    if (_down) this->_imageE->darken();
-    else this->_imageE->lighten();
-}

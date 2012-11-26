@@ -19,12 +19,10 @@ class ToggleButton: public Button {
         ToggleButton(int x, int y, int w, int h); /*!< \brief Constructor. Sets x and y position of this element along with width and height. */
         ToggleButton(int x, int y, int w, int h, string txt); /*!< \brief Constructor. Sets x and y position of this element along with width, height and text. */
         ToggleButton(int x, int y, int w, int h, 
-            string content, int size, ImageElement* i); /*!< \brief Constructor. Sets x and y position of this element along with width, height, text, font size, and a background image */
+            string content, int size, const char* up_file, const char* down_file); /*!< \brief Constructor. Sets x and y position of this element along with width, height, text, font size, and a background image */
         void mouseDown(int x, int y); /*!< \brief mouseInput overload.  Performs action if inside this element */
         void setDown(bool down); /*! < \brief Allows the user to manually set up or down */
+        void mouseUp(int x, int y) {}; /*!< \brief mouseInput overload */
         bool isDown(); /*! < \brief checks if the button is down */
-	private:
-	    bool _down; //down boolean
-	    void _update(); //forces the element to update
 };
 #endif

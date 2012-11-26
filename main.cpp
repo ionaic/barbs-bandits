@@ -44,7 +44,7 @@ void buttonClicked(Element* e, int, int) {
     PB->setValue(0);
 }
 
-void init() {
+void addGuiElements() {
     //create a new Numeric counter and add it to the GUI at 50, 0 with size 50, 25 and value of 1
     N = new NumericCounter(50, 0, 50, 25, 1);
     e->addChild(N);
@@ -112,7 +112,7 @@ int main() {
     //start up the helper class and run some demo OpenGL setup code
     e = OG_init(512, 512, "OpenGUI Demo", textureFile.c_str());
     //run our init function to add elements to the GUI
-    init();
+    addGuiElements();
     //register our animation function so that the progress bar and counters will update in the event loop
     OG_registerAnimation(animate);
     //start up the openGL event loop

@@ -18,12 +18,18 @@ class Button : public Element {
 	public:
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height); /*!< \brief Constructor. Sets x and y position of Element along with height and width. */
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt); /*!< \brief Constructor. Sets x and y position of Element along with height, width, and text. */
-        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement* img); /*!< \brief Constructor. Sets x and y position of Element along width height. Uses an ImageElment as the background image. */
-        void setBgIg(ImageElement* img); /*!< \brief Sets background image. */
+        Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, const char* up_file, const char* down_file); /*!< \brief Constructor. Sets x and y position of Element along width height. Loads up and down images */
+        void setUpImage(const char* up_file);/*!< \brief Sets background image for up. */
+        void setDownImage(const char* down_file);/*!< \brief Sets background image for down. */
 	    void setText(string txt); /*!< \brief Sets text. */
+	    void mouseDown(int x, int y);
+	    void mouseUp(int x, int y);
 
 	protected:
+	    void _switch();
+	    bool _down;
 		TextElement* _textE;
-	    ImageElement* _imageE;
+	    ImageElement* _imageUp;
+	    ImageElement* _imageDown;
 };
 #endif
