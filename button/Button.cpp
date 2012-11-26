@@ -40,7 +40,6 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, const char* up_file, const char* down_file,
 		string text) : Element(x, y, width, height) {
-    cout << "In button: " << up_file << ", " << down_file << endl;
 	setUpImage(up_file);
 	setDownImage(down_file);
 	int offset_w = width / 8;
