@@ -18,9 +18,8 @@ ToggleButton::ToggleButton(int x, int y, int w, int h, string txt) : Button(x, y
 }
 
 /*! Constructor creates an unclicked togglebutton at position x,y with width, height, text, font size and a background image. */
-ToggleButton::ToggleButton(int x, int y, int w, int h, 
-		string content, int size, const char* up_file,
-		const char* down_file) : Button(x, y, w, h, up_file, down_file) {
+ToggleButton::ToggleButton(int x, int y, int w, int h, const char* up_file,
+		const char* down_file, string text) : Button(x, y, w, h, up_file, down_file, text) {
 	this->_down = false;
 }
 

@@ -38,10 +38,15 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 
 /*!Constructor sets x,y, width height and a background of an image */
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
-		unsigned int height, const char* up_file, const char* down_file) : Element(x, y, width, height) {
+		unsigned int height, const char* up_file, const char* down_file,
+		string text) : Element(x, y, width, height) {
+    cout << "In button: " << up_file << ", " << down_file << endl;
 	setUpImage(up_file);
 	setDownImage(down_file);
-    _textE = new TextElement(0, 0, width, height);
+	int offset_w = width / 8;
+	int offset_h = height / 4;
+	_textE = new TextElement(offset_w, offset_h,
+	        width - ( offset_w ) , height - (offset_h ), 0, text);
     _textE->setZ(0);
 	addChild(_textE);
     _down = false;

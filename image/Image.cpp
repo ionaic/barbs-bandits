@@ -71,7 +71,8 @@ Image::Image(const char *fname) {
     _pixels = new Pixel[_width*_height];
     Pixel *texture = (Pixel*)texturebits;
     for (unsigned int i = 0; i<_width*_height; ++i) {
-        _pixels[i] = texture[i];
+        _pixels[i].setRGBA(texture[i].getB(), texture[i].getG(),
+                texture[i].getR(), texture[i].getA());
     }
     FreeImage_Unload(bitmap);
 }

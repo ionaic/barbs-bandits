@@ -24,7 +24,7 @@
 
 using namespace std;
 //global variables so that we can directly access certain elements of the GUI
-static string textureFile = "texture.bmp";
+static string textureFile = "resources/texture.bmp";
 static ToggleButton* TB;
 static ToggleButton* TB2;
 static NumericCounter* N;
@@ -63,21 +63,21 @@ void addGuiElements() {
     F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
     e->addChild(F);
     //progressbar at 0, 231, with size 155, 25 and default value of 0
-    PB = new ProgressBar(0, 231, 155, 25, 0);
+    PB = new ProgressBar(0, 231, 155, 25, 0, "resources/pb.bmp");
     e->addChild(PB);
     //sliderbar at 0,205, with size 155, 25, with default value of 50
     SliderBar* SB = new SliderBar(0, 205, 155, 25, 50 );
     e->addChild(SB);
     //add button at 0,0 with size 50,20 and label "Button"
-    Button* B = new Button(0, 0, 50, 20, "Button");
+    Button* B = new Button(0, 0, 50, 25, "resources/b_up.bmp", "resources/b_down.bmp", "Button");
     //register our custom callback to the click event of "Button"
     B->registerMouseDownCallback( buttonClicked );
     e->addChild(B);
     //toggle button at 206, 0, with size 50, 20, labeled "Increase"
-    TB = new ToggleButton(206, 0, 50, 20, "Increase");
+    TB = new ToggleButton(206, 0, 50, 25, "resources/b_up.bmp", "resources/b_down.bmp", "Increase");
     e->addChild(TB);
     //toggle button at 206, 50, with size 50, 20, labeled "Decrease"
-    TB2 = new ToggleButton(206, 50, 50, 20, "Decrease");
+    TB2 = new ToggleButton(206, 50, 50, 25, "resources/b_up.bmp", "resources/b_down.bmp", "Decrease");
     e->addChild(TB2);
     //CheckBox array at 206, 156, with size 50, 100 with 5 buttons.
     vector <string> buttonList;  //list of strings to be passed to the CheckBox constructor
