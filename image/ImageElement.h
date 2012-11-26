@@ -23,7 +23,19 @@ class ImageElement : public Element {
         ImageElement(Image &img) : 
             Element(0, 0, img.width(), img.height()) { this->_img = new Image(img); }
         /*! \brief Constructor to create an image element at a location. */
-        ImageElement(unsigned int x, unsigned int y, const char *fname): Element(x,y, 0, 0) {
+        ImageElement(unsigned int x, unsigned int y,
+                int width, int height, const char *fname): Element(x,y, 0, 0) {
+            this->_img = new Image(width, height, fname);
+            _width = _img->width();
+            _height = _img->height();
+            delete _result;
+            delete _clrImg;
+            _result = new Image(this->_width, this->_height);
+            _clrImg = new Image(this->_width, this->_height);
+        }
+        /*! \brief Constructor to create an image element at a location. */
+        ImageElement(unsigned int x, unsigned int y,
+                const char *fname): Element(x,y, 0, 0) {
             this->_img = new Image(fname);
             _width = _img->width();
             _height = _img->height();

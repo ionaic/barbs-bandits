@@ -20,8 +20,8 @@ class Button : public Element {
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height, string txt); /*!< \brief Constructor. Sets x and y position of Element along with height, width, and text. */
         Button(unsigned int x, unsigned int y, unsigned int width, unsigned int height,
                 const char* up_file, const char* down_file, string text); /*!< \brief Constructor. Sets x and y position of Element along width height. Loads up and down images */
-        void setUpImage(const char* up_file);/*!< \brief Sets background image for up. */
-        void setDownImage(const char* down_file);/*!< \brief Sets background image for down. */
+        void setUpImage(int width, int height, const char* up_file);/*!< \brief Sets background image for up. */
+        void setDownImage(int width, int height, const char* down_file);/*!< \brief Sets background image for down. */
 	    void setText(string txt); /*!< \brief Sets text. */
 	    void mouseDown(int x, int y);
 	    void mouseUp(int x, int y);

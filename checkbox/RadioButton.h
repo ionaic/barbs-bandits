@@ -15,6 +15,9 @@ class RadioButton : public CheckBox {
     friend class DropDown;
 public:
     RadioButton(int x, int y, int width, int height, vector <string> buttons);/*!< \brief Constructor.  Sets x and y position of Element along with height and width */
+    RadioButton(int x, int y, int width, int height,
+            vector <string> buttons,
+            const char* up, const char* down);/*!< \brief Constructor.  Sets x and y position of Element along with height and width and button image*/
     void mouseDown(int x, int y); /*!< \brief Overrides the mouseDown call of Element */
     ToggleButton * getActive(); /*! \brief returns the active button */
 };

@@ -19,5 +19,7 @@ using namespace std;
 class CheckBox : public Element {
 public:
     CheckBox(int x, int y, int width, int height, vector <string> buttons );/*!< \brief Constructor.  Sets Elements x and y positions as well as width and height */
+    CheckBox(int x, int y, int width, int height,
+            vector <string> buttons, const char* up, const char* down ); /*!< \brief Constructor.  Sets Elements x and y positions as well as width and height and images*/
 };
 #endif

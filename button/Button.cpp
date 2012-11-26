@@ -40,8 +40,8 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 Button::Button(unsigned int x, unsigned int y, unsigned int width,
 		unsigned int height, const char* up_file, const char* down_file,
 		string text) : Element(x, y, width, height) {
-	setUpImage(up_file);
-	setDownImage(down_file);
+	setUpImage(width, height, up_file);
+	setDownImage(width, height, down_file);
 	int offset_w = width / 8;
 	int offset_h = height / 4;
 	_textE = new TextElement(offset_w, offset_h,
@@ -52,15 +52,15 @@ Button::Button(unsigned int x, unsigned int y, unsigned int width,
 }
 
 /*!Sets the background image of a button*/
-void Button::setUpImage(const char* up_file) {
-	_imageUp = new ImageElement(0, 0, up_file);		//need to draw image first
+void Button::setUpImage(int width, int height, const char* up_file) {
+	_imageUp = new ImageElement(0, 0, width, height, up_file);		//need to draw image first
     _imageUp->setZ(-1);
     Element::addChild(_imageUp);
     _imageUp->setDirty(true);
 }
 
-void Button::setDownImage(const char* down_file) {
-    _imageDown = new ImageElement(0, 0, down_file);      //need to draw image first
+void Button::setDownImage(int width, int height, const char* down_file) {
+    _imageDown = new ImageElement(0, 0, width, height, down_file);      //need to draw image first
     _imageDown->setZ(-1);
 }
 

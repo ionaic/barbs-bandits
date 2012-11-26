@@ -54,6 +54,7 @@ Image::Image(Image &img) {
     }
 }
 
+
 /*!
 \brief Constructor that creates an image from a texture file.
 \param fname is the name of the texture file to be loaded.
@@ -67,6 +68,34 @@ Image::Image(const char *fname) {
     _width = FreeImage_GetWidth(bitmap32);
     _height = FreeImage_GetHeight(bitmap32);
     BYTE* texturebits = FreeImage_GetBits(bitmap32);
+
+    _pixels = new Pixel[_width*_height];
+    Pixel *texture = (Pixel*)texturebits;
+    for (unsigned int i = 0; i<_width*_height; ++i) {
+        _pixels[i].setRGBA(texture[i].getB(), texture[i].getG(),
+                texture[i].getR(), texture[i].getA());
+    }
+    FreeImage_Unload(bitmap);
+}
+
+/*!
+\brief Constructor that creates an image from a texture file.  Includes scaling to width, height
+\param fname is the name of the texture file to be loaded.
+ */
+
+Image::Image(int width, int height, const char *fname) {
+    FreeImage_Initialise();
+    FIBITMAP *bitmap = FreeImage_Load(FIF_BMP, fname, BMP_DEFAULT);
+    FIBITMAP *bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
+    _width = width;
+    _height = height;
+    if (!bitmap || !bitmap32) {
+        throw "Failed to load image!";
+    }
+    //image scaling
+    FIBITMAP *bitmap32scale = FreeImage_Rescale(bitmap32, width, height, FILTER_BOX);
+
+    BYTE* texturebits = FreeImage_GetBits(bitmap32scale);
 
     _pixels = new Pixel[_width*_height];
     Pixel *texture = (Pixel*)texturebits;

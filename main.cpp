@@ -86,7 +86,7 @@ void addGuiElements() {
     buttonList.push_back("CB 3");
     buttonList.push_back("CB 4");
     buttonList.push_back("CB 5");
-    CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList);
+    CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList, "resources/b_up.bmp", "resources/b_down.bmp");
     e->addChild(CB);
     //RadioButton array at 156, 156, with size 50, 100 with 6 buttons.
     vector <string> buttonList2; //list of strings to be passed to the RadioButton constructor
@@ -96,8 +96,11 @@ void addGuiElements() {
     buttonList2.push_back("RB 4");
     buttonList2.push_back("RB 5");
     buttonList2.push_back("RB 6");
-    RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2);
+    RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2, "resources/b_up.bmp", "resources/b_down.bmp");
     e->addChild(RB);
+    //central imageElement rescaled
+    ImageElement* RSCL = new ImageElement(100,100,50,50,"resources/texture.bmp");
+    e->addChild(RSCL);
 }
 
 

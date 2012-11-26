@@ -13,7 +13,7 @@ ProgressBar::ProgressBar(int x, int y, int width,
 /*!Constructor with starting values.  Sets Elements x and y coords, width, height, and the bar's default value. */
 ProgressBar::ProgressBar(int x, int y, int width,
         int height, int value, const char* file) : BoundedCounter(x, y, width, height, value) {
-    _imageE = new ImageElement(0, 0, file);
+    _imageE = new ImageElement(0, 0, width, height, file);
     addChild(_imageE);
     _update();
 }
