@@ -81,22 +81,22 @@ void addGuiElements() {
     e->addChild(TB2);
     //CheckBox array at 206, 156, with size 50, 100 with 5 buttons.
     vector <string> buttonList;  //list of strings to be passed to the CheckBox constructor
-    buttonList.push_back("CB 1");
-    buttonList.push_back("CB 2");
-    buttonList.push_back("CB 3");
-    buttonList.push_back("CB 4");
-    buttonList.push_back("CB 5");
-    CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList, "resources/b_up.bmp", "resources/b_down.bmp");
+    buttonList.push_back("    CB 1");
+    buttonList.push_back("    CB 2");
+    buttonList.push_back("    CB 3");
+    buttonList.push_back("    CB 4");
+    buttonList.push_back("    CB 5");
+    CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList, "resources/c_1.bmp", "resources/c_2.bmp");
     e->addChild(CB);
     //RadioButton array at 156, 156, with size 50, 100 with 6 buttons.
     vector <string> buttonList2; //list of strings to be passed to the RadioButton constructor
-    buttonList2.push_back("RB 1");
-    buttonList2.push_back("RB 2");
-    buttonList2.push_back("RB 3");
-    buttonList2.push_back("RB 4");
-    buttonList2.push_back("RB 5");
-    buttonList2.push_back("RB 6");
-    RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2, "resources/b_up.bmp", "resources/b_down.bmp");
+    buttonList2.push_back("     RB 1");
+    buttonList2.push_back("     RB 2");
+    buttonList2.push_back("     RB 3");
+    buttonList2.push_back("     RB 4");
+    buttonList2.push_back("     RB 5");
+    buttonList2.push_back("     RB 6");
+    RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2, "resources/r_1.bmp", "resources/r_2.bmp");
     e->addChild(RB);
 }
 
