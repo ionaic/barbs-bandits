@@ -14,7 +14,7 @@ SliderBar::SliderBar(int x, int y, int width,
 /*!Constructor with starting values.  Sets x,y coords, width, height, and internal value */
 SliderBar::SliderBar(int x, int y, int width,
         int height, int value, const char* file) : BoundedCounter(x,y,width,height,value) {
-    _imageE = new ImageElement(0, 0, file);
+    _imageE = new ImageElement(0, 0, width, height, file);
     addChild(_imageE);
     _down = false;
     _update();

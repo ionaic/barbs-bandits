@@ -15,6 +15,10 @@ public:
     /*! \brief Constructor that sets x and y coords, width, height, and gives a list of options */
     DropDown(unsigned int x, unsigned int y,
             unsigned int width, unsigned int height, vector <string> menuList);
+    /*! \brief Constructor that sets x and y coords, width, height, and gives a list of options, includes image */
+    DropDown(unsigned int x, unsigned int y,
+                unsigned int width, unsigned int height, vector <string> menuList,
+                const char* up, const char* down);
     /*! \brief Dropdown destructor deletes the RadioButton */
     ~DropDown();
     void mouseDown(int x, int y); /*! \brief overrides elements mouseDown function */

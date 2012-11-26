@@ -17,6 +17,23 @@ DropDown::DropDown(unsigned int x, unsigned int y,
     _isMenu = false;
 }
 
+DropDown::DropDown(unsigned int x, unsigned int y,
+        unsigned int width, unsigned int height, vector <string> menuList,
+        const char* up, const char* down): Element(x, y, width, height) {
+    //create the expanded menu.
+    this->_menu = new RadioButton(0, 0, width, height, menuList, up, down);
+    this->_selected = (ToggleButton *) _menu->_children[
+                      _menu->_children.size() - 1];
+    this->_height = _menu->_children[
+                    _menu->_children.size() - 1]->height();
+    _prevPos = this->_selected->_yCoord;
+    this->_selected->setY(0);
+    addChild(this->_selected);
+
+    _isMenu = false;
+}
+
+
 /*! Dropdown destructor */
 DropDown::~DropDown() {
     delete _menu;

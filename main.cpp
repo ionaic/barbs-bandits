@@ -57,7 +57,7 @@ void addGuiElements() {
     menuList.push_back("DD_2");
     menuList.push_back("DD_3");
     menuList.push_back("DD_4");
-    DD = new DropDown(0, 75, 50, 100, menuList);
+    DD = new DropDown(0, 75, 50, 100, menuList, "resources/dd.bmp", "resources/dd2.bmp");
     e->addChild(DD);
     //Fractional counter at 206, 100 with size 50,20, default value of 1 and max value of 100
     F = new FractionalCounter(206, 100, 50, 20, 1 ,100);
@@ -66,7 +66,7 @@ void addGuiElements() {
     PB = new ProgressBar(0, 231, 155, 25, 0, "resources/pb.bmp");
     e->addChild(PB);
     //sliderbar at 0,205, with size 155, 25, with default value of 50
-    SliderBar* SB = new SliderBar(0, 205, 155, 25, 50 );
+    SliderBar* SB = new SliderBar(0, 205, 155, 25, 50, "resources/sb.bmp" );
     e->addChild(SB);
     //add button at 0,0 with size 50,20 and label "Button"
     Button* B = new Button(0, 0, 50, 25, "resources/b_up.bmp", "resources/b_down.bmp", "Button");
@@ -98,9 +98,6 @@ void addGuiElements() {
     buttonList2.push_back("RB 6");
     RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2, "resources/b_up.bmp", "resources/b_down.bmp");
     e->addChild(RB);
-    //central imageElement rescaled
-    ImageElement* RSCL = new ImageElement(100,100,50,50,"resources/texture.bmp");
-    e->addChild(RSCL);
 }
 
 

@@ -93,7 +93,7 @@ Image::Image(int width, int height, const char *fname) {
         throw "Failed to load image!";
     }
     //image scaling
-    FIBITMAP *bitmap32scale = FreeImage_Rescale(bitmap32, width, height, FILTER_BOX);
+    FIBITMAP *bitmap32scale = FreeImage_Rescale(bitmap32, width, height, FILTER_BICUBIC);
 
     BYTE* texturebits = FreeImage_GetBits(bitmap32scale);
 
