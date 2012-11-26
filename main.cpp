@@ -40,8 +40,18 @@ static DropDown* DD;
  * When clicked, the button will execute the callback, resetting the ProgressBar.
  */
 void buttonClicked(Element* e, int, int) {
-    Element* element = e;
     PB->setValue(0);
+}
+
+void checkClicked1(Element* e, int, int) {
+    cout << "You clicked button 1" << endl;
+}
+
+void checkClicked2(Element* e, int, int) {
+    cout << "You clicked button 2" << endl;
+}
+void checkClicked3(Element* e, int, int) {
+    cout << "You clicked button 3" << endl;
 }
 
 void addGuiElements() {
@@ -87,6 +97,9 @@ void addGuiElements() {
     buttonList.push_back("    CB 4");
     buttonList.push_back("    CB 5");
     CheckBox* CB = new CheckBox(206, 156, 50, 100, buttonList, "resources/c_1.bmp", "resources/c_2.bmp");
+    CB->registerMouseDownCallback(0, checkClicked1);
+    CB->registerMouseDownCallback(1, checkClicked2);
+    CB->registerMouseDownCallback(2, checkClicked3);
     e->addChild(CB);
     //RadioButton array at 156, 156, with size 50, 100 with 6 buttons.
     vector <string> buttonList2; //list of strings to be passed to the RadioButton constructor

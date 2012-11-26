@@ -28,3 +28,8 @@ CheckBox::CheckBox(int x, int y, int width, int height,
         Element::addChild( _tb);
     }
 }
+
+void CheckBox::registerMouseDownCallback(int item, mouseDownCallback_t func) {
+    if ( item < _children.size() )
+        _children[_children.size()-item-1]->registerMouseDownCallback(func);
+}
