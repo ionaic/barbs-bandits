@@ -3,8 +3,19 @@
 /*!Constructor with starting values.  Sets Elements x and y coords, width, height, and the bar's default value. */
 ProgressBar::ProgressBar(int x, int y, int width,
         int height, int value) : BoundedCounter(x, y, width, height, value) {
-    _imageE = new ImageElement(0, 0, width, height);
+    Pixel p(255, 0 ,0 , 255);
+    Image i(width, height, p);
+    _imageE = new ImageElement(0, 0, width, height, i);
     addChild(_imageE);
+    _update();
+}
+
+/*!Constructor with starting values.  Sets Elements x and y coords, width, height, and the bar's default value. */
+ProgressBar::ProgressBar(int x, int y, int width,
+        int height, int value, const char* file) : BoundedCounter(x, y, width, height, value) {
+    _imageE = new ImageElement(0, 0, file);
+    addChild(_imageE);
+    _update();
 }
 
 /*!sets the value and checks to ensure it's < max value */
@@ -42,7 +53,7 @@ ProgressBar &ProgressBar::operator--(int) {
 //forces the bar to update
 void ProgressBar::_update() {
     float i = ((float) _value) / ((float) _max) * _width;
-    _imageE->_img->set(0, 0, i, _height, Pixel(255, 0, 0, 255));
-    _imageE->_img->set(i, 0, _width - i, _height, Pixel(0, 0, 0, 0));
+    _imageE->_img->set(0, 0, i, _height, 255);
+    _imageE->_img->set(i, 0, _width - i, _height, 0);
     _imageE->setDirty(true);
 }

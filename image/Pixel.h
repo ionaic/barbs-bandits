@@ -19,6 +19,8 @@ public:
 	void setRGB(int R, int G, int B);
 	/*! \brief Use the RGBA parameters for the Pixel. */
 	void setRGBA(int R, int G, int B, int A);
+	/*! \brief set the A parameters for the Pixel. */
+    void setA(int A);
 	/* \brief Set the R parameter of the Pixel. */
 	int getR() const;
 	/* \brief Set the G parameter of the Pixel. */

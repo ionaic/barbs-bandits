@@ -26,6 +26,9 @@ void Pixel::setRGBA(int R, int G, int B, int A) {
 	_b = std::max(std::min(255, B), 0);
 	_a = std::max(std::min(255, A), 0);
 }
+void Pixel::setA(int A) {
+    _a = std::max(std::min(255, A), 0);
+}
 int Pixel::getR() const {
 	return _r;
 }

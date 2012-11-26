@@ -11,6 +11,8 @@ This file contains the ProgressBar class.
 class ProgressBar : public BoundedCounter {
 public:
 	ProgressBar(int x, int y, int width, int height, int value); /*!< \brief Constructor with starting value */
+	ProgressBar(int x, int y, int width,
+	        int height, int value, const char* file); /*!< \brief Constructor with starting value and image */
 	bool setValue(int value); /*!< \brief sets the value and checks to ensure it's < max value */
 	ProgressBar &operator++(int); /*!< \brief ++ operator to increment the counter */
 	ProgressBar &operator--(int); /*!< \brief -- operator to decrement the counter */

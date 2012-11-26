@@ -3,10 +3,21 @@
 /*!Constructor with starting values.  Sets x,y coords, width, height, and internal value */
 SliderBar::SliderBar(int x, int y, int width,
         int height, int value) : BoundedCounter(x,y,width,height,value) {
-    _imageE = new ImageElement(0, 0, width, height);
+    Pixel p(0, 255 ,0 , 255);
+    Image i(width, height, p);
+    _imageE = new ImageElement(0, 0, width, height, i);
     addChild(_imageE);
     _down = false;
-    setValue(value);
+    _update();
+}
+
+/*!Constructor with starting values.  Sets x,y coords, width, height, and internal value */
+SliderBar::SliderBar(int x, int y, int width,
+        int height, int value, const char* file) : BoundedCounter(x,y,width,height,value) {
+    _imageE = new ImageElement(0, 0, file);
+    addChild(_imageE);
+    _down = false;
+    _update();
 }
 
 /*!Override BoundedCounter's setValue. Takes an integer as an argument that must be less than max*/
@@ -26,8 +37,8 @@ bool SliderBar::setValue(int value) {
 //force the element to update
 void SliderBar::_update() {
     float i = ((float) _value) / ((float) _max) * _width;
-    _imageE->_img->set(0, 0, i, _height, Pixel(0, 255, 0, 255));
-    _imageE->_img->set(i, 0, _width - i, _height, Pixel(0, 0, 0, 0));
+    _imageE->_img->set(0, 0, i, _height, 255);
+    _imageE->_img->set(i, 0, _width - i, _height, 0);
     _imageE->setDirty(true);
 }
 

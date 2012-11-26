@@ -11,6 +11,8 @@ This file contains the SliderBar class.
 class SliderBar : public BoundedCounter {
 public:
 	SliderBar(int x, int y, int width, int height, int value); /*!< \brief Constructor with starting values */
+	SliderBar(int x, int y, int width,
+	        int height, int value, const char* file); /*!< \brief Constructor with starting values and image */
 	void mouseDown(int x, int y); /*!< \brief Override elements mouseDown */
 	void mouseUp(int x, int y); /*!< \brief Override elements mouseUp */
 	void mouseMove(int x, int y, int dx, int dy); /*!< \brief Override elements mouseMove */

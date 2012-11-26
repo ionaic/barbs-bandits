@@ -168,6 +168,39 @@ void Image::set(unsigned int x, unsigned int y, unsigned int width,
 		}
 	}
 }
+
+/*!
+\brief Sets the alpha of a pixel region.
+
+\param x Defines the left of the region.
+\param y Defines the top of the region.
+\param width Defines the width of the region.
+\param height Defines the height of the region.
+\param color Defines the default color to set the pixels to.
+
+\return void
+*/
+void Image::set(unsigned int x, unsigned int y, unsigned int width,
+                unsigned int height, int alpha) {
+    if (x+width>_width || y+height>_height) {
+        if (!_pixels) {
+            std::cout << "ERROR: Tried to set a pixel" <<
+                "in an uninitialized image!" << std::endl;
+        } else {
+            std::cout << "ERROR: Pixel region is out of bounds\n" <<
+                "  Top Left {XY: " << x << ", " << y << "}" <<
+                "Dimensions {WH: " << width << ", " << height << "}" <<
+                std::endl;
+        }
+        return;
+    }
+    for (unsigned int px = x; px<x+width; ++px) {
+        for (unsigned int py=y; py<y+height; ++py) {
+            unsigned int coord = _getCoord(px,py);
+            _pixels[coord].setA(alpha);
+        }
+    }
+}
 Pixel ERRORPIXEL;
 /*!
 \brief Gets the value of a pixel.
