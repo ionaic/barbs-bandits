@@ -112,8 +112,8 @@ void addGuiElements() {
     RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2, "resources/r_1.bmp", "resources/r_2.bmp");
     e->addChild(RB);
     //create new resized image at the bottom
-    ImageElement* RS = new ImageElement(100, 0, 50, 50, "resources/resize.bmp");
-    e->addChild(RS);
+    //ImageElement* RS = new ImageElement(100, 100, 50, 50, "resources/resize.bmp");
+    //e->addChild(RS);
 }
 
 
@@ -133,6 +133,5 @@ int main() {
     OG_registerAnimation(animate);
     //start up the openGL event loop
     OG_run();
-
 }
 
