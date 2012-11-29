@@ -118,97 +118,120 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00019"></a>00019 <span class="preprocessor">#include &quot;<a class="code" href="_check_box_8h.html">checkbox/CheckBox.h</a>&quot;</span>
 <a name="l00020"></a>00020 <span class="preprocessor">#include &quot;<a class="code" href="_radio_button_8h.html">checkbox/RadioButton.h</a>&quot;</span>
 <a name="l00021"></a>00021 <span class="preprocessor">#include &quot;<a class="code" href="_slider_bar_8h.html">counter/SliderBar.h</a>&quot;</span>
-<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;<a class="code" href="_o_g_helper_8h.html">helper/OGHelper.h</a>&quot;</span>
-<a name="l00023"></a>00023 
-<a name="l00024"></a>00024 <span class="keyword">using namespace </span>std;
-<a name="l00025"></a>00025 <span class="comment">//global variables so that we can directly access certain elements of the GUI</span>
-<a name="l00026"></a>00026 <span class="keyword">static</span> <span class="keywordtype">string</span> textureFile = <span class="stringliteral">&quot;texture.bmp&quot;</span>;
-<a name="l00027"></a>00027 <span class="keyword">static</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>* TB;
-<a name="l00028"></a>00028 <span class="keyword">static</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>* TB2;
-<a name="l00029"></a>00029 <span class="keyword">static</span> <a class="code" href="class_numeric_counter.html" title="An class used to display a simple numeric counter on a gui.">NumericCounter</a>* N;
-<a name="l00030"></a>00030 <span class="keyword">static</span> <a class="code" href="class_fractional_counter.html">FractionalCounter</a>* F;
-<a name="l00031"></a>00031 <span class="keyword">static</span> <a class="code" href="class_progress_bar.html">ProgressBar</a>* PB;
-<a name="l00032"></a>00032 <span class="keyword">static</span> <a class="code" href="class_text_edit.html">TextEdit</a>* TE;
-<a name="l00033"></a>00033 <span class="keyword">static</span> <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> * e;
-<a name="l00034"></a>00034 
-<a name="l00035"></a>00035 <span class="comment">/*</span>
-<a name="l00036"></a>00036 <span class="comment"> * here is a sample user based callback.</span>
-<a name="l00037"></a>00037 <span class="comment"> * This callback is registered to the button in the lower left.</span>
-<a name="l00038"></a>00038 <span class="comment"> * When clicked, the button will execute the callback, resetting the ProgressBar.</span>
-<a name="l00039"></a>00039 <span class="comment"> */</span>
-<a name="l00040"></a><a class="code" href="main_8cpp.html#a805e84d9f216cf661a69f29ce5d09024">00040</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a805e84d9f216cf661a69f29ce5d09024">buttonClicked</a>(<a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>* e, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>) {
-<a name="l00041"></a>00041     <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>* element = e;
-<a name="l00042"></a>00042     PB-&gt;<a class="code" href="class_progress_bar.html#a48b9c3770f95341e0c116d8c6ce85945" title="sets the value and checks to ensure it&#39;s &lt; max value">setValue</a>(0);
-<a name="l00043"></a>00043 }
-<a name="l00044"></a>00044 
-<a name="l00045"></a><a class="code" href="main_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947">00045</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947">init</a>() {
-<a name="l00046"></a>00046     <span class="comment">//create a new Numeric counter and add it to the GUI at 50, 0 with size 50, 25 and value of 1</span>
-<a name="l00047"></a>00047     N = <span class="keyword">new</span> <a class="code" href="class_numeric_counter.html" title="An class used to display a simple numeric counter on a gui.">NumericCounter</a>(50, 0, 50, 25, 1);
-<a name="l00048"></a>00048     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(N);
-<a name="l00049"></a>00049     <span class="comment">//text edit box at 2, 50, with size 200, 25 and default text of &quot;Hello&quot;</span>
-<a name="l00050"></a>00050     TE = <span class="keyword">new</span> <a class="code" href="class_text_edit.html">TextEdit</a>(2,50,200,25,<span class="stringliteral">&quot;Hello&quot;</span>);
-<a name="l00051"></a>00051     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(TE);
-<a name="l00052"></a>00052     <span class="comment">//Fractional counter at 206, 100 with size 50,20, default value of 1 and max value of 100</span>
-<a name="l00053"></a>00053     F = <span class="keyword">new</span> <a class="code" href="class_fractional_counter.html">FractionalCounter</a>(206, 100, 50, 20, 1 ,100);
-<a name="l00054"></a>00054     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(F);
-<a name="l00055"></a>00055     <span class="comment">//progressbar at 0, 231, with size 155, 25 and default value of 0</span>
-<a name="l00056"></a>00056     PB = <span class="keyword">new</span> <a class="code" href="class_progress_bar.html">ProgressBar</a>(0, 231, 155, 25, 0);
-<a name="l00057"></a>00057     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(PB);
-<a name="l00058"></a>00058     <span class="comment">//sliderbar at 0,205, with size 155, 25, with default value of 50</span>
-<a name="l00059"></a>00059     <a class="code" href="class_slider_bar.html">SliderBar</a>* SB = <span class="keyword">new</span> <a class="code" href="class_slider_bar.html">SliderBar</a>(0, 205, 155, 25, 50 );
-<a name="l00060"></a>00060     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(SB);
-<a name="l00061"></a>00061     <span class="comment">//add button at 0,0 with size 50,20 and label &quot;Button&quot;</span>
-<a name="l00062"></a>00062     <a class="code" href="class_button.html" title="The class used to store a Button consisting of a background ImageElement and a foreground TextElement...">Button</a>* B = <span class="keyword">new</span> <a class="code" href="class_button.html" title="The class used to store a Button consisting of a background ImageElement and a foreground TextElement...">Button</a>(0, 0, 50, 20, <span class="stringliteral">&quot;Button&quot;</span>);
-<a name="l00063"></a>00063     <span class="comment">//register our custom callback to the click event of &quot;Button&quot;</span>
-<a name="l00064"></a>00064     B-&gt;<a class="code" href="class_element.html#a443355e101b58b13f32c22e6f8b584f5" title="registers function callback type for the mouseDown event">registerMouseDownCallback</a>( <a class="code" href="main_8cpp.html#a805e84d9f216cf661a69f29ce5d09024">buttonClicked</a> );
-<a name="l00065"></a>00065     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(B);
-<a name="l00066"></a>00066     <span class="comment">//toggle button at 206, 0, with size 50, 20, labeled &quot;Increase&quot;</span>
-<a name="l00067"></a>00067     TB = <span class="keyword">new</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>(206, 0, 50, 20, <span class="stringliteral">&quot;Increase&quot;</span>);
-<a name="l00068"></a>00068     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(TB);
-<a name="l00069"></a>00069     <span class="comment">//toggle button at 206, 50, with size 50, 20, labeled &quot;Decrease&quot;</span>
-<a name="l00070"></a>00070     TB2 = <span class="keyword">new</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>(206, 50, 50, 20, <span class="stringliteral">&quot;Decrease&quot;</span>);
-<a name="l00071"></a>00071     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(TB2);
-<a name="l00072"></a>00072     <span class="comment">//CheckBox array at 206, 156, with size 50, 100 with 5 buttons.</span>
-<a name="l00073"></a>00073     vector &lt;string&gt; buttonList;  <span class="comment">//list of strings to be passed to the CheckBox constructor</span>
-<a name="l00074"></a>00074     buttonList.push_back(<span class="stringliteral">&quot;CB 1&quot;</span>);
-<a name="l00075"></a>00075     buttonList.push_back(<span class="stringliteral">&quot;CB 2&quot;</span>);
-<a name="l00076"></a>00076     buttonList.push_back(<span class="stringliteral">&quot;CB 3&quot;</span>);
-<a name="l00077"></a>00077     buttonList.push_back(<span class="stringliteral">&quot;CB 4&quot;</span>);
-<a name="l00078"></a>00078     buttonList.push_back(<span class="stringliteral">&quot;CB 5&quot;</span>);
-<a name="l00079"></a>00079     <a class="code" href="class_check_box.html" title="The class used to store a group of Checkboxes consisting of multiple ToggleButtons.">CheckBox</a>* CB = <span class="keyword">new</span> <a class="code" href="class_check_box.html" title="The class used to store a group of Checkboxes consisting of multiple ToggleButtons.">CheckBox</a>(206, 156, 50, 100, buttonList);
-<a name="l00080"></a>00080     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(CB);
-<a name="l00081"></a>00081     <span class="comment">//RadioButton array at 156, 156, with size 50, 100 with 6 buttons.</span>
-<a name="l00082"></a>00082     vector &lt;string&gt; buttonList2; <span class="comment">//list of strings to be passed to the RadioButton constructor</span>
-<a name="l00083"></a>00083     buttonList2.push_back(<span class="stringliteral">&quot;RB 1&quot;</span>);
-<a name="l00084"></a>00084     buttonList2.push_back(<span class="stringliteral">&quot;RB 2&quot;</span>);
-<a name="l00085"></a>00085     buttonList2.push_back(<span class="stringliteral">&quot;RB 3&quot;</span>);
-<a name="l00086"></a>00086     buttonList2.push_back(<span class="stringliteral">&quot;RB 4&quot;</span>);
-<a name="l00087"></a>00087     buttonList2.push_back(<span class="stringliteral">&quot;RB 5&quot;</span>);
-<a name="l00088"></a>00088     buttonList2.push_back(<span class="stringliteral">&quot;RB 6&quot;</span>);
-<a name="l00089"></a>00089     <a class="code" href="class_radio_button.html" title="The class used to store a group of buttons consisting of multiple ToggleButtons. Only one button may ...">RadioButton</a>* RB = <span class="keyword">new</span> <a class="code" href="class_radio_button.html" title="The class used to store a group of buttons consisting of multiple ToggleButtons. Only one button may ...">RadioButton</a>(156, 156, 50, 100, buttonList2);
-<a name="l00090"></a>00090     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(RB);
-<a name="l00091"></a>00091 }
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093 
-<a name="l00094"></a><a class="code" href="main_8cpp.html#ab49f0cae79125f1b8b2f93bcfea4afc6">00094</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#ab49f0cae79125f1b8b2f93bcfea4afc6">animate</a>(<span class="keywordtype">void</span>) {
-<a name="l00095"></a>00095     <span class="comment">//if increase is pressed, increase the numeric and fractional counters as well as the progress bar</span>
-<a name="l00096"></a>00096     <span class="keywordflow">if</span> ( TB-&gt;<a class="code" href="class_toggle_button.html#aaf383cc33bd77956143bb48e4c3bc3fe" title="Allows the user to manually set up or down.">isDown</a>() ) { (*N)++; (*F)++; (*PB)++; }
-<a name="l00097"></a>00097     <span class="comment">//if decrease is pressed, decrease the numeric and fractional counters as well as the progress bar</span>
-<a name="l00098"></a>00098     <span class="keywordflow">if</span> ( TB2-&gt;<a class="code" href="class_toggle_button.html#aaf383cc33bd77956143bb48e4c3bc3fe" title="Allows the user to manually set up or down.">isDown</a>() ) { (*N)--; (*F)--; (*PB)--; }
-<a name="l00099"></a>00099 }
-<a name="l00100"></a>00100 
-<a name="l00101"></a><a class="code" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">00101</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {
-<a name="l00102"></a>00102     <span class="comment">//start up the helper class and run some demo OpenGL setup code</span>
-<a name="l00103"></a>00103     e = <a class="code" href="_o_g_helper_8cpp.html#adca903fd3f4a51911ba59871d17874d3" title="Initializes the OpenGUI helper class and sets up OpenGL code to demonstrate the library.">OG_init</a>(512, 512, <span class="stringliteral">&quot;OpenGUI Demo&quot;</span>, textureFile.c_str());
-<a name="l00104"></a>00104     <span class="comment">//run out init function to add elements to the GUI</span>
-<a name="l00105"></a>00105     <a class="code" href="main_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947">init</a>();
-<a name="l00106"></a>00106     <span class="comment">//register our animation function so that the progress bar and counters will update in the event loop</span>
-<a name="l00107"></a>00107     <a class="code" href="_o_g_helper_8cpp.html#a2db604e9e3b42fcb55b9763d302d0008" title="allows the user to register an animation to be run in the openGL event loop">OG_registerAnimation</a>(<a class="code" href="main_8cpp.html#ab49f0cae79125f1b8b2f93bcfea4afc6">animate</a>);
-<a name="l00108"></a>00108     <span class="comment">//start up the openGL event loop</span>
-<a name="l00109"></a>00109     <a class="code" href="_o_g_helper_8cpp.html#a64444bd542dc040c138dd0693e233c9c" title="starts the openGL event loop, causing the GUI to be rendered to the texture and displayed in the wind...">OG_run</a>();
-<a name="l00110"></a>00110 
-<a name="l00111"></a>00111 }
-<a name="l00112"></a>00112 
+<a name="l00022"></a>00022 <span class="preprocessor">#include &quot;<a class="code" href="_drop_down_8h.html">dropdown/DropDown.h</a>&quot;</span>
+<a name="l00023"></a>00023 <span class="preprocessor">#include &quot;<a class="code" href="_o_g_helper_8h.html">helper/OGHelper.h</a>&quot;</span>
+<a name="l00024"></a>00024 
+<a name="l00025"></a>00025 <span class="keyword">using namespace </span>std;
+<a name="l00026"></a>00026 <span class="comment">//global variables so that we can directly access certain elements of the GUI</span>
+<a name="l00027"></a>00027 <span class="keyword">static</span> <span class="keywordtype">string</span> textureFile = <span class="stringliteral">&quot;resources/texture.bmp&quot;</span>;
+<a name="l00028"></a>00028 <span class="keyword">static</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>* TB;
+<a name="l00029"></a>00029 <span class="keyword">static</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>* TB2;
+<a name="l00030"></a>00030 <span class="keyword">static</span> <a class="code" href="class_numeric_counter.html" title="An class used to display a simple numeric counter on a gui.">NumericCounter</a>* N;
+<a name="l00031"></a>00031 <span class="keyword">static</span> <a class="code" href="class_fractional_counter.html">FractionalCounter</a>* F;
+<a name="l00032"></a>00032 <span class="keyword">static</span> <a class="code" href="class_progress_bar.html">ProgressBar</a>* PB;
+<a name="l00033"></a>00033 <span class="keyword">static</span> <a class="code" href="class_text_edit.html">TextEdit</a>* TE;
+<a name="l00034"></a>00034 <span class="keyword">static</span> <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> * e;
+<a name="l00035"></a>00035 <span class="keyword">static</span> <a class="code" href="class_drop_down.html">DropDown</a>* DD;
+<a name="l00036"></a>00036 
+<a name="l00037"></a>00037 <span class="comment">/*</span>
+<a name="l00038"></a>00038 <span class="comment"> * here is a sample user based callback.</span>
+<a name="l00039"></a>00039 <span class="comment"> * This callback is registered to the button in the lower left.</span>
+<a name="l00040"></a>00040 <span class="comment"> * When clicked, the button will execute the callback, resetting the ProgressBar.</span>
+<a name="l00041"></a>00041 <span class="comment"> */</span>
+<a name="l00042"></a><a class="code" href="main_8cpp.html#a805e84d9f216cf661a69f29ce5d09024">00042</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a805e84d9f216cf661a69f29ce5d09024">buttonClicked</a>(<a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>* e, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>) {
+<a name="l00043"></a>00043     PB-&gt;<a class="code" href="class_progress_bar.html#a48b9c3770f95341e0c116d8c6ce85945" title="sets the value and checks to ensure it&#39;s &lt; max value">setValue</a>(0);
+<a name="l00044"></a>00044 }
+<a name="l00045"></a>00045 
+<a name="l00046"></a><a class="code" href="main_8cpp.html#a671e55a3674a6f32798b3ba768f379ad">00046</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#a671e55a3674a6f32798b3ba768f379ad">checkClicked1</a>(<a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>* e, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>) {
+<a name="l00047"></a>00047     cout &lt;&lt; <span class="stringliteral">&quot;You clicked button 1&quot;</span> &lt;&lt; endl;
+<a name="l00048"></a>00048 }
+<a name="l00049"></a>00049 
+<a name="l00050"></a><a class="code" href="main_8cpp.html#acea7ee22b860014153611c8428bc14bf">00050</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#acea7ee22b860014153611c8428bc14bf">checkClicked2</a>(<a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>* e, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>) {
+<a name="l00051"></a>00051     cout &lt;&lt; <span class="stringliteral">&quot;You clicked button 2&quot;</span> &lt;&lt; endl;
+<a name="l00052"></a>00052 }
+<a name="l00053"></a><a class="code" href="main_8cpp.html#ade420d0df572ef48691beb7c5dae94f0">00053</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#ade420d0df572ef48691beb7c5dae94f0">checkClicked3</a>(<a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>* e, <span class="keywordtype">int</span>, <span class="keywordtype">int</span>) {
+<a name="l00054"></a>00054     cout &lt;&lt; <span class="stringliteral">&quot;You clicked button 3&quot;</span> &lt;&lt; endl;
+<a name="l00055"></a>00055 }
+<a name="l00056"></a>00056 
+<a name="l00057"></a><a class="code" href="main_8cpp.html#af8cbab9a5386a733112407daffb5406d">00057</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#af8cbab9a5386a733112407daffb5406d">addGuiElements</a>() {
+<a name="l00058"></a>00058     <span class="comment">//create a new Numeric counter and add it to the GUI at 50, 0 with size 50, 25 and value of 1</span>
+<a name="l00059"></a>00059     N = <span class="keyword">new</span> <a class="code" href="class_numeric_counter.html" title="An class used to display a simple numeric counter on a gui.">NumericCounter</a>(50, 0, 50, 25, 1);
+<a name="l00060"></a>00060     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(N);
+<a name="l00061"></a>00061     <span class="comment">//text edit box at 0, 50, with size 200, 25 and default text of &quot;Hello&quot;</span>
+<a name="l00062"></a>00062     TE = <span class="keyword">new</span> <a class="code" href="class_text_edit.html">TextEdit</a>(0,50,200,25,<span class="stringliteral">&quot;Hello&quot;</span>);
+<a name="l00063"></a>00063     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(TE);
+<a name="l00064"></a>00064     <span class="comment">//drop down menu at 0, 75, with size 50 , 100 and 4 options.</span>
+<a name="l00065"></a>00065     vector &lt;string&gt; menuList;
+<a name="l00066"></a>00066     menuList.push_back(<span class="stringliteral">&quot;DD_1&quot;</span>);
+<a name="l00067"></a>00067     menuList.push_back(<span class="stringliteral">&quot;DD_2&quot;</span>);
+<a name="l00068"></a>00068     menuList.push_back(<span class="stringliteral">&quot;DD_3&quot;</span>);
+<a name="l00069"></a>00069     menuList.push_back(<span class="stringliteral">&quot;DD_4&quot;</span>);
+<a name="l00070"></a>00070     DD = <span class="keyword">new</span> <a class="code" href="class_drop_down.html">DropDown</a>(0, 75, 50, 100, menuList, <span class="stringliteral">&quot;resources/dd.bmp&quot;</span>, <span class="stringliteral">&quot;resources/dd2.bmp&quot;</span>);
+<a name="l00071"></a>00071     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(DD);
+<a name="l00072"></a>00072     <span class="comment">//Fractional counter at 206, 100 with size 50,20, default value of 1 and max value of 100</span>
+<a name="l00073"></a>00073     F = <span class="keyword">new</span> <a class="code" href="class_fractional_counter.html">FractionalCounter</a>(206, 100, 50, 20, 1 ,100);
+<a name="l00074"></a>00074     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(F);
+<a name="l00075"></a>00075     <span class="comment">//progressbar at 0, 231, with size 155, 25 and default value of 0</span>
+<a name="l00076"></a>00076     PB = <span class="keyword">new</span> <a class="code" href="class_progress_bar.html">ProgressBar</a>(0, 231, 155, 25, 0, <span class="stringliteral">&quot;resources/pb.bmp&quot;</span>);
+<a name="l00077"></a>00077     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(PB);
+<a name="l00078"></a>00078     <span class="comment">//sliderbar at 0,205, with size 155, 25, with default value of 50</span>
+<a name="l00079"></a>00079     <a class="code" href="class_slider_bar.html">SliderBar</a>* SB = <span class="keyword">new</span> <a class="code" href="class_slider_bar.html">SliderBar</a>(0, 205, 155, 25, 50, <span class="stringliteral">&quot;resources/sb.bmp&quot;</span> );
+<a name="l00080"></a>00080     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(SB);
+<a name="l00081"></a>00081     <span class="comment">//add button at 0,0 with size 50,20 and label &quot;Button&quot;</span>
+<a name="l00082"></a>00082     <a class="code" href="class_button.html" title="The class used to store a Button consisting of a background ImageElement and a foreground TextElement...">Button</a>* B = <span class="keyword">new</span> <a class="code" href="_text_8h.html#aff0fcc85081c9ac29d951c1a271fdcd6">Button</a>(0, 0, 50, 25, <span class="stringliteral">&quot;resources/b_up.bmp&quot;</span>, <span class="stringliteral">&quot;resources/b_down.bmp&quot;</span>, <span class="stringliteral">&quot;Button&quot;</span>);
+<a name="l00083"></a>00083     <span class="comment">//register our custom callback to the click event of &quot;Button&quot;</span>
+<a name="l00084"></a>00084     B-&gt;<a class="code" href="class_element.html#a443355e101b58b13f32c22e6f8b584f5" title="registers function callback type for the mouseDown event">registerMouseDownCallback</a>( <a class="code" href="main_8cpp.html#a805e84d9f216cf661a69f29ce5d09024">buttonClicked</a> );
+<a name="l00085"></a>00085     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(B);
+<a name="l00086"></a>00086     <span class="comment">//toggle button at 206, 0, with size 50, 20, labeled &quot;Increase&quot;</span>
+<a name="l00087"></a>00087     TB = <span class="keyword">new</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>(206, 0, 50, 25, <span class="stringliteral">&quot;resources/b_up.bmp&quot;</span>, <span class="stringliteral">&quot;resources/b_down.bmp&quot;</span>, <span class="stringliteral">&quot;Increase&quot;</span>);
+<a name="l00088"></a>00088     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(TB);
+<a name="l00089"></a>00089     <span class="comment">//toggle button at 206, 50, with size 50, 20, labeled &quot;Decrease&quot;</span>
+<a name="l00090"></a>00090     TB2 = <span class="keyword">new</span> <a class="code" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a>(206, 50, 50, 25, <span class="stringliteral">&quot;resources/b_up.bmp&quot;</span>, <span class="stringliteral">&quot;resources/b_down.bmp&quot;</span>, <span class="stringliteral">&quot;Decrease&quot;</span>);
+<a name="l00091"></a>00091     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(TB2);
+<a name="l00092"></a>00092     <span class="comment">//CheckBox array at 206, 156, with size 50, 100 with 5 buttons.</span>
+<a name="l00093"></a>00093     vector &lt;string&gt; buttonList;  <span class="comment">//list of strings to be passed to the CheckBox constructor</span>
+<a name="l00094"></a>00094     buttonList.push_back(<span class="stringliteral">&quot;    CB 1&quot;</span>);
+<a name="l00095"></a>00095     buttonList.push_back(<span class="stringliteral">&quot;    CB 2&quot;</span>);
+<a name="l00096"></a>00096     buttonList.push_back(<span class="stringliteral">&quot;    CB 3&quot;</span>);
+<a name="l00097"></a>00097     buttonList.push_back(<span class="stringliteral">&quot;    CB 4&quot;</span>);
+<a name="l00098"></a>00098     buttonList.push_back(<span class="stringliteral">&quot;    CB 5&quot;</span>);
+<a name="l00099"></a>00099     <a class="code" href="class_check_box.html" title="The class used to store a group of Checkboxes consisting of multiple ToggleButtons.">CheckBox</a>* CB = <span class="keyword">new</span> <a class="code" href="class_check_box.html" title="The class used to store a group of Checkboxes consisting of multiple ToggleButtons.">CheckBox</a>(206, 156, 50, 100, buttonList, <span class="stringliteral">&quot;resources/c_1.bmp&quot;</span>, <span class="stringliteral">&quot;resources/c_2.bmp&quot;</span>);
+<a name="l00100"></a>00100     CB-&gt;<a class="code" href="class_check_box.html#a38fc0ff15e2550168e0d866c5d250531">registerMouseDownCallback</a>(0, <a class="code" href="main_8cpp.html#a671e55a3674a6f32798b3ba768f379ad">checkClicked1</a>);
+<a name="l00101"></a>00101     CB-&gt;<a class="code" href="class_check_box.html#a38fc0ff15e2550168e0d866c5d250531">registerMouseDownCallback</a>(1, <a class="code" href="main_8cpp.html#acea7ee22b860014153611c8428bc14bf">checkClicked2</a>);
+<a name="l00102"></a>00102     CB-&gt;<a class="code" href="class_check_box.html#a38fc0ff15e2550168e0d866c5d250531">registerMouseDownCallback</a>(2, <a class="code" href="main_8cpp.html#ade420d0df572ef48691beb7c5dae94f0">checkClicked3</a>);
+<a name="l00103"></a>00103     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(CB);
+<a name="l00104"></a>00104     <span class="comment">//RadioButton array at 156, 156, with size 50, 100 with 6 buttons.</span>
+<a name="l00105"></a>00105     vector &lt;string&gt; buttonList2; <span class="comment">//list of strings to be passed to the RadioButton constructor</span>
+<a name="l00106"></a>00106     buttonList2.push_back(<span class="stringliteral">&quot;     RB 1&quot;</span>);
+<a name="l00107"></a>00107     buttonList2.push_back(<span class="stringliteral">&quot;     RB 2&quot;</span>);
+<a name="l00108"></a>00108     buttonList2.push_back(<span class="stringliteral">&quot;     RB 3&quot;</span>);
+<a name="l00109"></a>00109     buttonList2.push_back(<span class="stringliteral">&quot;     RB 4&quot;</span>);
+<a name="l00110"></a>00110     buttonList2.push_back(<span class="stringliteral">&quot;     RB 5&quot;</span>);
+<a name="l00111"></a>00111     buttonList2.push_back(<span class="stringliteral">&quot;     RB 6&quot;</span>);
+<a name="l00112"></a>00112     <a class="code" href="class_radio_button.html" title="The class used to store a group of buttons consisting of multiple ToggleButtons. Only one button may ...">RadioButton</a>* RB = <span class="keyword">new</span> <a class="code" href="class_radio_button.html" title="The class used to store a group of buttons consisting of multiple ToggleButtons. Only one button may ...">RadioButton</a>(156, 156, 50, 100, buttonList2, <span class="stringliteral">&quot;resources/r_1.bmp&quot;</span>, <span class="stringliteral">&quot;resources/r_2.bmp&quot;</span>);
+<a name="l00113"></a>00113     e-&gt;<a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(RB);
+<a name="l00114"></a>00114 }
+<a name="l00115"></a>00115 
+<a name="l00116"></a>00116 
+<a name="l00117"></a><a class="code" href="main_8cpp.html#ab49f0cae79125f1b8b2f93bcfea4afc6">00117</a> <span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#ab49f0cae79125f1b8b2f93bcfea4afc6">animate</a>(<span class="keywordtype">void</span>) {
+<a name="l00118"></a>00118     <span class="comment">//if increase is pressed, increase the numeric and fractional counters as well as the progress bar</span>
+<a name="l00119"></a>00119     <span class="keywordflow">if</span> ( TB-&gt;<a class="code" href="class_toggle_button.html#aaf383cc33bd77956143bb48e4c3bc3fe" title="mouseInput overload">isDown</a>() ) { (*N)++; (*F)++; (*PB)++; }
+<a name="l00120"></a>00120     <span class="comment">//if decrease is pressed, decrease the numeric and fractional counters as well as the progress bar</span>
+<a name="l00121"></a>00121     <span class="keywordflow">if</span> ( TB2-&gt;<a class="code" href="class_toggle_button.html#aaf383cc33bd77956143bb48e4c3bc3fe" title="mouseInput overload">isDown</a>() ) { (*N)--; (*F)--; (*PB)--; }
+<a name="l00122"></a>00122 }
+<a name="l00123"></a>00123 
+<a name="l00124"></a><a class="code" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">00124</a> <span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {
+<a name="l00125"></a>00125     <span class="comment">//start up the helper class and run some demo OpenGL setup code</span>
+<a name="l00126"></a>00126     e = <a class="code" href="_o_g_helper_8cpp.html#adca903fd3f4a51911ba59871d17874d3" title="Initializes the OpenGUI helper class and sets up OpenGL code to demonstrate the library.">OG_init</a>(512, 512, <span class="stringliteral">&quot;OpenGUI Demo&quot;</span>, textureFile.c_str());
+<a name="l00127"></a>00127     <span class="comment">//run our init function to add elements to the GUI</span>
+<a name="l00128"></a>00128     <a class="code" href="main_8cpp.html#af8cbab9a5386a733112407daffb5406d">addGuiElements</a>();
+<a name="l00129"></a>00129     <span class="comment">//register our animation function so that the progress bar and counters will update in the event loop</span>
+<a name="l00130"></a>00130     <a class="code" href="_o_g_helper_8cpp.html#a2db604e9e3b42fcb55b9763d302d0008" title="allows the user to register an animation to be run in the openGL event loop">OG_registerAnimation</a>(<a class="code" href="main_8cpp.html#ab49f0cae79125f1b8b2f93bcfea4afc6">animate</a>);
+<a name="l00131"></a>00131     <span class="comment">//start up the openGL event loop</span>
+<a name="l00132"></a>00132     <a class="code" href="_o_g_helper_8cpp.html#a64444bd542dc040c138dd0693e233c9c" title="starts the openGL event loop, causing the GUI to be rendered to the texture and displayed in the wind...">OG_run</a>();
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 }
+<a name="l00135"></a>00135 
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -229,7 +252,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a>      </li>
 
-    <li class="footer">Generated on Fri Nov 16 2012 16:00:09 for OpenGui by
+    <li class="footer">Generated on Wed Nov 28 2012 20:29:08 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

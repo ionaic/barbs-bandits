@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['_7edropdown',['~DropDown',['../class_drop_down.html#a6378d2961f78545c8bc7bb39549d7518',1,'DropDown']]],
   ['_7eelement',['~Element',['../class_element.html#a13d54ba9c08b6bec651402f1c2bb002c',1,'Element']]],
   ['_7efractionalcounter',['~FractionalCounter',['../class_fractional_counter.html#a4c5e8a0ec1c417ebc608ad67dcd71996',1,'FractionalCounter']]],
   ['_7eimage',['~Image',['../class_image.html#a0294f63700543e11c0f0da85601c7ae5',1,'Image']]],

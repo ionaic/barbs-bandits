@@ -118,13 +118,14 @@ Inheritance diagram for Element:</div>
 <area href="class_abstract_counter.html" title="An internal class used to store Counter information." alt="AbstractCounter" shape="rect" coords="186,56,300,80"/>
 <area href="class_button.html" title="The class used to store a Button consisting of a background ImageElement and a foreground TextElement..." alt="Button" shape="rect" coords="372,56,486,80"/>
 <area href="class_check_box.html" title="The class used to store a group of Checkboxes consisting of multiple ToggleButtons." alt="CheckBox" shape="rect" coords="496,56,610,80"/>
-<area href="class_image_element.html" title="An element which simply contains an image and has children." alt="ImageElement" shape="rect" coords="620,56,734,80"/>
-<area href="class_text_element.html" title="The class used to store elements of Text." alt="TextElement" shape="rect" coords="744,56,858,80"/>
+<area href="class_drop_down.html" alt="DropDown" shape="rect" coords="620,56,734,80"/>
+<area href="class_image_element.html" title="An element which simply contains an image and has children." alt="ImageElement" shape="rect" coords="744,56,858,80"/>
+<area href="class_text_element.html" title="The class used to store elements of Text." alt="TextElement" shape="rect" coords="868,56,982,80"/>
 <area href="class_bounded_counter.html" alt="BoundedCounter" shape="rect" coords="124,112,238,136"/>
 <area href="class_numeric_counter.html" title="An class used to display a simple numeric counter on a gui." alt="NumericCounter" shape="rect" coords="248,112,362,136"/>
 <area href="class_toggle_button.html" title="The class used to store toggleable Buttons." alt="ToggleButton" shape="rect" coords="372,112,486,136"/>
 <area href="class_radio_button.html" title="The class used to store a group of buttons consisting of multiple ToggleButtons. Only one button may ..." alt="RadioButton" shape="rect" coords="496,112,610,136"/>
-<area href="class_text_edit.html" alt="TextEdit" shape="rect" coords="744,112,858,136"/>
+<area href="class_text_edit.html" alt="TextEdit" shape="rect" coords="868,112,982,136"/>
 <area href="class_fractional_counter.html" alt="FractionalCounter" shape="rect" coords="0,168,114,192"/>
 <area href="class_progress_bar.html" alt="ProgressBar" shape="rect" coords="124,168,238,192"/>
 <area href="class_slider_bar.html" alt="SliderBar" shape="rect" coords="248,168,362,192"/>
@@ -542,7 +543,7 @@ Friends</h2></td></tr>
 
 <p>Tests if the mouse click down at (x, y) is within the element. </p>
 
-<p>Reimplemented in <a class="el" href="class_toggle_button.html#ac1fb09aad8c580b884abd03c91c1c0fd">ToggleButton</a>, <a class="el" href="class_radio_button.html#ad103a07e7925d256814f8cefceff0fa9">RadioButton</a>, <a class="el" href="class_text_edit.html#a44cf61d621bd3312666eff7092856082">TextEdit</a>, and <a class="el" href="class_slider_bar.html#aa6b16adf55961b5306ab225a6d6edfca">SliderBar</a>.</p>
+<p>Reimplemented in <a class="el" href="class_button.html#aa7ab81954a631ab58c6d29aca8701f62">Button</a>, <a class="el" href="class_drop_down.html#a96323572cc1e2373e1b4681d11125495">DropDown</a>, <a class="el" href="class_toggle_button.html#ac1fb09aad8c580b884abd03c91c1c0fd">ToggleButton</a>, <a class="el" href="class_radio_button.html#ad103a07e7925d256814f8cefceff0fa9">RadioButton</a>, <a class="el" href="class_slider_bar.html#aa6b16adf55961b5306ab225a6d6edfca">SliderBar</a>, and <a class="el" href="class_text_edit.html#a44cf61d621bd3312666eff7092856082">TextEdit</a>.</p>
 
 <p>Definition at line <a class="el" href="_element_8cpp_source.html#l00105">105</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
 
@@ -652,7 +653,7 @@ Friends</h2></td></tr>
 
 <p>Tests if the mouse click up at (x, y) is within the element. </p>
 
-<p>Reimplemented in <a class="el" href="class_slider_bar.html#a834a154df7338264799147e69d58027c">SliderBar</a>.</p>
+<p>Reimplemented in <a class="el" href="class_button.html#a7a24034f0049a356346723075c5cdc24">Button</a>, <a class="el" href="class_toggle_button.html#a4dc827f5efd6b015a52de325b6692320">ToggleButton</a>, and <a class="el" href="class_slider_bar.html#a834a154df7338264799147e69d58027c">SliderBar</a>.</p>
 
 <p>Definition at line <a class="el" href="_element_8cpp_source.html#l00120">120</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
 
@@ -707,7 +708,7 @@ Friends</h2></td></tr>
 <p>Less than operator so <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> objects may be sorted. </p>
 <p>Less than operator which compares two elements based solely on their z-index (z position). </p>
 
-<p>Definition at line <a class="el" href="_element_8cpp_source.html#l00241">241</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_element_8cpp_source.html#l00242">242</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -816,7 +817,7 @@ Friends</h2></td></tr>
 <p>Renders the element and its children recursively. </p>
 <p>Clears the result image of past renders with <a class="el" href="class_element.html#a7a110bce4630cd7b35b1c2d401774598" title="Clears the result image to a color (black is default).">clearResult()</a>, filling it with either a color or the element's content, then renders each child in order of z-index (z position). Once all of the children have been rendered, it is blitted to the result image. After all children are rendered and blitted, the result image is returned. </p>
 
-<p>Definition at line <a class="el" href="_element_8cpp_source.html#l00210">210</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_element_8cpp_source.html#l00211">211</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -838,7 +839,7 @@ Friends</h2></td></tr>
 <p>Set the dirty flag. Causes the element re-render. </p>
 <p>sets the elements dirty bit. A dirty element will be re-rendered. </p>
 
-<p>Definition at line <a class="el" href="_element_8cpp_source.html#l00232">232</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_element_8cpp_source.html#l00233">233</a> of file <a class="el" href="_element_8cpp_source.html">Element.cpp</a>.</p>
 
 </div>
 </div>
@@ -1184,7 +1185,7 @@ Friends</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="class_element.html">Element</a>      </li>
 
-    <li class="footer">Generated on Fri Nov 16 2012 16:00:10 for OpenGui by
+    <li class="footer">Generated on Wed Nov 28 2012 20:29:10 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

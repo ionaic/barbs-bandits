@@ -97,6 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <div class="title">Button Class Reference</div>  </div>
@@ -126,16 +127,25 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> along with height and width.  <a href="#a3c5ea0097e8e4abf139a558c53f022d2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a0446975c84ebf54a1a1fa88690689e34">Button</a> (unsigned int x, unsigned int y, unsigned int <a class="el" href="class_element.html#a07e1710d6b11b5fbf4184b7703d5ee2e">width</a>, unsigned int <a class="el" href="class_element.html#a530e70330fc737c75477334fea147e65">height</a>, string txt)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> along with height, width, and text.  <a href="#a0446975c84ebf54a1a1fa88690689e34"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a89eeede6ce15964118eee29990872c96">Button</a> (unsigned int x, unsigned int y, unsigned int <a class="el" href="class_element.html#a07e1710d6b11b5fbf4184b7703d5ee2e">width</a>, unsigned int <a class="el" href="class_element.html#a530e70330fc737c75477334fea147e65">height</a>, <a class="el" href="class_image_element.html">ImageElement</a> *img)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> along width height. Uses an ImageElment as the background image.  <a href="#a89eeede6ce15964118eee29990872c96"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd">setBgIg</a> (<a class="el" href="class_image_element.html">ImageElement</a> *img)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets background image.  <a href="#a836cb30a97ad2abeb67b0b0a6dc30dbd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#ad0461a948873199d1bd1908cf8982cbd">Button</a> (unsigned int x, unsigned int y, unsigned int <a class="el" href="class_element.html#a07e1710d6b11b5fbf4184b7703d5ee2e">width</a>, unsigned int <a class="el" href="class_element.html#a530e70330fc737c75477334fea147e65">height</a>, const char *up_file, const char *down_file, string <a class="el" href="_button_o_c_8cpp.html#a739bd7e413e61c963681e085a990979a">text</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> along width height. Loads up and down images.  <a href="#ad0461a948873199d1bd1908cf8982cbd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#adee3338da6970e0fa6e6131e252b3252">setUpImage</a> (int <a class="el" href="class_element.html#a07e1710d6b11b5fbf4184b7703d5ee2e">width</a>, int <a class="el" href="class_element.html#a530e70330fc737c75477334fea147e65">height</a>, const char *up_file)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets background image for up.  <a href="#adee3338da6970e0fa6e6131e252b3252"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#aba2a3aa7fb20d27d7e10c52791f52798">setDownImage</a> (int <a class="el" href="class_element.html#a07e1710d6b11b5fbf4184b7703d5ee2e">width</a>, int <a class="el" href="class_element.html#a530e70330fc737c75477334fea147e65">height</a>, const char *down_file)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets background image for down.  <a href="#aba2a3aa7fb20d27d7e10c52791f52798"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a1794b3856606e75716fc7e2611b1b711">setText</a> (string txt)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets text.  <a href="#a1794b3856606e75716fc7e2611b1b711"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#aa7ab81954a631ab58c6d29aca8701f62">mouseDown</a> (int x, int y)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a7a24034f0049a356346723075c5cdc24">mouseUp</a> (int x, int y)</td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#aaab02e519fc0f0ca2e9b5ad5a6949cf0">_switch</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">_down</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text_element.html">TextElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_image_element.html">ImageElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a4745f9f13635485445614764193a8bad">_imageE</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_image_element.html">ImageElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_image_element.html">ImageElement</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a6ffe2a2f11618f271b3bb20b343d694e">_imageDown</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The class used to store a <a class="el" href="class_button.html" title="The class used to store a Button consisting of a background ImageElement and a foreground TextElement...">Button</a> consisting of a background <a class="el" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a> and a foreground <a class="el" href="class_text_element.html" title="The class used to store elements of Text.">TextElement</a>. </p>
@@ -232,11 +242,11 @@ Protected Attributes</h2></td></tr>
 <p>Constructor. Sets x and y position of <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> along with height, width, and text. </p>
 <p>Constructor sets x,y, width, height and text </p>
 
-<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00021">21</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00025">25</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a89eeede6ce15964118eee29990872c96"></a><!-- doxytag: member="Button::Button" ref="a89eeede6ce15964118eee29990872c96" args="(unsigned int x, unsigned int y, unsigned int width, unsigned int height, ImageElement *img)" -->
+<a class="anchor" id="ad0461a948873199d1bd1908cf8982cbd"></a><!-- doxytag: member="Button::Button" ref="ad0461a948873199d1bd1908cf8982cbd" args="(unsigned int x, unsigned int y, unsigned int width, unsigned int height, const char *up_file, const char *down_file, string text)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -267,8 +277,20 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_image_element.html">ImageElement</a> *&#160;</td>
-          <td class="paramname"><em>img</em>&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>up_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>down_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -279,33 +301,134 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Constructor. Sets x and y position of <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> along width height. Uses an ImageElment as the background image. </p>
+<p>Constructor. Sets x and y position of <a class="el" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a> along width height. Loads up and down images. </p>
 <p>Constructor sets x,y, width height and a background of an image </p>
 
-<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00032">32</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00040">40</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a836cb30a97ad2abeb67b0b0a6dc30dbd"></a><!-- doxytag: member="Button::setBgIg" ref="a836cb30a97ad2abeb67b0b0a6dc30dbd" args="(ImageElement *img)" -->
+<a class="anchor" id="aaab02e519fc0f0ca2e9b5ad5a6949cf0"></a><!-- doxytag: member="Button::_switch" ref="aaab02e519fc0f0ca2e9b5ad5a6949cf0" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd">Button::setBgIg</a> </td>
+          <td class="memname">void <a class="el" href="class_button.html#aaab02e519fc0f0ca2e9b5ad5a6949cf0">Button::_switch</a> </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_image_element.html">ImageElement</a> *&#160;</td>
-          <td class="paramname"><em>img</em></td><td>)</td>
-          <td></td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [protected]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Sets background image. </p>
-<p>Sets the background image of a button </p>
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00073">73</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
-<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00040">40</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+</div>
+</div>
+<a class="anchor" id="aa7ab81954a631ab58c6d29aca8701f62"></a><!-- doxytag: member="Button::mouseDown" ref="aa7ab81954a631ab58c6d29aca8701f62" args="(int x, int y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_button.html#aa7ab81954a631ab58c6d29aca8701f62">Button::mouseDown</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Tests if the mouse click down at (x, y) is within the element. </p>
+
+<p>Reimplemented from <a class="el" href="class_element.html#a078e517fc0aeafe2403e66a7e8074241">Element</a>.</p>
+
+<p>Reimplemented in <a class="el" href="class_toggle_button.html#ac1fb09aad8c580b884abd03c91c1c0fd">ToggleButton</a>.</p>
+
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00086">86</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7a24034f0049a356346723075c5cdc24"></a><!-- doxytag: member="Button::mouseUp" ref="a7a24034f0049a356346723075c5cdc24" args="(int x, int y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_button.html#a7a24034f0049a356346723075c5cdc24">Button::mouseUp</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Tests if the mouse click up at (x, y) is within the element. </p>
+
+<p>Reimplemented from <a class="el" href="class_element.html#afb5e5e00cc0a8965f3b3b7ac44728ec8">Element</a>.</p>
+
+<p>Reimplemented in <a class="el" href="class_toggle_button.html#a4dc827f5efd6b015a52de325b6692320">ToggleButton</a>.</p>
+
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00098">98</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aba2a3aa7fb20d27d7e10c52791f52798"></a><!-- doxytag: member="Button::setDownImage" ref="aba2a3aa7fb20d27d7e10c52791f52798" args="(int width, int height, const char *down_file)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_button.html#aba2a3aa7fb20d27d7e10c52791f52798">Button::setDownImage</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>down_file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets background image for down. </p>
+
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00062">62</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,23 +450,91 @@ Protected Attributes</h2></td></tr>
 <p>Sets text. </p>
 <p>Sets the text of a button </p>
 
-<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00049">49</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00068">68</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
 
 </div>
 </div>
-<hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a4745f9f13635485445614764193a8bad"></a><!-- doxytag: member="Button::_imageE" ref="a4745f9f13635485445614764193a8bad" args="" -->
+<a class="anchor" id="adee3338da6970e0fa6e6131e252b3252"></a><!-- doxytag: member="Button::setUpImage" ref="adee3338da6970e0fa6e6131e252b3252" args="(int width, int height, const char *up_file)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_image_element.html">ImageElement</a>* <a class="el" href="class_button.html#a4745f9f13635485445614764193a8bad">Button::_imageE</a><code> [protected]</code></td>
+          <td class="memname">void <a class="el" href="class_button.html#adee3338da6970e0fa6e6131e252b3252">Button::setUpImage</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>up_file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_button_8h_source.html#l00027">27</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
+<p>Sets background image for up. </p>
+<p>Sets the background image of a button </p>
+
+<p>Definition at line <a class="el" href="_button_8cpp_source.html#l00055">55</a> of file <a class="el" href="_button_8cpp_source.html">Button.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a74637822f95b32a1ecf5c6f8b37202b5"></a><!-- doxytag: member="Button::_down" ref="a74637822f95b32a1ecf5c6f8b37202b5" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">Button::_down</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_button_8h_source.html#l00031">31</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ffe2a2f11618f271b3bb20b343d694e"></a><!-- doxytag: member="Button::_imageDown" ref="a6ffe2a2f11618f271b3bb20b343d694e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_image_element.html">ImageElement</a>* <a class="el" href="class_button.html#a6ffe2a2f11618f271b3bb20b343d694e">Button::_imageDown</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_button_8h_source.html#l00034">34</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae6a2bb34faa3e72e9d152bab8aa97b24"></a><!-- doxytag: member="Button::_imageUp" ref="ae6a2bb34faa3e72e9d152bab8aa97b24" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_image_element.html">ImageElement</a>* <a class="el" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">Button::_imageUp</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_button_8h_source.html#l00033">33</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
 
 </div>
 </div>
@@ -358,7 +549,7 @@ Protected Attributes</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_button_8h_source.html#l00026">26</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
+<p>Definition at line <a class="el" href="_button_8h_source.html#l00032">32</a> of file <a class="el" href="_button_8h_source.html">Button.h</a>.</p>
 
 </div>
 </div>
@@ -386,7 +577,7 @@ Protected Attributes</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="class_button.html">Button</a>      </li>
 
-    <li class="footer">Generated on Fri Nov 16 2012 16:00:09 for OpenGui by
+    <li class="footer">Generated on Wed Nov 28 2012 20:29:09 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

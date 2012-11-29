@@ -5,7 +5,8 @@ var class_image =
     [ "Image", "class_image.html#a07983f8efb777d5ba0f3a4c8505aaf0c", null ],
     [ "Image", "class_image.html#a2c70e4fbd76302e67fe047d4a57def8e", null ],
     [ "Image", "class_image.html#ad9a2ebd07a4f458ba24d91af0122418e", null ],
-    [ "Image", "class_image.html#a7c7fd5a9eb5d1abe95afb7adaa05fcb7", null ],
+    [ "Image", "class_image.html#a0a156f67cc7c0cb76ead922351de48f9", null ],
+    [ "Image", "class_image.html#acde91941e82c85b2930e635e204b44ee", null ],
     [ "~Image", "class_image.html#a0294f63700543e11c0f0da85601c7ae5", null ],
     [ "blit", "class_image.html#a380380a1c5f823bbe62a3f62d061cafd", null ],
     [ "darken", "class_image.html#ac74b230ae107968c8ec27d1eccd48789", null ],
@@ -15,6 +16,7 @@ var class_image =
     [ "lighten", "class_image.html#aa0b0980bc6c816b11ca573a994f105c0", null ],
     [ "set", "class_image.html#af3ac152c69b76c7e667b8addb6096837", null ],
     [ "set", "class_image.html#ac470574231bf07de64edfbf157611c00", null ],
+    [ "set", "class_image.html#a2d5cb16f024919333d0fb31411e9cf54", null ],
     [ "width", "class_image.html#a622448e6a454614d431d5cee77b0a7f2", null ],
     [ "operator<<", "class_image.html#a7f50d34e230853ed6c2e8e288d543fc7", null ]
 ];

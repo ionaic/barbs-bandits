@@ -123,6 +123,8 @@ Inheritance diagram for ImageElement:</div>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image_element.html#aba9605d67c75b2802a45e93a4b0cff5d">ImageElement</a> (<a class="el" href="class_image.html">Image</a> &amp;img)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <a href="#aba9605d67c75b2802a45e93a4b0cff5d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image_element.html#a15f61001778d309dfd0276ff241288ae">ImageElement</a> (unsigned int x, unsigned int y, int <a class="el" href="class_element.html#a07e1710d6b11b5fbf4184b7703d5ee2e">width</a>, int <a class="el" href="class_element.html#a530e70330fc737c75477334fea147e65">height</a>, const char *fname)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to create an image element at a location.  <a href="#a15f61001778d309dfd0276ff241288ae"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image_element.html#a71621746729746b64e39fc168a551b5b">ImageElement</a> (unsigned int x, unsigned int y, const char *fname)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor to create an image element at a location.  <a href="#a71621746729746b64e39fc168a551b5b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image_element.html#a9661aca27d32e6b9252dbbe45417f1bf">ImageElement</a> (unsigned int x, unsigned int y, unsigned int <a class="el" href="class_element.html#a07e1710d6b11b5fbf4184b7703d5ee2e">width</a>, unsigned int <a class="el" href="class_element.html#a530e70330fc737c75477334fea147e65">height</a>)</td></tr>
@@ -168,6 +170,55 @@ Friends</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a15f61001778d309dfd0276ff241288ae"></a><!-- doxytag: member="ImageElement::ImageElement" ref="a15f61001778d309dfd0276ff241288ae" args="(unsigned int x, unsigned int y, int width, int height, const char *fname)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_image_element.html#aba9605d67c75b2802a45e93a4b0cff5d">ImageElement::ImageElement</a> </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fname</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Constructor to create an image element at a location. </p>
+
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00026">26</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a71621746729746b64e39fc168a551b5b"></a><!-- doxytag: member="ImageElement::ImageElement" ref="a71621746729746b64e39fc168a551b5b" args="(unsigned int x, unsigned int y, const char *fname)" -->
 <div class="memitem">
 <div class="memproto">
@@ -201,7 +252,7 @@ Friends</h2></td></tr>
 
 <p>Constructor to create an image element at a location. </p>
 
-<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00026">26</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00037">37</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +295,7 @@ Friends</h2></td></tr>
 
 <p>Constructor to create an image element at (x,y) with dimensions (width, height). </p>
 
-<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00039">39</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00050">50</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
 
 </div>
 </div>
@@ -293,7 +344,7 @@ Friends</h2></td></tr>
 
 <p>Constructor to create an image element at (x, y) in the parent with dimensions (width, height) and the specified content image. </p>
 
-<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00048">48</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00059">59</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
 
 </div>
 </div>
@@ -313,7 +364,7 @@ Friends</h2></td></tr>
 
 <p>Destructor. Deletes the content image. </p>
 
-<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00051">51</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00062">62</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
 
 </div>
 </div>
@@ -336,7 +387,7 @@ Friends</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="class_element.html#a7a110bce4630cd7b35b1c2d401774598">Element</a>.</p>
 
-<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00055">55</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00066">66</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
 
 </div>
 </div>
@@ -354,7 +405,7 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00042">42</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00053">53</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
 
 </div>
 </div>
@@ -372,7 +423,7 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00044">44</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_element_8h_source.html#l00055">55</a> of file <a class="el" href="_image_element_8h_source.html">ImageElement.h</a>.</p>
 
 </div>
 </div>
@@ -430,7 +481,7 @@ Friends</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="class_image_element.html">ImageElement</a>      </li>
 
-    <li class="footer">Generated on Fri Nov 16 2012 16:00:10 for OpenGui by
+    <li class="footer">Generated on Wed Nov 28 2012 20:29:10 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

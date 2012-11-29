@@ -1,5 +1,7 @@
 var hierarchy =
 [
+    [ "Coordinate", "class_coordinate.html", null ],
+    [ "Dimension", "class_dimension.html", null ],
     [ "Element", "class_element.html", [
       [ "AbstractCounter", "class_abstract_counter.html", [
         [ "BoundedCounter", "class_bounded_counter.html", [
@@ -15,6 +17,7 @@ var hierarchy =
       [ "CheckBox", "class_check_box.html", [
         [ "RadioButton", "class_radio_button.html", null ]
       ] ],
+      [ "DropDown", "class_drop_down.html", null ],
       [ "ImageElement", "class_image_element.html", null ],
       [ "TextElement", "class_text_element.html", [
         [ "TextEdit", "class_text_edit.html", null ]
@@ -23,5 +26,6 @@ var hierarchy =
     [ "ElementComparison", "class_element_comparison.html", null ],
     [ "Image", "class_image.html", null ],
     [ "Pixel", "class_pixel.html", null ],
-    [ "Text", "class_text.html", null ]
+    [ "Text", "class_text.html", null ],
+    [ "TextValue", "class_text_value.html", null ]
 ];

@@ -121,8 +121,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates an image of size (width,height) and initializes it to data.  <a href="#a2c70e4fbd76302e67fe047d4a57def8e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ad9a2ebd07a4f458ba24d91af0122418e">Image</a> (<a class="el" href="class_image.html">Image</a> &amp;img)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="#ad9a2ebd07a4f458ba24d91af0122418e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a7c7fd5a9eb5d1abe95afb7adaa05fcb7">Image</a> (const char *)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that creates an image from a texture file.  <a href="#a7c7fd5a9eb5d1abe95afb7adaa05fcb7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0a156f67cc7c0cb76ead922351de48f9">Image</a> (const char *fname)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that creates an image from a texture file.  <a href="#a0a156f67cc7c0cb76ead922351de48f9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#acde91941e82c85b2930e635e204b44ee">Image</a> (int <a class="el" href="class_image.html#a622448e6a454614d431d5cee77b0a7f2">width</a>, int <a class="el" href="class_image.html#a755dc7553e45feee69c1c3e208c260ba">height</a>, const char *)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that creates an image from a texture file. Includes scaling to width, height.  <a href="#acde91941e82c85b2930e635e204b44ee"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0294f63700543e11c0f0da85601c7ae5">~Image</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">destructor  <a href="#a0294f63700543e11c0f0da85601c7ae5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a622448e6a454614d431d5cee77b0a7f2">width</a> () const </td></tr>
@@ -133,6 +135,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the color of a particular pixel.  <a href="#af3ac152c69b76c7e667b8addb6096837"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ac470574231bf07de64edfbf157611c00">set</a> (unsigned int x, unsigned int y, unsigned int <a class="el" href="class_image.html#a622448e6a454614d431d5cee77b0a7f2">width</a>, unsigned int <a class="el" href="class_image.html#a755dc7553e45feee69c1c3e208c260ba">height</a>, const <a class="el" href="class_pixel.html">Pixel</a> &amp;color)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the color of a pixel region.  <a href="#ac470574231bf07de64edfbf157611c00"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a2d5cb16f024919333d0fb31411e9cf54">set</a> (unsigned int x, unsigned int y, unsigned int <a class="el" href="class_image.html#a622448e6a454614d431d5cee77b0a7f2">width</a>, unsigned int <a class="el" href="class_image.html#a755dc7553e45feee69c1c3e208c260ba">height</a>, int alpha)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the alpha of a pixel region.  <a href="#a2d5cb16f024919333d0fb31411e9cf54"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_pixel.html">Pixel</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a081894989d9100298e97456bb3e3dd6e">get</a> (unsigned int x, unsigned int y) const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the value of a pixel.  <a href="#a081894989d9100298e97456bb3e3dd6e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_pixel.html">Pixel</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a839b44b5c988db5774b7e963bcee5656">getPixels</a> ()</td></tr>
@@ -291,7 +295,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A new <a class="el" href="class_image.html" title="Contains an image and allows for basic manipulation.">Image</a> class. </dd></dl>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00089">89</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00119">119</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -323,7 +327,7 @@ Friends</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a7c7fd5a9eb5d1abe95afb7adaa05fcb7"></a><!-- doxytag: member="Image::Image" ref="a7c7fd5a9eb5d1abe95afb7adaa05fcb7" args="(const char *)" -->
+<a class="anchor" id="a0a156f67cc7c0cb76ead922351de48f9"></a><!-- doxytag: member="Image::Image" ref="a0a156f67cc7c0cb76ead922351de48f9" args="(const char *fname)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -346,7 +350,50 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00061">61</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00062">62</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acde91941e82c85b2930e635e204b44ee"></a><!-- doxytag: member="Image::Image" ref="acde91941e82c85b2930e635e204b44ee" args="(int width, int height, const char *)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_image.html#a58edd1c45b4faeb5f789b0d036d02313">Image::Image</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>fname</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Constructor that creates an image from a texture file. Includes scaling to width, height. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fname</td><td>is the name of the texture file to be loaded. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00086">86</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -366,7 +413,7 @@ Friends</h2></td></tr>
 
 <p>destructor </p>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00102">102</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00132">132</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -441,7 +488,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00206">206</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00269">269</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -461,7 +508,7 @@ Friends</h2></td></tr>
 
 <p>Darken the entire image. </p>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00284">284</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00347">347</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +547,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A constant reference to the value. </dd></dl>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00180">180</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00243">243</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -518,7 +565,7 @@ Friends</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Definition at line <a class="el" href="_image_8h_source.html#l00030">30</a> of file <a class="el" href="_image_8h_source.html">Image.h</a>.</p>
+<p>Definition at line <a class="el" href="_image_8h_source.html#l00033">33</a> of file <a class="el" href="_image_8h_source.html">Image.h</a>.</p>
 
 </div>
 </div>
@@ -538,7 +585,7 @@ Friends</h2></td></tr>
 
 <p>Retrieve the height. </p>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00113">113</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00143">143</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -558,7 +605,7 @@ Friends</h2></td></tr>
 
 <p>lighten the entire image </p>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00274">274</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00337">337</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -604,7 +651,7 @@ Friends</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00125">125</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00155">155</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -664,7 +711,67 @@ Friends</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00150">150</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00180">180</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d5cb16f024919333d0fb31411e9cf54"></a><!-- doxytag: member="Image::set" ref="a2d5cb16f024919333d0fb31411e9cf54" args="(unsigned int x, unsigned int y, unsigned int width, unsigned int height, int alpha)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_image.html#af3ac152c69b76c7e667b8addb6096837">Image::set</a> </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>alpha</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sets the alpha of a pixel region. </p>
+<dl class="params"><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>Defines the left of the region. </td></tr>
+    <tr><td class="paramname">y</td><td>Defines the top of the region. </td></tr>
+    <tr><td class="paramname">width</td><td>Defines the width of the region. </td></tr>
+    <tr><td class="paramname">height</td><td>Defines the height of the region. </td></tr>
+    <tr><td class="paramname">color</td><td>Defines the default color to set the pixels to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>void </dd></dl>
+
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00213">213</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -684,7 +791,7 @@ Friends</h2></td></tr>
 
 <p>Retrieve the width. </p>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00109">109</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00139">139</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -725,7 +832,7 @@ Friends</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>ostream Passes out the same ostream</dd></dl>
 <p>Outputs the dimensions and all of the pixel data for the image. </p>
 
-<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00304">304</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_image_8cpp_source.html#l00367">367</a> of file <a class="el" href="_image_8cpp_source.html">Image.cpp</a>.</p>
 
 </div>
 </div>
@@ -753,7 +860,7 @@ Friends</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="class_image.html">Image</a>      </li>
 
-    <li class="footer">Generated on Fri Nov 16 2012 16:00:10 for OpenGui by
+    <li class="footer">Generated on Wed Nov 28 2012 20:29:10 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

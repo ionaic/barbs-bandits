@@ -24,7 +24,7 @@
 
 using namespace std;
 //global variables so that we can directly access certain elements of the GUI
-static string textureFile = "resources/texture.bmp";
+static string textureFile = "resources/white.bmp";
 static ToggleButton* TB;
 static ToggleButton* TB2;
 static NumericCounter* N;
@@ -111,6 +111,9 @@ void addGuiElements() {
     buttonList2.push_back("     RB 6");
     RadioButton* RB = new RadioButton(156, 156, 50, 100, buttonList2, "resources/r_1.bmp", "resources/r_2.bmp");
     e->addChild(RB);
+    //create new resized image at the bottom
+    ImageElement* RS = new ImageElement(100, 0, 50, 50, "resources/resize.bmp");
+    e->addChild(RS);
 }
 
 

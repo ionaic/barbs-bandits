@@ -109,41 +109,94 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00011"></a>00011         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height): <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>(x, y, width, height) {
 <a name="l00012"></a>00012     <a class="code" href="class_pixel.html" title="Stores the raw pixel data for one Pixel.">Pixel</a> p(255, 255, 255, 127);
 <a name="l00013"></a>00013     <a class="code" href="class_image.html" title="Contains an image and allows for basic manipulation.">Image</a> i(width, height, p);
-<a name="l00014"></a>00014     <a class="code" href="class_button.html#a4745f9f13635485445614764193a8bad">_imageE</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, i); <span class="comment">//need to draw image first</span>
-<a name="l00015"></a>00015     <a class="code" href="class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd" title="Sets background image.">setBgIg</a>(<a class="code" href="class_button.html#a4745f9f13635485445614764193a8bad">_imageE</a>);
-<a name="l00016"></a>00016     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a> = <span class="keyword">new</span> <a class="code" href="class_text_element.html" title="The class used to store elements of Text.">TextElement</a>(0, 0, width, height, 0, <span class="stringliteral">&quot;&quot;</span>);
-<a name="l00017"></a>00017     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>);
-<a name="l00018"></a>00018 }
-<a name="l00019"></a>00019 
-<a name="l00021"></a><a class="code" href="class_button.html#a0446975c84ebf54a1a1fa88690689e34">00021</a> <a class="code" href="class_button.html#a3c5ea0097e8e4abf139a558c53f022d2" title="Constructor. Sets x and y position of Element along with height and width.">Button::Button</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width,
-<a name="l00022"></a>00022         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height, <span class="keywordtype">string</span> txt) : <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>(x, y, width, height) {
-<a name="l00023"></a>00023     <a class="code" href="class_pixel.html" title="Stores the raw pixel data for one Pixel.">Pixel</a> p(255, 255, 255, 127);
-<a name="l00024"></a>00024     <a class="code" href="class_image.html" title="Contains an image and allows for basic manipulation.">Image</a> i(width, height, p);
-<a name="l00025"></a>00025     <a class="code" href="class_button.html#a4745f9f13635485445614764193a8bad">_imageE</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, i); <span class="comment">//need to draw image first</span>
-<a name="l00026"></a>00026     <a class="code" href="class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd" title="Sets background image.">setBgIg</a>(<a class="code" href="class_button.html#a4745f9f13635485445614764193a8bad">_imageE</a>);
-<a name="l00027"></a>00027     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a> = <span class="keyword">new</span> <a class="code" href="class_text_element.html" title="The class used to store elements of Text.">TextElement</a>(0, 0, width, height, 0, txt);
-<a name="l00028"></a>00028     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>);
-<a name="l00029"></a>00029 }
-<a name="l00030"></a>00030 
-<a name="l00032"></a><a class="code" href="class_button.html#a89eeede6ce15964118eee29990872c96">00032</a> <a class="code" href="class_button.html#a3c5ea0097e8e4abf139a558c53f022d2" title="Constructor. Sets x and y position of Element along with height and width.">Button::Button</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width,
-<a name="l00033"></a>00033         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height, <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>* img) : <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>(x, y, width, height) {
-<a name="l00034"></a>00034     <a class="code" href="class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd" title="Sets background image.">setBgIg</a>(img);
-<a name="l00035"></a>00035     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a> = <span class="keyword">new</span> <a class="code" href="class_text_element.html" title="The class used to store elements of Text.">TextElement</a>(0, 0, width, height);
-<a name="l00036"></a>00036     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>);
+<a name="l00014"></a>00014     <a class="code" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, i); <span class="comment">//need to draw image first</span>
+<a name="l00015"></a>00015     <a class="code" href="class_pixel.html" title="Stores the raw pixel data for one Pixel.">Pixel</a> p2(205, 205, 205, 127);
+<a name="l00016"></a>00016     <a class="code" href="class_image.html" title="Contains an image and allows for basic manipulation.">Image</a> i2(width, height, p2);
+<a name="l00017"></a>00017     <a class="code" href="class_button.html#a6ffe2a2f11618f271b3bb20b343d694e">_imageDown</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, i2); <span class="comment">//need to draw image first</span>
+<a name="l00018"></a>00018     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a> = <span class="keyword">new</span> <a class="code" href="class_text_element.html" title="The class used to store elements of Text.">TextElement</a>(0, 0, width, height, 0, <span class="stringliteral">&quot;&quot;</span>);
+<a name="l00019"></a>00019     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_element.html#aab1f2476247f365f6755dc2913d205b3" title="Set the z position (z index) of the element.">setZ</a>(0);
+<a name="l00020"></a>00020     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>);
+<a name="l00021"></a>00021     <a class="code" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">_down</a> = <span class="keyword">false</span>;
+<a name="l00022"></a>00022 }
+<a name="l00023"></a>00023 
+<a name="l00025"></a><a class="code" href="class_button.html#a0446975c84ebf54a1a1fa88690689e34">00025</a> <a class="code" href="class_button.html#a3c5ea0097e8e4abf139a558c53f022d2" title="Constructor. Sets x and y position of Element along with height and width.">Button::Button</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width,
+<a name="l00026"></a>00026         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height, <span class="keywordtype">string</span> txt) : <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>(x, y, width, height) {
+<a name="l00027"></a>00027     <a class="code" href="class_pixel.html" title="Stores the raw pixel data for one Pixel.">Pixel</a> p(255, 255, 255, 127);
+<a name="l00028"></a>00028     <a class="code" href="class_image.html" title="Contains an image and allows for basic manipulation.">Image</a> i(width, height, p);
+<a name="l00029"></a>00029     <a class="code" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, i); <span class="comment">//need to draw image first</span>
+<a name="l00030"></a>00030     <a class="code" href="class_pixel.html" title="Stores the raw pixel data for one Pixel.">Pixel</a> p2(205, 205, 205, 127);
+<a name="l00031"></a>00031     <a class="code" href="class_image.html" title="Contains an image and allows for basic manipulation.">Image</a> i2(width, height, p2);
+<a name="l00032"></a>00032     <a class="code" href="class_button.html#a6ffe2a2f11618f271b3bb20b343d694e">_imageDown</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, i2); <span class="comment">//need to draw image first</span>
+<a name="l00033"></a>00033     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a> = <span class="keyword">new</span> <a class="code" href="class_text_element.html" title="The class used to store elements of Text.">TextElement</a>(0, 0, width, height, 0, txt);
+<a name="l00034"></a>00034     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_element.html#aab1f2476247f365f6755dc2913d205b3" title="Set the z position (z index) of the element.">setZ</a>(0);
+<a name="l00035"></a>00035     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>);
+<a name="l00036"></a>00036     <a class="code" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">_down</a> = <span class="keyword">false</span>;
 <a name="l00037"></a>00037 }
 <a name="l00038"></a>00038 
-<a name="l00040"></a><a class="code" href="class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd">00040</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#a836cb30a97ad2abeb67b0b0a6dc30dbd" title="Sets background image.">Button::setBgIg</a>(<a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>* img) {
-<a name="l00041"></a>00041     <a class="code" href="class_button.html#a4745f9f13635485445614764193a8bad">_imageE</a> = img;      <span class="comment">//need to draw image first</span>
-<a name="l00042"></a>00042     img-&gt;<a class="code" href="class_element.html#aab1f2476247f365f6755dc2913d205b3" title="Set the z position (z index) of the element.">setZ</a>(-1);
-<a name="l00043"></a>00043     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">Element::addChild</a>(img);
-<a name="l00044"></a>00044     <a class="code" href="class_element.html#aee4a1536e9e19eec9970522bb664550d" title="Set the dirty flag. Causes the element re-render.">setDirty</a>(<span class="keyword">true</span>);
-<a name="l00045"></a>00045     img-&gt;<a class="code" href="class_element.html#aee4a1536e9e19eec9970522bb664550d" title="Set the dirty flag. Causes the element re-render.">setDirty</a>(<span class="keyword">true</span>);
-<a name="l00046"></a>00046 }
-<a name="l00047"></a>00047 
-<a name="l00049"></a><a class="code" href="class_button.html#a1794b3856606e75716fc7e2611b1b711">00049</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#a1794b3856606e75716fc7e2611b1b711" title="Sets text.">Button::setText</a>(<span class="keywordtype">string</span> txt) {
-<a name="l00050"></a>00050     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_text_element.html#a5f6f8013ecd934bd628ecaf6361bf03a" title="Updates the text stored and re-renders the result.">setText</a>(txt);
-<a name="l00051"></a>00051     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_element.html#aee4a1536e9e19eec9970522bb664550d" title="Set the dirty flag. Causes the element re-render.">setDirty</a>(<span class="keyword">true</span>);
+<a name="l00040"></a><a class="code" href="class_button.html#ad0461a948873199d1bd1908cf8982cbd">00040</a> <a class="code" href="class_button.html#a3c5ea0097e8e4abf139a558c53f022d2" title="Constructor. Sets x and y position of Element along with height and width.">Button::Button</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> y, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width,
+<a name="l00041"></a>00041         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">char</span>* up_file, <span class="keyword">const</span> <span class="keywordtype">char</span>* down_file,
+<a name="l00042"></a>00042         <span class="keywordtype">string</span> <a class="code" href="_button_o_c_8cpp.html#a739bd7e413e61c963681e085a990979a">text</a>) : <a class="code" href="class_element.html" title="The base class that all GUI elements derive from.">Element</a>(x, y, width, height) {
+<a name="l00043"></a>00043     <a class="code" href="class_button.html#adee3338da6970e0fa6e6131e252b3252" title="Sets background image for up.">setUpImage</a>(width, height, up_file);
+<a name="l00044"></a>00044     <a class="code" href="class_button.html#aba2a3aa7fb20d27d7e10c52791f52798" title="Sets background image for down.">setDownImage</a>(width, height, down_file);
+<a name="l00045"></a>00045     <span class="keywordtype">int</span> offset_w = width / 8;
+<a name="l00046"></a>00046     <span class="keywordtype">int</span> offset_h = height / 4;
+<a name="l00047"></a>00047     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a> = <span class="keyword">new</span> <a class="code" href="class_text_element.html" title="The class used to store elements of Text.">TextElement</a>(offset_w, offset_h,
+<a name="l00048"></a>00048             width - ( offset_w ) , height - (offset_h ), 0, text);
+<a name="l00049"></a>00049     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_element.html#aab1f2476247f365f6755dc2913d205b3" title="Set the z position (z index) of the element.">setZ</a>(0);
+<a name="l00050"></a>00050     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>);
+<a name="l00051"></a>00051     <a class="code" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">_down</a> = <span class="keyword">false</span>;
 <a name="l00052"></a>00052 }
+<a name="l00053"></a>00053 
+<a name="l00055"></a><a class="code" href="class_button.html#adee3338da6970e0fa6e6131e252b3252">00055</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#adee3338da6970e0fa6e6131e252b3252" title="Sets background image for up.">Button::setUpImage</a>(<span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">char</span>* up_file) {
+<a name="l00056"></a>00056     <a class="code" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, up_file);      <span class="comment">//need to draw image first</span>
+<a name="l00057"></a>00057     <a class="code" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a>-&gt;<a class="code" href="class_element.html#aab1f2476247f365f6755dc2913d205b3" title="Set the z position (z index) of the element.">setZ</a>(-1);
+<a name="l00058"></a>00058     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">Element::addChild</a>(<a class="code" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a>);
+<a name="l00059"></a>00059     <a class="code" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a>-&gt;<a class="code" href="class_element.html#aee4a1536e9e19eec9970522bb664550d" title="Set the dirty flag. Causes the element re-render.">setDirty</a>(<span class="keyword">true</span>);
+<a name="l00060"></a>00060 }
+<a name="l00061"></a>00061 
+<a name="l00062"></a><a class="code" href="class_button.html#aba2a3aa7fb20d27d7e10c52791f52798">00062</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#aba2a3aa7fb20d27d7e10c52791f52798" title="Sets background image for down.">Button::setDownImage</a>(<span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">char</span>* down_file) {
+<a name="l00063"></a>00063     <a class="code" href="class_button.html#a6ffe2a2f11618f271b3bb20b343d694e">_imageDown</a> = <span class="keyword">new</span> <a class="code" href="class_image_element.html" title="An element which simply contains an image and has children.">ImageElement</a>(0, 0, width, height, down_file);      <span class="comment">//need to draw image first</span>
+<a name="l00064"></a>00064     <a class="code" href="class_button.html#a6ffe2a2f11618f271b3bb20b343d694e">_imageDown</a>-&gt;<a class="code" href="class_element.html#aab1f2476247f365f6755dc2913d205b3" title="Set the z position (z index) of the element.">setZ</a>(-1);
+<a name="l00065"></a>00065 }
+<a name="l00066"></a>00066 
+<a name="l00068"></a><a class="code" href="class_button.html#a1794b3856606e75716fc7e2611b1b711">00068</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#a1794b3856606e75716fc7e2611b1b711" title="Sets text.">Button::setText</a>(<span class="keywordtype">string</span> txt) {
+<a name="l00069"></a>00069     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_text_element.html#a5f6f8013ecd934bd628ecaf6361bf03a" title="Updates the text stored and re-renders the result.">setText</a>(txt);
+<a name="l00070"></a>00070     <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_element.html#aee4a1536e9e19eec9970522bb664550d" title="Set the dirty flag. Causes the element re-render.">setDirty</a>(<span class="keyword">true</span>);
+<a name="l00071"></a>00071 }
+<a name="l00072"></a>00072 
+<a name="l00073"></a><a class="code" href="class_button.html#aaab02e519fc0f0ca2e9b5ad5a6949cf0">00073</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#aaab02e519fc0f0ca2e9b5ad5a6949cf0">Button::_switch</a>() {
+<a name="l00074"></a>00074     this-&gt;<a class="code" href="class_element.html#a164684acbc89bc0163128af039853295">_children</a>.clear();
+<a name="l00075"></a>00075     <a class="code" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">_down</a> = !<a class="code" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">_down</a>;
+<a name="l00076"></a>00076     <span class="keywordflow">if</span> (<a class="code" href="class_button.html#a74637822f95b32a1ecf5c6f8b37202b5">_down</a>)
+<a name="l00077"></a>00077         <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a6ffe2a2f11618f271b3bb20b343d694e">_imageDown</a>);
+<a name="l00078"></a>00078     <span class="keywordflow">else</span>
+<a name="l00079"></a>00079         <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#ae6a2bb34faa3e72e9d152bab8aa97b24">_imageUp</a>);
+<a name="l00080"></a>00080     <a class="code" href="class_element.html#a5e5de37f6b79a3a952d021ba15b3912d" title="Add a child element to the current element.">addChild</a>(<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>);
+<a name="l00081"></a>00081     <span class="keywordflow">if</span> (this-&gt;<a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>)
+<a name="l00082"></a>00082         <a class="code" href="class_button.html#a55dcdefb9e223357f1bb1c66c968465c">_textE</a>-&gt;<a class="code" href="class_element.html#aee4a1536e9e19eec9970522bb664550d" title="Set the dirty flag. Causes the element re-render.">setDirty</a>(<span class="keyword">true</span>);
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 
+<a name="l00086"></a><a class="code" href="class_button.html#aa7ab81954a631ab58c6d29aca8701f62">00086</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#aa7ab81954a631ab58c6d29aca8701f62">Button::mouseDown</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) {
+<a name="l00087"></a>00087     <span class="keywordflow">if</span> ( x &lt; 0 || y &lt; 0) <span class="keywordflow">return</span>;
+<a name="l00088"></a>00088     <span class="keywordtype">bool</span> inside = (this-&gt;<a class="code" href="class_element.html#a559a2b7894e65668aee75346a3976f86">_width</a> &gt;= x &amp;&amp; this-&gt;<a class="code" href="class_element.html#a6118137bfca71319ebaaa0d87be60cf3">_height</a> &gt;= y);
+<a name="l00089"></a>00089     <span class="keywordflow">if</span> (inside) { <span class="comment">//if inside button</span>
+<a name="l00090"></a>00090         <span class="keywordflow">if</span> (0 != <a class="code" href="class_element.html#a7f37e2b4984e0f86caeb8afa5d599397">_mouseCallback</a> ) <span class="comment">//if element has a callback</span>
+<a name="l00091"></a>00091             this-&gt;<a class="code" href="class_element.html#a7f37e2b4984e0f86caeb8afa5d599397">_mouseCallback</a>(<span class="keyword">this</span>,x,y);
+<a name="l00092"></a>00092         <a class="code" href="class_button.html#aaab02e519fc0f0ca2e9b5ad5a6949cf0">_switch</a>();
+<a name="l00093"></a>00093         <span class="keywordflow">return</span>;
+<a name="l00094"></a>00094     }
+<a name="l00095"></a>00095 }
+<a name="l00096"></a>00096 
+<a name="l00098"></a><a class="code" href="class_button.html#a7a24034f0049a356346723075c5cdc24">00098</a> <span class="keywordtype">void</span> <a class="code" href="class_button.html#a7a24034f0049a356346723075c5cdc24">Button::mouseUp</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) {
+<a name="l00099"></a>00099     <span class="keywordflow">if</span> ( x &lt; 0 || y &lt; 0) <span class="keywordflow">return</span>;
+<a name="l00100"></a>00100     <span class="keywordtype">bool</span> inside = (this-&gt;<a class="code" href="class_element.html#a559a2b7894e65668aee75346a3976f86">_width</a> &gt;= x &amp;&amp; this-&gt;<a class="code" href="class_element.html#a6118137bfca71319ebaaa0d87be60cf3">_height</a> &gt;= y);
+<a name="l00101"></a>00101     <span class="keywordflow">if</span> (inside) { <span class="comment">//if inside button</span>
+<a name="l00102"></a>00102         <span class="keywordflow">if</span> (0 != <a class="code" href="class_element.html#a67c6b4346790c51d4407c5f66afe716e">_mouseUpCallback</a> ) <span class="comment">//if element has a callback</span>
+<a name="l00103"></a>00103             this-&gt;<a class="code" href="class_element.html#a67c6b4346790c51d4407c5f66afe716e">_mouseUpCallback</a>(<span class="keyword">this</span>,x,y);
+<a name="l00104"></a>00104         <a class="code" href="class_button.html#aaab02e519fc0f0ca2e9b5ad5a6949cf0">_switch</a>();
+<a name="l00105"></a>00105         <span class="keywordflow">return</span>;
+<a name="l00106"></a>00106     }
+<a name="l00107"></a>00107 }
 </pre></div></div><!-- contents -->
 </div>
 <!-- window showing the filter options -->
@@ -164,7 +217,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul>
       <li class="navelem"><a class="el" href="_button_8cpp.html">Button.cpp</a>      </li>
 
-    <li class="footer">Generated on Fri Nov 16 2012 16:00:08 for OpenGui by
+    <li class="footer">Generated on Wed Nov 28 2012 20:29:08 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

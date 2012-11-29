@@ -96,7 +96,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div id="doc-content">
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a>  </div>
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#friends">Friends</a>  </div>
   <div class="headertitle">
 <div class="title">ToggleButton Class Reference</div>  </div>
 </div><!--header-->
@@ -125,14 +126,19 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of this element along with width and height.  <a href="#a1217ac37ca79450eeaf8a8a7cd79e690"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#a7ae1419f6fe7bc72af6e972c490f3d3c">ToggleButton</a> (int x, int y, int w, int h, string txt)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of this element along with width, height and text.  <a href="#a7ae1419f6fe7bc72af6e972c490f3d3c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#adf501f89389fb0297e5b1b9ceaf1abdc">ToggleButton</a> (int x, int y, int w, int h, string content, int size, <a class="el" href="class_image_element.html">ImageElement</a> *i)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of this element along with width, height, text, font size, and a background image.  <a href="#adf501f89389fb0297e5b1b9ceaf1abdc"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#a00d4131302cfd25e577d9a3484aefa74">ToggleButton</a> (int x, int y, int w, int h, const char *up_file, const char *down_file, string <a class="el" href="_button_o_c_8cpp.html#a739bd7e413e61c963681e085a990979a">text</a>)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor. Sets x and y position of this element along with width, height, text, font size, and a background image.  <a href="#a00d4131302cfd25e577d9a3484aefa74"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#ac1fb09aad8c580b884abd03c91c1c0fd">mouseDown</a> (int x, int y)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">mouseInput overload. Performs action if inside this element  <a href="#ac1fb09aad8c580b884abd03c91c1c0fd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#a217bb2d75d04b4b5eef7ea2bb6eb1b68">setDown</a> (bool down)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">set the button state  <a href="#a217bb2d75d04b4b5eef7ea2bb6eb1b68"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#a4dc827f5efd6b015a52de325b6692320">mouseUp</a> (int x, int y)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows the user to manually set up or down.  <a href="#a4dc827f5efd6b015a52de325b6692320"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#aaf383cc33bd77956143bb48e4c3bc3fe">isDown</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows the user to manually set up or down.  <a href="#aaf383cc33bd77956143bb48e4c3bc3fe"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">mouseInput overload  <a href="#aaf383cc33bd77956143bb48e4c3bc3fe"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="friends"></a>
+Friends</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_toggle_button.html#a9c7f4063d2c0142a07ea6b582d8e1261">DropDown</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The class used to store toggleable Buttons. </p>
@@ -233,7 +239,7 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="adf501f89389fb0297e5b1b9ceaf1abdc"></a><!-- doxytag: member="ToggleButton::ToggleButton" ref="adf501f89389fb0297e5b1b9ceaf1abdc" args="(int x, int y, int w, int h, string content, int size, ImageElement *i)" -->
+<a class="anchor" id="a00d4131302cfd25e577d9a3484aefa74"></a><!-- doxytag: member="ToggleButton::ToggleButton" ref="a00d4131302cfd25e577d9a3484aefa74" args="(int x, int y, int w, int h, const char *up_file, const char *down_file, string text)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -264,20 +270,20 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>up_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>down_file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>content</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_image_element.html">ImageElement</a> *&#160;</td>
-          <td class="paramname"><em>i</em>&#160;</td>
+          <td class="paramname"><em>text</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -310,11 +316,10 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Allows the user to manually set up or down. </p>
-<p>check if the button is down</p>
-<p>&lt; </p>
+<p>mouseInput overload </p>
+<p>check if the button is down </p>
 
-<p>Definition at line <a class="el" href="_toggle_button_8cpp_source.html#l00040">40</a> of file <a class="el" href="_toggle_button_8cpp_source.html">ToggleButton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_toggle_button_8cpp_source.html#l00039">39</a> of file <a class="el" href="_toggle_button_8cpp_source.html">ToggleButton.cpp</a>.</p>
 
 </div>
 </div>
@@ -346,9 +351,43 @@ Public Member Functions</h2></td></tr>
 <p>mouseInput overload. Performs action if inside this element </p>
 <p>mouseInput overload for <a class="el" href="class_toggle_button.html" title="The class used to store toggleable Buttons.">ToggleButton</a> for animation </p>
 
-<p>Reimplemented from <a class="el" href="class_element.html#a078e517fc0aeafe2403e66a7e8074241">Element</a>.</p>
+<p>Reimplemented from <a class="el" href="class_button.html#aa7ab81954a631ab58c6d29aca8701f62">Button</a>.</p>
 
 <p>Definition at line <a class="el" href="_toggle_button_8cpp_source.html#l00027">27</a> of file <a class="el" href="_toggle_button_8cpp_source.html">ToggleButton.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4dc827f5efd6b015a52de325b6692320"></a><!-- doxytag: member="ToggleButton::mouseUp" ref="a4dc827f5efd6b015a52de325b6692320" args="(int x, int y)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_toggle_button.html#a4dc827f5efd6b015a52de325b6692320">ToggleButton::mouseUp</a> </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td><code> [inline, virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Allows the user to manually set up or down. </p>
+<p>&lt; </p>
+
+<p>Reimplemented from <a class="el" href="class_button.html#a7a24034f0049a356346723075c5cdc24">Button</a>.</p>
+
+<p>Definition at line <a class="el" href="_toggle_button_8h_source.html#l00026">26</a> of file <a class="el" href="_toggle_button_8h_source.html">ToggleButton.h</a>.</p>
 
 </div>
 </div>
@@ -369,7 +408,23 @@ Public Member Functions</h2></td></tr>
 
 <p>set the button state </p>
 
-<p>Definition at line <a class="el" href="_toggle_button_8cpp_source.html#l00045">45</a> of file <a class="el" href="_toggle_button_8cpp_source.html">ToggleButton.cpp</a>.</p>
+<p>Definition at line <a class="el" href="_toggle_button_8cpp_source.html#l00044">44</a> of file <a class="el" href="_toggle_button_8cpp_source.html">ToggleButton.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Friends And Related Function Documentation</h2>
+<a class="anchor" id="a9c7f4063d2c0142a07ea6b582d8e1261"></a><!-- doxytag: member="ToggleButton::DropDown" ref="a9c7f4063d2c0142a07ea6b582d8e1261" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="class_drop_down.html">DropDown</a><code> [friend]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Definition at line <a class="el" href="_toggle_button_8h_source.html#l00017">17</a> of file <a class="el" href="_toggle_button_8h_source.html">ToggleButton.h</a>.</p>
 
 </div>
 </div>
@@ -397,7 +452,7 @@ Public Member Functions</h2></td></tr>
     <ul>
       <li class="navelem"><a class="el" href="class_toggle_button.html">ToggleButton</a>      </li>
 
-    <li class="footer">Generated on Fri Nov 16 2012 16:00:11 for OpenGui by
+    <li class="footer">Generated on Wed Nov 28 2012 20:29:11 for OpenGui by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.6.1 </li>
    </ul>

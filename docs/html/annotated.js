@@ -4,6 +4,9 @@ var annotated =
     [ "BoundedCounter", "class_bounded_counter.html", "class_bounded_counter" ],
     [ "Button", "class_button.html", "class_button" ],
     [ "CheckBox", "class_check_box.html", "class_check_box" ],
+    [ "Coordinate", "class_coordinate.html", "class_coordinate" ],
+    [ "Dimension", "class_dimension.html", "class_dimension" ],
+    [ "DropDown", "class_drop_down.html", "class_drop_down" ],
     [ "Element", "class_element.html", "class_element" ],
     [ "ElementComparison", "class_element_comparison.html", "class_element_comparison" ],
     [ "FractionalCounter", "class_fractional_counter.html", "class_fractional_counter" ],
@@ -17,5 +20,6 @@ var annotated =
     [ "Text", "class_text.html", "class_text" ],
     [ "TextEdit", "class_text_edit.html", "class_text_edit" ],
     [ "TextElement", "class_text_element.html", "class_text_element" ],
+    [ "TextValue", "class_text_value.html", "class_text_value" ],
     [ "ToggleButton", "class_toggle_button.html", "class_toggle_button" ]
 ];

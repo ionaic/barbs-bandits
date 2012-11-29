@@ -8,6 +8,7 @@ var class_pixel =
     [ "getB", "class_pixel.html#abce7ab2c36592c9ee041eb8ce68900b4", null ],
     [ "getG", "class_pixel.html#ad1badd12caea7dba660ca7f5d0df241e", null ],
     [ "getR", "class_pixel.html#afdb27eea61316a8f08cf10685e813dd5", null ],
+    [ "setA", "class_pixel.html#a527494b377df6ff23dcd608f517dc79f", null ],
     [ "setRGB", "class_pixel.html#a32492f5ea18dbc883b721948efe07764", null ],
     [ "setRGBA", "class_pixel.html#a58de4c2c1419fde30f4f3428eed66a0a", null ],
     [ "operator<<", "class_pixel.html#a8162d24b145dcb53be8e5b1ba52df5be", null ]
