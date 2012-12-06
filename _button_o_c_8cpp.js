@@ -1,8 +1,5 @@
 var _button_o_c_8cpp =
 [
-    [ "Dimension", "class_dimension.html", "class_dimension" ],
-    [ "Coordinate", "class_coordinate.html", "class_coordinate" ],
-    [ "TextValue", "class_text_value.html", "class_text_value" ],
     [ "Button", "_button_o_c_8cpp.html#ab334b3525298ac482690b1e3e64dbdae", null ],
     [ "Button", "_button_o_c_8cpp.html#a86eb08edd3ccab1097a3ef79484746cd", null ],
     [ "Button", "_button_o_c_8cpp.html#a0ea89bd1c11b6c196903655b4261cb85", null ],
